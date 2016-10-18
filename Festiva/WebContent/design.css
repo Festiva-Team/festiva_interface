@@ -8,111 +8,72 @@ body
 {
 	width:980px;
 	margin:0 auto;
+	background-color:white;
 }
 #header
 {   width: 980px;
 	height: 150px;
-}
 
+}
 nav {
 	width: 980px;
 	height: 45px;
-	background-color: silver;
-	border: 1px solid black;
-}
+	background-color: black;
 
-nav:after {
-	clear: left;
-	content: "";
 }
-
-nav ul {
-	margin: 0;
-	padding: 0;
-	text-align: center;
+nav:after {content:''; clear: left;}
+ nav li {
+  list-style-type: none; /* ohne Aufzählungspunkte */
+  float: left;
+  position: relative;
+  	width: 8.6em;
+	margin: 0.4em;
 }
-
-nav li {
-	float: left;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	position: relative;
-}
-/* Unternavigation ausblenden */
-
+ 
 nav ul ul {
-	font: 0/0 serif;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-	top: 2.5em;
-	z-index: -1;
-	-webkit-transition: all 0.5s ease-in;
-	transition: all 0.5s ease-in;
+  margin: .4em 0 0 0;
+  padding: 0;
+  position: absolute;
+  top: 1.9em; 
+  left: -0.4em;
 }
-/*  Unternavigation einblenden */
-
-nav ul li:hover ul {
-	font: inherit;
-	z-index: auto;
-}
-
+ 
 nav ul ul li {
-	float: none;
-	margin-bottom: 0.1em;
+  float: none;
+  display: block;
 }
-
 nav a,
 nav span {
-	background-color: silver;
+	display: block;
+	width: 8em;
+	margin: 0.4em 0 0 0;
+	padding: 0.3em;
+	text-decoration: none;
+	font-weight: bold;
 	border: 1px solid black;
-	border-radius: 10px 10px 0 0;
 	box-shadow: 0px 5px 10px white inset;
 	color: black;
-	display: block;
-	font-weight: bold;
-	margin: 0.6em 0 0 0;
-	padding: 0.4em;
-	text-decoration: none;
-	/* Breite den in li enthaltenen Elementen zuweisen */
-	
-	width: 6.4em;
-	-webkit-transition: all 0.5s ease-in;
-	transition: all 0.5s ease-in;
+	background-color: white;
+	-webkit-transition: all .25s ease-in;
+	transition: all .25s ease-in;
 }
-
-nav ul ul a,
-nav ul ul span {
-	border-radius: 5px;
-}
-/* aktuelle Unterseite kennzeichnen */
-
 nav a:focus,
 nav a:hover,
-
-
-nav a:focus,
-nav a:hover {
-	margin-top: 0;
-	padding: 1em 0.4em 0.4em;
+nav span {
+	/* aktuelle Unterseite kennzeichnen */
+	
+	color: white;
+	background-color: grey;
 }
-
-nav ul ul a:hover {
-	margin: 0 0 0 0;
-	padding: 0;
-}
-
 #main
 {
 	width:980px;
-	height: 400px;
-	background: grey;
+	height: 500px;
 }	
 #oben
 {
 	width:980px;
-	height: 200px;
+	height: 250px;
 }	
 #olinks
 {	float: left;
@@ -127,7 +88,7 @@ nav ul ul a:hover {
 #unten
 {
 	width:980px;
-	height: 200px;
+	height: 250px;
 }
 #ulinks
 {	float: left;
@@ -140,8 +101,8 @@ nav ul ul a:hover {
 	height: 200px;
 }
 #footer
-{
+{	float: left;
 	width:980px;
 	height: 20px;
-	background: silver;
+	background: black;
 }
