@@ -21,7 +21,10 @@ nav {
 	background-color: black;
 
 }
-nav:after {content:''; clear: left;}
+nav:after {
+	content:''; 
+	clear: left;
+}
  nav li {
   list-style-type: none; /* ohne Aufzählungspunkte */
   float: left;
@@ -31,13 +34,20 @@ nav:after {content:''; clear: left;}
 }
  
 nav ul ul {
-  margin: .4em 0 0 0;
-  padding: 0;
-  position: absolute;
-  top: 1.9em; 
-  left: -0.4em;
+	/* Unterseite ausblenden */
+	font: 0/0 serif;
+	margin: .4em 0 0 0;
+ 	padding: 0;
+	position: absolute;
+	top: 1.9em; 
+	left: -0.4em;
+	z-index:-1;
 }
- 
+ nav ul li:hover ul {
+ 	/* Unterseite einblenden */
+	font: inherit;
+	z-index: auto;
+}
 nav ul ul li {
   float: none;
   display: block;
@@ -51,24 +61,26 @@ nav span {
 	text-decoration: none;
 	font-weight: bold;
 	border: 1px solid black;
+	border-radius: 10px;
 	box-shadow: 0px 5px 10px white inset;
 	color: black;
 	background-color: white;
-	-webkit-transition: all .25s ease-in;
-	transition: all .25s ease-in;
+}
+nav ul ul a,
+nav ul ul span {
+	border-radius: 10px;
 }
 nav a:focus,
 nav a:hover,
 nav span {
-	/* aktuelle Unterseite kennzeichnen */
-	
+	/* aktuelle Seite hervorheben */
 	color: white;
-	background-color: grey;
+	background-color: #990000;
 }
 #main
 {
 	width:980px;
-	height: 500px;
+	height: 1000px;
 }	
 #oben
 {
