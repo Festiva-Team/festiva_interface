@@ -4,14 +4,14 @@ form {
 }
 
 label.h2 {
-	float: left;
+	float:left;
+	text-align:right;
 	font-weight: bold;
 	font-size: 150%;
 	width: 70%;
 	margin-bottom: 1em;
 }
 
-input,
 label {
 	text-align: right;
 	float: left;
@@ -19,6 +19,7 @@ label {
 }
 
 input {
+	text-align: left;
 	margin: 0 0 1em .2em;
 	padding: .2em .5em;
 	background-color: #fffbf0;
