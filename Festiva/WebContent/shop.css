@@ -1,0 +1,26 @@
+@CHARSET "ISO-8859-1";
+#main
+{	width:980px;
+
+}	
+#search
+{	width:980px;
+}
+#content
+{	width:980px;
+}
+table 
+{	border-collapse: separate;
+	border-spacing: 0.2em;
+}
+th
+{	border: 1px black;
+	border-collapse: collapse;
+	background:#990000;
+	padding: 0.2em 0.5em;
+	border-radius: 0.1em;
+}
+<!-- linker Suchbereich -->
+
+
+<!-- Ergebnistabelle -->

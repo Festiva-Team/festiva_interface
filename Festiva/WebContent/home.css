@@ -1,0 +1,36 @@
+@CHARSET "ISO-8859-1";
+#main
+{
+	width:980px;
+	height: 1000px;
+}	
+#oben
+{
+	width:980px;
+	height: 250px;
+}	
+#olinks
+{	float: left;
+	width:490px;
+	height: 200px;
+}
+#orechts
+{   float: right;
+	width:490px;
+	height: 200px;
+}
+#unten
+{
+	width:980px;
+	height: 250px;
+}
+#ulinks
+{	float: left;
+	width:490px;
+	height: 200px;
+}
+#urechts
+{	float: right;
+	width:490px;
+	height: 200px;
+}
