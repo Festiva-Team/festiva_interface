@@ -3,23 +3,21 @@
 <%
 /** 
 	# Autor: Nicola Kloke
-	# JSP-Name: startseiteAdmin.jsp
-	# JSP-Aktionen: Die Startseite des Admins wird angezeigt.
-	# 				Von hier aus kann er die Verwaltung der Kunden, Kategorien und Festivals vornehmen.
+	# JSP-Name: header.jsp
+	# JSP-Aktionen: Definiert den Header und die Navigation für einen Admin.
 */
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="CSS/design.css">
-	<title>Festiva - Adminstartseite</title>
+<title>Header Admin</title>
 </head>
 <body>
-	<div id="webseite">
-		<div id="header">
+	<div id="header">
 			<img src="Bilder/HeaderMitLogo.png" width="980"/>
-		</div>
+	</div>
 			<nav>
 	  			<ul>
 				      <li><a href="startseiteAdmin.jsp">Home</a></li>
@@ -29,8 +27,5 @@
 				      <li><a href="#">Mein Konto</a></li>	
 			  	</ul>
 			</nav>
-		<div id="footer">
-		</div>
-	</div>	
 </body>
 </html>

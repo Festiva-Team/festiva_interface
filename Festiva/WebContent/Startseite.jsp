@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+/** 
+	# Autor: Nicola Kloke
+	# JSP-Name: startseite.jsp
+	# JSP-Aktionen:
+*/
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,21 +17,9 @@
 </head>
 <body>
 	<div id="webseite">
-		<div id="header">
-			<img src="Bilder/HeaderMitLogo.png" width="980"/>
-		</div>
-			<nav>
-	  			<ul>
-				      <li><a href="Startseite.jsp">Home</a></li>
-				      <li><a href="Shop.jsp">Shop</a></li>
-				      <li><a href="#">Mein Konto</a>
-				      	<ul>
-					      <li><a href="Anmelden.jsp">Anmelden</a></li>
-					      <li><a href="Registrieren.jsp">Registrieren</a></li>
-				      	</ul>
-				      </li>	
-			  	</ul>
-			</nav>
+	    <jsp:include page="header.jsp">
+	    	<jsp:param name="active" value="startseite"/>
+	    </jsp:include>
 			<div id="oben">
 			<!-- Erste Fotozeile -->
 				<div id="olinks">

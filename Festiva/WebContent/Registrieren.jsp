@@ -1,30 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+/** 
+	# Autor: Nicola Kloke
+	# JSP-Name: registrieren.jsp
+	# JSP-Aktionen: Hier kann ein Besucher, sich mit seiner Email und einem Passwort registrieren, um mit der nächsten Anmeldung einkaufen zu können. 	
+*/
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="ISO-8859-1">
-	<title>Shop</title>
+	<title>Mein Konto</title>
 	<link rel="stylesheet" type="text/css" href="CSS/design.css">
-	<link rel="stylesheet" type="text/css" href="CSS/registrieren.css">
+	<link rel="stylesheet" type="text/css" href="CSS/eingaben.css">
 </head>
 <body>
 	<div id="webseite">
-		<div id="header">
-			<img src="Bilder/HeaderMitLogo.png" width="980"/>
-		</div>
-			<nav>
-	  			<ul>
-				      <li><a href="Startseite.jsp">Home</a></li>
-				      <li><a href="Shop.jsp">Shop</a></li>
-				      <li><a href="#">Mein Konto</a>
-				      	<ul>
-					      <li><a href="Anmelden.jsp">Anmelden</a></li>
-					      <li><a href="Registrieren.jsp">Registrieren</a></li>
-				      	</ul>
-				      </li>	
-			  	</ul>
-			</nav>
+		<jsp:include page="header.jsp">
+    		<jsp:param name="active" value="registrieren"/>
+   	 	</jsp:include>
 		<div id="main">
 			<form action="Registrieren.jsp" id="registrieren">
 				<label class="h2" form="registrieren">Registrieren</label>

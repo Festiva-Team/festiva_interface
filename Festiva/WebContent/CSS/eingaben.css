@@ -4,14 +4,13 @@ form {
 }
 
 label.h2 {
-	float:left;
-	text-align:right;
+	float: left;
+	text-align: right;
 	font-weight: bold;
 	font-size: 150%;
 	width: 70%;
 	margin-bottom: 1em;
 }
-
 label {
 	text-align: right;
 	float: left;
