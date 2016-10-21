@@ -12,8 +12,8 @@
 <head>
 <meta charset="ISO-8859-1">
 	<title>Mein Konto</title>
-	<link rel="stylesheet" type="text/css" href="CSS/design.css">
-	<link rel="stylesheet" type="text/css" href="CSS/eingaben.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/eingaben.css">
 </head>
 <body>
 	<div id="webseite">
@@ -30,7 +30,7 @@
 				<label for="passwort">Passwort</label>
 				<input type="password" name="passwort" id="passwort" maxlength="40">
 				<label for="passwortwh">Passwort wiederholen</label>
-				<input type="password" name="passwort" id="passwort" maxlength="40">
+				<input type="password" name="passwort" id="passwort" maxlength="40"><br>
 				<button type="button">Registrieren</button>
 			</form>
 		</div>

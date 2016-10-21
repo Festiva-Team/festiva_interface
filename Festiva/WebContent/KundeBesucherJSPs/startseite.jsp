@@ -12,8 +12,8 @@
 <head>
 <meta charset="ISO-8859-1">
 	<title>Festiva</title>
-	<link rel="stylesheet" type="text/css" href="CSS/design.css">
-	<link rel="stylesheet" type="text/css" href="CSS/home.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/home.css">
 </head>
 <body>
 	<div id="webseite">
@@ -23,26 +23,26 @@
 			<div id="oben">
 			<!-- Erste Fotozeile -->
 				<div id="olinks">
-					<a href="Shop.jsp">
-					<img src="Bilder/Rock.jpg" width="200" height="200"/>
+					<a href="shop.jsp">
+					<img src="../Bilder/Rock.jpg" width="200" height="200"/>
 					</a>
 				</div>
 				<div id="orechts">
-					<a href="Shop.jsp">
-					<img src="Bilder/Metal.jpg" width="200" height="200"/>
+					<a href="shop.jsp">
+					<img src="../Bilder/Metal.jpg" width="200" height="200"/>
 					</a>
 				</div>
 			</div>
 			<div id="unten">
 			<!-- Zweite Fotozeile -->
 				<div id="ulinks">
-					 <a href="Shop.jsp">
-					 <img src="Bilder/Electro.jpg" width="200" height="200"/>
+					 <a href="shop.jsp">
+					 <img src="../Bilder/Electro.jpg" width="200" height="200"/>
 					 </a>
 				</div>
 				<div id="urechts">
-					 <a href="Shop.jsp">
-					 <img src="Bilder/Schlager.jpg" width="200" height="200"/>
+					 <a href="shop.jsp">
+					 <img src="../Bilder/Schlager.jpg" width="200" height="200"/>
 					 </a>
 				</div> 
 			</div>

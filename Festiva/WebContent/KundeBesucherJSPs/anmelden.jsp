@@ -12,8 +12,8 @@
 <head>
 <meta charset="ISO-8859-1">
 	<title>Mein Konto</title>
-	<link rel="stylesheet" type="text/css" href="CSS/design.css">
-	<link rel="stylesheet" type="text/css" href="CSS/eingaben.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/eingaben.css">
 </head>
 <body>
 <div id="webseite">
@@ -23,11 +23,11 @@
 		<div id="main">
 			<form action="Anmelden.jsp" id="anmelden">
 				<label class="h2" form="anmelden">Anmelden</label>
-				<label for="email">Email</label>
-				<input type="email" name="email" id="email" maxlength="30">
-				<label for="passwort">Passwort</label>
-				<input type="password" name="passwort" id="passwort" maxlength="40">
-				<button type="button">Anmelden</button>
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" maxlength="30">
+					<label for="passwort">Passwort</label>
+					<input type="password" name="passwort" id="passwort" maxlength="40"><br>
+					<button type="button">Anmelden</button>
 			</form>
 		</div>
 		<div id="footer">

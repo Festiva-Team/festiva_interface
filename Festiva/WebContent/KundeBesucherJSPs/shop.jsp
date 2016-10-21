@@ -17,8 +17,8 @@
 <head>
 <meta charset="ISO-8859-1">
 	<title>Festiva - Shop</title>
-	<link rel="stylesheet" type="text/css" href="CSS/design.css">
-	<link rel="stylesheet" type="text/css" href="CSS/shop.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/eingaben.css">
 </head>
 <body>
 	<div id="webseite">
@@ -26,15 +26,24 @@
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
 		<div id="main">
-			<div id="search">
 				<form>
-					<label for="startdatum">Startdatumm</label>
-					<input type="date" name="Datum"><br>
-					<label for="Enddatum">Enddatum</label>
-					<input type="date" name="Datum">
-					<button type="button">Suchen"</button>
+					<div class="linke Suche">
+						<label class="h2" form="shop">Shop</label>
+						<label for="startdatum">Startdatumm</label>
+						<input type="date" name="Datum">
+						<label for="Enddatum">Enddatum</label>
+						<input type="date" name="Datum">
+						<label for="Kategorie">Kategorie</label>
+						<input type="search" list="Kategorie" />
+						<datalist id="Kategorie">
+						<% /** Kategoriennamen selektieren */ %>
+							<option value="Kategorie.name">
+						</datalist><br>
+						<button>Suchen</button>
+					</div>
+
 				</form>
-  			</div>
+				
 			<div id="content">
 				<table>
 					<tr>

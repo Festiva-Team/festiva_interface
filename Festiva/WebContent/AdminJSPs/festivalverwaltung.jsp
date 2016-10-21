@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="CSS/design.css">
+<link rel="stylesheet" type="text/css" href="../CSS/design.css">
 <title>Festiva - Festivalverwaltung</title>
 </head>
 <body>
@@ -19,6 +19,12 @@
 		<jsp:include page="headerAdmin.jsp">
     		<jsp:param name="active" value="festivalverwaltung"/>
    		</jsp:include>
+   		<div class="main">
+	    	<form action="festivalverwaltung.jsp" id="festivalverwaltung">
+				<label class="h2" form="festivalverwaltung">Festivalverwaltung</label><br>
+				<button type="button" onClick="window.location.href='festivalAnlegen.jsp'">Anlegen </button>				
+			</form>   	
+    	 </div>
    		<div id="footer">
 		</div>
 	</div>

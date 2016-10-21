@@ -11,7 +11,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="CSS/design.css">
+<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+<link rel="stylesheet" type="text/css" href="../CSS/eingaben.css">
 <title>Festiva - Kundenverwaltung</title>
 </head>
 <body>
@@ -21,8 +22,8 @@
    		</jsp:include>	
     <div class="main">
     	<form action="kundenverwaltung.jsp" id="kundenverwaltung">
-				<label class="h2" form="kundenverwaltung">Kundenverwaltung</label>
-				<input type="button" name="anlegen" value="Anlegen" onClick="window.location.href='kundenAnlegen.jsp'" />
+				<label class="h2" form="kundenverwaltung">Kundenverwaltung</label><br>
+				<button type="button" onClick="window.location.href='kundenAnlegen.jsp'">Anlegen </button>
 		</form>   	
 		<table class="table">
 			<tr>
@@ -33,12 +34,6 @@
 				<th>Gruppe</th>
 				<th>Gesperrt</th>
 			</tr>
-<% /** for(Anwender anwender : benutzerliste) 
-			{
-				String gruppe = (anwender.gruppeID == 1) ? "Kunde" : "Administrator";
-				String gesperrtAktion = (anwender.istGesperrt) ? "entsperren" : "sperren";
-				String gruppenAktion = (anwender.gruppeID == 1) ? "zuAdmin" : "zuKunde";   */ 
-%>
 		</table>
     	</div>
     	<div id="footer">

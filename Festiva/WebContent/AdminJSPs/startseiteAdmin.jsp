@@ -12,23 +12,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="CSS/design.css">
+<link rel="stylesheet" type="text/css" href="../CSS/home.css">
 	<title>Festiva - Adminstartseite</title>
 </head>
 <body>
 	<div id="webseite">
-		<div id="header">
-			<img src="Bilder/HeaderMitLogo.png" width="980"/>
-		</div>
-			<nav>
-	  			<ul>
-				      <li><a href="startseiteAdmin.jsp">Home</a></li>
-				      <li><a href="kategorienverwaltung.jsp">Kategorienverwaltung</a></li>
-				      <li><a href="festivalverwaltung.jsp">Festivalverwaltung</a></li>
-				      <li><a href="kundenverwaltung.jsp">Kundenverwaltung</a></li>
-				      <li><a href="#">Mein Konto</a></li>	
-			  	</ul>
-			</nav>
+	<jsp:include page="headerAdmin.jsp">
+		<jsp:param name="active" value="startseiteAdmin"/>
+	</jsp:include>
+	<div id="main">
+		<h1>Adminbereich</h1>
+	</div>
 		<div id="footer">
 		</div>
 	</div>	

@@ -8,18 +8,17 @@ body
 {
 	width:980px;
 	margin:0 auto;
-	background-color:white;
+	background: white;
+	margin-bottom:2em;
 }
 #header
 {   width: 980px;
 	height: 150px;
-
 }
 nav {
 	width: 980px;
 	height: 45px;
 	background-color: black;
-
 }
 nav:after {
 	content:''; 
@@ -82,7 +81,8 @@ nav span {
 	background: white;
 }
 #footer
-{	float: left;
+{	
+	float: left;
 	width:980px;
 	height: 20px;
 	background: black;

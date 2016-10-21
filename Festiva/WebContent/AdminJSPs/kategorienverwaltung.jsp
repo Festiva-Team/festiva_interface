@@ -11,7 +11,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="CSS/design.css">
+<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+<link rel="stylesheet" type="text/css" href="../CSS/eingaben.css">
 <title>Festiva - Kategorienverwaltung</title>
 </head>
 <body>
@@ -21,8 +22,8 @@
    		</jsp:include>
    		 <div class="main">
 	    	<form action="kategorienverwaltung.jsp" id="kategorienverwaltung">
-				<label class="h2" form="kundenverwaltung">Kategorienverwaltung</label>
-				<input type="button" name="anlegen" value="Anlegen" onClick="window.location.href='kategorieAnlegen.jsp'" />
+				<label class="h2" form="kundenverwaltung">Kategorienverwaltung</label><br>
+				<button type="button" onClick="window.location.href='kategorieAnlegen.jsp'">Anlegen </button>
 			</form>   	
     	 </div>
 			<div id="footer">
