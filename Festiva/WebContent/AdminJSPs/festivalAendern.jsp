@@ -23,54 +23,36 @@
 			<form action="festivalAendern.jsp" id="festivalAendern">
 				<label class="h2" form="festivalAendern">Festival ändern</label>
 				<div id="zeile">
-					<div id="spaltelinks">
+				<div id="spaltelinks">
 					<label for="name">Festivalname</label>
 					<input type="text" id="name" maxlength="30">
-					</div>
-					<div id="spalterechts">
+					<label for="kategorie">Kategorie</label>
+					<input type="text" id="kategorie" maxlength="30">	
 					<label for="name">Ort</label>
 					<input type="text" id="ort" maxlength="30">
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="bild">Bild</label>
-					<input type="image" id="bild" maxlength="30">
-					</div>
-					<div id="spalterechts">
 					<label for="datum">Startdatum</label>
 					<input type="date" id="datum" maxlength="30">
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="kategorie">Kategorie</label>
-					<input type="text" id="kategorie" maxlength="30">
-					</div>
-					<div id="spalterechts">
 					<label for="datum">Enddatum</label>
 					<input type="date" id="datum" maxlength="30">
-					</div>
+					<label for="bild">Bild</label>
+					<input type="file" id="bild" accept="image/*">
 				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
+				<div id="spalterechts">
 					<label for="name">Kurzbeschreibung</label>
-					<input type="text" id="beschreibung" maxlength="200">
-					</div>
-					<div id="spalterechts">
+					<textarea rows="5" cols="30"></textarea>			
 					<label for="name">Langbeschreibung</label>
-					<input type="text" id="beschreibung" maxlength="1000">
+					<textarea rows="10" cols="30"></textarea>
 					</div>
 				</div>
 			</form>
-			 <form action="festivalAndern.jsp" id="artikelAnlegen">
-				<label class="h2" form="artikelAnlegen">Artikel</label><br>
-				<button type="button" onClick="window.location.href='artikelAnlegen.jsp'">Anlegen </button>
-			</form>  
-			<table class= "artikel">
+			<div id="zeile">
+			<div id="spalte links">
+			<table class= "artikel"><h2>Artikel</h2>
 				<tr><th>Beschreibung</th><th>Preis</th></tr>
 				<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td></tr>
 			</table>
+			</div>
+			</div>
 		</div>
 		<div id="footer">
 		</div>

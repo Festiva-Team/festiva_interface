@@ -20,32 +20,33 @@
     	<jsp:param name="active" value="festivalAnlegen"/>
     </jsp:include>
 		<div id="main">
-			<form action="festivalAnlegen.jsp" id="festivalAnlegen">
-				<label class="h2" form="festivalAnlegen">Festival anlegen</label>
-				<label for="name">Festivalname</label>
-				<input type="text" id="name" maxlength="30">
-				<label for="bild">Bild</label>
-				<input type="file" id ="bild" accept="image/*"> 
-				<label for="kategorie">Kategorie</label>
-				<input type="text" id="kategorie" maxlength="30">
-				<label for="startdatum">Startdatum</label>
-				<input type="date" id="startdatum">
-				<label for="enddatum">Enddatum</label>
-				<input type="date" id="enddatum">
-				<label for="straﬂe">Straﬂe</label>
-				<input type="text" id="straﬂe" maxlength="50">
-				<label for="hausnummer">Hausnummer</label>
-				<input type="text" id="hausnummer" minlength="1" maxlength="5">
-				<label for="plz">PLZ</label>
-				<input type="number" id="plz" minlength="5" maxlength="5">
-				<label for="ort">Ort</label>
-				<input type="text" id="ort" maxlength="30"><br>
-				<label for="kurzbeschreibung">Kurzbeschreibung</label>
-				<input type="text" id="beschreibung" maxlength="100">
-				<label for="langeschreibung">Langbeschreibung</label>
-				<input type="text" id="beschreibung" maxlength="200"><br>
-				<button>speichern</button>
+			<form action="festivalAendern.jsp" id="festivalAendern">
+				<label class="h2" form="festivalAendern">Festival ‰ndern</label>
+								<div id="zeile">
+				<div id="spaltelinks">
+					<label for="name">Festivalname</label>
+					<input type="text" id="name" maxlength="30">
+					<label for="kategorie">Kategorie</label>
+					<input type="text" id="kategorie" maxlength="30">	
+					<label for="name">Ort</label>
+					<input type="text" id="ort" maxlength="30">
+					<label for="datum">Startdatum</label>
+					<input type="date" id="datum" maxlength="30">
+					<label for="datum">Enddatum</label>
+					<input type="date" id="datum" maxlength="30">
+					<label for="bild">Bild</label>
+					<input type="file" id="bild" accept="image/*">
+				</div>
+				<div id="spalterechts">
+					<label for="name">Kurzbeschreibung</label>
+					<textarea rows="5" cols="30"></textarea>			
+					<label for="name">Langbeschreibung</label>
+					<textarea rows="10" cols="30"></textarea>
+					<button>speichern</button>
+					</div>
+				</div>
 			</form>
+				
 		</div>
 		<div id="footer">
 		</div>

@@ -19,34 +19,76 @@
     <jsp:include page="headerAdmin.jsp">
     	<jsp:param name="active" value="kundenAnlegen"/>
     </jsp:include>
-		<div id="main">
 			<form action="kundenAnlegen.jsp" id="anmelden">
 				<label class="h2" form="kundenAnlegen">Kunden anlegen</label>
-				<label for="vorname">Vorname</label>
-				<input type="text" id="vorname" maxlength="30">
-				<label for="nachname">Nachname</label>
-				<input type="text" id="nachname" maxlength="40">
-				<label for="email">Email</label>
-				<input type="email" id="email" maxlength="50">
-				<label for="passwort">Passwort</label>
-				<input type="password" id="email" maxlength="30">
-				<label for="passwort">Passwort best‰tigen</label>
-				<input type="password" id="passwortBest‰tigen" maxlength="40">
-				<label for="straﬂe">Straﬂe</label>
-				<input type="text" id="straﬂe" maxlength="50">
-				<label for="hausnummer">Hausnummer</label>
-				<input type="text" id="hausnummer" minlength="1" maxlength="5">
-				<label for="plz">PLZ</label>
-				<input type="number" id="plz" minlength="5" maxlength="5">
-				<label for="ort">Ort</label>
-				<input type="text" id="ort" maxlength="30"><br>
-				<label for="gesperrt">gesperrt</label>
-      			<input type="checkbox" id="gesperrt"><br>
-      			<label for="einzugserm‰chtigungErteilt">Einzugserm‰chtigung erteilt</label>
-      			<input type="checkbox" id="einzugserm‰chtigungErteilt"><br>
+								<div id="zeile">
+					<div id="spaltelinks">
+					<label for="vorname">Vorname</label>
+					<input type="text" id="vorname" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<label for="iban">IBAN</label>
+					<input type="text" id="iban" minlength="22" maxlength="22">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="nachname">Nachname</label>
+					<input type="text" id="nachname" maxlength="40">
+					</div>
+					<div id="spalterechts">
+					<label for="bic">BIC</label>
+					<input type="text" id="bic" minlength="9" maxlength="12">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="email">Email</label>
+					<input type="email" id="email" maxlength="50">
+					</div>
+					<div id="spalterechts">
+					<label for="passwort">neues Passwort</label>
+					<input type="password" id="email" maxlength="30">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="straﬂe">Straﬂe</label>
+					<input type="text" id="straﬂe" maxlength="50">
+					</div>
+					<div id="spalterechts">
+					<label for="passwort">neues Passwort best‰tigen</label>
+					<input type="password" id="email" maxlength="30">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="hausnummer">Hausnummer</label>
+					<input type="text" id="hausnummer" minlength="1" maxlength="5">
+					</div>
+					<div id="spalterechts">
+					<label for="einzugserm‰chtigungErteilt">Einzugserm‰chtigung erteilt</label>
+      				<input type="checkbox" id="einzugserm‰chtigungErteilt"><br>
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="plz">PLZ</label>
+					<input type="text" id="plz" minlength="5" maxlength="5">
+					</div>
+					<div id="spalterechts">
+					<label for="gesperrt">gesperrt</label>
+      				<input type="checkbox" id="gesperrt"><br>
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="ort">Ort</label>
+					<input type="text" id="ort" maxlength="30"><br>
+					</div>
+				</div>
 				<button type="button">speichern</button>
 			</form>
-		</div>
 		<div id="footer">
 		</div>
 	</div>	

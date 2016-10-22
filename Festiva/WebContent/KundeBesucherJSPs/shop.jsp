@@ -25,24 +25,25 @@
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
 		<div id="main">
-				<form>
-					<div class="linke Suche">
-						<label class="h2" form="shop">Shop</label>
-						<label for="startdatum">Startdatumm</label>
-						<input type="date" name="Datum">
-						<label for="Enddatum">Enddatum</label>
-						<input type="date" name="Datum">
-						<label for="Kategorie">Kategorie</label>
-						<input type="search" list="Kategorie" />
-						<datalist id="Kategorie">
-						<% /** Kategoriennamen selektieren */ %>
-							<option value="Kategorie.name">
-						</datalist><br>
-						<button>Suchen</button>
-					</div>
+				<div id="zeile">
+				<div id="spaltelinks">
+					<label for="name">Festivalname</label>
+					<input type="search" id="name" maxlength="30">
+					<label for="kategorie">Kategorie</label>
+					<datalist id="kategorie"><option value="Kategorie.name"></option></datalist>	
+					<label for="name">Ort</label>
+					<input type="text" id="ort" maxlength="30">
 
-				</form>
-				
+				</div>
+				<div id="spalterechts">
+					<label for="datum">Startdatum</label>
+					<input type="date" id="datum" maxlength="30">
+					<label for="datum">Enddatum</label>
+					<input type="date" id="datum" maxlength="30">
+					</div>
+				</div>
+						<button>Suchen</button>
+					</div>			
 			<div id="content">
 				<table>
 					<tr>
@@ -50,9 +51,9 @@
 					</tr>
 				</table>
 			</div>
+			<div id="footer">
+			</div>
 		</div>
-		<div id="footer">
-		</div>
-	</div>
+
 </body>
 </html>

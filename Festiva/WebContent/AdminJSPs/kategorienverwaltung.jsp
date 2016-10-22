@@ -19,12 +19,12 @@
 		<jsp:include page="headerAdmin.jsp">
     		<jsp:param name="active" value="kategorienverwaltung"/>
    		</jsp:include>
-   		 <div class="main">
+   		<div id="main">
 	    	<form action="kategorienverwaltung.jsp" id="kategorienverwaltung">
 				<label class="h2" form="kundenverwaltung">Kategorienverwaltung</label><br>
 				<button type="button" onClick="window.location.href='kategorieAnlegen.jsp'">Anlegen </button>
-			</form>   	
-    	 </div>
+			</form> 
+		</div>  	
 			<div id="footer">
 			</div>
 	</div>
