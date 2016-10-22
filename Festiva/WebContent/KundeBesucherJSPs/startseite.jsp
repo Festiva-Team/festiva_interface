@@ -13,34 +13,33 @@
 <meta charset="ISO-8859-1">
 	<title>Festiva</title>
 	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
-	<link rel="stylesheet" type="text/css" href="../CSS/home.css">
 </head>
 <body>
 	<div id="webseite">
 	    <jsp:include page="header.jsp">
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
-			<div id="oben">
+			<div id="zeile">
 			<!-- Erste Fotozeile -->
-				<div id="olinks">
+				<div id="spalte">
 					<a href="shop.jsp">
 					<img src="../Bilder/Rock.jpg" width="200" height="200"/>
 					</a>
 				</div>
-				<div id="orechts">
+				<div id="spalte">
 					<a href="shop.jsp">
 					<img src="../Bilder/Metal.jpg" width="200" height="200"/>
 					</a>
 				</div>
 			</div>
-			<div id="unten">
+			<div id="zeile">
 			<!-- Zweite Fotozeile -->
-				<div id="ulinks">
+				<div id="spalte">
 					 <a href="shop.jsp">
 					 <img src="../Bilder/Electro.jpg" width="200" height="200"/>
 					 </a>
 				</div>
-				<div id="urechts">
+				<div id="spalte">
 					 <a href="shop.jsp">
 					 <img src="../Bilder/Schlager.jpg" width="200" height="200"/>
 					 </a>

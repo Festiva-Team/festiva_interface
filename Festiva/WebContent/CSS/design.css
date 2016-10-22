@@ -15,9 +15,10 @@ body
 {   width: 980px;
 	height: 150px;
 }
+/**Navigationsleiste*/
 nav {
 	width: 980px;
-	height: 45px;
+	height: 40px;
 	background-color: black;
 }
 nav:after {
@@ -28,8 +29,8 @@ nav:after {
   	list-style-type: none; /* ohne Aufzählungspunkte */
  	float: left;
   	position: relative;
-  	width: 10em;
-	margin: 0.4em;
+  	width: 10m;
+	margin-top: 0.2em ;
 }
  
 nav ul ul {
@@ -39,7 +40,6 @@ nav ul ul {
  	padding: 0;
 	position: absolute;
 	top: 1.9em; 
-	left: -0.4em;
 	z-index:-1;
 }
  nav ul li:hover ul {
@@ -76,14 +76,92 @@ nav span {
 	color: white;
 	background-color: #990000;
 }
+/**Seitenaufteilung*/
 #main
-{	width: 980px;
-	background: white;
+{	
+	width:980px;
+	height: 500px;
+	background:white;
+}	
+#zeile
+{
+	width:980px;
+	height: 250px;
 }
+#zeile:before,
+#zeile:after
+{
+  display: table;
+  line-height: 0;
+  content: "";
+}	
+#spalte
+{	float: left;
+	width:490px;
+	height: 200px;
+}
+#spalte1
+{	width: 200px;
+	float: left;
+}
+#spalte2
+{   width:400px;
+	float: left;
+}
+
 #footer
 {	
 	float: left;
 	width:980px;
 	height: 20px;
 	background: black;
+}
+/** CSS Formulardaten */
+form {
+	width: 30em;
+	margin-top: 1em;
+}
+
+label.h2 {
+	float:right;
+	text-align: left;
+	font-weight: bold;
+	font-size: 150%;
+	width: 70%;
+	margin: 0 0 0.5em 0;
+}
+label {
+	text-align: right;
+	float: left;
+	width: 35%;
+}
+input {
+	width: 50%;
+	text-align: left;
+	margin: 0 0 0.5em 0;
+	padding: .2em .2em;
+	background-color: #fffbf0;
+	border: 1px solid #e7c157;
+}
+
+label.input {
+	text-align: left;
+	line-height: 1.5;
+}
+
+label.input::after {
+	content: ": ";
+}
+checkbox
+{
+	float: left;
+}
+/**Tabelle*/
+table
+{
+	margin-left:3em;
+}
+td
+{	text-align: left;
+	width: 200px;
 }

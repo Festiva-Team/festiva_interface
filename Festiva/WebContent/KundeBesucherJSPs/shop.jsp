@@ -18,7 +18,6 @@
 <meta charset="ISO-8859-1">
 	<title>Festiva - Shop</title>
 	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
-	<link rel="stylesheet" type="text/css" href="../CSS/eingaben.css">
 </head>
 <body>
 	<div id="webseite">
