@@ -1,3 +1,4 @@
+package standardPackage;
 import java.util.List;
 /**
  * Klasse für einen Warenkorb innerhalb des Webshops

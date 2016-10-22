@@ -1,3 +1,4 @@
+package standardPackage;
 /**
  * Klasse für einen Benutzer (Kunde oder Administrator) des Webshops
  * 

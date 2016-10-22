@@ -1,3 +1,4 @@
+package standardPackage;
 /**
  * Klasse für eine Kategorie innerhalb des Webshops
  * 

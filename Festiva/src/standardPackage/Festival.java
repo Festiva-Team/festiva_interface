@@ -1,3 +1,4 @@
+package standardPackage;
 import java.sql.Date;
 /**
  * Klasse für ein Festival innerhalb des Webshops

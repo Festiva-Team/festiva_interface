@@ -1,4 +1,5 @@
-import java.sql.Date;
+package standardPackage;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,5 +31,23 @@ public class Bestellung {
 		this.perPost = p_perPost;
 		this.benutzerID = p_benutzerID;
 		this.listPositionen = p_listPositionen;
+	}
+	
+	
+	/**
+	 * Konstruktor zur Erstellung eines Bestellung-Objekts aus einem Warenkorb-Objekt mit den nachfolgenden Parametern
+	 * 
+	 * @param p_warenkorb: Warenkorb-Objekt, das in ein Bestellungs-Objekt überführt werden soll
+	 * @param p_perPost: zeigt, ob die Artikel per Post versendet werden sollen
+	 */
+	public Bestellung (Warenkorb p_warenkorb, boolean p_perPost) {
+		this.id = -1;
+		this.perPost = p_perPost;
+		this.benutzerID = p_warenkorb.benutzerID;
+		
+		for(Warenkorbelement warenkorbelement : p_warenkorb.listElemente) {
+			this.listPositionen.add(new Bestellposition(-1, warenkorbelement.menge, warenkorbelement.artikel.id, warenkorbelement.artikel.beschreibung, warenkorbelement.artikel.preis));
+		}
+		
 	}
 }

@@ -1,3 +1,4 @@
+package standardPackage;
 import java.sql.*;
 
 // import com.mysql.jdbc.Connection;
@@ -30,11 +31,11 @@ public static void main(String[] args) {
 //	}
 //	else 
 //	{
-	ResultSet rs = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank("select * from gruppen");
+	ResultSet rs = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank("select * from benutzer");
 	
 	try {
 		while(rs.next()) {
-			System.out.println(rs.getInt(1) + " " + rs.getString(2));
+			System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getBoolean("istgesperrt")  +" " + rs.getString(11));
 			
 		}
 	} catch (SQLException e) {
@@ -42,8 +43,9 @@ public static void main(String[] args) {
 		e.printStackTrace();
 	}
 	
-	Benutzer benutzer = new Benutzer(-1, "Alina", "Fankhänel", "alina.fankhaenel@festiva.de", "test", "", "", 0 , "", false, "", "", false, false, 2);
-	BenutzerAdministration.erstelleKunden(benutzer);
+	Benutzer benutzer = new Benutzer(1, "Alina", "Fankhänel", "alina.fankhaenel@festiva.de", "test", "Postweg", "5", 33333 , "Gütersloh", false, "", "", false, false, 2);
+	BenutzerAdministration.aktualisiereBenutzer(benutzer);
+	//	BenutzerAdministration.erstelleKunden(benutzer);
 	}
 
 

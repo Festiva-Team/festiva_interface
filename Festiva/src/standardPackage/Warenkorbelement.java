@@ -1,3 +1,4 @@
+package standardPackage;
 /**
  * Klasse für ein Warenkorbelement innerhalb eines Warenkorbs
  * 

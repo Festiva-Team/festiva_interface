@@ -1,3 +1,4 @@
+package standardPackage;
 /**
  * Klasse für eine Bestellposition innnerhalb einer Bestellung
  * 
