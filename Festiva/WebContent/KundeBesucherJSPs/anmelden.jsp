@@ -22,7 +22,7 @@
 		<div id="main">
 			<form action="Anmelden.jsp" id="anmelden">
 				<label class="h2" form="anmelden">Anmelden</label>
-					<label for="email">Email</label>
+					<label for="email">Email</label><br>
 					<input type="email" name="email" id="email" maxlength="30">
 					<label for="passwort">Passwort</label>
 					<input type="password" name="passwort" id="passwort" maxlength="40"><br>

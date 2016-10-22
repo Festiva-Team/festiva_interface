@@ -80,7 +80,7 @@ nav span {
 #main
 {	
 	width:980px;
-	height: 500px;
+	hight:500px;
 	background:white;
 }	
 #bildzeile
@@ -116,7 +116,7 @@ nav span {
 #spalterechts
 {	width: 400px;
 	float: right;
-	margin-right:10em;
+	margin-right:5em;
 }
 #footer
 {	
@@ -127,7 +127,6 @@ nav span {
 }
 /** CSS Formulardaten */
 form {
-	width: 30em;
 	margin-top: 1em;
 }
 
@@ -177,7 +176,7 @@ td,th
 {	margin-bottom: 5em;
 }
 .artikel
-{
+{	margin-top: 5em;
 	float:left;
 }
 .artikel td
