@@ -51,7 +51,7 @@ public static void main(String[] args) {
 	
 
 //	Kategorie kategorie = new Kategorie(-1, "Rock", "Rock ist cool", "ichBinDerBildpfad", false);
-//	KategorieAdministration.erstelleKategorie(kategorie);
+//	KategorienAdministration.erstelleKategorie(kategorie);
 	
 	try {
 		java.util.Date start = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-02");

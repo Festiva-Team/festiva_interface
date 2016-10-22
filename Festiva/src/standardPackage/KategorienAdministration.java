@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * @author Alina Fankhänel
  *
  */
-public class KategorieAdministration {
+public class KategorienAdministration {
 
 	/**
 	 * Erstellt für das übergebene Kategorie-Objekt den Datensatz in der Datenbank.
