@@ -24,7 +24,7 @@
 				<label class="h2" form="festivalAendern">Festival ändern</label>
 				<div id="zeile">
 				<div id="spaltelinks">
-					<label for="name">Festivalname</label>
+					<label for="name">Festivalname</label><br>
 					<input type="text" id="name" maxlength="30">
 					<label for="kategorie">Kategorie</label>
 					<input type="text" id="kategorie" maxlength="30">	
@@ -44,6 +44,7 @@
 					<textarea rows="10" cols="30"></textarea>
 					</div>
 				</div>
+				<div id="leer"></div>
 			</form>
 			<div id="zeile">
 			<div id="spalte links">

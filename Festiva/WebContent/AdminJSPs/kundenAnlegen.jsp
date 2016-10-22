@@ -89,6 +89,7 @@
 				</div>
 				<button type="button">speichern</button>
 			</form>
+			<div id="leer"></div>
 		<div id="footer">
 		</div>
 	</div>	
