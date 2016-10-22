@@ -22,35 +22,55 @@
 		<div id="main">
 			<form action="festivalAendern.jsp" id="festivalAendern">
 				<label class="h2" form="festivalAendern">Festival ‰ndern</label>
-<% /** 	Value Daten mit Daten aus Datenbank f¸llen.e
-				<label for="name">Festivalname</label>
-				<input type="text" id="name" maxlength="30">
-				<label for="bild">Bild</label>
-				<input type="file" id ="bild" accept="image/*"> 
-				<label for="kategorie">Kategorie</label>
-				<input type="text" id="kategorie" maxlength="30">
-				<label for="startdatum">Startdatum</label>
-				<input type="date" id="startdatum">
-				<label for="enddatum">Enddatum</label>
-				<input type="date" id="enddatum">
-				<label for="straﬂe">Straﬂe</label>
-				<input type="text" id="straﬂe" maxlength="50">
-				<label for="hausnummer">Hausnummer</label>
-				<input type="text" id="hausnummer" minlength="1" maxlength="5">
-				<label for="plz">PLZ</label>
-				<input type="number" id="plz" minlength="5" maxlength="5">
-				<label for="ort">Ort</label>
-				<input type="text" id="ort" maxlength="30"><br>
-				<label for="kurzbeschreibung">Kurzbeschreibung</label>
-				<input type="text" id="beschreibung" maxlength="100">
-				<label for="langeschreibung">Langbeschreibung</label>
-				<input type="text" id="beschreibung" maxlength="200">		
-*/	%>			<button>speichern</button>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="name">Festivalname</label>
+					<input type="text" id="name" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<label for="name">Ort</label>
+					<input type="text" id="ort" maxlength="30">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="bild">Bild</label>
+					<input type="image" id="bild" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<label for="datum">Startdatum</label>
+					<input type="date" id="datum" maxlength="30">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="kategorie">Kategorie</label>
+					<input type="text" id="kategorie" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<label for="datum">Enddatum</label>
+					<input type="date" id="datum" maxlength="30">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="name">Kurzbeschreibung</label>
+					<input type="text" id="beschreibung" maxlength="200">
+					</div>
+					<div id="spalterechts">
+					<label for="name">Langbeschreibung</label>
+					<input type="text" id="beschreibung" maxlength="1000">
+					</div>
+				</div>
 			</form>
 			 <form action="festivalAndern.jsp" id="artikelAnlegen">
 				<label class="h2" form="artikelAnlegen">Artikel</label><br>
 				<button type="button" onClick="window.location.href='artikelAnlegen.jsp'">Anlegen </button>
 			</form>  
+			<table class= "artikel">
+				<tr><th>Beschreibung</th><th>Preis</th></tr>
+				<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td></tr>
+			</table>
 		</div>
 		<div id="footer">
 		</div>

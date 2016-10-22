@@ -19,34 +19,33 @@
 	    <jsp:include page="header.jsp">
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
-			<div id="zeile">
+			<div id="bildzeile">
 			<!-- Erste Fotozeile -->
-				<div id="spalte">
+				<div id="bildspalte">
 					<a href="shop.jsp">
 					<img src="../Bilder/Rock.jpg" width="200" height="200"/>
 					</a>
 				</div>
-				<div id="spalte">
+				<div id="bildspalte">
 					<a href="shop.jsp">
 					<img src="../Bilder/Metal.jpg" width="200" height="200"/>
 					</a>
 				</div>
 			</div>
-			<div id="zeile">
+			<div id="bildzeile">
 			<!-- Zweite Fotozeile -->
-				<div id="spalte">
+				<div id="bildspalte">
 					 <a href="shop.jsp">
 					 <img src="../Bilder/Electro.jpg" width="200" height="200"/>
 					 </a>
 				</div>
-				<div id="spalte">
+				<div id="bildspalte">
 					 <a href="shop.jsp">
 					 <img src="../Bilder/Schlager.jpg" width="200" height="200"/>
 					 </a>
 				</div> 
 			</div>
 		<div id="footer">
-			<a href="#">Admin login</a>
 		</div>
 	</div>	
 </body>

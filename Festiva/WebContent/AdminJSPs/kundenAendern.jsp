@@ -20,6 +20,75 @@
     	<jsp:param name="active" value="kundenAendern"/>
     </jsp:include>
 		<div id="main">
+			<form action="kundenAendern.jsp" id="kundenAendern">
+				<label class="h2" form="festivalAendern">Kunden ‰ndern</label>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="name">Vorname</label>
+					<input type="text" id="name" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<label for="name">IBAN</label>
+					<input type="text" id="ort" maxlength="30">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="bild">Nachname</label>
+					<input type="image" id="bild" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<label for="datum">BIC</label>
+					<input type="date" id="datum" maxlength="30">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="kategorie">Email</label>
+					<input type="text" id="kategorie" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<label for="datum">Neues Passwort</label>
+					<input type="date" id="datum" maxlength="30">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="name">Straﬂe</label>
+					<input type="text" id="beschreibung" maxlength="200">
+					</div>
+					<div id="spalterechts">
+					<label for="name">Neues Passwort best‰tigen</label>
+					<input type="text" id="beschreibung" maxlength="1000">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="name">Hausnummer</label>
+					<input type="text" id="beschreibung" maxlength="200">
+					</div>
+					<div id="spalterechts">
+					<label for="name">Einzugserm‰chtigung erteilt</label>
+					<input type="text" id="beschreibung" maxlength="1000">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="name">PLZ</label>
+					<input type="text" id="beschreibung" maxlength="200">
+					</div>
+					<div id="spalterechts">
+					<label for="name">gesperrt</label>
+					<input type="text" id="beschreibung" maxlength="1000">
+					</div>
+				</div>
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="name">Ort</label>
+					<input type="text" id="beschreibung" maxlength="200">
+					</div>
+				</div>
+			</form>
 		</div>
 		<div id="footer">
 		</div>

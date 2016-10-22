@@ -83,22 +83,19 @@ nav span {
 	height: 500px;
 	background:white;
 }	
-#zeile
+#bildzeile
 {
 	width:980px;
 	height: 250px;
 }
-#zeile:before,
-#zeile:after
-{
-  display: table;
-  line-height: 0;
-  content: "";
-}	
-#spalte
+#bildspalte
 {	float: left;
 	width:490px;
 	height: 200px;
+}
+#zeile
+{
+	width:980px;
 }
 #spalte1
 {	width: 200px;
@@ -108,7 +105,19 @@ nav span {
 {   width:400px;
 	float: left;
 }
-
+#spalte3
+{   width:500px;
+	float: left;
+}
+#spaltelinks
+{	width: 400px;
+	float:left;
+}
+#spalterechts
+{	width: 400px;
+	float: right;
+	margin-right:10em;
+}
 #footer
 {	
 	float: left;
@@ -158,10 +167,19 @@ checkbox
 }
 /**Tabelle*/
 table
-{
+{	text-align: left;
 	margin-left:3em;
 }
-td
-{	text-align: left;
-	width: 200px;
+td,th
+{	padding-right: 1.5em;
+}
+.festival
+{	margin-bottom: 5em;
+}
+.artikel
+{
+	float:left;
+}
+.artikel td
+{	border-bottom: 1px solid;
 }
