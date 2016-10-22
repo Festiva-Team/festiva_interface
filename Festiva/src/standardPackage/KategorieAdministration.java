@@ -35,7 +35,7 @@ public class KategorieAdministration {
 	{	
 		String updateBefehl = "UPDATE festiva.kategorien " +
 							  "SET name = '%s', beschreibung = '%s', bildpfad = '%s' " +
-							  "WHERE id = %d";
+							  "WHERE id = '%d'";
 		updateBefehl = String.format(updateBefehl, p_kategorie.name, p_kategorie.beschreibung, p_kategorie.bildpfad, p_kategorie.id);
 		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(updateBefehl);
 	}

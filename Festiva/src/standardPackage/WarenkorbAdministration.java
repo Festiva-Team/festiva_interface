@@ -1,0 +1,159 @@
+package standardPackage;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Klasse zur Administration von Warenkörben
+ * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Warenkörben mit den zugehörigen Warenkorbelementen aus der Datenbank
+ * 
+ * @author Alina Fankhänel
+ *
+ */
+public class WarenkorbAdministration {
+	
+	/**
+	 * Erstellt für das übergebene Warenkorb-Objekt die Einträge in der Datenbank
+	 * verwendete Tabellen: warenkörbe, warenkorbelemente
+	 * 
+	 * @param p_warenkorb: Warenkorb-Objekt, das in die Datenbanktabellen geschrieben werden soll
+	 */
+	public static void erstelleWarenkorb(Warenkorb p_warenkorb)
+	{
+		// Eintragungen in die Tabelle "warenkörbe"
+		String insertBefehl = "INSERT INTO festiva.warenkörbe " +
+							  "(benutzer_id) " +
+							  "VALUES ('%d')";
+		insertBefehl = String.format(insertBefehl, p_warenkorb.benutzerID);
+		p_warenkorb.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
+		
+		// Eintragungen in die Tabelle "warenkorbelemente"
+		for(Warenkorbelement warenkorbelement : p_warenkorb.listElemente)
+		{
+			insertBefehl = "INSERT INTO festiva.bestellpositionen " + 
+						   "(menge, artikel_id, warenkörbe_id) " +
+						   "VALUES ('%d', '%d', '%d')";
+			insertBefehl = String.format(insertBefehl, warenkorbelement.menge, warenkorbelement.artikel.id, p_warenkorb.id);
+			warenkorbelement.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
+		}
+	}
+	
+	
+	/**
+	 * Selektiert das Warenkorb-Objekt, das zu einem bestimmten Kunden gehört aus der Datenbank
+	 * 
+	 * @param p_benutzerID: ID des Kunden, dessen Warenkorb-Objekt zurückgegeben werden soll
+	 * @return Warenkorb: Warenkorb-Objekt, das zu dem gewünschten Kunden gehört
+	 */
+	public static Warenkorb gibWarenkorbVonKunden(int p_benutzerID)
+	{
+		Warenkorb warenkorb = null;
+		
+		int warenkorbID = selektiereWarenkorbID(p_benutzerID);
+		
+		if (warenkorbID != -1) {				
+				List<Warenkorbelement> listElemente = new ArrayList<Warenkorbelement>();
+				
+				// Selektiere von der Tabelle "warenkorbelemente"
+				String selectBefehl = "SELECT id, menge, artikel_id " +
+							   		  "FROM festiva.warenkorbelemente " +
+							   		  "WHERE warenkörbe_id = '%d' " +
+							   		  "ORDER BY id ASC";
+				selectBefehl = String.format(selectBefehl, warenkorbID);
+				
+				try
+				{
+					ResultSet ergebnismengeElemente = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+					
+					while(ergebnismengeElemente.next())
+					{
+						int elementID = ergebnismengeElemente.getInt("id");
+						int menge = ergebnismengeElemente.getInt("menge");
+
+						Artikel artikel = ArtikelAdministration.selektiereArtikel(ergebnismengeElemente.getInt("artikel_id"));
+						
+						listElemente.add(new Warenkorbelement(elementID, menge, artikel));
+					}
+				}
+				catch(SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				// Warenkorb wird erst erstellt, wenn alle Warenkorbelemente ausgelesen wurden
+				warenkorb = new Warenkorb(warenkorbID, p_benutzerID, listElemente);		
+		} 
+			
+		return warenkorb;
+	}
+	
+	
+	/**
+	 * Erstellt für den Kunden, der die übergebene ID hat, die Einträge für ein leeres Warenkorb-Objekt in der Datenbank
+	 * 
+	 * @param p_benutzerID: eindeutige ID des Benutzers, für den ein Warenkorb-Objekt in der Datenbank erstellt werden soll
+	 */
+	public static void erstelleLeerenWarenkorb(int p_benutzerID)
+	{
+		// Eintragungen in die Tabelle "warenkörbe"
+		String insertBefehl = "INSERT INTO festiva.warenkörbe " +
+							  "(benutzer_id) " +
+							  "VALUES ('%d')";
+		insertBefehl = String.format(insertBefehl, p_benutzerID);
+		int warenkorbID = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
+		
+	}
+	
+	
+	/**
+	 * Selektiert die ID des Warenkorbs, des Kunden dessen ID übergeben wurde, aus der Datenbank
+	 * 
+	 * @param p_benutzerID: eindeutige ID des Benutzers, dessen WarenkorbID ermittelt werden soll
+	 * @return int: ID des gesuchten Warenkorbs, wenn keiner gefunden wird, wird -1 zurückgegeben
+	 */
+	public static int selektiereWarenkorbID(int p_benutzerID)
+	{
+		int warenkorbID = -1;
+		String selectBefehl = "SELECT id " +
+							  "FROM festiva.warenkörbe " +
+							  "WHERE benutzer_id = '%d' ";
+		selectBefehl = String.format(selectBefehl, p_benutzerID);
+			
+		try {
+			ResultSet ergebnismengeWarenkörbe = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+			while(ergebnismengeWarenkörbe.next())
+			{
+				warenkorbID = ergebnismengeWarenkörbe.getInt("id");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return warenkorbID;
+	}
+	
+	
+	/**
+	 * Fügt das übergebene Warenkorbelement in der Datenbank ein und ordnet es dem Warenkorb des Kunden mit der übergebenen ID zu
+	 * 
+	 * @param Warenkorbelement: Warenkorbelement-Obejekt, das in der Datenbank erstellt werden soll
+	 * @param p_benutzerID: eindeutige ID des Benutzers, für den das Warenkorbelement in der Datenbank erstellt werden soll
+	 */
+	public static void fügeWarenkorbelementEin(Warenkorbelement p_warenkorbelement, int p_benutzerID)
+	{
+		int warenkorbID = selektiereWarenkorbID(p_benutzerID);
+		
+		if (warenkorbID != -1) {
+		String insertBefehl = "INSERT INTO festiva.warenkorbelemente " +
+							  "(menge, warenkörbe_id, artikel_id) " +
+							  "VALUES ('%d', '%d', '%d')";
+		insertBefehl = String.format(insertBefehl, p_warenkorbelement.menge, warenkorbID ,p_warenkorbelement.artikel.id);
+		p_warenkorbelement.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
+		}
+		
+	}
+
+}

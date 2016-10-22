@@ -1,5 +1,7 @@
 package standardPackage;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 // import com.mysql.jdbc.Connection;
 
@@ -31,21 +33,42 @@ public static void main(String[] args) {
 //	}
 //	else 
 //	{
-	ResultSet rs = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank("select * from benutzer");
+//	ResultSet rs = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank("select * from benutzer");
+//	
+//	try {
+//		while(rs.next()) {
+//			System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getBoolean("istgesperrt")  +" " + rs.getString(11));
+//			
+//		}
+//	} catch (SQLException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	
+//	Benutzer benutzer = new Benutzer(1, "Alina", "Fankhänel", "alina.fankhaenel@festiva.de", "test", "Postweg", "5", 33333 , "Gütersloh", false, "", "", false, false, 2);
+//	BenutzerAdministration.aktualisiereBenutzer(benutzer);
+	//	BenutzerAdministration.erstelleKunden(benutzer);
+	
+
+//	Kategorie kategorie = new Kategorie(-1, "Rock", "Rock ist cool", "ichBinDerBildpfad", false);
+//	KategorieAdministration.erstelleKategorie(kategorie);
 	
 	try {
-		while(rs.next()) {
-			System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getBoolean("istgesperrt")  +" " + rs.getString(11));
-			
-		}
-	} catch (SQLException e) {
+		java.util.Date start = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-02");
+		java.util.Date end = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-05");
+		
+		Festival festival = new Festival(1, "Rock im Park", "Nürnberg", "Rock im Park ist ein schönes Festival", "Rock im Park ist ein schönes Festival und das hier ist die Langbeschreibung", start, end, "ichBinDerGeänderteBildpfad", false, 1);
+		FestivalAdministration.aktualisiereFestival(festival);
+	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+
+
+	 
+
 	
-	Benutzer benutzer = new Benutzer(1, "Alina", "Fankhänel", "alina.fankhaenel@festiva.de", "test", "Postweg", "5", 33333 , "Gütersloh", false, "", "", false, false, 2);
-	BenutzerAdministration.aktualisiereBenutzer(benutzer);
-	//	BenutzerAdministration.erstelleKunden(benutzer);
+	
 	}
 
 

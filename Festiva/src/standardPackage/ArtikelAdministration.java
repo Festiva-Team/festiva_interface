@@ -19,8 +19,8 @@ public class ArtikelAdministration {
 	 */
 	public static void erstelleArtikel(Artikel p_artikel)
 	{		
-		String insertBefehl = "INSERT INTO festiva.artikel" +
-							   "(beschreibung, preis, festival_id)" +
+		String insertBefehl = "INSERT INTO festiva.artikel " +
+							   "(beschreibung, preis, festival_id ) " +
 							   "VALUES ('%s', '%f', '%d')";
 		insertBefehl = String.format(insertBefehl, p_artikel.beschreibung, p_artikel.preis, p_artikel.festivalID);
 		p_artikel.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
@@ -34,8 +34,8 @@ public class ArtikelAdministration {
 	public static void aktualisiereArtikel(Artikel p_artikel)
 	{	
 		String updateBefehl = "UPDATE festiva.artikel " +
-							  "SET beschreibung = '%s', preis = '%f', festival_id = '%d'" +
-							  "WHERE id = %d";
+							  "SET beschreibung = '%s', preis = '%f', festival_id = '%d' " +
+							  "WHERE id = '%d'";
 		updateBefehl = String.format(updateBefehl, p_artikel.beschreibung, p_artikel.preis, p_artikel.festivalID, p_artikel.id);
 		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(updateBefehl);
 	}
@@ -91,12 +91,12 @@ public class ArtikelAdministration {
 	 * @param p_festivalID: ID des gewünschten Festivals
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
 	 */
-	public static List<Artikel> gibArtikelVonFestival(int p_festivalID)
+	public static List<Artikel> selektiereArtikelVonFestival(int p_festivalID)
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
 							  "FROM festiva.artikel " + 
-							  "WHERE festival_id = %d ORDER BY beschreibung ASC";
+							  "WHERE festival_id = '%d' ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl, p_festivalID);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);

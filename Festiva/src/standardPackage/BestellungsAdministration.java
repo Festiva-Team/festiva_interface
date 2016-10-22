@@ -14,7 +14,7 @@ import java.util.List;
 public class BestellungsAdministration {
 
 /**
- * Erstellt für das übergeben Bestellungs-Objekt die Einträge in der Datenbank
+ * Erstellt für das übergebene Bestellungs-Objekt die Einträge in der Datenbank
  * verwendete Tabellen: bestellungen, bestellpositionen
  * 
  * @param p_bestellung: Bestellungs-Objekt, das in die Datenbanktabellen geschrieben werden soll
@@ -24,7 +24,7 @@ public static void erstelleBestellung(Bestellung p_bestellung)
 	// Eintragungen in die Tabelle "bestellungen"
 	String insertBefehl = "INSERT INTO festiva.bestellungen " +
 						  "(perpost, benutzer_id) " +
-						  "VALUES (%d, %d)";
+						  "VALUES ('%d', '%d')";
 	insertBefehl = String.format(insertBefehl, p_bestellung.perPost?1:0, p_bestellung.benutzerID);
 	p_bestellung.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
 	
@@ -33,7 +33,7 @@ public static void erstelleBestellung(Bestellung p_bestellung)
 	{
 		insertBefehl = "INSERT INTO festiva.bestellpositionen " + 
 					   "(menge, artikel_id, beschreibung, preis, bestellungen_id) " +
-					   "VALUES (%d, %d, %s, %f, %d)";
+					   "VALUES ('%d', '%d', '%s', '%f', '%d')";
 		insertBefehl = String.format(insertBefehl, bestellposition.menge, bestellposition.artikelID, bestellposition.beschreibung, bestellposition.preis, p_bestellung.id);
 		bestellposition.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
 	}
@@ -53,7 +53,7 @@ public static List<Bestellung> gibBestellungenVonKunden(int p_benutzerID)
 	// Selektiere von der Tabelle "bestellungen"
 	String selectBefehl = "SELECT id, datum, perpost, benutzer_id " +
 						  "FROM festiva.bestellungen " +
-						  "WHERE benutzer_id = %d " +
+						  "WHERE benutzer_id = '%d' " +
 						  "ORDER BY datum DESC";
 	selectBefehl = String.format(selectBefehl, p_benutzerID);
 	
@@ -71,7 +71,7 @@ public static List<Bestellung> gibBestellungenVonKunden(int p_benutzerID)
 			
 			selectBefehl = "SELECT id, menge, artikel_id, beschreibung, preis " +
 						   "FROM festiva.bestellpositionen " +
-						   "WHERE bestellungen_id = %d " +
+						   "WHERE bestellungen_id = '%d' " +
 						   "ORDER BY id ASC";
 			selectBefehl = String.format(selectBefehl, bestellungsID);
 			

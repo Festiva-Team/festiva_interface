@@ -1,5 +1,5 @@
 package standardPackage;
-import java.sql.Date;
+import java.util.Date;
 /**
  * Klasse für ein Festival innerhalb des Webshops
  * 

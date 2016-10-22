@@ -17,8 +17,8 @@ public class BenutzerAdministration {
 	 */
 	public static void erstelleKunden(Benutzer p_benutzer)
 	{		
-		String insertBefehl = "INSERT INTO festiva.benutzer" +
-							   "(vorname, nachname, emailadresse, passworthash, gruppen_id)" +
+		String insertBefehl = "INSERT INTO festiva.benutzer " +
+							   "(vorname, nachname, emailadresse, passworthash, gruppen_id) " +
 							   "VALUES ('%s', '%s', '%s', '%s','%d')";
 		insertBefehl = String.format(insertBefehl, p_benutzer.vorname, p_benutzer.nachname, p_benutzer.eMailAdresse, p_benutzer.passwortHash, p_benutzer.gruppenID);
 		p_benutzer.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
@@ -34,8 +34,8 @@ public class BenutzerAdministration {
 	{	
 		String updateBefehl = "UPDATE festiva.benutzer " +
 							  "SET vorname = '%s', nachname = '%s', strasse = '%s', hausnummer = '%s', plz = '%d', ort = '%s', "
-							  + "emailadresse = '%s', passworthash = '%s', istgesperrt = '%d', einzugsermächtigungerteilt = '%d', iban = '%s', bic = '%s'" +
-							  "WHERE id = %d";
+							  + "emailadresse = '%s', passworthash = '%s', istgesperrt = '%d', einzugsermächtigungerteilt = '%d', iban = '%s', bic = '%s' " +
+							  "WHERE id = '%d'";
 		updateBefehl = String.format(updateBefehl, p_benutzer.vorname, p_benutzer.nachname, p_benutzer.strasse, p_benutzer.hausnummer, p_benutzer.plz, p_benutzer.ort, 
 												   p_benutzer.eMailAdresse, p_benutzer.passwortHash, p_benutzer.istGesperrt?1:0, p_benutzer.einzugsermächtigungErteilt?1:0, 
 												   p_benutzer.iban, p_benutzer.bic, p_benutzer.id);
@@ -69,7 +69,7 @@ public class BenutzerAdministration {
 		Benutzer benutzer = null;
 		String selectBefehl = 
 		"SELECT id, vorname, nachname, strasse, hausnummer, plz, ort, passworthash, " +
-		"istgesperrt, istgelöscht, iban, bic, einzugsermächtigungerteilt, gruppenid" +
+		"istgesperrt, istgelöscht, iban, bic, einzugsermächtigungerteilt, gruppenid " +
 		"FROM festiva.benutzer WHERE emailadresse = '%s'";			
 		selectBefehl = String.format(selectBefehl, p_eMailAdresse);
 		
