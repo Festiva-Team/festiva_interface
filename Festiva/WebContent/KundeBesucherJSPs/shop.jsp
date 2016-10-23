@@ -39,11 +39,12 @@
 				</div>
 				<div id="zeile">
 					<div id="spaltelinks">		
-						<label for="kategorie">Kategorie</label>
-						<datalist id="kategorie"><option value="Kategorie.name"></option></datalist>				
+						<label for="kategorie">Kategorie
+						<select><option value="Kategorie.name"></option></select>	
+						</label>					
 					</div>	
 					<div id="spalterechts">
-						<button type="button">suchen</button>
+						<button type="button" id="rechts">suchen</button>
 					</div>
 				</div>		
 			<div id="content">
@@ -56,8 +57,7 @@
 			</form>
 		<div id="leer"></div>
 		</div>
-			<div id="footer">
-			</div>
+			<div id="footer"></div>
 	</div>
 </body>
 </html>

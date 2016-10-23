@@ -15,25 +15,24 @@
 <title>Header</title>
 </head>
 <body>
-		<div id="header">
-			<img src="../Bilder/HeaderMitLogo.png" width="980"/>
-		</div>
-			<nav>
-	  			<ul>
-				      <li><a href="startseite.jsp">Home</a></li>
-				      <li><a href="shop.jsp">Shop</a></li>
-				      <li><a href="#">Mein Konto</a>
-				      	<ul>
-					      <li><a href="anmelden.jsp">Anmelden</a></li>
-					      <li><a href="registrieren.jsp">Registrieren</a></li>
-<% 
-/**angemeldet? dann  	  <li><a href="meineDaten.jsp">Meine Daten</a></li> 
-						  <li><a href="meineBestellungen.jsp">Meine Bestellungen</a></li> 
-						  <li><a href="abmelden.jsp">Abmelden</a></li>*/
-%>
-				      	</ul>
-				      </li>	
-			  	</ul>
-			</nav>
+	<div id="header">
+		<img src="../Bilder/HeaderMitLogo.png" width="980"/>
+	</div>
+		<nav>
+		<ul>
+			<li><a href="startseite.jsp">Home</a></li>
+			<li><a href="shop.jsp">Shop</a></li>
+			<li><a href="#">Mein Konto</a>
+			<ul>
+				<li><a href="anmelden.jsp">Anmelden</a></li>
+				<li><a href="registrieren.jsp">Registrieren</a></li>
+				<li><a href="kundendaten.jsp">Meine Daten</a></li> 
+				<li><a href="bestellungen.jsp">Meine Bestellungen</a></li> 
+				<li><a href="#">Abmelden</a></li>
+			</ul>
+			</li>					      
+			<li><a href="warenkorb.jsp">Warenkorb</a></li> 
+		</ul>
+		</nav>
 </body>
 </html>

@@ -15,19 +15,24 @@
 <title>Festiva - Festivalverwaltung</title>
 </head>
 <body>
-	<div id="webseite">
-		<jsp:include page="headerAdmin.jsp">
-    		<jsp:param name="active" value="festivalverwaltung"/>
-   		</jsp:include>
-   		<div class="main">
-	    	<form action="festivalverwaltung.jsp" id="festivalverwaltung">
-				<label class="h2" form="festivalverwaltung">Festivalverwaltung</label><br>
-				<button type="button" onClick="window.location.href='festivalAnlegen.jsp'">Anlegen </button>				
-			</form>  
-		<div id="leer"></div>
-    	</div>
-   		<div id="footer">
-		</div>
+<div id="webseite">
+	<jsp:include page="headerAdmin.jsp">
+   		<jsp:param name="active" value="festivalverwaltung"/>
+	</jsp:include>
+ 	<div id="main">
+  		<form action="festivalverwaltung.jsp" id="festivalverwaltung">
+			<label class="h2">Festivalverwaltung</label>
+			<div id="spaltelinks">
+				<button type="button" id="verwaltung" onClick="window.location.href='festivalAnlegen.jsp'">Anlegen</button>
+				<table class="table">
+					<tr><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Kurzbeschreibung</th></tr>
+				</table>	
+			</div>		
+		</form> 
+	<div id="leer"></div>
+   	</div>
+  		<div id="footer">
 	</div>
+</div>
 </body>
 </html>

@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-	<title>Mein Konto</title>
+	<title>Festiva - Mein Konto</title>
 	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
 </head>
 <body>
@@ -31,7 +31,7 @@
 				<input type="password" name="passwort" id="passwort" maxlength="40">
 				<label for="passwortwh">Passwort wiederholen</label>
 				<input type="password" name="passwort" id="passwort" maxlength="40"><br>
-				<button type="button">Registrieren</button>
+				<button type="button" id="links">Registrieren</button>
 			</div>	
 			</form>
 			<div id="leer"></div>

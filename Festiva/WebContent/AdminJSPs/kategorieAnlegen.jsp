@@ -22,13 +22,17 @@
 	<div id="main">
 		<form action="kategorieAnlegen.jsp" id="kategorieAnlegen">
 			<label class="h2" form="kategorieAnlegen">Kategorie anlegen</label>
-			<label for="name">Kategorienname</label>
-			<input type="text" id="name" maxlength="30">
-			<label for="beschreibung">Beschreibung</label>
-			<input type="text" id="beschreibung" maxlength="100">
-			<label for="bild">Bild</label>
-			<input type="file" accept="image/*"><br>
-			<button>speichern</button>
+			<div id="zeile">
+				<div id="spaltelinks">
+					<label for="name">Kategorienname</label>
+					<input type="text" id="name" maxlength="30">
+					<label for="beschreibung">Beschreibung</label>
+					<input type="text" id="beschreibung" maxlength="100">
+					<label for="bild">Bild</label>
+					<input type="file" accept="image/*"><br>
+					<button type="button" id="anlegen">speichern</button>
+				</div>
+			</div>
 		</form>
 	<div id="leer"></div>
 	</div>

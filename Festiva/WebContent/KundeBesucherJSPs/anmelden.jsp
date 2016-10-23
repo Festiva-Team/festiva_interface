@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-	<title>Mein Konto</title>
+	<title>Festiva - Mein Konto</title>
 	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
 					<input type="email" name="email" id="email" maxlength="30">
 					<label for="passwort">Passwort</label>
 					<input type="password" name="passwort" id="passwort" maxlength="40">
-					<button type="button">Anmelden</button>
+					<button type="button" id="links">Anmelden</button>
 				</div>
 				<div id="leer"></div>
 			</form>

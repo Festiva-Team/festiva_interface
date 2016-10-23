@@ -15,19 +15,24 @@
 <title>Festiva - Kategorienverwaltung</title>
 </head>
 <body>
-	<div id="webseite">
-		<jsp:include page="headerAdmin.jsp">
-    		<jsp:param name="active" value="kategorienverwaltung"/>
-   		</jsp:include>
-   		<div id="main">
-	    	<form action="kategorienverwaltung.jsp" id="kategorienverwaltung">
-				<label class="h2" form="kundenverwaltung">Kategorienverwaltung</label><br>
-				<button type="button" onClick="window.location.href='kategorieAnlegen.jsp'">Anlegen </button>
-			</form> 
-		<div id="leer"></div>
-		</div>  	
-		<div id="footer">
-		</div>
+<div id="webseite">
+	<jsp:include page="headerAdmin.jsp">
+   		<jsp:param name="active" value="kategorienverwaltung"/>
+  	</jsp:include>
+  	<div id="main">
+    	<form action="kategorienverwaltung.jsp" id="kategorienverwaltung">
+	    	<label class="h2" form="kundenverwaltung">Kategorienverwaltung</label>
+	    	<div id="spaltelinks">
+				<button type="button" id="verwaltung" onClick="window.location.href='kategorieAnlegen.jsp'">Anlegen </button>
+				<table class="table">
+					<tr><th>Name</th><th>Beschreibung</th></tr>
+				</table>	
+			</div>
+		</form> 
+	<div id="leer"></div>
+	</div>  	
+	<div id="footer">
 	</div>
+</div>
 </body>
 </html>

@@ -19,21 +19,16 @@
 	<jsp:include page="headerAdmin.jsp">
    		<jsp:param name="active" value="kundenverwaltung"/>
   	</jsp:include>	
-    <div class="main">
+    <div id="main">
     	<form action="kundenverwaltung.jsp" id="kundenverwaltung">
-				<label class="h2" form="kundenverwaltung">Kundenverwaltung</label><br>
-				<button type="button" onClick="window.location.href='kundenAnlegen.jsp'">Anlegen </button>
-		</form>   	
-		<table class="table">
-			<tr>
-				<th>Benutzer-ID</th>
-				<th>EMail-Adresse</th>
-				<th>Vorname</th>
-				<th>Nachname</th>
-				<th>Gruppe</th>
-				<th>Gesperrt</th>
-			</tr>
-		</table>
+			<label class="h2" form="kundenverwaltung">Kundenverwaltung</label>
+			<div id="spaltelinks">
+				<button type="button" id="verwaltung" onClick="window.location.href='kundenAnlegen.jsp'">Anlegen </button>
+				<table class="table">
+					<tr><th>Gruppe</th><th>Vorname</th><th>Nachname</th><th>EMail-Adresse</th><th>Gesperrt</th><th>Gelöscht</th></tr>
+				</table>
+			</div>
+		</form>
 	<div id="leer"></div>
     </div>
     <div id="footer">

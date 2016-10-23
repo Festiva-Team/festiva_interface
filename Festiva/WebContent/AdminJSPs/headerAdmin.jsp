@@ -24,7 +24,7 @@
 		        <li><a href="kategorienverwaltung.jsp">Kategorienverwaltung</a></li>
 		        <li><a href="festivalverwaltung.jsp">Festivalverwaltung</a></li>
 		        <li><a href="kundenverwaltung.jsp">Kundenverwaltung</a></li>
-		        <li><a href="adminKonto.jsp">Mein Konto</a></li>	
+		        <li><a href="adminKonto.jsp">Adminkonto</a></li>	
 		  	</ul>
 		</nav>
 </body>

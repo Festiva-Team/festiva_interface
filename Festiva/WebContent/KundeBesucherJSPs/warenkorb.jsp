@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../CSS/design.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Warenkorb</title>
 </head>
 <body>
 	<div id="webseite">
@@ -13,28 +13,20 @@
     		<jsp:param name="active" value="warenkorb"/>
     	</jsp:include>
     	<div id="main">
-		            <div class="span9">
-		                <div class="zeile">
-		                    <div class="span12"><h3>artikel.name%></h3></div>
-		                </div>
-		                <div class="zeile">
-		                    <div class="spalte1"><b>Beschreibung</b></div>
-		                    <div class="spalte2">artikel.beschreibung%></div>
-		                </div>
-		                <div class="zeile">
-		                    <div class="spalte1"><b>Einzelpreis:</b></div>
-		                    <div class="spalte2">artikel.einzelpreis)%> &euro;</div>
-		                </div>
-		                <div class="zeile">
-		                    <div class="spalte1"><b>Anzahl:</b></div>
-		                    <div class="spalte2">anzahl%></div>
-		                </div>
-		                <div class="zeile">
-		                    <div class="spalte1"><b>Gesamtpreis:</b></div>
-		                    <div class="spalte2"><b>artikel.einzelpreis*anzahl)%> &euro;</b></div>
-		                </div>
-		            </div>
+    		<form id="table">
+				<label class="h2">Warenkorb</label>
+				<table class= "artikel">
+					<tr><th>Festival</th><th>Artikeleschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr>
+					<tr><td>Festival</td><td>Beschreibung</td><td>Preis</td><td><select><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td><td>Preis*Anzahl</td><td><button>löschen</button></td></tr>
+				</table>
+				<div id="spalterechts">
+						<button type="button" onClick="window.location.href='kasse.jsp'">Zur Kasse</button>
+				</div>
+			</form>
+			
 		</div>
+		<div id="leer"></div>
+		<div id="footer"></div>
 	</div>
 </body>
 </html>

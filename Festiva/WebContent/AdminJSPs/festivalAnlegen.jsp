@@ -62,7 +62,10 @@
 					<textarea rows="10" cols="25"></textarea>
 				</div>
 			</div>
-		</form>	
+			<div id="spalterechts">		
+					<button type="button" id="anlegen">speichern</button>
+			</div>
+		</form>			
 	<div id="leer"></div>			
 	</div>
 	<div id="footer">
