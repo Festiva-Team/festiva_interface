@@ -53,24 +53,22 @@ public static void main(String[] args) {
 //	Kategorie kategorie = new Kategorie(-1, "Rock", "Rock ist cool", "ichBinDerBildpfad", false);
 //	KategorienAdministration.erstelleKategorie(kategorie);
 	
-	try {
-		java.util.Date start = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-02");
-		java.util.Date end = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-05");
-		
-		Festival festival = new Festival(1, "Rock im Park", "Nürnberg", "Rock im Park ist ein schönes Festival", "Rock im Park ist ein schönes Festival und das hier ist die Langbeschreibung", start, end, "ichBinDerGeänderteBildpfad", false, 1);
-		FestivalAdministration.aktualisiereFestival(festival);
-	} catch (ParseException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-
-
-	 
-
+//	try {
+//		java.util.Date start = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-02");
+//		java.util.Date end = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-05");
+//		
+//		Festival festival = new Festival(1, "Rock im Park", "Nürnberg", "Rock im Park ist ein schönes Festival", "Rock im Park ist ein schönes Festival und das hier ist die Langbeschreibung", start, end, "ichBinDerGeänderteBildpfad", false, 1);
+//		FestivalAdministration.aktualisiereFestival(festival);
+//	} catch (ParseException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 	
 	
-	}
+	Festival festival = FestivalAdministration.selektiereFestival(1);
 
+	System.out.println(festival.id + " " + festival.name + " " + festival.ort + " " + festival.kurzbeschreibung + " " + festival.langbeschreibung + " " + festival.startDatum + " " + festival.endDatum + " " + festival.bildpfad + " " + festival.kategorienID + " " + festival.istGelöscht);
+	
 
-}
+}}
 //}

@@ -99,16 +99,18 @@ public class FestivalAdministration {
 	
 	
 	/**
-	 * Gibt alle Festivals, die zu einer bestimmen Kategorie gehören zurück (alphabetisch sortiert)
+	 * Selektiert alle Festivals, die zu einer bestimmen Kategorie gehören (nach Startdatum absteigend sortiert)
 	 * @param p_kategorienID: ID der gewünschten Kategorie
 	 * @return listFestivals: Liste aller Festivals, die zu der gewünschten Kategorie gehören (nach Startdatum absteigend sortiert)
 	 */
-	public static List<Festival> selektiereFestivalsVonKategorie(int p_kategorienID)
+	public static List<FestivalSuchobjekt> selektiereFestivalsVonKategorie(int p_kategorienID)
 	{
-		List<Festival> listFestivals = new ArrayList<Festival>();
-		String selectBefehl = "SELECT id, name, ort, kurzbeschreibung, langbeschreibung, startdatum, enddatum, istgelöscht, bildpfad " + 
-							  "FROM festiva.festivals " + 
-							  "WHERE kategorien_id = '%d' ORDER BY startdatum DESC";
+		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
+		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
+							  "min(a.preis) \"vonPreis\" , max(a.preis) \"bisPreis\" " +
+							  "from festivals f left join artikel a on a.festivals_id = f.id " +
+							  "where f.kategorien_id = '%d' ORDER BY f.startdatum, f.name DESC";
+		
 		selectBefehl  = String.format(selectBefehl, p_kategorienID);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
@@ -121,13 +123,143 @@ public class FestivalAdministration {
 				String name = ergebnismenge.getString("name");
 				String ort = ergebnismenge.getString("ort");
 				String kurzbeschreibung = ergebnismenge.getString("kurzbeschreibung");
-				String langbeschreibung = ergebnismenge.getString("langbeschreibung");
 				Date startDatum = ergebnismenge.getDate("startdatum");
 				Date endDatum = ergebnismenge.getDate("enddatum");
-				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
-				String bildpfad = ergebnismenge.getString("bildpfad");
+				int kategorienID = ergebnismenge.getInt("kategorien_id");
+				float vonPreis = ergebnismenge.getFloat("vonPreis");
+				float bisPreis = ergebnismenge.getFloat("bisPreis");
 				
-				listFestivals.add(new Festival(id, name, ort, kurzbeschreibung, langbeschreibung, startDatum, endDatum, bildpfad, istGelöscht, p_kategorienID));
+				listFestivals.add(new FestivalSuchobjekt(id, name, ort, kurzbeschreibung, startDatum, endDatum, vonPreis, bisPreis, kategorienID));
+		
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listFestivals;
+	}
+	
+	
+	/**
+	 * Selektiert alle Festivals, die den übergebenen Kriterien gerecht werden (nach Startdatum absteigend sortiert)
+	 * @param p_kategorienID: ID der gewünschten Kategorie
+	 * @param p_vonDatum: Beginn des gewünschten Zeitraums
+	 * @param p_bisDatum: Ende des gewünschten Zeitraums
+	 * @param p_bisPreis: oberer Wert der gewünschten Preisspanne
+	 * @param p_ort: Ort der gewünschten Festivals
+	 * @param p_name: Name des gewünschten Festivals
+	 * @return listFestivals: Liste aller Festivals, die zu den gewünschten Kriterien passen (nach Startdatum absteigend sortiert)
+	 */
+	public static List<FestivalSuchobjekt> selektiereFestivalsInSuche(int p_kategorienID, String p_ort, String p_name,
+															Date p_vonDatum, Date p_bisDatum, float p_bisPreis)
+	{
+		boolean where = false;
+		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
+		
+		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
+					   		  "min(a.preis) \"vonPreis\" , max(a.preis) \"bisPreis\" " +
+					   		  "from festivals f left join artikel a on a.festivals_id = f.id ";
+		
+		// Bedingung zum Einschränken über die Kategorie
+		if (p_kategorienID != 0 ) {
+		  	selectBefehl = selectBefehl + "WHERE f.kategorien_id = " + p_kategorienID + " ";
+		  	where = true;
+		  	}
+		
+		// Bedingung zum Einschränken über den Ort
+		if (p_ort != null && p_ort != "") {
+			if (where == true) {
+				selectBefehl = selectBefehl + "AND UPPER(f.ort) = UPPER(" + p_ort + ") ";
+			}
+			else {
+				selectBefehl = selectBefehl + "WHERE UPPER(f.ort) = UPPER(" + p_ort + ") ";
+				where = true;
+			}
+			}
+		
+		// Bedingung zum Einschränken über den Festivalnamen
+		if (p_name != null && p_name != "") {
+			if (where == true) {
+				selectBefehl = selectBefehl + "AND UPPER(f.name) = UPPER(" + p_name + ") ";
+			}
+			else {
+				selectBefehl = selectBefehl + "WHERE UPPER(f.name) = UPPER(" + p_name + ") ";
+				where = true;
+			}
+		}
+		
+		// Bedingung zum Einschränken über das Startdatum des Festivals
+		if (p_vonDatum != null && p_bisDatum == null) {
+			if (where == true) {
+				selectBefehl = selectBefehl + "AND f.startDatum >= " + p_vonDatum + " ";
+			}
+			else {
+				selectBefehl = selectBefehl + "WHERE f.startDatum >= " + p_vonDatum + " ";
+				where = true;
+			}
+		}
+		
+		// Bedingung zum Einschränken über das Enddatum des Festivals
+		if (p_bisDatum != null && p_vonDatum == null) {
+			if (where == true) {
+				selectBefehl = selectBefehl + "AND f.endDatum <= " + p_bisDatum + " ";
+			}
+			else {
+				selectBefehl = selectBefehl + "WHERE f.endDatum <= " + p_bisDatum + " ";
+				where = true;
+			}
+		}
+		
+		// Bedingung zum Einschränken über Start- & Enddatum des Festivals (Auch Festivals, die:
+		// - innerhalb des angegebenen Zeitraums beginnen und über diesen hinausgehen 
+		// - vor dem angegebenen Zeitraum beginnen und innerhalb des Zeitraums enden
+		// - vor dem angegebenen Zeitraum beginngen und nach dem angegebenen Zeitraum enden
+		// ...werden angezeigt)
+				if (p_bisDatum != null && p_vonDatum != null) {
+					if (where == true) {
+						selectBefehl = selectBefehl + "AND ((f.startDatum >= " + p_vonDatum + " OR f.endDatum <= " + p_bisDatum + ") "
+													+ "OR (f.startDatum < " + p_vonDatum + " AND f.endDatum > " + p_bisDatum + ")) ";
+					}
+					else {
+						selectBefehl = selectBefehl + "WHERE ((f.startDatum >= " + p_vonDatum + " OR f.endDatum <= " + p_bisDatum + ") "
+													+ "OR (f.startDatum < " + p_vonDatum + " AND f.endDatum > " + p_bisDatum + ")) ";
+						where = true;
+					}
+				}
+				
+				// Bedingung zum Einschränken über den Maximalpreis
+				if (p_bisPreis != 0.0) {
+					if (where == true) {
+						selectBefehl = selectBefehl + "AND min(a.preis) <= " + p_bisPreis + ") ";
+					}
+					else {
+						selectBefehl = selectBefehl + "WHERE min(a.preis) <= " + p_bisPreis + ") ";
+						where = true;
+					}
+					}
+			
+		selectBefehl = selectBefehl	+ "ORDER BY f.startdatum, f.name DESC";
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int id = ergebnismenge.getInt("id");				
+				String name = ergebnismenge.getString("name");
+				String ort = ergebnismenge.getString("ort");
+				String kurzbeschreibung = ergebnismenge.getString("kurzbeschreibung");
+				Date startDatum = ergebnismenge.getDate("startdatum");
+				Date endDatum = ergebnismenge.getDate("enddatum");
+				int kategorienID = ergebnismenge.getInt("kategorien_id");
+				float vonPreis = ergebnismenge.getFloat("vonPreis");
+				float bisPreis = ergebnismenge.getFloat("bisPreis");
+				
+				listFestivals.add(new FestivalSuchobjekt(id, name, ort, kurzbeschreibung, startDatum, endDatum, vonPreis, bisPreis, kategorienID));
 			}
 		}
 		catch(SQLException e)

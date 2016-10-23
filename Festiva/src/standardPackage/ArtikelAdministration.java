@@ -87,7 +87,7 @@ public class ArtikelAdministration {
 	}
 
 	/**
-	 * Gibt alle Artikel, die zu einem bestimmen Festival gehören zurück (alphabetisch sortiert)
+	 * Selektiert alle Artikel, die zu einem bestimmen Festival gehören (alphabetisch sortiert)
 	 * @param p_festivalID: ID des gewünschten Festivals
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
 	 */
