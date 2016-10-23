@@ -21,38 +21,56 @@
     </jsp:include>
 		<div id="main">
 			<form action="festivalAendern.jsp" id="festivalAendern">
-				<label class="h2" form="festivalAendern">Festival ändern</label>
-				<div id="zeile">
-				<div id="spaltelinks">
-					<label for="name">Festivalname</label><br>
-					<input type="text" id="name" maxlength="30">
-					<label for="kategorie">Kategorie</label>
-					<input type="text" id="kategorie" maxlength="30">	
-					<label for="name">Ort</label>
-					<input type="text" id="ort" maxlength="30">
-					<label for="datum">Startdatum</label>
-					<input type="date" id="datum" maxlength="30">
-					<label for="datum">Enddatum</label>
-					<input type="date" id="datum" maxlength="30">
-					<label for="bild">Bild</label>
-					<input type="file" id="bild" accept="image/*">
-				</div>
-				<div id="spalterechts">
-					<label for="name">Kurzbeschreibung</label>
-					<textarea rows="5" cols="30"></textarea>			
-					<label for="name">Langbeschreibung</label>
-					<textarea rows="10" cols="30"></textarea>
+			<label class="h2">Festival ändern</label>
+				 <div id="zeile">
+					<div id="spaltelinks">
+						<label for="festivalname">Festivalname</label>
+						<input type="text" id="name" maxlength="30">
+					</div>
+					<div id="spalterechts">
+						<label for="kategorie">Kategorie</label>
+						<input type="text" id="kategorie" maxlength="30">
 					</div>
 				</div>
-				<div id="leer"></div>
+				<div id="zeile">
+				    <div id="spaltelinks">
+						<label for="name">Ort</label>
+						<input type="text" id="ort" maxlength="30">	
+					</div>
+					<div id="spalterechts">
+					<label for="bild">Bild</label>
+					<input type="file" id="bild" accept="image/*">
+					</div>
+				</div>	
+				<div id="zeile">
+					<div id="spaltelinks">
+						<label for="datum">Startdatum</label>
+						<input type="date" id="datum" maxlength="30">
+					</div>
+					<div id="spalterechts">
+						<label for="datum">Enddatum</label>
+						<input type="date" id="datum" maxlength="30">
+					</div>
+				</div>				
+				<div id="zeile">
+					<div id="spaltelinks">
+					<label for="name">Kurzbeschreibung</label>
+					<textarea rows="5" cols="25"></textarea>
+					</div>
+					<div id="spalterechts">			
+					<label for="name">Langbeschreibung</label>
+					<textarea rows="10" cols="25"></textarea>
+					</div>
+				</div>					
 			</form>
 			<div id="zeile">
-			<div id="spalte links">
+			<div id="spaltelinks">
 			<table class= "artikel"><h2>Artikel</h2>
 				<tr><th>Beschreibung</th><th>Preis</th></tr>
 				<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td></tr>
 			</table>
 			</div>
+			<div id="leer"></div>
 			</div>
 		</div>
 		<div id="footer">

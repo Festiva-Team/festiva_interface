@@ -10,7 +10,7 @@
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
     	<div id="main">
-    	<div id="zeile"><h1>"Festivalname"</h1>
+    		<div id="zeile"><h1>"Festivalname"</h1>
 				<div id="spalte1">Foto
 				</div>
 				<div id="spalte2">
@@ -22,16 +22,16 @@
 				</div>
 			</div>
 			<form id="table">
-			<label class="h2">Artikel</label>
-			<table class= "artikel">
-				<tr><th>Beschreibung</th><th>Preis</th><th>Anzahl</th></tr>
-				<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td><td><select><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td><td><button>In den Warenkorb</button></td></tr>
-			</table>
-			<div id="spalterechts">
-			<button>Zum Warenkorb</button>
-			</div>
+				<label class="h2">Artikel</label>
+				<table class= "artikel">
+					<tr><th>Beschreibung</th><th>Preis</th><th>Anzahl</th></tr>
+					<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td><td><select><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td><td><button>In den Warenkorb</button></td></tr>
+				</table>
+				<div id="spalterechts">
+						<button>Zum Warenkorb</button>
+				</div>
 			</form>
-			</div>
+			<div id="leer"></div>
 		</div>
 	<div id="footer"></div>
 	</div>	

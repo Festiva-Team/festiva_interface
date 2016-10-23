@@ -15,10 +15,10 @@
 <title>Festiva - Kundenverwaltung</title>
 </head>
 <body>
-	<div id="webseite">
-		<jsp:include page="headerAdmin.jsp">
-    		<jsp:param name="active" value="kundenverwaltung"/>
-   		</jsp:include>	
+<div id="webseite">
+	<jsp:include page="headerAdmin.jsp">
+   		<jsp:param name="active" value="kundenverwaltung"/>
+  	</jsp:include>	
     <div class="main">
     	<form action="kundenverwaltung.jsp" id="kundenverwaltung">
 				<label class="h2" form="kundenverwaltung">Kundenverwaltung</label><br>
@@ -34,11 +34,10 @@
 				<th>Gesperrt</th>
 			</tr>
 		</table>
-    	</div>
-    	<div id="footer">
-		</div>
+	<div id="leer"></div>
     </div>
-
-	
+    <div id="footer">
+	</div>
+</div>	
 </body>
 </html>

@@ -11,18 +11,21 @@
     <jsp:include page="headerAdmin.jsp">
     	<jsp:param name="active" value="artikelAnlegen"/>
     </jsp:include>
-		<div id="main">
-			<form action="artikelAnlegen.jsp" id="artikelAnlegen">
-				<label class="h2" form="kategorieAnlegen">Artikel anlegen</label>
-				<label for="beschreibung">Beschreibung</label>
-				<input type="text" id="beschreibung" maxlength="100">
-				<label for="preis">Preis</label>
-				<input type="number" id="preis" maxlength="100"><br>
-				<button>speichern</button>
-			</form>
-		</div>
-		<div id="footer">
-		</div>
+	<div id="main">
+		<form>
+			<label class="h2">Artikel anlegen</label>
+			<div id="spaltelinks">
+			<label for="beschreibung">Beschreibung</label>
+			<input type="text" id="beschreibung" maxlength="100">
+			<label for="preis">Preis</label>
+			<input type="text" id="preis" maxlength="7"><br>
+			<button>Anlegen</button>
+			</div>
+		</form>		
+	<div id="leer"></div>
+	</div>
+	<div id="footer">
+	</div>
 </div>	
 </body>
 </html>

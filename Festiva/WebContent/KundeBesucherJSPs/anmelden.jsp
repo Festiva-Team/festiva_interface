@@ -20,13 +20,16 @@
     	<jsp:param name="active" value="anmelden"/>
     </jsp:include>
 		<div id="main">
-			<form action="Anmelden.jsp" id="anmelden">
+			<form>
 				<label class="h2" form="anmelden">Anmelden</label>
-					<label for="email">Email</label><br>
+				<div id="spaltelinks">
+					<label for="email">Email</label>
 					<input type="email" name="email" id="email" maxlength="30">
 					<label for="passwort">Passwort</label>
-					<input type="password" name="passwort" id="passwort" maxlength="40"><br>
+					<input type="password" name="passwort" id="passwort" maxlength="40">
 					<button type="button">Anmelden</button>
+				</div>
+				<div id="leer"></div>
 			</form>
 		</div>
 		<div id="footer">

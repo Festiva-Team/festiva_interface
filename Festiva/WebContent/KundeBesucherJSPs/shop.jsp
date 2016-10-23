@@ -25,25 +25,27 @@
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
 		<div id="main">
+			<form>
+				<label class="h2">Shop</label>
 				<div id="zeile">
-				<div id="spaltelinks">
-					<label for="name">Festivalname</label>
-					<input type="search" id="name" maxlength="30">
-					<label for="kategorie">Kategorie</label>
-					<datalist id="kategorie"><option value="Kategorie.name"></option></datalist>	
-					<label for="name">Ort</label>
-					<input type="text" id="ort" maxlength="30">
-
-				</div>
-				<div id="spalterechts">
-					<label for="datum">Startdatum</label>
-					<input type="date" id="datum" maxlength="30">
-					<label for="datum">Enddatum</label>
-					<input type="date" id="datum" maxlength="30">
+					<div id="spaltelinks">
+						<label for="name">Name</label>
+						<input type="search" id="name" maxlength="30">
+					</div>
+					<div id="spalterechts">
+						<label for="name">Ort</label>
+						<input type="text" id="ort" maxlength="30">
 					</div>
 				</div>
-						<button>Suchen</button>
-					</div>			
+				<div id="zeile">
+					<div id="spaltelinks">		
+						<label for="kategorie">Kategorie</label>
+						<datalist id="kategorie"><option value="Kategorie.name"></option></datalist>				
+					</div>	
+					<div id="spalterechts">
+						<button type="button">suchen</button>
+					</div>
+				</div>		
 			<div id="content">
 				<table>
 					<tr>
@@ -51,9 +53,11 @@
 					</tr>
 				</table>
 			</div>
+			</form>
+		<div id="leer"></div>
+		</div>
 			<div id="footer">
 			</div>
-		</div>
-
+	</div>
 </body>
 </html>

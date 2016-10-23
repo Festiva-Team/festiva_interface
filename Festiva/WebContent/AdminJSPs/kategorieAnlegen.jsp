@@ -19,20 +19,21 @@
     <jsp:include page="headerAdmin.jsp">
     	<jsp:param name="active" value="kategorieAnlegen"/>
     </jsp:include>
-		<div id="main">
-			<form action="kategorieAnlegen.jsp" id="kategorieAnlegen">
-				<label class="h2" form="kategorieAnlegen">Kategorie anlegen</label>
-				<label for="name">Kategorienname</label>
-				<input type="text" id="name" maxlength="30">
-				<label for="beschreibung">Beschreibung</label>
-				<input type="text" id="beschreibung" maxlength="100">
-				<label for="bild">Bild</label>
-				<input type="file" accept="image/*"><br>
-				<button>speichern</button>
-			</form>
-		</div>
-		<div id="footer">
-		</div>
+	<div id="main">
+		<form action="kategorieAnlegen.jsp" id="kategorieAnlegen">
+			<label class="h2" form="kategorieAnlegen">Kategorie anlegen</label>
+			<label for="name">Kategorienname</label>
+			<input type="text" id="name" maxlength="30">
+			<label for="beschreibung">Beschreibung</label>
+			<input type="text" id="beschreibung" maxlength="100">
+			<label for="bild">Bild</label>
+			<input type="file" accept="image/*"><br>
+			<button>speichern</button>
+		</form>
+	<div id="leer"></div>
+	</div>
+	<div id="footer">
+	</div>
 </div>	
 </body>
 </html>

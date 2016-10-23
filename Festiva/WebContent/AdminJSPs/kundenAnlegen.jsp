@@ -21,7 +21,7 @@
     </jsp:include>
 			<form action="kundenAnlegen.jsp" id="anmelden">
 				<label class="h2" form="kundenAnlegen">Kunden anlegen</label>
-								<div id="zeile">
+				<div id="zeile">
 					<div id="spaltelinks">
 					<label for="vorname">Vorname</label>
 					<input type="text" id="vorname" maxlength="30">
@@ -84,12 +84,15 @@
 				<div id="zeile">
 					<div id="spaltelinks">
 					<label for="ort">Ort</label>
-					<input type="text" id="ort" maxlength="30"><br>
+					<input type="text" id="ort" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<button type="button">speichern</button>
 					</div>
 				</div>
-				<button type="button">speichern</button>
-			</form>
-			<div id="leer"></div>
+				
+		</form>
+		<div id="leer"></div>
 		<div id="footer">
 		</div>
 	</div>	

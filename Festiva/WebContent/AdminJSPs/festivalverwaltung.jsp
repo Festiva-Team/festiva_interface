@@ -23,8 +23,9 @@
 	    	<form action="festivalverwaltung.jsp" id="festivalverwaltung">
 				<label class="h2" form="festivalverwaltung">Festivalverwaltung</label><br>
 				<button type="button" onClick="window.location.href='festivalAnlegen.jsp'">Anlegen </button>				
-			</form>   	
-    	 </div>
+			</form>  
+		<div id="leer"></div>
+    	</div>
    		<div id="footer">
 		</div>
 	</div>

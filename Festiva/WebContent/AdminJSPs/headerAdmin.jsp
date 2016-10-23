@@ -16,16 +16,16 @@
 </head>
 <body>
 	<div id="header">
-			<img src="../Bilder/HeaderMitLogo.png" width="980"/>
+		<img src="../Bilder/HeaderMitLogo.png" width="980"/>
 	</div>
-			<nav>
-	  			<ul>
-				      <li><a href="startseiteAdmin.jsp">Home</a></li>
-				      <li><a href="kategorienverwaltung.jsp">Kategorienverwaltung</a></li>
-				      <li><a href="festivalverwaltung.jsp">Festivalverwaltung</a></li>
-				      <li><a href="kundenverwaltung.jsp">Kundenverwaltung</a></li>
-				      <li><a href="adminKonto.jsp">Mein Konto</a></li>	
-			  	</ul>
-			</nav>
+		<nav>
+  			<ul>
+		    	<li><a href="startseiteAdmin.jsp">Home</a></li>
+		        <li><a href="kategorienverwaltung.jsp">Kategorienverwaltung</a></li>
+		        <li><a href="festivalverwaltung.jsp">Festivalverwaltung</a></li>
+		        <li><a href="kundenverwaltung.jsp">Kundenverwaltung</a></li>
+		        <li><a href="adminKonto.jsp">Mein Konto</a></li>	
+		  	</ul>
+		</nav>
 </body>
 </html>

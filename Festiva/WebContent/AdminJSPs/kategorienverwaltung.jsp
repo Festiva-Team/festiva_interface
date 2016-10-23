@@ -24,9 +24,10 @@
 				<label class="h2" form="kundenverwaltung">Kategorienverwaltung</label><br>
 				<button type="button" onClick="window.location.href='kategorieAnlegen.jsp'">Anlegen </button>
 			</form> 
+		<div id="leer"></div>
 		</div>  	
-			<div id="footer">
-			</div>
+		<div id="footer">
+		</div>
 	</div>
 </body>
 </html>

@@ -52,8 +52,8 @@
 	      				<input type="checkbox" id="gesperrt"><br>
 					</div>
 				</div>
-				<div id="leer"></div>
 			</form>
+		<div id="leer"></div>
 		</div>
 		<div id="footer">
 		</div>

@@ -12,21 +12,23 @@
     <jsp:include page="headerAdmin.jsp">
     	<jsp:param name="active" value="adminKonto"/>
     </jsp:include>
-		<div id="main">
+	<div id="main">
 		<form action="adminKonto.jsp">
 			<label class="h2" form="adminKonto">Mein Konto</label>
-			<% /** Daten des Admins aus DB aufrufen und in value packen */ %>
-			<label>Email</label>
-			<input type="email" size="30" value="">
-			<label>Passwort</label>
-			<input type="password" size="30" value=""> 
-			<label>Passwort bestätigen</label>
-			<input type="password" size="30" value=""> 
-			<button>speichern</button>
+			<div id="spaltelinks">
+				<label>Email</label>
+				<input type="email" size="30" value="">
+				<label>Passwort</label>
+				<input type="password" size="30" value=""> 
+				<label>Passwort bestätigen</label>
+				<input type="password" size="30" value=""> 
+				<button type="button">speichern</button>
+			</div>
 		</form>
-		</div>
-		<div id="footer">
-		</div>
+	<div id="leer"></div>
+	</div>
+	<div id="footer">
+	</div>
 </div>	
 </body>
 </html>

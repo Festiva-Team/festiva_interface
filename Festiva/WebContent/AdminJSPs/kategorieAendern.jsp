@@ -19,7 +19,7 @@
     <jsp:include page="headerAdmin.jsp">
     	<jsp:param name="active" value="kategorieAendern"/>
     </jsp:include>
-		<div id="main">
+	<div id="main">
 <% /** 			<form action="kategorieAendern.jsp" id="kategorieAendern">
 				<label class="h2" form="kategorieAnlegen">Kategorie ändern</label>
 				<label>Kategorienname</label>
@@ -31,9 +31,10 @@
 				<button>anlegen</button>
 			</form>
 		*/	%>
-		</div>
-		<div id="footer">
-		</div>
+	<div id="leer"></div>
+	</div>
+	<div id="footer">
+	</div>
 </div>	
 </body>
 </html>
