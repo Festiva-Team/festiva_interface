@@ -19,7 +19,7 @@
 			<input type="text" id="beschreibung" maxlength="100">
 			<label for="preis">Preis</label>
 			<input type="text" id="preis" maxlength="7"><br>
-			<button>Anlegen</button>
+			<button type="button" id="links">Anlegen</button>
 			</div>
 		</form>		
 	<div id="leer"></div>

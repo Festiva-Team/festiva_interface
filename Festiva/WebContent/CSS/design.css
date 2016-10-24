@@ -9,7 +9,6 @@ body
 	width:980px;
 	margin:0 auto;
 	background: white;
-	margin-bottom:2em;
 }
 #header
 {   width: 980px;
@@ -105,18 +104,20 @@ nav span {
 {   width:400px;
 	float: left;
 }
-#spalte3
-{   width:500px;
-	float: left;
-}
 #spaltelinks
 {	width: 400px;
+	margin-left:2em;
 	float:left;
 }
 #spalterechts
 {	width: 400px;
 	margin-right:2em;
 	float:right;
+}
+#spaltetabelle
+{	width: 600px;
+	margin-left:2em;
+	float:left;
 }
 #leer
 {
@@ -153,7 +154,7 @@ input,textarea {
 	width: 50%;
 	float: right;
 	margin-bottom:0.5em;
-	padding: .2em .2em;
+	padding: .1em .0em;
 	background-color: #fffbf0;
 	border: 1px solid #e7c157;
 }
@@ -169,14 +170,14 @@ button
 	width:10em;
 	margin-bottom:0.5em;
 }
-#rechts
-{	float: right;
-	margin-right: 0.2em;	
-}
 #links
 {
 	margin-top: 1em;
 	margin-left:20em;
+}
+#anlegen
+{	float: left;
+	margin-left:4em;
 }
 checkbox
 {

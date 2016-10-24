@@ -15,11 +15,12 @@
 		<form>
 			<label class="h2">Artikel ändern</label>
 			<div id="spaltelinks">
-			<label for="beschreibung">Beschreibung</label>
-			<input type="text" id="beschreibung" maxlength="100">
-			<label for="preis">Preis</label>
-			<input type="text" id="preis" maxlength="7"><br>
-			<button>Löschen</button><button>Speichern</button>
+				<label for="beschreibung">Beschreibung</label>
+				<input type="text" id="beschreibung" maxlength="100">
+				<label for="preis">Preis</label>
+				<input type="text" id="preis" maxlength="7"><br>
+				<button type="button" id="links">Löschen</button>
+				<button type="button" id="links">Speichern</button>
 			</div>
 		</form>
 	</div>

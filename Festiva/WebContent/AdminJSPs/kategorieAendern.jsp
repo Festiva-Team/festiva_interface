@@ -20,21 +20,24 @@
     	<jsp:param name="active" value="kategorieAendern"/>
     </jsp:include>
 	<div id="main">
-<% /** 			<form action="kategorieAendern.jsp" id="kategorieAendern">
-				<label class="h2" form="kategorieAnlegen">Kategorie ändern</label>
-				<label>Kategorienname</label>
-				<input type="text" value="Kategorie.name" maxlength="30">
-				<label>Beschreibung</label>
-				<input type="text" value="Kategorie.beschreibung" maxlength="100">
-				<label for="bild">Bild</label>
-				<input type="file" value="Kategorie.bildpfad"> 
-				<button>anlegen</button>
-			</form>
-		*/	%>
+		<form action="kategorieAendern.jsp" id="kategorieAendern">
+		<label class="h2" form="kategorieAnlegen">Kategorie ändern</label>
+			<div id="zeile">
+				<div id="spaltelinks">
+					<label for="name">Kategorienname</label>
+					<input type="text" id="name" maxlength="30">
+					<label for="beschreibung">Beschreibung</label>
+					<input type="text" id="beschreibung" maxlength="100">
+					<label for="bild">Bild</label>
+					<input type="file" accept="image/*">
+					<button type="button" id="links">Löschen</button>
+					<button type="button" id="links">Speichern</button>
+				</div>
+			</div>
+		</form>
 	<div id="leer"></div>
 	</div>
-	<div id="footer">
-	</div>
+	<div id="footer"></div>
 </div>	
 </body>
 </html>

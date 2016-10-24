@@ -23,7 +23,9 @@
     	<form action="kundenverwaltung.jsp" id="kundenverwaltung">
 			<label class="h2" form="kundenverwaltung">Kundenverwaltung</label>
 			<div id="spaltelinks">
-				<button type="button" id="verwaltung" onClick="window.location.href='kundenAnlegen.jsp'">Anlegen </button>
+				<button type="button" id="anlegen" onClick="window.location.href='kundenAnlegen.jsp'">Anlegen </button>
+			</div>
+			<div id="spaltetabelle">
 				<table class="table">
 					<tr><th>Gruppe</th><th>Vorname</th><th>Nachname</th><th>EMail-Adresse</th><th>Gesperrt</th><th>Gelöscht</th></tr>
 				</table>

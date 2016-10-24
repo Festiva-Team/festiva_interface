@@ -22,7 +22,7 @@
 				<input type="password" size="30" value=""> 
 				<label>Passwort bestätigen</label>
 				<input type="password" size="30" value=""> 
-				<button type="button">speichern</button>
+				<button type="button" id="links">speichern</button>
 			</div>
 		</form>
 	<div id="leer"></div>

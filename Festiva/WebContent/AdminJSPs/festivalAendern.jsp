@@ -60,21 +60,21 @@
 					<div id="spalterechts">			
 					<label for="name">Langbeschreibung</label>
 					<textarea rows="10" cols="25"></textarea>
+					<button type="button" id="links">Speichern</button>
 					</div>
+				</div>
+				<div id="zeile">
+					<div id="spalterechts">
+					<table class= "artikel"><h2>Artikel</h2>
+						<tr><th>Beschreibung</th><th>Preis</th></tr>
+						<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td></tr>
+					</table>
+					</div>		
 				</div>					
-			</form>
-			<div id="zeile">
-			<div id="spaltelinks">
-			<table class= "artikel"><h2>Artikel</h2>
-				<tr><th>Beschreibung</th><th>Preis</th></tr>
-				<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td></tr>
-			</table>
-			</div>
-			<div id="leer"></div>
-			</div>
+			</form>			
+		<div id="leer"></div>
 		</div>
-		<div id="footer">
-		</div>
+		<div id="footer"></div>
 </div>	
 </body>
 </html>

@@ -60,10 +60,8 @@
 				<div id="spalterechts">			
 					<label for="name">Langbeschreibung</label>
 					<textarea rows="10" cols="25"></textarea>
+					<button type="button" id="links">Speichern</button>
 				</div>
-			</div>
-			<div id="spalterechts">		
-					<button type="button" id="anlegen">speichern</button>
 			</div>
 		</form>			
 	<div id="leer"></div>			

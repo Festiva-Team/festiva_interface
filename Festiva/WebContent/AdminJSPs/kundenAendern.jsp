@@ -88,7 +88,7 @@
 					<input type="text" id="ort" maxlength="30">
 					</div>
 					<div id="spalterechts">
-					<button type="button">speichern</button>
+					<button type="button" id="links">Speichern</button>
 					</div>
 				</div>
 			</form>

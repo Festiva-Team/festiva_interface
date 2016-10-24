@@ -30,7 +30,7 @@
 					<input type="text" id="beschreibung" maxlength="100">
 					<label for="bild">Bild</label>
 					<input type="file" accept="image/*"><br>
-					<button type="button" id="anlegen">speichern</button>
+					<button type="button" id="links">Speichern</button>
 				</div>
 			</div>
 		</form>

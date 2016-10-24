@@ -22,8 +22,10 @@
   	<div id="main">
     	<form action="kategorienverwaltung.jsp" id="kategorienverwaltung">
 	    	<label class="h2" form="kundenverwaltung">Kategorienverwaltung</label>
-	    	<div id="spaltelinks">
-				<button type="button" id="verwaltung" onClick="window.location.href='kategorieAnlegen.jsp'">Anlegen </button>
+	    		<div id="spaltelinks">
+				<button type="button" id="anlegen" onClick="window.location.href='kundenAnlegen.jsp'">Anlegen </button>
+				</div>
+				<div id="spaltetabelle">
 				<table class="table">
 					<tr><th>Name</th><th>Beschreibung</th></tr>
 				</table>	
