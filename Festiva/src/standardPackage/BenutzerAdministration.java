@@ -69,7 +69,7 @@ public class BenutzerAdministration {
 		Benutzer benutzer = null;
 		String selectBefehl = 
 		"SELECT id, vorname, nachname, strasse, hausnummer, plz, ort, passworthash, " +
-		"istgesperrt, istgelöscht, iban, bic, einzugsermächtigungerteilt, gruppenid " +
+		"istgesperrt, istgelöscht, iban, bic, einzugsermächtigungerteilt, gruppen_id " +
 		"FROM festiva.benutzer WHERE emailadresse = '%s'";			
 		selectBefehl = String.format(selectBefehl, p_eMailAdresse);
 		
@@ -91,7 +91,7 @@ public class BenutzerAdministration {
 				String iban = ergebnismenge.getString("iban");
 				String bic = ergebnismenge.getString("bic");
 				boolean einzugsermächtigungErteilt = ergebnismenge.getBoolean("einzugsermächtigungerteilt");
-				int gruppenID = ergebnismenge.getInt("gruppenid");
+				int gruppenID = ergebnismenge.getInt("gruppen_id");
 				benutzer = new Benutzer(id, vorname, nachname, p_eMailAdresse, passwortHash, strasse, hausnummer, plz, ort,
 										istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, gruppenID);
 			}

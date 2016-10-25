@@ -69,6 +69,8 @@ public static void main(String[] args) {
 
 	System.out.println(festival.id + " " + festival.name + " " + festival.ort + " " + festival.kurzbeschreibung + " " + festival.langbeschreibung + " " + festival.startDatum + " " + festival.endDatum + " " + festival.bildpfad + " " + festival.kategorienID + " " + festival.istGelöscht);
 	
+	Benutzer benutzer = BenutzerAdministration.selektiereBenutzer("alina.fankhaenel@festiva.de");
+	System.out.println(benutzer.vorname+ " " + benutzer.nachname);
 
 }}
 //}

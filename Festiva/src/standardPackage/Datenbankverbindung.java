@@ -22,7 +22,15 @@ public class Datenbankverbindung {
 	 */
 	private Datenbankverbindung() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			try {
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.verbindung = DriverManager.getConnection("jdbc:mysql://localhost/festiva", "root", "admin");
 		} catch (ClassNotFoundException e) {
 			this.verbindung = null;
