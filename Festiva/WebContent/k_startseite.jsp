@@ -11,23 +11,24 @@
 <html>
 <head>
 	<title>Festiva</title>
-	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+
+	<link rel="stylesheet" type="text/css" href="CSS/design.css">
 </head>
 <body>
 	<div id="webseite">
-	    <jsp:include page="header.jsp">
+	    <jsp:include page="k_header.jsp">
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
 			<div id="bildzeile">
 			<!-- Erste Fotozeile -->
 				<div id="bildspalte">
 					<a href="shop.jsp">
-					<img src="../Bilder/Rock.jpg" width="200" height="200"/>
+					<img src="/Festiva/Bilder/Rock.jpg" width="200" height="200"/>
 					</a>
 				</div>
 				<div id="bildspalte">
 					<a href="shop.jsp">
-					<img src="../Bilder/Metal.jpg" width="200" height="200"/>
+					<img src="/Festiva/Bilder/Metal.jpg" width="200" height="200"/>
 					</a>
 				</div>
 			</div>
@@ -35,12 +36,12 @@
 			<!-- Zweite Fotozeile -->
 				<div id="bildspalte">
 					 <a href="shop.jsp">
-					 <img src="../Bilder/Electro.jpg" width="200" height="200"/>
+					 <img src="/Festiva/Bilder/Electro.jpg" width="200" height="200"/>
 					 </a>
 				</div>
 				<div id="bildspalte">
 					 <a href="shop.jsp">
-					 <img src="../Bilder/Schlager.jpg" width="200" height="200"/>
+					 <img src="/Festiva/Bilder/Schlager.jpg" width="200" height="200"/>
 					 </a>
 				</div> 
 			</div>

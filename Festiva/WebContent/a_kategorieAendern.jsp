@@ -3,8 +3,8 @@
      <%
 /** 
 	# Autor: Nicola Kloke
-	# JSP-Name: kategorieAnlegen.jsp
-	# JSP-Aktionen: Der Admin kann eine neue Kategorie anlegen.
+	# JSP-Name: kategorieAendern.jsp
+	# JSP-Aktionen: Der Admin kann eine Kategorie ändern.
 */
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,12 +16,12 @@
 </head>
 <body>
 <div id="webseite">
-    <jsp:include page="headerAdmin.jsp">
-    	<jsp:param name="active" value="kategorieAnlegen"/>
+    <jsp:include page="a_headerAdmin.jsp">
+    	<jsp:param name="active" value="kategorieAendern"/>
     </jsp:include>
 	<div id="main">
-		<form action="kategorieAnlegen.jsp" id="kategorieAnlegen">
-			<label class="h2" form="kategorieAnlegen">Kategorie anlegen</label>
+		<form action="kategorieAendern.jsp" id="kategorieAendern">
+		<label class="h2" form="kategorieAnlegen">Kategorie ändern</label>
 			<div id="zeile">
 				<div id="spaltelinks">
 					<label for="name">Kategorienname</label>
@@ -29,15 +29,15 @@
 					<label for="beschreibung">Beschreibung</label>
 					<input type="text" id="beschreibung" maxlength="100">
 					<label for="bild">Bild</label>
-					<input type="file" accept="image/*"><br>
+					<input type="file" accept="image/*">
+					<button type="button" id="links">Löschen</button>
 					<button type="button" id="links">Speichern</button>
 				</div>
 			</div>
 		</form>
 	<div id="leer"></div>
 	</div>
-	<div id="footer">
-	</div>
+	<div id="footer"></div>
 </div>	
 </body>
 </html>

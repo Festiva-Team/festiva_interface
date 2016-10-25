@@ -2,12 +2,14 @@ package servletPackage;
 
 import standardPackage.*;
 import java.io.IOException;
-import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -16,46 +18,71 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TestServlet")
 public class TestServlet extends HttpServlet {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            response.setContentType("text/html");
+	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+	 * methods.
+	 *
+	 * @param request
+	 *            servlet request
+	 * @param response
+	 *            servlet response
+	 * @throws ServletException
+	 *             if a servlet-specific error occurs
+	 * @throws IOException
+	 *             if an I/O error occurs
+	 */
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		String rueckmeldung = " ";
 
-	  String title = "Using GET Method to Read Form Data";
-      String docType =
-      "<!doctype html public \"-//w3c//dtd html 4.0 " +
-      "transitional//en\">\n";
-      out.println(docType +
-                "<html>\n" +
-                "<head><title>" + title + "</title></head>\n" +
-                "<body bgcolor=\"#f0f0f0\">\n" +
-                "<h1 align=\"center\">" + title + "</h1>\n" +
-                "<ul>\n" +
-                "  <li><b>First Name</b>: "
-                + 
-                 BenutzerAdministration.selektiereBenutzer(request.getParameter("email")).vorname + "\n" +
-               "  <li><b>Last Name</b>: "
-                + BenutzerAdministration.selektiereBenutzer(request.getParameter("email")).nachname + "\n" +
-                "</ul>\n" +
-                "</body></html>");
-        }
-    }
+		Benutzer benutzer = BenutzerAdministration.selektiereBenutzer(request.getParameter("email"));
+
+		if (benutzer != null) {
+				if (benutzer.istGesperrt == true) {
+					rueckmeldung = "Ihr Benutzerkonto wurde gesperrt. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
+					request.getSession(true).setAttribute("rueckmeldung", rueckmeldung);
+					request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
+					
+				} else {
+					if (benutzer.istGelöscht == true) {
+						rueckmeldung = "Das Benutzerkonto mit dieser E-Mail-Adresse wurde gelöscht. Sollten Sie Fragen dazu haben, wenden Sie sich bitte an den Administrator: admin@festiva.de";
+						request.getSession(true).setAttribute("rueckmeldung", rueckmeldung);
+						request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
+
+					} else {
+						if ((benutzer.passwortHash).equals(request.getParameter("passwort"))) {
+				
+						HttpSession session = request.getSession(true);
+						if (session.isNew()) 
+						{
+							session.setAttribute("userid", benutzer.id);
+							session.setAttribute("warenkorb", WarenkorbAdministration.selektiereWarenkorbVonKunden(benutzer.id));
+							session.setMaxInactiveInterval(3600);
+						}
+						
+						RequestDispatcher dispatcher = request.getRequestDispatcher("k_startseite.jsp");
+						dispatcher.forward(request, response);
+						} else {
+							rueckmeldung = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
+							request.getSession(true).setAttribute("rueckmeldung", rueckmeldung);
+							request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
+						}
+					}
+				}
+		} else {
+			rueckmeldung = "Zu der eingegebenen E-Mail-Adresse konnte kein Benutzer gefunden werden. Bitte registieren Sie sich zuerst oder geben eine korrekte E-Mail-Adresse an!";
+			request.getSession(true).setAttribute("rueckmeldung", rueckmeldung);
+			request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
+
+		}
+
+	}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

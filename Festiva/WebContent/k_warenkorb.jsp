@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="webseite">
-		<jsp:include page="header.jsp">
+		<jsp:include page="k_header.jsp">
     		<jsp:param name="active" value="warenkorb"/>
     	</jsp:include>
     	<div id="main">

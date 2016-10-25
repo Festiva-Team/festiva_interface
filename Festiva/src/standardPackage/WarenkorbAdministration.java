@@ -47,7 +47,7 @@ public class WarenkorbAdministration {
 	 * @param p_benutzerID: ID des Kunden, dessen Warenkorb-Objekt zurückgegeben werden soll
 	 * @return Warenkorb: Warenkorb-Objekt, das zu dem gewünschten Kunden gehört
 	 */
-	public static Warenkorb gibWarenkorbVonKunden(int p_benutzerID)
+	public static Warenkorb selektiereWarenkorbVonKunden(int p_benutzerID)
 	{
 		Warenkorb warenkorb = null;
 		

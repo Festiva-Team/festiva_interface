@@ -57,7 +57,7 @@ public class Datenbankverbindung {
 	 * 
 	 * @throws SQLException
 	 */
-	public static void trenneDBVerbindung() throws SQLException {
+	public static void trenneDatenbankVerbindung() throws SQLException {
 		if (datenbankVerbindung != null) {
 			datenbankVerbindung.verbindung.close();
 			datenbankVerbindung = null;

@@ -17,11 +17,11 @@
 <head>
 <meta charset="ISO-8859-1">
 	<title>Festiva - Shop</title>
-	<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+	<link rel="stylesheet" type="text/css" href="CSS/design.css">
 </head>
 <body>
 	<div id="webseite">
-		<jsp:include page="header.jsp">
+		<jsp:include page="k_header.jsp">
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
 		<div id="main">
