@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+<link rel="stylesheet" type="text/css" href="CSS/design.css">
 	<title>Festiva - Adminstartseite</title>
 </head>
 <body>

@@ -22,12 +22,12 @@
 			<div id="bildzeile">
 			<!-- Erste Fotozeile -->
 				<div id="bildspalte">
-					<a href="shop.jsp">
+					<a href="k_shop.jsp">
 					<img src="/Festiva/Bilder/Rock.jpg" width="200" height="200"/>
 					</a>
 				</div>
 				<div id="bildspalte">
-					<a href="shop.jsp">
+					<a href="k_shop.jsp">
 					<img src="/Festiva/Bilder/Metal.jpg" width="200" height="200"/>
 					</a>
 				</div>
@@ -35,12 +35,12 @@
 			<div id="bildzeile">
 			<!-- Zweite Fotozeile -->
 				<div id="bildspalte">
-					 <a href="shop.jsp">
+					 <a href="k_shop.jsp">
 					 <img src="/Festiva/Bilder/Electro.jpg" width="200" height="200"/>
 					 </a>
 				</div>
 				<div id="bildspalte">
-					 <a href="shop.jsp">
+					 <a href="k_shop.jsp">
 					 <img src="/Festiva/Bilder/Schlager.jpg" width="200" height="200"/>
 					 </a>
 				</div> 

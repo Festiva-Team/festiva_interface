@@ -11,25 +11,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="../CSS/design.css">
+<link rel="stylesheet" type="text/css" href="CSS/design.css">
 <title>Header</title>
-
-	
-	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-      <script type="text/javascript">
-      function einblenden(){
-         $("#myArticle").fadeIn('slow', function() {
-            $("#myArticle").show();
-         });
-      }
-       
-      function ausblenden(){
-         $("#1").fadeOut('slow', function() {
-            $("#1").hide();
-         });
-      }
-      </script>
-
 </head>
 <body>
 	<div id="header">

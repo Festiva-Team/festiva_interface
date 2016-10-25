@@ -16,15 +16,15 @@
 </head>
 <body>
 	<div id="header">
-		<img src="../Bilder/HeaderMitLogo.png" width="980"/>
+		<img src="/Festiva/Bilder/HeaderMitLogo.png" width="980"/>
 	</div>
 		<nav>
   			<ul>
-		    	<li><a href="startseiteAdmin.jsp">Home</a></li>
-		        <li><a href="kategorienverwaltung.jsp">Kategorienverwaltung</a></li>
-		        <li><a href="festivalverwaltung.jsp">Festivalverwaltung</a></li>
-		        <li><a href="kundenverwaltung.jsp">Kundenverwaltung</a></li>
-		        <li><a href="adminKonto.jsp">Adminkonto</a></li>	
+		    	<li><a href="a_startseiteAdmin.jsp">Home</a></li>
+		        <li><a href="a_kategorienverwaltung.jsp">Kategorienverwaltung</a></li>
+		        <li><a href="a_festivalverwaltung.jsp">Festivalverwaltung</a></li>
+		        <li><a href="a_kundenverwaltung.jsp">Kundenverwaltung</a></li>
+		        <li><a href="a_adminKonto.jsp">Adminkonto</a></li>	
 		  	</ul>
 		</nav>
 </body>
