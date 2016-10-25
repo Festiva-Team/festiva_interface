@@ -31,8 +31,11 @@
 					<input type="email" name="email" id="email" maxlength="30">
 					<label for="passwort">Passwort</label>
 					<input type="password" name="passwort" id="passwort" maxlength="40">
-					<button type="submit" id="links">Anmelden</button>
+					<button type="submit" id="links">Anmelden</button>	
+					<% if (request.getSession().getAttribute("rueckmeldung") != null) 
+					{ %>
 					<p><%= request.getSession().getAttribute("rueckmeldung") %></p>
+					<% }  %>
 				</div>
 				<div id="leer"></div>
 			</form>

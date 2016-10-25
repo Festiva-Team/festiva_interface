@@ -103,4 +103,54 @@ public class BenutzerAdministration {
 
 		return benutzer;
 	}
+	
+	
+	/**
+	 * Selektiert die Daten eines Benutzers aus der Datenbank
+	 * und liefert ein Benutzer-Objekt zurück
+	 * 
+	 * @param p_benutzerID: eindeutige ID des Benutzers
+	 * @return benutzer: Benutzer-Objekt mit allen verfügbaren Daten
+	 * 					 Falls der Benutzer nicht existiert wird null zurückgeliefert
+	 */
+	public static Benutzer selektiereBenutzerMitID(int p_benutzerID)
+	{
+		Benutzer benutzer = null;
+		String selectBefehl = 
+		"SELECT vorname, nachname, emailadresse, strasse, hausnummer, plz, ort, passworthash, " +
+		"istgesperrt, istgelöscht, iban, bic, einzugsermächtigungerteilt, gruppen_id " +
+		"FROM festiva.benutzer WHERE id = '%d'";			
+		selectBefehl = String.format(selectBefehl, p_benutzerID);
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		try
+		{
+			if(ergebnismenge.next())
+			{
+				String vorname = ergebnismenge.getString("vorname");
+				String nachname = ergebnismenge.getString("nachname");
+				String eMailAdresse = ergebnismenge.getString("emailadresse");
+				String strasse = ergebnismenge.getString("strasse");
+				String hausnummer = ergebnismenge.getString("hausnummer");
+				int plz = ergebnismenge.getInt("plz");
+				String ort = ergebnismenge.getString("ort");
+				String passwortHash = ergebnismenge.getString("PasswortHash");
+				boolean istGesperrt = ergebnismenge.getBoolean("istgesperrt");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				String iban = ergebnismenge.getString("iban");
+				String bic = ergebnismenge.getString("bic");
+				boolean einzugsermächtigungErteilt = ergebnismenge.getBoolean("einzugsermächtigungerteilt");
+				int gruppenID = ergebnismenge.getInt("gruppen_id");
+				benutzer = new Benutzer(p_benutzerID, vorname, nachname, eMailAdresse, passwortHash, strasse, hausnummer, plz, ort,
+										istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, gruppenID);
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+		return benutzer;
+	}
+	
 }

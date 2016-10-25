@@ -45,8 +45,8 @@ public static void main(String[] args) {
 //		e.printStackTrace();
 //	}
 //	
-//	Benutzer benutzer = new Benutzer(1, "Alina", "Fankhänel", "alina.fankhaenel@festiva.de", "test", "Postweg", "5", 33333 , "Gütersloh", false, "", "", false, false, 2);
-//	BenutzerAdministration.aktualisiereBenutzer(benutzer);
+	Benutzer benutzer = new Benutzer(1, "Alina", "Fankhänel", "alina.fankhaenel@festiva.de", "test", "Postweg", "5", 33333 , "Gütersloh", false, "", "", false, false, 2);
+	BenutzerAdministration.aktualisiereBenutzer(benutzer);
 	//	BenutzerAdministration.erstelleKunden(benutzer);
 	
 
@@ -69,8 +69,8 @@ public static void main(String[] args) {
 
 	System.out.println(festival.id + " " + festival.name + " " + festival.ort + " " + festival.kurzbeschreibung + " " + festival.langbeschreibung + " " + festival.startDatum + " " + festival.endDatum + " " + festival.bildpfad + " " + festival.kategorienID + " " + festival.istGelöscht);
 	
-	Benutzer benutzer = BenutzerAdministration.selektiereBenutzer("alina.fankhaenel@festiva.de");
-	System.out.println(benutzer.vorname+ " " + benutzer.nachname);
+	Benutzer benutzer1 = BenutzerAdministration.selektiereBenutzer("alina.fankhaenel@festiva.de");
+	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);
 
 }}
 //}

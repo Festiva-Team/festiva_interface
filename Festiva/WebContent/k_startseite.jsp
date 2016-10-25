@@ -15,6 +15,13 @@
 	<link rel="stylesheet" type="text/css" href="CSS/design.css">
 </head>
 <body>
+
+<% if (request.getSession().getAttribute("begrüßung") != null) 
+{ %>
+<p><%= request.getSession().getAttribute("begrüßung") %></p>
+<% }  
+%>
+
 	<div id="webseite">
 	    <jsp:include page="k_header.jsp">
 	    	<jsp:param name="active" value="startseite"/>

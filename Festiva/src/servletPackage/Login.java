@@ -40,6 +40,7 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		String rueckmeldung = " ";
+		String begrüßung = " ";
 
 		Benutzer benutzer = BenutzerAdministration.selektiereBenutzer(request.getParameter("email"));
 
@@ -61,8 +62,9 @@ public class Login extends HttpServlet {
 						HttpSession session = request.getSession(true);
 						if (session.isNew()) 
 						{
-							session.setAttribute("userid", benutzer.id);
-							session.setMaxInactiveInterval(3600);
+						session.setAttribute("userid", benutzer.id);
+						session.setAttribute("gruppenid", benutzer.gruppenID);
+						session.setMaxInactiveInterval(3600);
 						}
 						
 						if (benutzer.gruppenID == 1){
@@ -70,8 +72,10 @@ public class Login extends HttpServlet {
 							dispatcher.forward(request, response);
 						} else {
 							session.setAttribute("warenkorb", WarenkorbAdministration.selektiereWarenkorbVonKunden(benutzer.id));
-							RequestDispatcher dispatcher = request.getRequestDispatcher("k_startseite.jsp");
-							dispatcher.forward(request, response);
+							begrüßung = "Herzlich Willkommen bei Festiva, " + benutzer.vorname + " " + benutzer.nachname + "!";
+							request.getSession(true).setAttribute("begrüßung", begrüßung);
+							request.getRequestDispatcher("k_startseite.jsp").include(request, response);
+
 						}
 
 						} else {
