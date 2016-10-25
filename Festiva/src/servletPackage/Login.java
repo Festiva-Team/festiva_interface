@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Alina Fankhänel
  */
-@WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 
 	/**
 	 * 
@@ -62,12 +62,18 @@ public class TestServlet extends HttpServlet {
 						if (session.isNew()) 
 						{
 							session.setAttribute("userid", benutzer.id);
-							session.setAttribute("warenkorb", WarenkorbAdministration.selektiereWarenkorbVonKunden(benutzer.id));
 							session.setMaxInactiveInterval(3600);
 						}
 						
-						RequestDispatcher dispatcher = request.getRequestDispatcher("k_startseite.jsp");
-						dispatcher.forward(request, response);
+						if (benutzer.gruppenID == 1){
+							RequestDispatcher dispatcher = request.getRequestDispatcher("a_startseiteAdmin.jsp");
+							dispatcher.forward(request, response);
+						} else {
+							session.setAttribute("warenkorb", WarenkorbAdministration.selektiereWarenkorbVonKunden(benutzer.id));
+							RequestDispatcher dispatcher = request.getRequestDispatcher("k_startseite.jsp");
+							dispatcher.forward(request, response);
+						}
+
 						} else {
 							rueckmeldung = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
 							request.getSession(true).setAttribute("rueckmeldung", rueckmeldung);

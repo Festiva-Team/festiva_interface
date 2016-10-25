@@ -46,7 +46,7 @@ public static void erstelleBestellung(Bestellung p_bestellung)
  * @param p_benutzerID: ID des Kunden, dessen Bestellungs-Objekte zurückgegeben werden sollen
  * @return List<Bestellung>: Liste mit den Bestellungs-Objekten, die zu dem gewünschten Kunden gehören (nach Bestelldatum absteigend sortiert)
  */
-public static List<Bestellung> gibBestellungenVonKunden(int p_benutzerID)
+public static List<Bestellung> selektiereBestellungenVonKunden(int p_benutzerID)
 {
 	List<Bestellung> listBestellungen = new ArrayList<Bestellung>();
 	
