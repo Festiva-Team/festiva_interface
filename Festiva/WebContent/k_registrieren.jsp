@@ -20,10 +20,10 @@
     		<jsp:param name="active" value="registrieren"/>
    	 	</jsp:include>
 		<div id="main">
-			<label class="h2" form="registrieren">Registrieren</label>
 			<div id="zeile">
 			<div id="spaltelinks">
 			<fieldset>
+				<label class="h2">Registrieren</label>
 				<label for="email">Email</label>
 				<input type="email" name="email" id="email" maxlength="30"><br>
 				<label for="emailwh">Email wiederholen</label>

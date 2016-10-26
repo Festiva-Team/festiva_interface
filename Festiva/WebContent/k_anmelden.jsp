@@ -25,10 +25,10 @@
     </jsp:include>
 		<div id="main">
 			<form action="/Festiva/Login" method="GET">
-				<label class="h2" form="anmelden">Anmelden</label>
 				<div id="zeile">
 				<div id="spaltelinks">
 				<fieldset>
+					<label class="h2">Anmelden</label>
 					<label for="email">E-Mail-Adresse</label>
 					<input type="email" name="email" id="email" maxlength="30">
 					<label for="passwort">Passwort</label>
