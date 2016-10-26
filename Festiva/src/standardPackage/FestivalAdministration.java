@@ -163,6 +163,7 @@ public class FestivalAdministration {
 					   		  "min(a.preis) \"vonPreis\" , max(a.preis) \"bisPreis\" " +
 					   		  "from festivals f left join artikel a on a.festivals_id = f.id ";
 		
+		
 		// Bedingung zum Einschränken über die Kategorie
 		if (p_kategorienID != 0 ) {
 		  	selectBefehl = selectBefehl + "WHERE f.kategorien_id = " + p_kategorienID + " ";
@@ -233,10 +234,10 @@ public class FestivalAdministration {
 				// Bedingung zum Einschränken über den Maximalpreis
 				if (p_bisPreis != 0.0) {
 					if (where == true) {
-						selectBefehl = selectBefehl + "AND min(a.preis) <= " + p_bisPreis + ") ";
+						selectBefehl = selectBefehl + "AND min(a.preis) <= " + p_bisPreis + " ";
 					}
 					else {
-						selectBefehl = selectBefehl + "WHERE min(a.preis) <= " + p_bisPreis + ") ";
+						selectBefehl = selectBefehl + "WHERE min(a.preis) <= " + p_bisPreis + " ";
 						where = true;
 					}
 					}

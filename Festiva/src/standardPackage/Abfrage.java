@@ -1,7 +1,4 @@
 package standardPackage;
-import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 // import com.mysql.jdbc.Connection;
 
@@ -71,6 +68,8 @@ public static void main(String[] args) {
 //	
 	Benutzer benutzer1 = BenutzerAdministration.selektiereBenutzer("alina.fankhaenel@festiva.de");
 	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);
+	
+	//List<FestivalSuchobjekt> liste = FestivalAdministration.selektiereFestivalsInSuche(0, "", "", null, null, (float)0.0);
 
 }}
 //}
