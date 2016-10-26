@@ -54,10 +54,10 @@ public static void main(String[] args) {
 //	Kategorie kategorie = new Kategorie(-1, "Rock", "Rock ist cool", "ichBinDerBildpfad", false);
 //	KategorienAdministration.erstelleKategorie(kategorie);
 	
-
+//
 		java.util.Date start = null;
 		try {
-			start = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-02");
+			start = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-03");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,10 +69,10 @@ public static void main(String[] args) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		
-		Festival festival = new Festival(-1, "Rock am Ring", "Eifel", "Rock am Ring ist ein schönes Festival", "Rock im Park ist ein schönes Festival und das hier ist die Langbeschreibung", start, end, "ichBinDerGeänderteBildpfad", false, 1);
-		FestivalAdministration.erstelleFestival(festival);
-	
+////		
+//		Festival festival = new Festival(-1, "Rock am Ring", "Eifel", "Rock am Ring ist ein schönes Festival", "Rock im Park ist ein schönes Festival und das hier ist die Langbeschreibung", start, end, "ichBinDerGeänderteBildpfad", false, 1);
+//		FestivalAdministration.erstelleFestival(festival);
+//	
 	
 	
 //	Festival festival = FestivalAdministration.selektiereFestival(1);
@@ -81,7 +81,7 @@ public static void main(String[] args) {
 //	
 
 	
-	List<FestivalSuchobjekt> liste = FestivalAdministration.selektiereFestivalsInSuche(0, "", "", null, null, (float)0.0);
+	List<FestivalSuchobjekt> liste = FestivalAdministration.selektiereFestivalsInSuche(1, "Eifel", "", "2017-06-03", "2017-06-05", (float)25.0);
 
 	Benutzer benutzer1 = BenutzerAdministration.selektiereBenutzer("alina.fankhaenel@festiva.de");
 	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);}}
