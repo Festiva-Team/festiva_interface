@@ -107,9 +107,10 @@ public class FestivalAdministration {
 	{
 		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
 		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
-							  "min(a.preis) \"vonPreis\" , max(a.preis) \"bisPreis\" " +
-							  "from festivals f left join artikel a on a.festivals_id = f.id " +
-							  "where f.kategorien_id = '%d' ORDER BY f.startdatum, f.name DESC";
+							  "(select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"vonPreis\" , " +
+							  "(select max(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"bisPreis\" " +
+							  "from festivals f left join artikel ao on ao.festivals_id = f.id " +
+							  "where f.kategorien_id = '%d' AND f.istgelöscht = 0 ORDER BY f.startdatum, f.name DESC ";
 		
 		selectBefehl  = String.format(selectBefehl, p_kategorienID);
 		
@@ -160,8 +161,9 @@ public class FestivalAdministration {
 		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
 		
 		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
-					   		  "min(a.preis) \"vonPreis\" , max(a.preis) \"bisPreis\" " +
-					   		  "from festivals f left join artikel a on a.festivals_id = f.id ";
+							  "(select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"vonPreis\" , " +
+							  "(select max(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"bisPreis\" " +
+							  "from festivals f left join artikel ao on ao.festivals_id = f.id ";
 		
 		
 		// Bedingung zum Einschränken über die Kategorie
@@ -234,15 +236,25 @@ public class FestivalAdministration {
 				// Bedingung zum Einschränken über den Maximalpreis
 				if (p_bisPreis != 0.0) {
 					if (where == true) {
-						selectBefehl = selectBefehl + "AND min(a.preis) <= " + p_bisPreis + " ";
+						selectBefehl = selectBefehl + "AND (((select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) <= " + p_bisPreis + 
+													  ") OR ((select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) is null)) ";
+						
 					}
 					else {
-						selectBefehl = selectBefehl + "WHERE min(a.preis) <= " + p_bisPreis + " ";
+						selectBefehl = selectBefehl + "WHERE (((select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) <= " + p_bisPreis + 
+													  ") OR ((select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) is null)) ";
 						where = true;
 					}
 					}
 			
-		selectBefehl = selectBefehl	+ "ORDER BY f.startdatum, f.name DESC";
+				//Ausschluss von Festivals, die gelöscht wurden
+				if (where == true) {
+					selectBefehl = selectBefehl + "AND f.istgelöscht = 0";
+				} else {
+					selectBefehl = selectBefehl + "WHERE f.istgelöscht = 0";
+				}
+				
+		selectBefehl = selectBefehl	+ "GROUP BY f.id ORDER BY f.startdatum, f.name DESC";
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		
