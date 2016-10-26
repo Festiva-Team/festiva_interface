@@ -23,7 +23,7 @@
   		<form action="festivalverwaltung.jsp" id="festivalverwaltung">
 			<label class="h2">Festivalverwaltung</label>
 			<div id="spaltelinks">
-				<button type="button" id="anlegen" onClick="window.location.href='festivalAnlegen.jsp'">Anlegen</button>
+				<button type="button" id="anlegen" onClick="window.location.href='a_festivalAnlegen.jsp'">Anlegen</button>
 			</div>
 				<div id="spaltetabelle">
 				<table class="table">

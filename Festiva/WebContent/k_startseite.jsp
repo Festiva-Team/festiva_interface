@@ -11,8 +11,9 @@
 <html>
 <head>
 	<title>Festiva</title>
-
+	<link rel="stylesheet" href="CSS/design.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="CSS/design.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -26,34 +27,29 @@
 	    <jsp:include page="k_header.jsp">
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
-			<div id="bildzeile">
-			<!-- Erste Fotozeile -->
-				<div id="bildspalte">
+			<figure class="bildzeile">
+				<figure class="bild1">
 					<a href="k_shop.jsp">
-					<img src="/Festiva/Bilder/Rock.jpg" width="200" height="200"/>
+					<img src="/Festiva/Bilder/Rock.jpg"/>
 					</a>
-				</div>
-				<div id="bildspalte">
+				</figure>
+				<figure class="bild1">
 					<a href="k_shop.jsp">
-					<img src="/Festiva/Bilder/Metal.jpg" width="200" height="200"/>
+					<img src="/Festiva/Bilder/Metal.jpg"/>
 					</a>
-				</div>
-			</div>
-			<div id="bildzeile">
-			<!-- Zweite Fotozeile -->
-				<div id="bildspalte">
+				</figure>
+				<figure class="bild2">
 					 <a href="k_shop.jsp">
-					 <img src="/Festiva/Bilder/Electro.jpg" width="200" height="200"/>
+					 <img src="/Festiva/Bilder/Electro.jpg"/>
 					 </a>
-				</div>
-				<div id="bildspalte">
+				</figure>
+				<figure class="bild2">
 					 <a href="k_shop.jsp">
-					 <img src="/Festiva/Bilder/Schlager.jpg" width="200" height="200"/>
+					 <img src="/Festiva/Bilder/Schlager.jpg"/>
 					 </a>
-				</div> 
-			</div>
-		<div id="footer">
-		</div>
+				</figure> 
+			</figure>
+		<div id="footer"></div>
 	</div>	
 </body>
 </html>

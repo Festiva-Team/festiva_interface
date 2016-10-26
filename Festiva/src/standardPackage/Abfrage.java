@@ -65,10 +65,10 @@ public static void main(String[] args) {
 //	}
 	
 	
-	Festival festival = FestivalAdministration.selektiereFestival(1);
-
-	System.out.println(festival.id + " " + festival.name + " " + festival.ort + " " + festival.kurzbeschreibung + " " + festival.langbeschreibung + " " + festival.startDatum + " " + festival.endDatum + " " + festival.bildpfad + " " + festival.kategorienID + " " + festival.istGelöscht);
-	
+//	Festival festival = FestivalAdministration.selektiereFestival(1);
+//
+//	System.out.println(festival.id + " " + festival.name + " " + festival.ort + " " + festival.kurzbeschreibung + " " + festival.langbeschreibung + " " + festival.startDatum + " " + festival.endDatum + " " + festival.bildpfad + " " + festival.kategorienID + " " + festival.istGelöscht);
+//	
 	Benutzer benutzer1 = BenutzerAdministration.selektiereBenutzer("alina.fankhaenel@festiva.de");
 	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);
 

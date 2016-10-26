@@ -28,7 +28,7 @@
 					<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td><td><select><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td><td><button>In den Warenkorb</button></td></tr>
 				</table>
 				<div id="spalterechts">
-						<button type="button" onClick="window.location.href='warenkorb.jsp'">Zum Warenkorb</button>
+						<button type="button" onClick="window.location.href='k_warenkorb.jsp'">Zum Warenkorb</button>
 				</div>
 			</form>
 			<div id="leer"></div>
