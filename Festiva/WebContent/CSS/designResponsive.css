@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+@media (max-width: 600px) {   
+    
+    /* Allgemein */
+    
+    body{
+        background-color: black;
+    }
+    
+  
+}
