@@ -6,7 +6,10 @@
 	# JSP-Name: header.jsp
 	# JSP-Aktionen: Definiert den Header und die Navigation für einen Besucher und einen Kunden.
 */
-HttpSession session = request.getSession(false);;
+
+
+HttpSession session = request.getSession(false);
+
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,7 +29,7 @@ HttpSession session = request.getSession(false);;
 			<li><a href="k_shop.jsp">Shop</a></li>
 			<li><a href="#">Mein Konto</a>
 			<ul>
-			<% if (session.getAttribute("begrüßung") != null) 
+			<% if (session != null && session.getAttribute("begrüßung") != null) 
 					{ %>
 				
 				<li><a href="k_kundendaten.jsp">Meine Daten</a></li> 
