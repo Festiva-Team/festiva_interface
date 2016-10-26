@@ -17,9 +17,9 @@
 			<label class="h2">Kasse</label>
 			<div id="zeile">
 				<div id="spaltelinks">
-				<fieldset id="Lieferungsdaten" disabled>				
+				<fieldset id="Lieferungsdaten" disabled>		
 					<label class="h2">Lieferungsdaten</label><br/>
-				    <label for="input1">Vorname</label> <input value=""><br/> 
+				    <label for="input2">Vorname</label> <input value=""><br/> 
 				    <label for="input2">Nachname</label> <input value=""><br/>
 				    <label for="input2">Straﬂe</label> <input value=""><br/>
 				    <label for="input2">Hausnummer</label> <input value=""><br/>
@@ -30,7 +30,7 @@
 				<div id="spalterechts">
 					<fieldset id="Zahlungsdaten" disabled>
 					  	<label class="h2">Zahlungsdaten</label><br/>
-					    <label for="input1">IBAN:</label> <input value=""><br/> 
+					    <label for="input2">IBAN:</label> <input value=""><br/> 
 					    <label for="input2">BIC:</label> <input value=""><br/>
 					</fieldset>
 				</div>

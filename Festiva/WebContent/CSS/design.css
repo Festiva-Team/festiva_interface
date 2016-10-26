@@ -115,6 +115,7 @@ figure.bild2 {
 #spalterechts
 {	width: 50%;
 	float:right;
+	
 }
 #spaltetabelle
 {	width: 37.5em;
@@ -134,7 +135,7 @@ figure.bild2 {
 }
 fieldset
 {	float: left;
-	width: 40%;
+	width: 100%;
 	border: none;
 }
 /** CSS Formulardaten */
@@ -146,21 +147,23 @@ label.h2 {
 	text-align: left;
 	font-weight: bold;
 	font-size: 150%;
-	width: 70%;
+	width: 100%;
 	margin-bottom:1em;
 	margin-left:2em;
 }
 label {
-	text-align:left;
+	text-align: right;
 	margin-bottom:0.5em;
 	float: left;
-	width: 30%;
+	width: 20%;
 }
 input,textarea {
 	float: right;
-	text-align:left;
-	width: 50%;
+	text-align: left;
+	width: 70%;
 	margin-bottom:0.5em;
+	margin-right: 1em;
+	margin-left: 1em;
 	padding: .1em .0em;
 	background-color: #fffbf0;
 	border: 1px solid #e7c157;

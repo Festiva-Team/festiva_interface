@@ -20,7 +20,9 @@
     		<jsp:param name="active" value="registrieren"/>
    	 	</jsp:include>
 		<div id="main">
-			<label class="h2" form="registrieren">Registrieren</label>	
+			<label class="h2" form="registrieren">Registrieren</label>
+			<div id="zeile">
+			<div id="spaltelinks">
 			<fieldset>
 				<label for="email">Email</label>
 				<input type="email" name="email" id="email" maxlength="30"><br>
@@ -32,6 +34,8 @@
 				<input type="password" name="passwort" id="passwort" maxlength="40"><br>
 				<button type="button" id="links">Registrieren</button>
 			</fieldset>
+			</div>	
+			</div>
 			<div id="leer"></div>
 		</div>
 		<div id="footer">

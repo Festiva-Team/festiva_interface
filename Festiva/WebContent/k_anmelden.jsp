@@ -28,11 +28,13 @@
 				<label class="h2" form="anmelden">Anmelden</label>
 				<div id="zeile">
 				<div id="spaltelinks">
+				<fieldset>
 					<label for="email">E-Mail-Adresse</label>
 					<input type="email" name="email" id="email" maxlength="30">
 					<label for="passwort">Passwort</label>
 					<input type="password" name="passwort" id="passwort" maxlength="40">
 					<button type="submit" id="links">Anmelden</button>	
+				</fieldset>
 				</div>
 				<div id="spalterechts">
 					<% if (request.getSession().getAttribute("rueckmeldung") != null) 
