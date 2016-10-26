@@ -24,7 +24,12 @@
 		        <li><a href="a_kategorienverwaltung.jsp">Kategorienverwaltung</a></li>
 		        <li><a href="a_festivalverwaltung.jsp">Festivalverwaltung</a></li>
 		        <li><a href="a_kundenverwaltung.jsp">Kundenverwaltung</a></li>
-		        <li><a href="a_adminKonto.jsp">Adminkonto</a></li>	
+		        <li><a href="#">Adminkonto</a>	
+		        	<ul>
+		        		<li><a href="a_adminKonto.jsp">Meine Daten</a></li> 
+		        		<li><a href="/Festiva/Logout" accesskey="1" title="">Abmelden</a></li>
+		        	</ul>
+		        </li>
 		  	</ul>
 		</nav>
 </body>

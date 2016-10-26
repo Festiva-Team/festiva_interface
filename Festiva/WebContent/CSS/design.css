@@ -134,8 +134,7 @@ figure.bild2 {
 	background: black;
 }
 fieldset
-{	float: left;
-	width: 100%;
+{	
 	border: none;
 }
 /** CSS Formulardaten */
@@ -155,12 +154,12 @@ label {
 	text-align: right;
 	margin-bottom:0.5em;
 	float: left;
-	width: 20%;
+	width: 30%;
 }
 input,textarea {
 	float: right;
 	text-align: left;
-	width: 70%;
+	width: 50%;
 	margin-bottom:0.5em;
 	margin-right: 1em;
 	margin-left: 1em;
@@ -262,39 +261,25 @@ td,th
 	{	width: 100%;
 		float:left;
 	}
-	form {
-	margin-top: 1em;
-	}
-	
-	label.h2 {
-		text-align: left;
-		font-weight: bold;
-		font-size: 150%;
-		width: 70%;
-		margin-bottom:1em;
-		margin-left:2em;
+	fieldset
+	{	width: 100%;
 	}
 	label {
-		text-align:right;
-		margin-bottom:0.5em;
-		float: left;
-		width: 45%;
+	text-align: right;
+	margin-bottom:0.5em;
+	float: left;
+	width: 30%;
 	}
 	input,textarea {
-		text-align:left;
-		width: 50%;
 		float: right;
+		text-align: left;
+		width: 60%;
 		margin-bottom:0.5em;
+		margin-right: 1em;
+		margin-left: 1em;
 		padding: .1em .0em;
 		background-color: #fffbf0;
 		border: 1px solid #e7c157;
 	}
-	label.input {
-		line-height: 1.5;
-	}
-	
-	label.input::after {
-		content: ": ";
-}
-	
+		
 }
