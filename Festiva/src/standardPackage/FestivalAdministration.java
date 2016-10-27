@@ -107,9 +107,10 @@ public class FestivalAdministration {
 	{
 		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
 		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
-							  "min(a.preis) \"vonPreis\" , max(a.preis) \"bisPreis\" " +
-							  "from festivals f left join artikel a on a.festivals_id = f.id " +
-							  "where f.kategorien_id = '%d' ORDER BY f.startdatum, f.name DESC";
+							  "(select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"vonPreis\" , " +
+							  "(select max(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"bisPreis\" " +
+							  "from festivals f left join artikel ao on ao.festivals_id = f.id " +
+							  "where f.kategorien_id = '%d' AND f.istgelöscht = 0 ORDER BY f.startdatum, f.name DESC ";
 		
 		selectBefehl  = String.format(selectBefehl, p_kategorienID);
 		
@@ -146,22 +147,23 @@ public class FestivalAdministration {
 	/**
 	 * Selektiert alle Festivals, die den übergebenen Kriterien gerecht werden (nach Startdatum absteigend sortiert)
 	 * @param p_kategorienID: ID der gewünschten Kategorie
-	 * @param p_vonDatum: Beginn des gewünschten Zeitraums
-	 * @param p_bisDatum: Ende des gewünschten Zeitraums
+	 * @param p_vonDatum: Beginn des gewünschten Zeitraums (erwartet wird ein String in dem Format "yyyy-MM-dd", wenn kein Datum übergeben werden soll wird null erwartet)
+	 * @param p_bisDatum: Ende des gewünschten Zeitraums (erwartet wird ein String in dem Format "yyyy-MM-dd", wenn kein Datum übergeben werden soll wird null erwartet)
 	 * @param p_bisPreis: oberer Wert der gewünschten Preisspanne
 	 * @param p_ort: Ort der gewünschten Festivals
 	 * @param p_name: Name des gewünschten Festivals
 	 * @return listFestivals: Liste aller Festivals, die zu den gewünschten Kriterien passen (nach Startdatum absteigend sortiert)
 	 */
 	public static List<FestivalSuchobjekt> selektiereFestivalsInSuche(int p_kategorienID, String p_ort, String p_name,
-															Date p_vonDatum, Date p_bisDatum, float p_bisPreis)
+															String p_vonDatum, String p_bisDatum, float p_bisPreis)
 	{
 		boolean where = false;
 		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
 		
 		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
-					   		  "min(a.preis) \"vonPreis\" , max(a.preis) \"bisPreis\" " +
-					   		  "from festivals f left join artikel a on a.festivals_id = f.id ";
+							  "(select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"vonPreis\" , " +
+							  "(select max(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"bisPreis\" " +
+							  "from festivals f left join artikel ao on ao.festivals_id = f.id ";
 		
 		
 		// Bedingung zum Einschränken über die Kategorie
@@ -173,10 +175,10 @@ public class FestivalAdministration {
 		// Bedingung zum Einschränken über den Ort
 		if (p_ort != null && p_ort != "") {
 			if (where == true) {
-				selectBefehl = selectBefehl + "AND UPPER(f.ort) = UPPER(" + p_ort + ") ";
+				selectBefehl = selectBefehl + "AND UPPER(f.ort) = '" + p_ort.toUpperCase() + "' ";
 			}
 			else {
-				selectBefehl = selectBefehl + "WHERE UPPER(f.ort) = UPPER(" + p_ort + ") ";
+				selectBefehl = selectBefehl + "WHERE UPPER(f.ort) = '" + p_ort.toUpperCase() + "' ";
 				where = true;
 			}
 			}
@@ -184,21 +186,22 @@ public class FestivalAdministration {
 		// Bedingung zum Einschränken über den Festivalnamen
 		if (p_name != null && p_name != "") {
 			if (where == true) {
-				selectBefehl = selectBefehl + "AND UPPER(f.name) = UPPER(" + p_name + ") ";
+				selectBefehl = selectBefehl + "AND UPPER(f.name) = '" + p_name.toUpperCase() + "' ";
 			}
 			else {
-				selectBefehl = selectBefehl + "WHERE UPPER(f.name) = UPPER(" + p_name + ") ";
+				selectBefehl = selectBefehl + "WHERE UPPER(f.name) = '" + p_name.toUpperCase() + "' ";
 				where = true;
 			}
 		}
 		
 		// Bedingung zum Einschränken über das Startdatum des Festivals
 		if (p_vonDatum != null && p_bisDatum == null) {
+			
 			if (where == true) {
-				selectBefehl = selectBefehl + "AND f.startDatum >= " + p_vonDatum + " ";
+				selectBefehl = selectBefehl + "AND f.endDatum >= '" + p_vonDatum + "' ";
 			}
 			else {
-				selectBefehl = selectBefehl + "WHERE f.startDatum >= " + p_vonDatum + " ";
+				selectBefehl = selectBefehl + "WHERE f.endDatum >= '" + p_vonDatum + "' ";
 				where = true;
 			}
 		}
@@ -206,10 +209,10 @@ public class FestivalAdministration {
 		// Bedingung zum Einschränken über das Enddatum des Festivals
 		if (p_bisDatum != null && p_vonDatum == null) {
 			if (where == true) {
-				selectBefehl = selectBefehl + "AND f.endDatum <= " + p_bisDatum + " ";
+				selectBefehl = selectBefehl + "AND f.startDatum <= '" + p_bisDatum + "' ";
 			}
 			else {
-				selectBefehl = selectBefehl + "WHERE f.endDatum <= " + p_bisDatum + " ";
+				selectBefehl = selectBefehl + "WHERE f.startDatum <= '" + p_bisDatum + "' ";
 				where = true;
 			}
 		}
@@ -221,12 +224,12 @@ public class FestivalAdministration {
 		// ...werden angezeigt)
 				if (p_bisDatum != null && p_vonDatum != null) {
 					if (where == true) {
-						selectBefehl = selectBefehl + "AND ((f.startDatum >= " + p_vonDatum + " OR f.endDatum <= " + p_bisDatum + ") "
-													+ "OR (f.startDatum < " + p_vonDatum + " AND f.endDatum > " + p_bisDatum + ")) ";
+						selectBefehl = selectBefehl + "AND ((f.startDatum >= '" + p_vonDatum + "' OR f.endDatum <= '" + p_bisDatum + "') "
+													+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
 					}
 					else {
-						selectBefehl = selectBefehl + "WHERE ((f.startDatum >= " + p_vonDatum + " OR f.endDatum <= " + p_bisDatum + ") "
-													+ "OR (f.startDatum < " + p_vonDatum + " AND f.endDatum > " + p_bisDatum + ")) ";
+						selectBefehl = selectBefehl + "WHERE ((f.startDatum >= '" + p_vonDatum + "' OR f.endDatum <= '" + p_bisDatum + "') "
+													+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
 						where = true;
 					}
 				}
@@ -234,15 +237,25 @@ public class FestivalAdministration {
 				// Bedingung zum Einschränken über den Maximalpreis
 				if (p_bisPreis != 0.0) {
 					if (where == true) {
-						selectBefehl = selectBefehl + "AND min(a.preis) <= " + p_bisPreis + " ";
+						selectBefehl = selectBefehl + "AND (((select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) <= " + p_bisPreis + 
+													  ") OR ((select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) is null)) ";
+						
 					}
 					else {
-						selectBefehl = selectBefehl + "WHERE min(a.preis) <= " + p_bisPreis + " ";
+						selectBefehl = selectBefehl + "WHERE (((select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) <= " + p_bisPreis + 
+													  ") OR ((select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) is null)) ";
 						where = true;
 					}
 					}
 			
-		selectBefehl = selectBefehl	+ "ORDER BY f.startdatum, f.name DESC";
+				//Ausschluss von Festivals, die gelöscht wurden
+				if (where == true) {
+					selectBefehl = selectBefehl + "AND f.istgelöscht = 0 ";
+				} else {
+					selectBefehl = selectBefehl + "WHERE f.istgelöscht = 0 ";
+				}
+				
+		selectBefehl = selectBefehl	+ "GROUP BY f.id ORDER BY f.startdatum, f.name DESC";
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		
