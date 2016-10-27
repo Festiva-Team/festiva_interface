@@ -16,7 +16,8 @@ HttpSession session = request.getSession(false);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="CSS/design.css">
+<link rel="stylesheet" type="text/css" href="CSS/design.css" media="screen">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Header</title>
 </head>
 <body>

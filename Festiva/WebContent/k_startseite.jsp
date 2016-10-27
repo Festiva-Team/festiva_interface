@@ -11,9 +11,6 @@
 <html>
 <head>
 	<title>Festiva</title>
-	<link rel="stylesheet" href="CSS/design.css" media="screen">
-	<link rel="stylesheet" type="text/css" href="CSS/design.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 

@@ -255,25 +255,24 @@ td,th
 	}
 	#spaltelinks
 	{	width: 100%;
+		margin-left:1em;
 		float:left;
 	}
 	#spalterechts
 	{	width: 100%;
+		margin-left: 1em;
 		float:left;
-	}
-	fieldset
-	{	width: 100%;
 	}
 	label {
 	text-align: right;
 	margin-bottom:0.5em;
 	float: left;
-	width: 30%;
+	width: 25%;
 	}
 	input,textarea {
 		float: right;
 		text-align: left;
-		width: 60%;
+		width: 65%;
 		margin-bottom:0.5em;
 		margin-right: 1em;
 		margin-left: 1em;
