@@ -20,54 +20,33 @@
     	<jsp:param name="active" value="festivalAnlegen"/>
     </jsp:include>
 	<div id="main">
-		<form action="festivalAnlegen.jsp" id="festivalAnlegen">
 			<label class="h2">Festival anlegen</label>
-			<div id="zeile">
+			<div class="row">
 				<div id="spaltelinks">
 					<label for="festivalname">Festivalname</label>
 					<input type="text" id="name" maxlength="30">
+					<label for="name">Ort</label>
+					<input type="text" id="ort" maxlength="30">	
+					<label for="datum">Startdatum</label>
+					<input type="date" id="datum" maxlength="30">
+					<label for="name">Kurzbeschreibung</label>
+					<textarea rows="5" cols="25"></textarea>
 				</div>
 				<div id="spalterechts">
 					<label for="kategorie">Kategorie</label>
 					<input type="text" id="kategorie" maxlength="30">
-				</div>
-			</div>
-			<div id="zeile">
-			    <div id="spaltelinks">
-					<label for="name">Ort</label>
-					<input type="text" id="ort" maxlength="30">	
-				</div>
-				<div id="spalterechts">
 					<label for="bild">Bild</label>
 					<input type="file" id="bild" accept="image/*">
-				</div>
-			</div>	
-			<div id="zeile">
-				<div id="spaltelinks">
-					<label for="datum">Startdatum</label>
-					<input type="date" id="datum" maxlength="30">
-				</div>
-				<div id="spalterechts">
 					<label for="datum">Enddatum</label>
 					<input type="date" id="datum" maxlength="30">
-				</div>
-			</div>				
-			<div id="zeile">
-				<div id="spaltelinks">
-					<label for="name">Kurzbeschreibung</label>
-					<textarea rows="5" cols="25"></textarea>
-				</div>
-				<div id="spalterechts">			
 					<label for="name">Langbeschreibung</label>
 					<textarea rows="10" cols="25"></textarea>
 					<button type="button" id="links">Speichern</button>
 				</div>
-			</div>
-		</form>			
+			</div>		
 	<div id="leer"></div>			
 	</div>
-	<div id="footer">
-	</div>
+	<footer></footer>
 </div>	
 </body>
 </html>

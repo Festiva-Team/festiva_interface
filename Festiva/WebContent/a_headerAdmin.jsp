@@ -15,9 +15,9 @@
 <title>Header Admin</title>
 </head>
 <body>
-	<div id="header">
+	<header>
 		<img src="/Festiva/Bilder/HeaderMitLogo.png" width="980"/>
-	</div>
+	</header>
 		<nav>
   			<ul>
 		    	<li><a href="a_startseiteAdmin.jsp">Home</a></li>

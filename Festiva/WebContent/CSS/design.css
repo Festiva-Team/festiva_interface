@@ -10,7 +10,7 @@ body
 	margin:0 auto;
 	background: white;
 }
-#header
+header
 {   width: 100%;
 }
 img{
@@ -134,7 +134,7 @@ figure.bild2 {
 {
 	clear:both;
 }
-#footer
+footer
 {	
 	float: left;
 	width:100%;

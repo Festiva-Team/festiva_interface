@@ -22,45 +22,27 @@
 		<div id="main">
 			<form action="festivalAendern.jsp" id="festivalAendern">
 			<label class="h2">Festival ändern</label>
-				 <div id="zeile">
+				 <div class="row">
 					<div id="spaltelinks">
 						<label for="festivalname">Festivalname</label>
 						<input type="text" id="name" maxlength="30">
+						<label for="name">Ort</label>
+						<input type="text" id="ort" maxlength="30">				
+						<label for="datum">Startdatum</label>
+						<input type="date" id="datum" maxlength="30">
+						<label for="name">Kurzbeschreibung</label>
+						<textarea rows="5" cols="25"></textarea>
 					</div>
 					<div id="spalterechts">
 						<label for="kategorie">Kategorie</label>
 						<input type="text" id="kategorie" maxlength="30">
-					</div>
-				</div>
-				<div id="zeile">
-				    <div id="spaltelinks">
-						<label for="name">Ort</label>
-						<input type="text" id="ort" maxlength="30">	
-					</div>
-					<div id="spalterechts">
-					<label for="bild">Bild</label>
-					<input type="file" id="bild" accept="image/*">
-					</div>
-				</div>	
-				<div id="zeile">
-					<div id="spaltelinks">
-						<label for="datum">Startdatum</label>
-						<input type="date" id="datum" maxlength="30">
-					</div>
-					<div id="spalterechts">
+						<label for="bild">Bild</label>
+						<input type="file" id="bild" accept="image/*">
 						<label for="datum">Enddatum</label>
 						<input type="date" id="datum" maxlength="30">
-					</div>
-				</div>				
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="name">Kurzbeschreibung</label>
-					<textarea rows="5" cols="25"></textarea>
-					</div>
-					<div id="spalterechts">			
-					<label for="name">Langbeschreibung</label>
-					<textarea rows="10" cols="25"></textarea>
-					<button type="button" id="links">Speichern</button>
+						<label for="name">Langbeschreibung</label>
+						<textarea rows="10" cols="25"></textarea>
+						<button type="button" id="links">Speichern</button>
 					</div>
 				</div>
 				<div id="zeile">

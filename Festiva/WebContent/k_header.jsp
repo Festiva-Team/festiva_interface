@@ -21,9 +21,9 @@ HttpSession session = request.getSession(false);
 <title>Header</title>
 </head>
 <body>
-	<div id="header">
+	<header>
 		<img src="/Festiva/Bilder/HeaderMitLogo.png" width="980"/>
-	</div>
+	</header>
 		<nav>
 		<ul>
 			<li><a href="k_startseite.jsp">Home</a></li>
