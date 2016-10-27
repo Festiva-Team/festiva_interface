@@ -8,8 +8,6 @@
 	# JSP-Name: anmelden.jsp
 	# JSP-Aktionen: Hier kann ein bereits registrierter Kunde, sich mit seinen Daten anmelden um einkaufen zu können.			
 */
-// String rueckmeldung = " ";
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -35,10 +33,10 @@
 					<button type="submit" id="links">Anmelden</button>	
 				</div>
 				<div id="spalterechts">
-					<% if (request.getSession().getAttribute("rueckmeldung") != null) 
+					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>
-					<p><%= request.getSession().getAttribute("rueckmeldung") %></p>
-					<% request.getSession().removeAttribute("rueckmeldung");}  %>
+					<p><%= request.getSession().getAttribute("antwort") %></p>
+					<% request.getSession().removeAttribute("antwort");}  %>
 				</div>
 				</div>
 				

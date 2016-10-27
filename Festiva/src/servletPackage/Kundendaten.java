@@ -33,19 +33,20 @@ public class Kundendaten extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
+		String antwort = "";
 		
 		if(session != null && session.getAttribute("begrüßung") != null) {
 			
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
 			Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
 			
-			if (request.getParameter("aktion") == "anzeigen") {
+			if ((request.getParameter("aktion")).equals("anzeigen")) {
 				
 				session.setAttribute("benutzer", benutzer);
 				request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
 				
 			} else {
-				if (request.getParameter("aktion") == "ändern") {
+				if ((request.getParameter("aktion")).equals("aendern")) {
 					
 					String vorname = request.getParameter("vorname");
 					String nachname = request.getParameter("nachname");
@@ -55,30 +56,51 @@ public class Kundendaten extends HttpServlet {
 					int plz = Integer.parseInt(request.getParameter("plz"));
 					String ort = request.getParameter("ort");	
 					String iban = request.getParameter("iban");
-					String bic = request.getParameter("bic");		
+					String bic = request.getParameter("bic");
 					
 					String passwort = benutzer.passwortHash;
 					boolean istGesperrt = benutzer.istGesperrt;
 					boolean istGelöscht = benutzer.istGelöscht;
 					boolean einzugsermächtigungErteilt = benutzer.einzugsermächtigungErteilt;
-					benutzer = new Benutzer(userid, vorname, nachname, eMail, passwort, strasse, hausnummer, plz, ort, istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, 2);
-					BenutzerAdministration.aktualisiereBenutzer(benutzer);
 					
-					String antwort = "Ihre Änderungen wurden gespeichert!";
-					session.setAttribute("antwort", antwort);
-					request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
-				}
+					if(request.getParameter("einzugsermächtigungErteilt") != null){
+						einzugsermächtigungErteilt = true;
+					} else {
+						einzugsermächtigungErteilt = false;
+					}
+					
+					benutzer = new Benutzer(userid, vorname, nachname, eMail, passwort, strasse, hausnummer, plz, ort, istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, 2);
+					BenutzerAdministration.aktualisiereBenutzer(benutzer);		
+					antwort = "Ihre Änderungen wurden gespeichert!";
+					
+				} else {
+					
+					if ((request.getParameter("aktion")).equals("p_aendern")) {
+						
+						String passwortAlt = request.getParameter("passwortalt");
+						String passwortNeu = request.getParameter("passwortneu");
+						String passwortBestätigung = request.getParameter("passwortbestätigung");
+						
+						if(!passwortAlt.equals(benutzer.passwortHash)) {
+							antwort = "Das eingegebene alte Passwort ist falsch. Keine Passwortänderung durchgeführt.";
+						} else {
+							if(!passwortNeu.equals(passwortBestätigung)) {
+								antwort = "Das neue Passwort und die Wiederholung des Passworts stimmen nicht überein. Keine Passwortänderung durchgeführt.";
+							} else {
+								benutzer.passwortHash = passwortNeu;
+								BenutzerAdministration.aktualisiereBenutzer(benutzer);
+								antwort = "Ihr Passwort wurde erfolgreich geändert.";
+							}
+						}
+					}
+				} 
+				session.setAttribute("antwort", antwort);
+				request.getRequestDispatcher("/Kundendaten?aktion=anzeigen").include(request, response);
 			}
-			
-			
+	
 		} else {
 			response.sendRedirect("k_anmelden.jsp");
 		}
-
-		
-
-
-
 
 		}
 

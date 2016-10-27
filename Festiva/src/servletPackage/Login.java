@@ -39,21 +39,21 @@ public class Login extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		String rueckmeldung = " ";
+		String antwort = " ";
 		String begrüßung = " ";
 
 		Benutzer benutzer = BenutzerAdministration.selektiereBenutzer(request.getParameter("email"));
 
 		if (benutzer != null) {
 				if (benutzer.istGesperrt == true) {
-					rueckmeldung = "Ihr Benutzerkonto wurde gesperrt. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
-					request.getSession(false).setAttribute("rueckmeldung", rueckmeldung);
+					antwort = "Ihr Benutzerkonto wurde gesperrt. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
+					request.getSession(false).setAttribute("antwort", antwort);
 					request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 					
 				} else {
 					if (benutzer.istGelöscht == true) {
-						rueckmeldung = "Das Benutzerkonto mit dieser E-Mail-Adresse wurde gelöscht. Sollten Sie Fragen dazu haben, wenden Sie sich bitte an den Administrator: admin@festiva.de";
-						request.getSession(false).setAttribute("rueckmeldung", rueckmeldung);
+						antwort = "Das Benutzerkonto mit dieser E-Mail-Adresse wurde gelöscht. Sollten Sie Fragen dazu haben, wenden Sie sich bitte an den Administrator: admin@festiva.de";
+						request.getSession(false).setAttribute("antwort", antwort);
 						request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 
 					} else {
@@ -75,15 +75,15 @@ public class Login extends HttpServlet {
 						}
 
 						} else {
-							rueckmeldung = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
-							request.getSession(false).setAttribute("rueckmeldung", rueckmeldung);
+							antwort = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
+							request.getSession(false).setAttribute("antwort", antwort);
 							request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 						}
 					}
 				}
 		} else {
-			rueckmeldung = "Zu der eingegebenen E-Mail-Adresse konnte kein Benutzer gefunden werden. Bitte registieren Sie sich zuerst oder geben eine korrekte E-Mail-Adresse an!";
-			request.getSession(false).setAttribute("rueckmeldung", rueckmeldung);
+			antwort = "Zu der eingegebenen E-Mail-Adresse konnte kein Benutzer gefunden werden. Bitte registieren Sie sich zuerst oder geben eine korrekte E-Mail-Adresse an!";
+			request.getSession(false).setAttribute("antwort", antwort);
 			request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 
 		}

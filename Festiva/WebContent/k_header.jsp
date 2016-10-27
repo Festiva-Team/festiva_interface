@@ -33,7 +33,7 @@ HttpSession session = request.getSession(false);
 			<% if (session != null && session.getAttribute("begrüßung") != null) 
 					{ %>
 				
-				<li><a href="k_kundendaten.jsp">Meine Daten</a></li> 
+				<li><a href="/Festiva/Kundendaten?aktion=anzeigen">Meine Daten</a></li> 
 				<li><a href="k_bestellungen.jsp">Meine Bestellungen</a></li> 
 				<li><a href="/Festiva/Logout" accesskey="1" title="">Abmelden</a></li>
 				</ul>
