@@ -25,16 +25,14 @@
     </jsp:include>
 		<div id="main">
 			<form action="/Festiva/Login" method="GET">
-				<div id="zeile">
+				<div id="zeile1">
 				<div id="spaltelinks">
-				<fieldset>
 					<label class="h2">Anmelden</label>
 					<label for="email">E-Mail</label>
 					<input type="email" name="email" id="email" maxlength="30"><br>
 					<label for="passwort">Passwort</label>
 					<input type="password" name="passwort" id="passwort" maxlength="40"><br>
 					<button type="submit" id="links">Anmelden</button>
-					</fieldset>	
 				</div>
 				<div id="spalterechts">
 					<% if (request.getSession().getAttribute("rueckmeldung") != null) 

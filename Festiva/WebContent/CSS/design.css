@@ -96,9 +96,17 @@ figure.bild2 {
   display: inline-block;
   width: 49%;
 }
+#zeile1
+{	width: 100%;
+	float: left;
+}
 #zeile
 {
-	width:100%;
+	float:left;
+}
+#zeile
+{
+	float: left;
 }
 #spalte1
 {	width: 30%;
@@ -114,7 +122,7 @@ figure.bild2 {
 }
 #spalterechts
 {	width: 50%;
-	float:right;
+	float:left;
 	
 }
 #spaltetabelle
@@ -175,9 +183,10 @@ label.input::after {
 	content: ": ";
 }
 button
-{
+{	float: right;
 	width:10em;
 	margin-bottom:0.5em;
+	margin-right:1em;
 }
 #links
 {
@@ -255,7 +264,7 @@ td,th
 	}
 	#spaltelinks
 	{	width: 100%;
-		margin-left:1em;
+		margin-right:1em;
 		float:left;
 	}
 	#spalterechts
@@ -264,21 +273,12 @@ td,th
 		float:left;
 	}
 	label {
-	text-align: right;
-	margin-bottom:0.5em;
-	float: left;
-	width: 25%;
+	width: 38%;
 	}
 	input,textarea {
-		float: right;
-		text-align: left;
-		width: 65%;
+		width: 55%;
 		margin-bottom:0.5em;
-		margin-right: 1em;
-		margin-left: 1em;
-		padding: .1em .0em;
-		background-color: #fffbf0;
-		border: 1px solid #e7c157;
+		margin-right: 0.5em;
 	}
 		
 }

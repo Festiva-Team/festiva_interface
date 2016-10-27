@@ -20,20 +20,18 @@
     		<jsp:param name="active" value="registrieren"/>
    	 	</jsp:include>
 		<div id="main">
-			<div id="zeile">
+			<div id="zeile1">
 			<div id="spaltelinks">
-			<fieldset>
 				<label class="h2">Registrieren</label>
 				<label for="email">Email</label>
 				<input type="email" name="email" id="email" maxlength="30"><br>
-				<label for="emailwh">Email wiederholen</label>
+				<label for="emailwh">Email bestätigen</label>
 				<input type="email" name="email" id="email" maxlength="30"><br>
 				<label for="passwort">Passwort</label>
 				<input type="password" name="passwort" id="passwort" maxlength="40"><br>
-				<label for="passwortwh">Passwort wiederholen</label>
+				<label for="passwortwh">Passwort bestätigen</label>
 				<input type="password" name="passwort" id="passwort" maxlength="40"><br>
 				<button type="button" id="links">Registrieren</button>
-			</fieldset>
 			</div>	
 			</div>
 			<div id="leer"></div>

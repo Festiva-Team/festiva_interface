@@ -50,55 +50,33 @@ if (request.getSession(false) != null)
 				<label class="h2">Meine Daten</label>
 				<div id="zeile">
 					<div id="spaltelinks">
-					<label for="vorname">Vorname</label>
-					<input type="text" id="vorname" name="vorname" maxlength="30" value=<%=vorname%>>
+						<label for="vorname">Vorname</label>
+						<input type="text" id="vorname" name="vorname" maxlength="30" value=<%=vorname%>>
+						<label for="nachname">Nachname</label>
+						<input type="text" id="nachname" name="nachname" maxlength="40" value=<%=nachname%>>
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" maxlength="50" value=<%=email%>>					
+						<label for="iban">IBAN</label>
+						<input type="text" id="iban" name="iban" minlength="22" maxlength="22" value=<%=iban%>>
+						<label for="bic">BIC</label>
+						<input type="text" id="bic" name="bic" minlength="9" maxlength="12" value=<%=bic%>>
 					</div>
 					<div id="spalterechts">
-					<label for="strasse">Straße</label>
-					<input type="text" id="strasse" name="strasse" maxlength="50" value=<%=straße%>>
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="nachname">Nachname</label>
-					<input type="text" id="nachname" name="nachname" maxlength="40" value=<%=nachname%>>
-					</div>
-					<div id="spalterechts">
-					<label for="hausnummer">Hausnummer</label>
-					<input type="text" id="hausnummer" name="hausnummer" minlength="1" maxlength="5" value=<%=hausnummer%>>
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="email">Email</label>
-					<input type="email" id="email" name="email" maxlength="50" value=<%=email%>>
-					</div>
-					<div id="spalterechts">
-					<label for="plz">PLZ</label>
-					<input type="text" id="plz" name="plz" minlength="5" maxlength="5" value=<%=plz%>>
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="iban">IBAN</label>
-					<input type="text" id="iban" name="iban" minlength="22" maxlength="22" value=<%=iban%>>
-					</div>
-					<div id="spalterechts">
-					<label for="ort">Ort</label>
-					<input type="text" id="ort" name="ort" maxlength="30" value=<%=ort%>>
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="bic">BIC</label>
-					<input type="text" id="bic" name="bic" minlength="9" maxlength="12" value=<%=bic%>>
-					</div>
-					<div id="spalterechts">
-					<button type="submit" id="rechts">Änderungen speichern</button>
-					<% if (request.getSession().getAttribute("antwort") != null) 
-					{ %>
-					<p><%= request.getSession().getAttribute("antwort") %></p>
-					<% } request.getSession().removeAttribute("antwort"); %>
+						<label for="strasse">Straße</label>
+						<input type="text" id="strasse" name="strasse" maxlength="50" value=<%=straße%>>
+						<label for="hausnummer">Hausnummer</label>
+						<input type="text" id="hausnummer" name="hausnummer" minlength="1" maxlength="5" value=<%=hausnummer%>>
+						<label for="plz">PLZ</label>
+						<input type="text" id="plz" name="plz" minlength="5" maxlength="5" value=<%=plz%>>
+						<label for="ort">Ort</label>
+						<input type="text" id="ort" name="ort" maxlength="30" value=<%=ort%>>
+						<label for="einzugsermächtigungErteilt">Einzugsermächtigung erteilt</label>
+	      				<input type="checkbox" id="einzugsermächtigungErteilt"><br>
+						<button type="submit" id="rechts">Änderungen speichern</button>
+						<% if (request.getSession().getAttribute("antwort") != null) 
+						{ %>
+						<p><%= request.getSession().getAttribute("antwort") %></p>
+						<% } request.getSession().removeAttribute("antwort"); %>
 					</div>
 				</div>
 			</form>
