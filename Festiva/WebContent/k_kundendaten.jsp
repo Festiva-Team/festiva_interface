@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"
-    	import="standardPackage.*"
-	import="java.util.*"
-	session="false"
-%>
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*"
+    session="false"	%>	
+
 <%
-Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer");
-%>
+Benutzer benutzer = null;
+if (request.getSession(false) != null && request.getSession(false).getAttribute("benutzer") != null) {
+	benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer"); %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,7 +32,7 @@ Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer")
 						<label for="iban">IBAN</label>
 						<input type="text" id="iban" name="iban" minlength="22" maxlength="22" value=<%=benutzer.iban%>>
 						<label for="bic">BIC</label>
-						<input type="text" id="bic" name="bic" minlength="9" maxlength="12" value=<%=benutzer.bic%>>
+						<input type="text" id="bic" name="bic" minlength="9" maxlength="11" value=<%=benutzer.bic%>>
 					</div>
 					<div id="spalterechts">
 						<label for="strasse">Straße</label>
@@ -49,11 +49,6 @@ Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer")
 	      					   <% if (benutzer.einzugsermächtigungErteilt == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> ><br>
 						<button type="submit" id="rechts">Änderungen speichern</button>
-						<% if (request.getSession().getAttribute("antwort") != null) 
-						{ %>
-						<p><%= request.getSession().getAttribute("antwort") %></p>
-						<% } request.getSession().removeAttribute("antwort");
-						   	 request.getSession().removeAttribute("benutzer");%>
 					</div>
 				</div>
 			</form>
@@ -74,7 +69,8 @@ Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer")
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>
 					<p><%= request.getSession().getAttribute("antwort") %></p>
-					<% request.getSession().removeAttribute("antwort");}  %>
+					<% } request.getSession().removeAttribute("antwort"); 
+					     request.getSession().removeAttribute("benutzer");%>
 				</div>
 				</div>
 				
@@ -87,3 +83,4 @@ Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer")
 </div>	
 </body>
 </html>
+<%}	else { response.sendRedirect("k_anmelden.jsp");	} %>

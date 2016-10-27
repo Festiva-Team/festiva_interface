@@ -79,7 +79,7 @@ public class Kundendaten extends HttpServlet {
 					
 					benutzer = new Benutzer(userid, vorname, nachname, eMail, passwort, strasse, hausnummer, plz, ort, istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, 2);
 					BenutzerAdministration.aktualisiereBenutzer(benutzer);		
-					antwort = "Ihre Änderungen wurden gespeichert!";
+					antwort = "Die Änderungen an Ihren persönlichen Daten wurden gespeichert!";
 					
 				} else {
 					
