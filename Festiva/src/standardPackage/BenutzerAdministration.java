@@ -18,9 +18,10 @@ public class BenutzerAdministration {
 	public static void erstelleKunden(Benutzer p_benutzer)
 	{		
 		String insertBefehl = "INSERT INTO festiva.benutzer " +
-							   "(vorname, nachname, emailadresse, passworthash, gruppen_id) " +
-							   "VALUES ('%s', '%s', '%s', '%s','%d')";
-		insertBefehl = String.format(insertBefehl, p_benutzer.vorname, p_benutzer.nachname, p_benutzer.eMailAdresse, p_benutzer.passwortHash, p_benutzer.gruppenID);
+							   "(vorname, nachname, strasse, hausnummer, plz, ort, emailadresse, passworthash, iban, bic, gruppen_id) " +
+							   "VALUES ('%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%d')";
+		
+		insertBefehl = String.format(insertBefehl, p_benutzer.vorname, p_benutzer.nachname, p_benutzer.strasse, p_benutzer.hausnummer, p_benutzer.plz, p_benutzer.ort, p_benutzer.eMailAdresse, p_benutzer.passwortHash, p_benutzer.iban, p_benutzer.bic, p_benutzer.gruppenID);
 		p_benutzer.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
 	}
 	

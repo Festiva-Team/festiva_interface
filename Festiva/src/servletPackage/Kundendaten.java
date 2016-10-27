@@ -13,8 +13,9 @@ import javax.servlet.http.HttpSession;
 import standardPackage.*;
 
 /**
- * Servlet implementation class Kundendaten
- */
+*
+* @author Alina Fankhänel
+*/
 @WebServlet("/Kundendaten")
 public class Kundendaten extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +54,14 @@ public class Kundendaten extends HttpServlet {
 					String eMail = request.getParameter("email");
 					String strasse = request.getParameter("strasse");
 					String hausnummer = request.getParameter("hausnummer");
-					int plz = Integer.parseInt(request.getParameter("plz"));
+					int plz = 0;
+					try{
+						plz = Integer.parseInt(request.getParameter("plz"));
+					} catch (Exception e) {
+						e.printStackTrace();
+						plz = 0;
+					}
+					
 					String ort = request.getParameter("ort");	
 					String iban = request.getParameter("iban");
 					String bic = request.getParameter("bic");

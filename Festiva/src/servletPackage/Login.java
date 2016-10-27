@@ -68,7 +68,11 @@ public class Login extends HttpServlet {
 							RequestDispatcher dispatcher = request.getRequestDispatcher("a_startseiteAdmin.jsp");
 							dispatcher.forward(request, response);
 						} else {
+							if((benutzer.vorname).equals("") && benutzer.nachname.equals("")) {
+							begrüßung = "Herzlich Willkommen bei Festiva!";	
+							} else {
 							begrüßung = "Herzlich Willkommen bei Festiva, " + benutzer.vorname + " " + benutzer.nachname + "!";
+							}
 							request.getSession(false).setAttribute("begrüßung", begrüßung);
 							request.getRequestDispatcher("k_startseite.jsp").include(request, response);
 

@@ -38,12 +38,7 @@ public class Logout extends HttpServlet {
     	
 	    request.getSession().invalidate();
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("k_startseite.jsp");
-	    dispatcher.forward(request, response);
-	    
-//		String begrüßung = "Vielen Dank für Ihren Besuch bei Festiva!";
-//		request.getSession(true).setAttribute("begrüßung", begrüßung);
-//		request.getRequestDispatcher("k_startseite.jsp").include(request, response);
-//        
+	    dispatcher.forward(request, response);     
     }
 
     /**

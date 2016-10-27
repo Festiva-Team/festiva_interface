@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+    session="false"
+	%>
 <%
 /** 
 	# Autor: Nicola Kloke
@@ -20,20 +22,28 @@
     		<jsp:param name="active" value="registrieren"/>
    	 	</jsp:include>
 		<div id="main">
+		<form action="/Festiva/Registrierung" method="post">
 			<div id="zeile1">
 			<div id="spaltelinks">
-				<label class="h2">Registrieren</label>
-				<label for="email">Email</label>
+				<label class="h2">Registrierung</label>
+				<label for="email">E-Mail</label>
 				<input type="email" name="email" id="email" maxlength="30"><br>
-				<label for="emailwh">Email bestätigen</label>
-				<input type="email" name="email" id="email" maxlength="30"><br>
+				<label for="emailbestätigung">E-Mail bestätigen</label>
+				<input type="email" name="emailbestätigung" id="emailbestätigung" maxlength="30"><br>
 				<label for="passwort">Passwort</label>
 				<input type="password" name="passwort" id="passwort" maxlength="40"><br>
-				<label for="passwortwh">Passwort bestätigen</label>
-				<input type="password" name="passwort" id="passwort" maxlength="40"><br>
-				<button type="button" id="links">Registrieren</button>
-			</div>	
+				<label for="passwortbestätigung">Passwort bestätigen</label>
+				<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40"><br>
+				<button type="submit" id="links">Registrieren</button>
 			</div>
+			<div id="spalterechts">
+					<% if (request.getSession().getAttribute("antwort") != null) 
+					{ %>
+					<p><%= request.getSession().getAttribute("antwort") %></p>
+					<% request.getSession().removeAttribute("antwort");}  %>
+				</div>	
+			</div>
+			</form>
 			<div id="leer"></div>
 		</div>
 		<div id="footer">
