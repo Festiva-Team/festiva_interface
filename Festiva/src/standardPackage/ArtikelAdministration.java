@@ -20,7 +20,7 @@ public class ArtikelAdministration {
 	public static void erstelleArtikel(Artikel p_artikel)
 	{		
 		String insertBefehl = "INSERT INTO festiva.artikel " +
-							   "(beschreibung, preis, festival_id ) " +
+							   "(beschreibung, preis, festivals_id ) " +
 							   "VALUES ('%s', '%f', '%d')";
 		insertBefehl = String.format(insertBefehl, p_artikel.beschreibung, p_artikel.preis, p_artikel.festivalID);
 		p_artikel.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
@@ -34,7 +34,7 @@ public class ArtikelAdministration {
 	public static void aktualisiereArtikel(Artikel p_artikel)
 	{	
 		String updateBefehl = "UPDATE festiva.artikel " +
-							  "SET beschreibung = '%s', preis = '%f', festival_id = '%d' " +
+							  "SET beschreibung = '%s', preis = '%f', festivals_id = '%d' " +
 							  "WHERE id = '%d'";
 		updateBefehl = String.format(updateBefehl, p_artikel.beschreibung, p_artikel.preis, p_artikel.festivalID, p_artikel.id);
 		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(updateBefehl);
@@ -60,7 +60,7 @@ public class ArtikelAdministration {
 	public static Artikel selektiereArtikel(int p_artikelID)
 	{
 		Artikel artikel = null;
-		String selectBefehl = "SELECT beschreibung, preis, istgelöscht, festival_id " + 
+		String selectBefehl = "SELECT beschreibung, preis, istgelöscht, festivals_id " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE id = " + p_artikelID;
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
@@ -72,7 +72,7 @@ public class ArtikelAdministration {
 				String beschreibung = ergebnismenge.getString("beschreibung");
 				float preis = ergebnismenge.getFloat("preis");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
-				int festivalID = ergebnismenge.getInt("festival_id");
+				int festivalID = ergebnismenge.getInt("festivals_id");
 				
 				artikel = new Artikel(p_artikelID, beschreibung, preis, istGelöscht, festivalID);
 			}
@@ -87,6 +87,82 @@ public class ArtikelAdministration {
 	}
 
 	/**
+	 * Selektiert alle Artikel, die zu einem bestimmen Festival gehören und nicht teurer als der vorgegebene Maximalpreis sind (alphabetisch sortiert)
+	 * @param p_festivalID: ID des gewünschten Festivals
+	 * @param p_maxPreis: maximaler Preis, den die zurückgegebenen Artikel haben dürfen
+	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 */
+	public static List<Artikel> selektiereArtikelVonFestivalMitMaxPreis(int p_festivalID, float p_maxPreis)
+	{
+		List<Artikel> listArtikel = new ArrayList<Artikel>();
+		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
+							  "FROM festiva.artikel " + 
+							  "WHERE festivals_id = '%d' AND istgelöscht = 0 AND preis <= '%f' ORDER BY beschreibung ASC";
+		selectBefehl  = String.format(selectBefehl, p_festivalID, p_maxPreis);
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int id = ergebnismenge.getInt("id");				
+				String beschreibung = ergebnismenge.getString("beschreibung");
+				float preis = ergebnismenge.getFloat("preis");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				
+				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, p_festivalID));
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listArtikel;
+	}
+	
+	
+	/**
+	 * Selektiert alle Artikel, die zu einem bestimmen Festival gehören und teurer als der vorgegebene Maximalpreis sind (alphabetisch sortiert)
+	 * @param p_festivalID: ID des gewünschten Festivals
+	 * @param p_maxPreis: maximaler Preis, den die zurückgegebenen Artikel übersteigen müssen
+	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 */
+	public static List<Artikel> selektiereArtikelVonFestivalÜberMaxPreis(int p_festivalID, float p_maxPreis)
+	{
+		List<Artikel> listArtikel = new ArrayList<Artikel>();
+		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
+							  "FROM festiva.artikel " + 
+							  "WHERE festivals_id = '%d' AND istgelöscht = 0 AND preis > '%f' ORDER BY beschreibung ASC";
+		selectBefehl  = String.format(selectBefehl, p_festivalID, p_maxPreis);
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int id = ergebnismenge.getInt("id");				
+				String beschreibung = ergebnismenge.getString("beschreibung");
+				float preis = ergebnismenge.getFloat("preis");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				
+				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, p_festivalID));
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listArtikel;
+	}
+	
+	
+	/**
 	 * Selektiert alle Artikel, die zu einem bestimmen Festival gehören (alphabetisch sortiert)
 	 * @param p_festivalID: ID des gewünschten Festivals
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
@@ -96,7 +172,7 @@ public class ArtikelAdministration {
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
 							  "FROM festiva.artikel " + 
-							  "WHERE festival_id = '%d' AND istgelöscht = 0 ORDER BY beschreibung ASC";
+							  "WHERE festivals_id = '%d' AND istgelöscht = 0 ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl, p_festivalID);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);

@@ -80,6 +80,8 @@ public static void main(String[] args) {
 //	System.out.println(festival.id + " " + festival.name + " " + festival.ort + " " + festival.kurzbeschreibung + " " + festival.langbeschreibung + " " + festival.startDatum + " " + festival.endDatum + " " + festival.bildpfad + " " + festival.kategorienID + " " + festival.istGelöscht);
 //	
 
+	List<Artikel> liste1 = ArtikelAdministration.selektiereArtikelVonFestivalMitMaxPreis(1, (float)15.0);
+	List<Artikel> liste2 = ArtikelAdministration.selektiereArtikelVonFestivalÜberMaxPreis(1, (float)15.0);
 	
 	List<FestivalSuchobjekt> liste = FestivalAdministration.selektiereFestivalsInSuche(1, "Eifel", "", "2017-06-03", "2017-06-05", (float)25.0);
 
