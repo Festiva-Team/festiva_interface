@@ -32,31 +32,53 @@ public class Kundendaten extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String vorname = request.getParameter("vorname");
-		String nachname = request.getParameter("nachname");
-		String eMail = request.getParameter("email");
-		String strasse = request.getParameter("strasse");
-		String hausnummer = request.getParameter("hausnummer");
-		int plz = Integer.parseInt(request.getParameter("plz"));
-		String ort = request.getParameter("ort");	
-		String iban = request.getParameter("iban");
-		String bic = request.getParameter("bic");
 		HttpSession session = request.getSession(false);
-		int userid = Integer.parseInt(session.getAttribute("userid").toString());
-		Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
-		String passwort = benutzer.passwortHash;
-		boolean istGesperrt = benutzer.istGesperrt;
-		boolean istGelöscht = benutzer.istGelöscht;
-		boolean einzugsermächtigungErteilt = benutzer.einzugsermächtigungErteilt;
+		
+		if(session != null && session.getAttribute("begrüßung") != null) {
+			
+			int userid = Integer.parseInt(session.getAttribute("userid").toString());
+			Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
+			
+			if (request.getParameter("aktion") == "anzeigen") {
+				
+				session.setAttribute("benutzer", benutzer);
+				request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
+				
+			} else {
+				if (request.getParameter("aktion") == "ändern") {
+					
+					String vorname = request.getParameter("vorname");
+					String nachname = request.getParameter("nachname");
+					String eMail = request.getParameter("email");
+					String strasse = request.getParameter("strasse");
+					String hausnummer = request.getParameter("hausnummer");
+					int plz = Integer.parseInt(request.getParameter("plz"));
+					String ort = request.getParameter("ort");	
+					String iban = request.getParameter("iban");
+					String bic = request.getParameter("bic");		
+					
+					String passwort = benutzer.passwortHash;
+					boolean istGesperrt = benutzer.istGesperrt;
+					boolean istGelöscht = benutzer.istGelöscht;
+					boolean einzugsermächtigungErteilt = benutzer.einzugsermächtigungErteilt;
+					benutzer = new Benutzer(userid, vorname, nachname, eMail, passwort, strasse, hausnummer, plz, ort, istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, 2);
+					BenutzerAdministration.aktualisiereBenutzer(benutzer);
+					
+					String antwort = "Ihre Änderungen wurden gespeichert!";
+					session.setAttribute("antwort", antwort);
+					request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
+				}
+			}
+			
+			
+		} else {
+			response.sendRedirect("k_anmelden.jsp");
+		}
+
 		
 
 
-			benutzer = new Benutzer(userid, vorname, nachname, eMail, passwort, strasse, hausnummer, plz, ort, istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, 2);
-			BenutzerAdministration.aktualisiereBenutzer(benutzer);
-			
-			String antwort = "Ihre Änderungen wurden gespeichert!";
-			request.getSession(false).setAttribute("antwort", antwort);
-			request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
+
 
 		}
 
