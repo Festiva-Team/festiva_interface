@@ -24,7 +24,7 @@
     	<jsp:param name="active" value="anmelden"/>
     </jsp:include>
 		<div id="main">
-			<form action="/Festiva/Login" method="GET">
+			<form action="/Festiva/Login" method="POST">
 				<div id="zeile">
 				<div id="spaltelinks">
 					<label class="h2">Anmelden</label>
@@ -38,7 +38,7 @@
 					<% if (request.getSession().getAttribute("rueckmeldung") != null) 
 					{ %>
 					<p><%= request.getSession().getAttribute("rueckmeldung") %></p>
-					<% }  %>
+					<% request.getSession().removeAttribute("rueckmeldung");}  %>
 				</div>
 				</div>
 				
