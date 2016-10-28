@@ -44,19 +44,29 @@ public class Registrierung extends HttpServlet {
 		} else {
 		
 		if(!email.equals(emailBestätigung)) {
-			antwort = "Die beiden eingegebenen E-Mail-Adressen stimmen nicht überein.Registrierung wurde nicht durchgeführt.";
+			antwort = "Die beiden eingegebenen E-Mail-Adressen stimmen nicht überein. Registrierung wurde nicht durchgeführt.";
 		} else {
 			if(!passwort.equals(passwortBestätigung)) {
 				antwort = "Die beiden eingegebenen Passwörter stimmen nicht überein. Registrierung wurde nicht durchgeführt.";
 			} else {
 				Benutzer benutzer = new Benutzer(-1, "", "", email, passwort, "", "", 0, "", false, "", "", false, false, 2);
 				BenutzerAdministration.erstelleKunden(benutzer);
-				antwort = "Die Registrierung wurde erfolgreich durchgeführt. Sie können sich nun anmelden.";
+				antwort = "Die Registrierung wurde erfolgreich durchgeführt.";
 			}
 		}
 		}
 		request.getSession(false).setAttribute("antwort", antwort);
-		request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
+		
+		if(request.getSession(false).getAttribute("gruppenid") == null) {
+			request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
+		} else {
+			int gruppenid = Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString());
+			if(gruppenid == 1) {
+				request.getRequestDispatcher("a_kundenAnlegen.jsp").include(request, response);
+			} else {
+				request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
+			}
+		}
 	}
 
 	/**

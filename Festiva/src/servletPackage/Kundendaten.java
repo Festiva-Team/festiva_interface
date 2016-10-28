@@ -35,20 +35,26 @@ public class Kundendaten extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		String antwort = "";
+		int userGruppenID = Integer.parseInt(session.getAttribute("gruppenid").toString()); 
 		
 		if(session != null && session.getAttribute("begrüßung") != null ) {
 			
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
+			
+			
 			Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
+			
 			
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
 				
 				session.setAttribute("benutzer", benutzer);
-				if(Integer.parseInt(session.getAttribute("gruppenid").toString()) == 1) {
-					request.getRequestDispatcher("a_adminKonto.jsp").include(request, response);
-				} else {
-				request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
-				}
+				
+					if(userGruppenID == 1) {
+						request.getRequestDispatcher("a_adminKonto.jsp").include(request, response);
+					} else {
+						request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
+					}			
+				
 				
 			} else {
 				if ((request.getParameter("aktion")).equals("aendern")) {
@@ -85,9 +91,12 @@ public class Kundendaten extends HttpServlet {
 						einzugsermächtigungErteilt = false;
 					}
 					
+										
 					benutzer = new Benutzer(userid, vorname, nachname, eMail, passwort, strasse, hausnummer, plz, ort, istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, 2);
-					BenutzerAdministration.aktualisiereBenutzer(benutzer);		
-					antwort = "Die Änderungen an Ihren persönlichen Daten wurden gespeichert!";}
+					BenutzerAdministration.aktualisiereBenutzer(benutzer);	
+					
+					antwort = "Die Änderungen an Ihren persönlichen Daten wurden gespeichert!";
+					}
 					
 				} else {
 					
@@ -109,6 +118,7 @@ public class Kundendaten extends HttpServlet {
 							}
 						}
 					}
+					
 				} 
 				session.setAttribute("antwort", antwort);
 				request.getRequestDispatcher("/Kundendaten?aktion=anzeigen").include(request, response);

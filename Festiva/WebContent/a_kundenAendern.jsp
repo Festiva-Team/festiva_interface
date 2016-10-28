@@ -25,7 +25,7 @@ else {
     	<jsp:param name="active" value="kundenAendern"/>
     </jsp:include>
 		<div id="main">
-			<form action="/Festiva/Kundendaten?aktion=aendern" method="post">
+			<form action="/Festiva/Kundenverwaltung?aktion=datenaendern&kundenid=<%=benutzer.id%>" method="post">
 				<label class="h2">Kunden ändern</label>
 	<div id="zeile">
 					<div id="spaltelinks">
@@ -49,8 +49,8 @@ else {
 				</div>
 				<div id="zeile">
 					<div id="spalterechts">
-					<label for="straße">Straße</label>
-					<input type="text" id="straße" name="straße" maxlength="50" value=<%=benutzer.strasse%>>
+					<label for="strasse">Straße</label>
+					<input type="text" id="strasse" name="strasse" maxlength="50" value=<%=benutzer.strasse%>>
 					<div id="spaltelinks">
 					<label for="email">E-Mail</label>
 					<input type="email" id="email" name="email" maxlength="50" value=<%=benutzer.eMailAdresse%>>
@@ -65,7 +65,10 @@ else {
 					</div>
 					<div id="spalterechts">
 					<label for="einzugsermächtigungErteilt">Einzugsermächtigung erteilt</label>
-      				<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value=<%=benutzer.einzugsermächtigungErteilt%>><br>
+	      				<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value=
+	      					   <%=benutzer.einzugsermächtigungErteilt%>
+	      					   <% if (benutzer.einzugsermächtigungErteilt == true) {%>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> ><br>
 					</div>
 				</div>
 				<div id="zeile">
@@ -74,8 +77,11 @@ else {
 					<input type="text" id="plz" name="plz" minlength="5" maxlength="5" value=<%=benutzer.plz%>>
 					</div>
 					<div id="spalterechts">
-					<label for="gesperrt">gesperrt</label>
-      				<input type="checkbox" id="gesperrt" name="gesperrt"><br>
+					<label for="gesperrt">Ist Gesperrt</label>
+	      				<input type="checkbox" id="gesperrt" name="gesperrt" value=
+	      					   <%=benutzer.istGesperrt%>
+	      					   <% if (benutzer.istGesperrt == true) {%>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> ><br>
 					</div>
 				</div>
 				<div id="zeile">
@@ -88,7 +94,7 @@ else {
 					</div>
 				</div>
 			</form>
-			<form action="/Festiva/Kundenverwaltung?aktion=pw_aendern" method="post">
+			<form action="/Festiva/Kundenverwaltung?aktion=pw_aendern&kundenid=<%=benutzer.id%>" method="post">
 					<div id="spaltelinks">
 					<label for="passwortneu">Neues Passwort</label>
 					<input type="password" id="passwortneu" name="passwortneu" maxlength="30">
@@ -101,11 +107,17 @@ else {
 					<button type="submit" id="links">Passwort ändern</button>
 					</div>
 					</form>
-			<form action="/Festiva/Kundenverwaltung?aktion=loeschen" method="post">
+			<form action="/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=<%=benutzer.id%>" method="post">
 			<div id="spalterechts">
 					<button type="submit" id="links">Kunden löschen</button>
 					</div>
 					</form>
+					<div id="spalterechts">
+					<% if (request.getSession().getAttribute("antwort") != null) 
+					{ %>
+					<p><%= request.getSession().getAttribute("antwort") %></p>
+					<% request.getSession().removeAttribute("antwort");}  %>
+				</div>	
 		<div id="leer"></div>
 		</div>
 		<div id="footer">

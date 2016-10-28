@@ -21,79 +21,31 @@ response.sendRedirect("k_anmelden.jsp");}
     <jsp:include page="a_headerAdmin.jsp">
     	<jsp:param name="active" value="kundenAnlegen"/>
     </jsp:include>
-			<form action="kundenAnlegen.jsp" id="anmelden">
-				<label class="h2" form="kundenAnlegen">Kunden anlegen</label>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="vorname">Vorname</label>
-					<input type="text" id="vorname" maxlength="30">
-					</div>
-					<div id="spalterechts">
-					<label for="iban">IBAN</label>
-					<input type="text" id="iban" minlength="22" maxlength="22">
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="nachname">Nachname</label>
-					<input type="text" id="nachname" maxlength="40">
-					</div>
-					<div id="spalterechts">
-					<label for="bic">BIC</label>
-					<input type="text" id="bic" minlength="9" maxlength="12">
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="email">Email</label>
-					<input type="email" id="email" maxlength="50">
-					</div>
-					<div id="spalterechts">
-					<label for="passwort">neues Passwort</label>
-					<input type="password" id="email" maxlength="30">
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="straﬂe">Straﬂe</label>
-					<input type="text" id="straﬂe" maxlength="50">
-					</div>
-					<div id="spalterechts">
-					<label for="passwort">neues Passwort best‰tigen</label>
-					<input type="password" id="email" maxlength="30">
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="hausnummer">Hausnummer</label>
-					<input type="text" id="hausnummer" minlength="1" maxlength="5">
-					</div>
-					<div id="spalterechts">
-					<label for="einzugserm‰chtigungErteilt">Einzugserm‰chtigung erteilt</label>
-      				<input type="checkbox" id="einzugserm‰chtigungErteilt"><br>
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="plz">PLZ</label>
-					<input type="text" id="plz" minlength="5" maxlength="5">
-					</div>
-					<div id="spalterechts">
-					<label for="gesperrt">gesperrt</label>
-      				<input type="checkbox" id="gesperrt"><br>
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="ort">Ort</label>
-					<input type="text" id="ort" maxlength="30">
-					</div>
-					<div id="spalterechts">
-					<button type="button" id="links">Speichern</button>
-					</div>
-				</div>
-				
-		</form>
+					<div id="main">
+		<form action="/Festiva/Registrierung" method="post">
+			<div id="zeile1">
+			<div id="spaltelinks">
+				<h2>Kunden anlegen</h2>
+				<label for="email">E-Mail</label>
+				<input type="email" name="email" id="email" maxlength="30" required="required" placeholder="E-Mail">
+				<label for="emailbest‰tigung">E-Mail best‰tigen</label>
+				<input type="email" name="emailbest‰tigung" id="emailbest‰tigung" maxlength="30" required="required" placeholder="E-Mail best‰tigen">
+				<label for="passwort">Passwort</label>
+				<input type="password" name="passwort" id="passwort" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" placeholder="Passwort"/>
+				<label for="passwortbest‰tigung">Passwort best‰tigen</label>
+				<input type="password" name="passwortbest‰tigung" id="passwortbest‰tigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" placeholder="Passwort best‰tigen"/>
+				<button type="submit" id="links">Anlegen</button>
+			</div>
+			<div id="spalterechts">
+					<% if (request.getSession().getAttribute("antwort") != null) 
+					{ %>
+					<p><%= request.getSession().getAttribute("antwort") %></p>
+					<% request.getSession().removeAttribute("antwort");}  %>
+				</div>	
+			</div>
+			</form>
+			<div id="leer"></div>
+		</div>
 		<div id="leer"></div>
 		<div id="footer">
 		</div>
