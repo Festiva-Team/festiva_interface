@@ -14,16 +14,17 @@
 </head>
 <body>
 
-<% if (request.getSession().getAttribute("begrüßung") != null) 
-{ %>
-<p><%= request.getSession().getAttribute("begrüßung") %></p>
-<% }  
-%>
-
 	<div id="webseite">
 	    <jsp:include page="k_header.jsp">
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
+	    <div id="zeile1">
+	    <% if (request.getSession().getAttribute("begrüßung") != null) 
+		{ %>
+		<h1><%= request.getSession().getAttribute("begrüßung") %></h1>
+		<% }  
+		%>
+		</div>
 			<figure class="bildzeile">
 				<figure class="bild1">
 					<a href="k_shop.jsp">
@@ -46,7 +47,7 @@
 					 </a>
 				</figure> 
 			</figure>
-		<div id="footer"></div>
+		<footer></footer>
 	</div>	
 </body>
 </html>

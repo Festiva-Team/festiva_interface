@@ -44,7 +44,7 @@
 				<div id="zeile">
 					<div id="spaltelinks">		
 						<label for="kategorie">Kategorie
-						<select><option value="Kategorie.name"></option></select>	
+						<select><option value="festival.kategorienID"></option></select>	
 						</label>					
 					</div>	
 					<div id="spalterechts">

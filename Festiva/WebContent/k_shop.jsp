@@ -25,39 +25,35 @@
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
 		<div id="main">
-			<form>
-				<label class="h2">Shop</label>
-				<div id="zeile">
+				<h2>Shop</h2>
+				<div id="zeile1">
 					<div id="spaltelinks">
 						<label for="name">Name</label>
-						<input type="search" id="name" maxlength="30">
-					</div>
-					<div id="spalterechts">
+						<input type="search" id="name" maxlength="30" placeholder="Festivalname">
+						<label for="kategorie">Kategorie</label>	
+						<select><option value="Kategorie.name"></option></select>
 						<label for="name">Ort</label>
 						<input type="text" id="ort" maxlength="30">
 					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">		
-						<label for="kategorie">Kategorie
-						<select><option value="Kategorie.name"></option></select>	
-						</label>					
-					</div>	
-					<div id="spalterechts">
+					<div id="spalterechts">						
+						<label for="datum">Startdatum</label>
+						<input type="date" id="datum" maxlength="30" placeholder="Startdatum">	
+						<label for="datum">Enddatum</label>
+						<input type="date" id="datum" maxlength="30">
+						<label for="preis">max Preis</label>
+						<input type="text" id="preis" maxlength="8">
 						<button type="button" id="rechts">suchen</button>
 					</div>
 				</div>		
-			<div id="content">
 				<table>
-					<tr>
-						<th>Festival</th><th>Datum</th><th>Ort</th><th>Kateorie</th><th>Preis</th>
-					</tr>
+					<thead>
+					<tr><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kateorie</th><th>Preis</th></tr></thead>
+					<tbody><tr><td>Festival</td><td>Datum</td><td>Ort</td><td id="kategorie">Kateorie</td><td>Preis</td></tr></tbody>
+					
 				</table>
-			</div>
-			</form>
 		<div id="leer"></div>
 		</div>
-			<div id="footer"></div>
+			<footer></footer>
 	</div>
 </body>
 </html>
