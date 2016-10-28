@@ -27,9 +27,9 @@
 				<div id="spaltelinks">
 					<label class="h2">Anmelden</label>
 					<label for="email">E-Mail</label>
-					<input type="email" name="email" id="email" maxlength="30">
+					<input type="email" name="email" id="email" maxlength="30" required="required">
 					<label for="passwort">Passwort</label>
-					<input type="password" name="passwort" id="passwort" maxlength="40">
+					<input type="password" name="passwort" id="passwort" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required">
 					<button type="submit" id="links">Anmelden</button>	
 				</div>
 				<div id="spalterechts">

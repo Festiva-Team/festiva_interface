@@ -16,7 +16,7 @@
 </head>
 <body>
 	<header>
-		<img src="/Festiva/Bilder/HeaderMitLogo.png" width="980"/>
+		<img src="/Festiva/Bilder/HeaderMitLogo.png" width="100%"/>
 	</header>
 		<nav>
   			<ul>

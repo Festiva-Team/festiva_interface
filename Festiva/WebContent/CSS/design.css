@@ -13,9 +13,17 @@ body
 header
 {   width: 100%;
 }
-img{
-	width: 100%;
-	height: auto;
+#main
+{	
+	width:100%;
+	background:white;
+}	
+footer
+{	
+	float: left;
+	width:100%;
+	height: 1.25em;
+	background: black;
 }
 /**Navigationsleiste*/
 nav {
@@ -32,7 +40,6 @@ nav:after {
   	list-style-type: none; /* ohne Aufzählungspunkte */
  	float: left;
   	position: relative;
-  	width: 10m; 
 }
  
 nav ul ul {
@@ -78,12 +85,7 @@ nav span {
 	color: white;
 	background-color: #990000;
 }
-/**Seitenaufteilung*/
-#main
-{	
-	width:100%;
-	background:white;
-}	
+/**Seitenaufteilung*/	
 figure{
   margin: 0;
 }
@@ -98,14 +100,6 @@ figure.bild2 {
 }
 #zeile1
 {	width: 100%;
-	float: left;
-}
-#zeile
-{
-	float:left;
-}
-#zeile
-{
 	float: left;
 }
 #spalte1
@@ -134,22 +128,11 @@ figure.bild2 {
 {
 	clear:both;
 }
-footer
-{	
-	float: left;
-	width:100%;
-	height: 1.25em;
-	background: black;
-}
 fieldset
 {	
 	border: none;
 }
 /** CSS Formulardaten */
-form {
-	margin-top: 1em;
-}
-
 label.h2 {
 	text-align: left;
 	font-weight: bold;
@@ -157,6 +140,7 @@ label.h2 {
 	width: 100%;
 	margin-bottom:1em;
 	margin-left:2em;
+	margin-top: 1em;
 }
 label {
 	text-align: right;
@@ -167,7 +151,7 @@ label {
 input,textarea {
 	float: right;
 	text-align: left;
-	width: 50%;
+	width: 60%;
 	margin-bottom:0.5em;
 	margin-right: 1em;
 	margin-left: 1em;
@@ -178,20 +162,14 @@ input,textarea {
 label.input {
 	line-height: 1.5;
 }
-
 label.input::after {
 	content: ": ";
 }
 button
-{	float: right;
-	width:10em;
+{	clear: right;
+	float: right;
 	margin-bottom:0.5em;
 	margin-right:1em;
-}
-#links
-{
-	margin-top: 1em;
-	margin-left: 30em;
 }
 #anlegen
 {	float: left;
@@ -223,7 +201,7 @@ td,th
 /* CSS-Regeln für alle Ausgabegeräte */
 @media (max-width: 600px) {   
     
-    /* Allgemein */
+   /* Allgemein */
     
     body{
         
@@ -231,29 +209,41 @@ td,th
     #webseite {
    		width :100%;
     }
-    nav{
-    	height: 2em;
+    nav a,
+    nav span,
+    nav ul ul a{
+    border-radius: 0;
+    margin:0;
     }
-    ul li {
-		float:none;
-		width:100%;
-    }	
-	nav ul ul {
-	/* Unterseite ausblenden */
-	font: 0/0 serif;
-	margin: 0 0 0 12em;
- 	padding: 0;
-	position: relative;
-	z-index:-1;
+	nav  ul  li {
+	  display: none;
 	}
-	nav ul ul li {
-	  float: none;
+	
+	nav  ul:hover li {
 	  display: block;
 	}
-	figure{
-	  margin: 0;
+	
+	nav > ul::before {
+	  display: block;
+	  content: "Menü";
+	  width: 10em;
+	  height: 0.5em;
+	  color: white;
+	  padding: 10px;
+	  font-weight: bold;
+	  border: 1px solid black;
+	  box-shadow: 0px 5px 10px white inset;
+	  color: black;
+	  background-color: white;
 	}
-	 
+	nav ul ul {
+	margin: 0;
+ 	padding-left: 1em;
+	}
+		figure{
+		  margin: 0;
+		}
+		 
 	figure.bild1 {
 	  display: inline-block;
 	  width: 49%;
@@ -273,12 +263,16 @@ td,th
 		float:left;
 	}
 	label {
-	width: 38%;
+		display: none;
 	}
 	input,textarea {
 		width: 55%;
 		margin-bottom:0.5em;
 		margin-right: 0.5em;
+	}
+	img{
+	width: 100%;
+	height: auto;
 	}
 		
 }
