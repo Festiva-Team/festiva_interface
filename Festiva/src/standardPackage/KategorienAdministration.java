@@ -1,6 +1,8 @@
 package standardPackage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Klasse zur Administration von Kategorien
@@ -86,5 +88,40 @@ public class KategorienAdministration {
 		}
 		
 		return kategorie;
+	}
+	
+	
+	/**
+	 * Selektiert alle Kategorien aus der Datenbank (sortiert nach ID aufsteigend).
+	 * @return List<Kategorie>: Liste mit allen verfügbaren Kategorien und deren zugehörigen Daten
+	 */
+	public static List<Kategorie> selektiereAlleKategorien()
+	{
+		List<Kategorie> listKategorien = new ArrayList<Kategorie>();
+		String selectBefehl = "SELECT id, name, beschreibung, istgelöscht, bildpfad " + 
+							  "FROM festiva.kategorien " + 
+							  "ORDER BY id ASC";
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int kategorienID = ergebnismenge.getInt("id");
+				String name = ergebnismenge.getString("name");
+				String beschreibung = ergebnismenge.getString("beschreibung");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				String bildpfad = ergebnismenge.getString("bildpfad");
+				
+				listKategorien.add(new Kategorie(kategorienID, name, beschreibung, bildpfad, istGelöscht));
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listKategorien;
 	}
 }

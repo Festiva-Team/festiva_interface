@@ -158,8 +158,8 @@ public class BenutzerAdministration {
 	
 	
 	/**
-	 * Selektiert die Daten eines Benutzers aus der Datenbank
-	 * und liefert ein Benutzer-Objekt zurück
+	 * Selektiert alle Kunden aus der Datenbank
+	 * und liefert alle verfügbaren Daten zu den Kunden in Benutzer-Objekten
 	 * 
 	 * @return List<Benutzer>: Liste mit Benutzer-Objekten, die alle verfügbaren Daten beinhalten
 	 */
