@@ -1,23 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"
-	import="standardPackage.*"
-	import="java.util.*"
-	session="false"
-%>
-<%  
-    int userid = 0;
-	if (request.getSession(false) != null)
-	{
-		HttpSession session = request.getSession(false);
-		userid = Integer.parseInt(session.getAttribute("userid").toString());
-		if (BenutzerAdministration.selektiereBenutzerMitID(userid).gruppenID == 2){
-			// Wenn der angemeldete Benutzer ein Kunde ist
-			response.sendRedirect("k_startseite.jsp");	}
-	} else
-	{
-		response.sendRedirect("k_anmelden");
-	}
-    %>
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*"
+    session="false"	%>	
+
+<%  if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1 || request.getSession(false).getAttribute("benutzer") == null) {
+		response.sendRedirect("k_anmelden.jsp");}  
+	else {
+		Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer"); %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,17 +20,25 @@
     	<jsp:param name="active" value="adminKonto"/>
     </jsp:include>
 	<div id="main">
-		<form action="adminKonto.jsp">
+		<form action="/Festiva/Kundendaten?aktion=p_aendern" method="post">
 			<label class="h2" form="adminKonto">Mein Konto</label>
 			<div id="spaltelinks">
-				<label>Email</label>
-				<input type="email" size="30" value="">
-				<label>Passwort</label>
-				<input type="password" size="30" value=""> 
-				<label>Passwort bestätigen</label>
-				<input type="password" size="30" value=""> 
-				<button type="button" id="links">speichern</button>
+				<label for="email">E-Mail</label>
+				<input type="email" id="email" name="email" maxlength="50" disabled="disabled" value=<%=benutzer.eMailAdresse%>>
+				<label for="passwortalt">Altes Passwort</label>
+				<input type="password" name="passwortalt" id="passwortalt" maxlength="40">
+				<label for="passwortneu">Neues Passwort</label>
+				<input type="password" name="passwortneu" id="passwortneu" maxlength="40">
+				<label for="passwortbestätigung">Neues Passwort bestätigen</label>
+				<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40"> 
+				<button type="submit" id="links">Änderungen speichern</button>
 			</div>
+			<div id="spalterechts">
+					<% if (request.getSession().getAttribute("antwort") != null) 
+					{ %>
+					<p><%= request.getSession().getAttribute("antwort") %></p>
+					<% } request.getSession().removeAttribute("antwort"); %>
+				</div>
 		</form>
 	<div id="leer"></div>
 	</div>
@@ -50,3 +47,4 @@
 </div>	
 </body>
 </html>
+<% request.getSession().removeAttribute("benutzer");}%>

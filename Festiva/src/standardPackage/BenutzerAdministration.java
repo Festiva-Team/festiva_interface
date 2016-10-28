@@ -1,6 +1,8 @@
 package standardPackage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Klasse zur Administration von Benutzern
  * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Benutzern (Kunden und/oder Administratoren) aus der Datenbank
@@ -152,6 +154,56 @@ public class BenutzerAdministration {
 		}
 
 		return benutzer;
+	}
+	
+	
+	/**
+	 * Selektiert die Daten eines Benutzers aus der Datenbank
+	 * und liefert ein Benutzer-Objekt zurück
+	 * 
+	 * @return List<Benutzer>: Liste mit Benutzer-Objekten, die alle verfügbaren Daten beinhalten
+	 */
+	public static List<Benutzer> selektiereAlleKunden()
+	{
+		List<Benutzer> listBenutzer = new ArrayList<Benutzer>();
+		
+		String selectBefehl = 
+		"SELECT id, vorname, nachname, emailadresse, strasse, hausnummer, plz, ort, passworthash, " +
+		"istgesperrt, istgelöscht, iban, bic, einzugsermächtigungerteilt, gruppen_id " +
+		"FROM festiva.benutzer WHERE gruppen_id = 2 ORDER BY id ASC";			
+			
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int id = ergebnismenge.getInt("id");
+				String vorname = ergebnismenge.getString("vorname");
+				String nachname = ergebnismenge.getString("nachname");
+				String eMailAdresse = ergebnismenge.getString("emailadresse");
+				String strasse = ergebnismenge.getString("strasse");
+				String hausnummer = ergebnismenge.getString("hausnummer");
+				int plz = ergebnismenge.getInt("plz");
+				String ort = ergebnismenge.getString("ort");
+				String passwortHash = ergebnismenge.getString("PasswortHash");
+				boolean istGesperrt = ergebnismenge.getBoolean("istgesperrt");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				String iban = ergebnismenge.getString("iban");
+				String bic = ergebnismenge.getString("bic");
+				boolean einzugsermächtigungErteilt = ergebnismenge.getBoolean("einzugsermächtigungerteilt");
+				int gruppenID = ergebnismenge.getInt("gruppen_id");
+				
+				listBenutzer.add(new Benutzer(id, vorname, nachname, eMailAdresse, passwortHash, strasse, hausnummer, plz, ort,
+											  istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, gruppenID));
+				
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+		return listBenutzer;
 	}
 	
 }

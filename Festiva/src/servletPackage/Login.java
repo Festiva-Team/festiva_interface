@@ -3,7 +3,6 @@ package servletPackage;
 import standardPackage.*;
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,8 +64,10 @@ public class Login extends HttpServlet {
 
 						
 						if (benutzer.gruppenID == 1){
-							RequestDispatcher dispatcher = request.getRequestDispatcher("a_startseiteAdmin.jsp");
-							dispatcher.forward(request, response);
+							begrüßung = "Herzlich Willkommen bei Festiva!";
+							request.getSession(false).setAttribute("begrüßung", begrüßung);
+							request.getRequestDispatcher("a_startseiteAdmin.jsp").include(request, response);
+							
 						} else {
 							if((benutzer.vorname).equals("") && benutzer.nachname.equals("")) {
 							begrüßung = "Herzlich Willkommen bei Festiva!";	

@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-     <%
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*"
+    session="false"	%>
+<%
 /** 
 	# Autor: Nicola Kloke
 	# JSP-Name: kundenAendern.jsp
 	# JSP-Aktionen: Der Admin kann die Kundendaten ändern.
 */
-%>
+if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1 || request.getSession(false).getAttribute("benutzer") == null) {
+	response.sendRedirect("k_anmelden.jsp");} 
+else {
+	Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer"); %>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,78 +25,87 @@
     	<jsp:param name="active" value="kundenAendern"/>
     </jsp:include>
 		<div id="main">
-			<form action="kundenAendern.jsp" id="kundenAendern">
+			<form action="/Festiva/Kundendaten?aktion=aendern" method="post">
 				<label class="h2">Kunden ändern</label>
 	<div id="zeile">
 					<div id="spaltelinks">
 					<label for="vorname">Vorname</label>
-					<input type="text" id="vorname" maxlength="30">
+					<input type="text" id="vorname" name="vorname" maxlength="30" value=<%=benutzer.vorname%>>
 					</div>
 					<div id="spalterechts">
 					<label for="iban">IBAN</label>
-					<input type="text" id="iban" minlength="22" maxlength="22">
+					<input type="text" id="iban" name="iban" minlength="22" maxlength="22" value=<%=benutzer.iban%>>
 					</div>
 				</div>
 				<div id="zeile">
 					<div id="spaltelinks">
 					<label for="nachname">Nachname</label>
-					<input type="text" id="nachname" maxlength="40">
+					<input type="text" id="nachname" name="nachname" maxlength="40" value=<%=benutzer.nachname%>>
 					</div>
 					<div id="spalterechts">
 					<label for="bic">BIC</label>
-					<input type="text" id="bic" minlength="9" maxlength="12">
+					<input type="text" id="bic" name="bic" minlength="9" maxlength="11" value=<%=benutzer.bic%>>
 					</div>
 				</div>
 				<div id="zeile">
-					<div id="spaltelinks">
-					<label for="email">Email</label>
-					<input type="email" id="email" maxlength="50">
-					</div>
 					<div id="spalterechts">
-					<label for="passwort">neues Passwort</label>
-					<input type="password" id="email" maxlength="30">
-					</div>
-				</div>
-				<div id="zeile">
-					<div id="spaltelinks">
 					<label for="straße">Straße</label>
-					<input type="text" id="straße" maxlength="50">
+					<input type="text" id="straße" name="straße" maxlength="50" value=<%=benutzer.strasse%>>
+					<div id="spaltelinks">
+					<label for="email">E-Mail</label>
+					<input type="email" id="email" name="email" maxlength="50" value=<%=benutzer.eMailAdresse%>>
 					</div>
-					<div id="spalterechts">
-					<label for="passwort">neues Passwort bestätigen</label>
-					<input type="password" id="email" maxlength="30">
 					</div>
+					
 				</div>
 				<div id="zeile">
 					<div id="spaltelinks">
 					<label for="hausnummer">Hausnummer</label>
-					<input type="text" id="hausnummer" minlength="1" maxlength="5">
+					<input type="text" id="hausnummer" name="hausnummer" minlength="1" maxlength="5" value=<%=benutzer.hausnummer%>>
 					</div>
 					<div id="spalterechts">
 					<label for="einzugsermächtigungErteilt">Einzugsermächtigung erteilt</label>
-      				<input type="checkbox" id="einzugsermächtigungErteilt"><br>
+      				<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value=<%=benutzer.einzugsermächtigungErteilt%>><br>
 					</div>
 				</div>
 				<div id="zeile">
 					<div id="spaltelinks">
 					<label for="plz">PLZ</label>
-					<input type="text" id="plz" minlength="5" maxlength="5">
+					<input type="text" id="plz" name="plz" minlength="5" maxlength="5" value=<%=benutzer.plz%>>
 					</div>
 					<div id="spalterechts">
 					<label for="gesperrt">gesperrt</label>
-      				<input type="checkbox" id="gesperrt"><br>
+      				<input type="checkbox" id="gesperrt" name="gesperrt"><br>
 					</div>
 				</div>
 				<div id="zeile">
 					<div id="spaltelinks">
 					<label for="ort">Ort</label>
-					<input type="text" id="ort" maxlength="30">
+					<input type="text" id="ort" name="ort" maxlength="30" value=<%=benutzer.ort%>>
 					</div>
 					<div id="spalterechts">
-					<button type="button" id="links">Speichern</button>
+					<button type="submit" id="links">Änderungen speichern</button>
 					</div>
 				</div>
 			</form>
+			<form action="/Festiva/Kundenverwaltung?aktion=pw_aendern" method="post">
+					<div id="spaltelinks">
+					<label for="passwortneu">Neues Passwort</label>
+					<input type="password" id="passwortneu" name="passwortneu" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<label for="passwortbestätigung">Neues Passwort bestätigen</label>
+					<input type="password" id="passwortbestätigung" name="passwortbestätigung" maxlength="30">
+					</div>
+					<div id="spalterechts">
+					<button type="submit" id="links">Passwort ändern</button>
+					</div>
+					</form>
+			<form action="/Festiva/Kundenverwaltung?aktion=loeschen" method="post">
+			<div id="spalterechts">
+					<button type="submit" id="links">Kunden löschen</button>
+					</div>
+					</form>
 		<div id="leer"></div>
 		</div>
 		<div id="footer">
@@ -99,3 +113,4 @@
 </div>	
 </body>
 </html>
+<% request.getSession().removeAttribute("benutzer");}%>

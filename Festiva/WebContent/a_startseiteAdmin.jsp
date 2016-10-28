@@ -7,7 +7,11 @@
 	# JSP-Aktionen: Die Startseite des Admins wird angezeigt.
 	# 				Von hier aus kann er die Verwaltung der Kunden, Kategorien und Festivals vornehmen.
 */
-%>
+
+
+if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
+response.sendRedirect("k_anmelden.jsp");}
+ %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,6 +26,7 @@
 	</jsp:include>
 	<div id="main">
 		<h1>Adminbereich</h1>
+		<p><%= request.getSession().getAttribute("begrüßung") %></p>
 	</div>
 		<div id="footer">
 		</div>

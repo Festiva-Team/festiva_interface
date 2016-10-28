@@ -36,7 +36,7 @@ public class Kundendaten extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		String antwort = "";
 		
-		if(session != null && session.getAttribute("begrüßung") != null) {
+		if(session != null && session.getAttribute("begrüßung") != null ) {
 			
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
 			Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
@@ -44,14 +44,22 @@ public class Kundendaten extends HttpServlet {
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
 				
 				session.setAttribute("benutzer", benutzer);
+				if(Integer.parseInt(session.getAttribute("gruppenid").toString()) == 1) {
+					request.getRequestDispatcher("a_adminKonto.jsp").include(request, response);
+				} else {
 				request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
+				}
 				
 			} else {
 				if ((request.getParameter("aktion")).equals("aendern")) {
 					
+					String eMail = request.getParameter("email");
+					if ((!(benutzer.eMailAdresse).equals(eMail)) && BenutzerAdministration.selektiereBenutzer(eMail) != null) {
+						antwort = "Zu der eingegebenen E-Mail-Adresse existiert bereits ein anderes Benutzerkonto. Verwenden Sie bitte eine andere E-Mail-Adresse.";
+					} else {
+					
 					String vorname = request.getParameter("vorname");
 					String nachname = request.getParameter("nachname");
-					String eMail = request.getParameter("email");
 					String strasse = request.getParameter("strasse");
 					String hausnummer = request.getParameter("hausnummer");
 					int plz = 0;
@@ -79,7 +87,7 @@ public class Kundendaten extends HttpServlet {
 					
 					benutzer = new Benutzer(userid, vorname, nachname, eMail, passwort, strasse, hausnummer, plz, ort, istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, 2);
 					BenutzerAdministration.aktualisiereBenutzer(benutzer);		
-					antwort = "Die Änderungen an Ihren persönlichen Daten wurden gespeichert!";
+					antwort = "Die Änderungen an Ihren persönlichen Daten wurden gespeichert!";}
 					
 				} else {
 					
