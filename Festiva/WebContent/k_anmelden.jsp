@@ -29,7 +29,7 @@
 					<label for="email">E-Mail</label>
 					<input type="email" name="email" id="email" maxlength="30" required="required" placeholder="E-Mail">
 					<label for="passwort">Passwort</label>
-					<input type="password" name="passwort" id="passwort" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" placeholder="Passwort">
+					<input type="password" name="passwort" id="passwort" maxlength="40" required="required" placeholder="Passwort">
 					<button type="submit" id="links">Anmelden</button>	
 				</div>
 				<div id="spalterechts">
