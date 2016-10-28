@@ -1,5 +1,6 @@
 <%@ page import = "standardPackage.*" %>
 <%@ page import = "java.util.*" %>
+<%@ page import = "java.text.*" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -57,14 +58,22 @@
 					</tr>
 					<%
 						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(0, "", "", null, null, 0);
+						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
 						for (FestivalSuchobjekt festival : festivalliste)
 						{%>
 							<tr>
 								<td><%=festival.name%></td>
-								<td><%=festival.startDatum%></td>
+								<td><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
 								<td><%=festival.ort%></td>
 								<td><%=festival.kategorienID%></td>
-								<td><%=festival.id %></td>
+								<% if (festival.vonPreis == festival.bisPreis)
+								{%>
+								<td><%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
+								<%}
+								else
+								{%>
+								<td><%=String.format("%.2f",festival.vonPreis)%> &#8364; - <%=String.format("%.2f",festival.bisPreis)%> &#8364;</td>
+								<%} %>
 							</tr><%
 							
 						}
