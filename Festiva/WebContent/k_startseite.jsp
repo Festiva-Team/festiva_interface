@@ -30,8 +30,6 @@
 					<a href="k_shop.jsp">
 					<img src="/Festiva/Bilder/Rock.jpg"/>
 					</a>
-				</figure>
-				<figure class="bild1">
 					<a href="k_shop.jsp">
 					<img src="/Festiva/Bilder/Metal.jpg"/>
 					</a>
@@ -40,8 +38,6 @@
 					 <a href="k_shop.jsp">
 					 <img src="/Festiva/Bilder/Electro.jpg"/>
 					 </a>
-				</figure>
-				<figure class="bild2">
 					 <a href="k_shop.jsp">
 					 <img src="/Festiva/Bilder/Schlager.jpg"/>
 					 </a>

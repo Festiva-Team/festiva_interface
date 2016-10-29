@@ -23,7 +23,7 @@ response.sendRedirect("k_anmelden.jsp");}
     </jsp:include>
 	<div id="main">
 			<label class="h2">Festival anlegen</label>
-			<div class="row">
+			<div id="zeile1">
 				<div id="spaltelinks">
 					<label for="festivalname">Festivalname</label>
 					<input type="text" id="name" maxlength="30">
