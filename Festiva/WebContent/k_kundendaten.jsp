@@ -20,7 +20,7 @@ if (request.getSession(false) != null && request.getSession(false).getAttribute(
     </jsp:include>
 		<div id="main">
 			<form action="/Festiva/Kundendaten?aktion=aendern" method="post">
-				<label class="h2">Meine persönlichen Daten</label>
+				<h2>Meine persönlichen Daten</h2>
 				<div id="zeile">
 					<div id="spaltelinks">
 						<label for="vorname">Vorname</label>
