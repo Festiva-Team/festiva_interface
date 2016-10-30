@@ -43,8 +43,7 @@
 				<div id="leer"></div>
 			</form>
 		</div>
-		<div id="footer">
-		</div>
+		<footer></footer>
 	</div>	
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.io.File"
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*" import="java.io.File"
     session="false"	%>
  <%
 /** 
@@ -40,17 +40,17 @@ bildLaden.tu_es();
     </jsp:include>
 	<div id="main">
 		<form action="/Festiva/Kategorienverwaltung?aktion=datenaendern&kategorienid=<%=kategorie.id%>" method="POST" enctype="multipart/form-data">
-		<label class="h2" form="kategorieAnlegen">Kategorie ändern</label>
-		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="zeile">
+			<h2>Kategorie ändern</h2>
+			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<div id="spaltelinks">
 					<label for="name">Kategorienname*</label>
-					<input type="text" id="name" name="name" maxlength="30" value=<%=kategorie.name%>>
+					<input type="text" id="name" name="name" maxlength="30" value="<%=kategorie.name%>">
 					<label for="beschreibung">Beschreibung*</label>
-					<input type="text" id="beschreibung" name="beschreibung" maxlength="100" value=<%=kategorie.beschreibung%>>
+					<textarea rows="5" id="beschreibung" name="beschreibung"><%=kategorie.beschreibung%></textarea>
 					<label for="bild">Neues Bild</label>
 					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
-					<button type="submit" id="links">Änderungen speichern</button>
+					<button type="submit">Änderungen speichern</button>
 				</div>
 			</div>
 		</form>
@@ -64,7 +64,7 @@ bildLaden.tu_es();
 					<figure class="bild1">
 					<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150 />
 					<h5>Das aktuellste Bild wird noch nicht angezeigt? Bitte aktualisieren Sie die Seite.</h5>
-					<button type="submit" id="links">Aktualisieren</button>
+					<button type="submit">Aktualisieren</button>
 					</figure>
 					<%} %>
 					</form>
@@ -76,7 +76,7 @@ bildLaden.tu_es();
 				</div>	
 	<div id="leer"></div>
 	</div>
-	<div id="footer"></div>
+	<footer></footer>
 </div>	
 </body>
 </html>

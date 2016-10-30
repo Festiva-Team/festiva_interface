@@ -21,7 +21,7 @@ response.sendRedirect("k_anmelden.jsp");}
     <jsp:include page="a_headerAdmin.jsp">
     	<jsp:param name="active" value="kundenAnlegen"/>
     </jsp:include>
-					<div id="main">
+	<div id="main">
 		<form action="/Festiva/Registrierung" method="post">
 			<div id="zeile">
 			<div id="spaltelinks">

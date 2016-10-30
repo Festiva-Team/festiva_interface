@@ -18,7 +18,7 @@
 	    <jsp:include page="k_header.jsp">
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
-	    <div id="zeile1">
+	    <div id="zeile">
 	    <% if (request.getSession().getAttribute("begrüßung") != null) 
 		{ %>
 		<h1><%= request.getSession().getAttribute("begrüßung") %></h1>

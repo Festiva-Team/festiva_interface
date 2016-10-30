@@ -25,8 +25,8 @@ else {
    		<jsp:param name="active" value="kundenverwaltung"/>
   	</jsp:include>	
     <div id="main">
-    	<h2>Kundenverwaltung</h2>
 			<div id="spaltelinks">
+    		<h2>Kundenverwaltung</h2>
 				<button type="button" id="anlegen" onClick="window.location.href='a_kundenAnlegen.jsp'">Neuen Kunden anlegen </button>
 				<input type="search" id="suche" maxlength="30" placeholder="Suche">
 				</div>
@@ -49,14 +49,14 @@ else {
 								<% } %>
 								<td data-label="E-Mail"><%=benutzer.eMailAdresse%></td>
 								<%if (benutzer.istGesperrt == false) { %>
-								<td data-label="gesperrt"><%="nein"%></td>
+								<td data-label="Gesperrt"><%="nein"%></td>
 								<% } else { %>
-								<td data-label="gesperrt"><%="ja"%></td>
+								<td data-label="Gesperrt"><%="ja"%></td>
 								<% } %>
 								<%if (benutzer.istGelöscht == false) { %>
-								<td data-label="gelöscht"><%="nein"%></td>
+								<td data-label="Gelöscht"><%="nein"%></td>
 								<% } else { %>
-								<td data-label="gelöscht"><%="ja"%></td>
+								<td data-label="Gelöscht"><%="ja"%></td>
 								<% } %>
 					</tr></tbody>
 					<% } %>

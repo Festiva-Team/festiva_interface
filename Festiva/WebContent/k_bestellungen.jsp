@@ -14,7 +14,7 @@
     	</jsp:include>
     	<div id="main">
     		<form id="table">
-				<label class="h2">Meine Bestellungen</label>
+				<h2>Meine Bestellungen</h2>
 				<table class= "artikel">
 					<tr><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr>
 					<tr><td>Festival</td><td>Beschreibung</td><td>Preis</td><td>Anzahl</td><td>Preis*Anzahl</td></tr>
@@ -23,7 +23,7 @@
 			
 		</div>
 		<div id="leer"></div>
-		<div id="footer"></div>
+		<footer></footer>
 	</div>
 </body>
 </html>

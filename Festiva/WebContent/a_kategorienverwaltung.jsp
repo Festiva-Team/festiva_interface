@@ -25,39 +25,37 @@ else {
    		<jsp:param name="active" value="kategorienverwaltung"/>
   	</jsp:include>
   	<div id="main">
-    	<form action="kategorienverwaltung.jsp" id="kategorienverwaltung">
-	    	<label class="h2" form="kundenverwaltung">Kategorienverwaltung</label>
+	    	<h2>Kategorienverwaltung</h2>
 	    		<div id="spaltelinks">
 				<button type="button" id="anlegen" onClick="window.location.href='a_kategorieAnlegen.jsp'"> Neue Kategorie anlegen </button>
+				<input type="search" id="suche" maxlength="30" placeholder="Suche">
 				</div>
-				<div id="spaltetabelle">
-				<table class="table">
-					<tr><th>ID</th><th>Name</th><th>Beschreibung</th><th>Bild</th><th>Gelöscht</th></tr>
+				<div id="zeile">
+				<table>
+				<thead><tr><th>ID</th><th>Name</th><th>Beschreibung</th><th>Bild</th><th>Gelöscht</th></tr></thead>	
 					<%for (Kategorie kategorie : listKategorien) { %>
-					<tr>
+				<tbody><tr>
 								
-								<td><a href="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>"><%=kategorie.id%></a></td>
-								<td><%=kategorie.name%></td>
-								<td><%=kategorie.beschreibung%></td>
+								<th data-label="Kategorie"><a href="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>"><%=kategorie.id%></a></td>
+								<td data-label="Name"><%=kategorie.name%></td>
+								<td data-label="Beschreibung"><%=kategorie.beschreibung%></td>
 								<%if (kategorie.bildpfad == null || (kategorie.bildpfad).equals("")) { %>
-								<td><%="nein"%></td>
+								<td data-label="Bild"><%="nein"%></td>
 								<% } else { %>
-								<td><%="ja"%></td>
+								<td data-label="Bild"><%="ja"%></td>
 								<% } %>
 								<%if (kategorie.istGelöscht == false) { %>
-								<td><%="nein"%></td>
+								<td data-label="Gelöscht"><%="nein"%></td>
 								<% } else { %>
-								<td><%="ja"%></td>
+								<td data-label="gelöscht"><%="ja"%></td>
 								<% } %>
-					</tr>
+					</tr></tbody>	
 					<% } %>
 				</table>
 			</div>
-		</form> 
 	<div id="leer"></div>
 	</div>  	
-	<div id="footer">
-	</div>
+	<footer></footer>
 </div>
 </body>
 </html>

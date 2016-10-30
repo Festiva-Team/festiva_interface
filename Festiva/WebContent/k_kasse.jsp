@@ -13,12 +13,11 @@
    		<jsp:param name="active" value="warenkorb"/>
    	</jsp:include>
    	<div id="main">
-   		<form>
-			<label class="h2">Kasse</label>
 			<div id="zeile">
 				<div id="spaltelinks">
+				<h2>Kasse</h2>
 				<fieldset id="Lieferungsdaten" disabled>		
-					<label class="h2">Lieferungsdaten</label><br/>
+					<h2>Lieferungsdaten</h2><br/>
 				    <label for="input2">Vorname</label> 
 				    <input value=""><br/> 
 				    <label for="input2">Nachname</label> 
@@ -35,26 +34,22 @@
 				</div>
 				<div id="spalterechts">
 					<fieldset id="Zahlungsdaten" disabled>
-					  	<label class="h2">Zahlungsdaten</label><br/>
+					  	<h2>Zahlungsdaten</h2><br/>
 					    <label for="input2">IBAN:</label> <input value=""><br/> 
 					    <label for="input2">BIC:</label> <input value=""><br/>
 					</fieldset>
 				</div>
 			</div>
 			<div id="zeile">
-			<div id="spaltetabelle">
-	   		<form id="table">
 				<table class= "artikel">
 					<tr><th>Festival</th><th>Artikeleschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr>			
 				</table>
-				<button type="button" id ="links">Kaufen</button>
-			</form>
+				<button type="button">Kaufen</button>
 			</div>
 			</div>
-		</form>
 	<div id="leer"></div>
 	</div>
-	<div id="footer"></div>
+	<footer></footer>
 </div>
 </body>
 </html>

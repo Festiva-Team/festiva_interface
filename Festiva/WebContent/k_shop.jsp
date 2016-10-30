@@ -25,9 +25,9 @@
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
 		<div id="main">
-				<h2>Shop</h2>
 				<div id="zeile1">
-					<div id="spaltelinks">
+				<h2>Shop</h2>
+					<div id="spaltelinks">					
 						<label for="name">Name</label>
 						<input type="search" id="name" maxlength="30" placeholder="Festivalname">
 						<label for="kategorie">Kategorie</label>	
@@ -42,7 +42,7 @@
 						<input type="date" id="datum" maxlength="30">
 						<label for="preis">max Preis</label>
 						<input type="text" id="preis" maxlength="8">
-						<button type="button" id="rechts">suchen</button>
+						<button type="button">suchen</button>
 					</div>
 				</div>		
 				<table>

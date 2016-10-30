@@ -23,17 +23,17 @@ response.sendRedirect("k_anmelden.jsp");}
     </jsp:include>
 	<div id="main">
 		<form action="/Festiva/Kategorienverwaltung?aktion=anlegen" method="POST" enctype="multipart/form-data">
-			<label class="h2" form="kategorieAnlegen">Kategorie anlegen</label>
-			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="zeile">
 				<div id="spaltelinks">
+					<h2>Kategorie anlegen</h2>		
+					<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 					<label for="name">Kategorienname*</label>
 					<input type="text" id="name" name="name" maxlength="30">
 					<label for="beschreibung">Beschreibung*</label>
-					<input type="text" id="beschreibung" name="beschreibung" maxlength="100">
+					<textarea rows="5" id="beschreibung" name="beschreibung"></textarea>
 					<label for="bild">Bild</label>
 					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
-					<button type="submit" id="links">Anlegen</button>
+					<button type="submit">Anlegen</button>
 				</div>
 			</div>
 		</form>
@@ -45,8 +45,7 @@ response.sendRedirect("k_anmelden.jsp");}
 				</div>	
 	<div id="leer"></div>
 	</div>
-	<div id="footer">
-	</div>
+	<footer></footer>
 </div>	
 </body>
 </html>

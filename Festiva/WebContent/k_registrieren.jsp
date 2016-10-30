@@ -23,7 +23,7 @@
    	 	</jsp:include>
 		<div id="main">
 		<form action="/Festiva/Registrierung" method="post">
-			<div id="zeile1">
+			<div id="zeile">
 			<div id="spaltelinks">
 				<h2>Registrierung</h2>
 				<label for="email">E-Mail</label>

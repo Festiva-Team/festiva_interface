@@ -20,9 +20,9 @@ if (request.getSession(false) != null && request.getSession(false).getAttribute(
     </jsp:include>
 		<div id="main">
 			<form action="/Festiva/Kundendaten?aktion=aendern" method="post">
-				<h2>Meine persönlichen Daten</h2>
 				<div id="zeile">
 					<div id="spaltelinks">
+						<h2>Meine persönlichen Daten</h2>
 						<label for="vorname">Vorname</label>
 						<input type="text" id="vorname" name="vorname" maxlength="30" value=<%=benutzer.vorname%>>
 						<label for="nachname">Nachname</label>
@@ -48,7 +48,7 @@ if (request.getSession(false) != null && request.getSession(false).getAttribute(
 	      					   <%=benutzer.einzugsermächtigungErteilt%>
 	      					   <% if (benutzer.einzugsermächtigungErteilt == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> ><br>
-						<button type="submit" id="rechts">Änderungen speichern</button>
+						<button type="submit">Änderungen speichern</button>
 					</div>
 				</div>
 			</form>
@@ -56,14 +56,14 @@ if (request.getSession(false) != null && request.getSession(false).getAttribute(
 			<form action="/Festiva/Kundendaten?aktion=p_aendern" method="POST">
 				<div id="zeile">
 				<div id="spaltelinks">
-					<label class="h2">Mein Passwort</label>
+					<h2>Mein Passwort</h2>
 					<label for="passwortalt">Altes Passwort</label>
 					<input type="password" name="passwortalt" id="passwortalt" maxlength="40">
 					<label for="passwortneu">Neues Passwort</label>
 					<input type="password" name="passwortneu" id="passwortneu" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<label for="passwortbestätigung">Neues Passwort bestätigen</label>
 					<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
-					<button type="submit" id="links">Passwort ändern</button>	
+					<button type="submit">Passwort ändern</button>	
 				</div>
 				<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 
@@ -73,8 +73,6 @@ if (request.getSession(false) != null && request.getSession(false).getAttribute(
 					     request.getSession().removeAttribute("benutzer");%>
 				</div>
 				</div>
-				
-				<div id="leer"></div>
 			</form>
 		<div id="leer"></div>
 		</div>

@@ -21,8 +21,8 @@
     </jsp:include>
 	<div id="main">
 		<form action="/Festiva/Kundendaten?aktion=p_aendern" method="post">
-			<label class="h2" form="adminKonto">Mein Konto</label>
 			<div id="spaltelinks">
+				<h2>Mein Konto</h2>
 				<label for="email">E-Mail</label>
 				<input type="email" id="email" name="email" maxlength="50" disabled="disabled" value=<%=benutzer.eMailAdresse%>>
 				<label for="passwortalt">Altes Passwort</label>
@@ -42,8 +42,7 @@
 		</form>
 	<div id="leer"></div>
 	</div>
-	<div id="footer">
-	</div>
+	<footer></footer>
 </div>	
 </body>
 </html>

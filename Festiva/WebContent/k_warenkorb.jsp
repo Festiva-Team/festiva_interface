@@ -13,20 +13,17 @@
     		<jsp:param name="active" value="warenkorb"/>
     	</jsp:include>
     	<div id="main">
-    		<form id="table">
-				<label class="h2">Warenkorb</label>
+				<h2>Warenkorb</h2>
 				<table class= "artikel">
 					<tr><th>Festival</th><th>Artikeleschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr>
 					<tr><td>Festival</td><td>Beschreibung</td><td>Preis</td><td><select><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td><td>Preis*Anzahl</td><td><button>löschen</button></td></tr>
 				</table>
 				<div id="spalterechts">
 						<button type="button" onClick="window.location.href='k_kasse.jsp'">Zur Kasse</button>
-				</div>
-			</form>
-			
+				</div>			
 		</div>
 		<div id="leer"></div>
-		<div id="footer"></div>
+		<footer></footer>
 	</div>
 </body>
 </html>

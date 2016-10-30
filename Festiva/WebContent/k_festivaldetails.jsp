@@ -21,7 +21,6 @@
 					</table>
 				</div>
 			</div>
-			<form id="table">
 				<label class="h2">Artikel</label>
 				<table class= "artikel">
 					<tr><th>Beschreibung</th><th>Preis</th><th>Anzahl</th></tr>
@@ -30,10 +29,9 @@
 				<div id="spalterechts">
 						<button type="button" onClick="window.location.href='k_warenkorb.jsp'">Zum Warenkorb</button>
 				</div>
-			</form>
 			<div id="leer"></div>
 		</div>
-	<div id="footer"></div>
+	<footer></footer>
 	</div>	
 </body>
 </html>
