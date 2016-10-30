@@ -34,9 +34,9 @@ else {
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<div id="spaltelinks">
 					<label for="name">Kategorienname*</label>
-					<input type="text" id="name" name="name" maxlength="30" value="<%=kategorie.name%>">
+					<input type="text" id="name" name="name" maxlength="30" required="required" value="<%=kategorie.name%>">
 					<label for="beschreibung">Beschreibung*</label>
-					<textarea rows="5" id="beschreibung" name="beschreibung"><%=kategorie.beschreibung%></textarea>
+					<textarea rows="5" id="beschreibung" name="beschreibung" required="required"><%=kategorie.beschreibung%></textarea>
 					<label for="bild">Neues Bild</label>
 					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
 					<button type="submit">Änderungen speichern</button>

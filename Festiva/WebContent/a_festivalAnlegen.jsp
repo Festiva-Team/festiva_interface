@@ -33,13 +33,13 @@ else {
 			<div id="zeile1">
 				<div id="spaltelinks">
 					<label for="name">Festivalname*</label>
-					<input type="text" id="name" name="name" maxlength="30">
+					<input type="text" id="name" name="name" required="required" maxlength="30">
 					<label for="ort">Ort*</label>
-					<input type="text" id="ort"  name="ort" maxlength="30">	
+					<input type="text" id="ort"  name="ort" required="required" maxlength="30">	
 					<label for="startdatum">Startdatum*</label>
-					<input type="date" id="startdatum" name="startdatum" maxlength="30">
+					<input type="date" id="startdatum" name="startdatum" required="required" maxlength="30">
 					<label for="kurzbeschreibung">Kurzbeschreibung*</label>
-					<textarea rows="5" cols="25" id="kurzbeschreibung" name="kurzbeschreibung"></textarea>
+					<textarea rows="5" cols="25" id="kurzbeschreibung" name="kurzbeschreibung" required="required"></textarea>
 				</div>
 				<div id="spalterechts">
 					<label for="kategorie">Kategorie*</label>	
@@ -51,9 +51,9 @@ else {
 					<label for="bild">Bild</label>
 					<input type="file" id="bild" name="bild" accept="image/*">
 					<label for="enddatum">Enddatum*</label>
-					<input type="date" id="enddatum" name="enddatum" maxlength="30">
+					<input type="date" id="enddatum" name="enddatum" required="required" maxlength="30">
 					<label for="langbeschreibung">Langbeschreibung*</label>
-					<textarea rows="10" cols="25" id="langbeschreibung" name="langbeschreibung"></textarea>
+					<textarea rows="10" cols="25" id="langbeschreibung" name="langbeschreibung" required="required"></textarea>
 					<button type="submit" id="links">Anlegen</button>
 				</div>
 			</div>	

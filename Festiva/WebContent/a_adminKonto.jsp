@@ -26,13 +26,16 @@
 				<label for="email">E-Mail</label>
 				<input type="email" id="email" name="email" maxlength="50" disabled="disabled" value="<%=benutzer.eMailAdresse%>">
 				<label for="passwortalt">Altes Passwort</label>
-				<input type="password" name="passwortalt" id="passwortalt" maxlength="40">
+				<input type="password" name="passwortalt" id="passwortalt" maxlength="40" required="required"> 
 				<label for="passwortneu">Neues Passwort</label>
-				<input type="password" name="passwortneu" id="passwortneu" maxlength="40">
+				<input type="password" name="passwortneu" id="passwortneu" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 				<label for="passwortbestätigung">Neues Passwort bestätigen</label>
-				<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40"> 
+				<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"> 
 				<button type="submit" id="links">Änderungen speichern</button>
 			</div>
+			<div id="spalterechts">
+					<p>Hinweis: Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
+				</div>	
 			<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>

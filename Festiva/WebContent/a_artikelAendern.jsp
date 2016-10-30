@@ -26,9 +26,9 @@ else {
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="spaltelinks">
 				<label for="beschreibung">Beschreibung*</label>
-				<input type="text" id="beschreibung" name="beschreibung" maxlength="100" value="<%=artikel.beschreibung%>">
+				<input type="text" id="beschreibung" name="beschreibung" maxlength="100" required="required" value="<%=artikel.beschreibung%>">
 				<label for="preis">Preis in Euro*</label>
-				<input type="number" step="0.01" min="0" id="preis" name="preis" maxlength="7" value="<%=artikel.preis%>"><br>				
+				<input type="number" step="0.01" min="0" id="preis" name="preis" maxlength="7" required="required" value="<%=artikel.preis%>"><br>				
 				<button type="submit" id="links">Änderungen speichern</button>
 			</div>
 		</form>

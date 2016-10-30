@@ -37,13 +37,13 @@ else {
 				 <div class="row">
 					<div id="spaltelinks">
 						<label for="name">Festivalname*</label>
-						<input type="text" id="name" name="name" maxlength="30" value="<%=festival.name%>">
+						<input type="text" id="name" name="name" maxlength="30" required="required" value="<%=festival.name%>">
 						<label for="ort">Ort*</label>
-						<input type="text" id="ort" name="ort" maxlength="30" value="<%=festival.ort%>">				
+						<input type="text" id="ort" name="ort" maxlength="30" required="required" value="<%=festival.ort%>">				
 						<label for="startdatum">Startdatum*</label>
-						<input type="date" id="startdatum" name="startdatum" maxlength="30" value="<%=date.format(festival.startDatum)%>">
+						<input type="date" id="startdatum" name="startdatum" maxlength="30" required="required" value="<%=date.format(festival.startDatum)%>">
 						<label for="kurzbeschreibung">Kurzbeschreibung*</label>
-						<textarea rows="5" id="kurzbeschreibung" name="kurzbeschreibung" cols="25"><%=festival.kurzbeschreibung%></textarea>
+						<textarea rows="5" id="kurzbeschreibung" name="kurzbeschreibung" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
 					</div>
 					<div id="spalterechts">
 						<label for="kategorie">Kategorie*</label>	
@@ -58,9 +58,9 @@ else {
 						<label for="bild">Neues Bild</label>
 						<input type="file" id="bild" name="bild" accept="image/*">
 						<label for="enddatum">Enddatum*</label>
-						<input type="date" id="enddatum" name="enddatum" maxlength="30" value="<%=date.format(festival.endDatum)%>">
+						<input type="date" id="enddatum" name="enddatum" maxlength="30" required="required" value="<%=date.format(festival.endDatum)%>">
 						<label for="langbeschreibung">Langbeschreibung*</label>
-						<textarea rows="10" id="langbeschreibung" name="langbeschreibung" cols="25"><%=festival.langbeschreibung%></textarea>
+						<textarea rows="10" id="langbeschreibung" name="langbeschreibung" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
 						<button type="submit" id="links">Änderungen speichern</button>
 					</div>
 				</div>

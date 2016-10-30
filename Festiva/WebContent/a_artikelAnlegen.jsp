@@ -26,9 +26,9 @@ else {
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="spaltelinks">
 			<label for="beschreibung">Beschreibung*</label>
-			<input type="text" id="beschreibung" name="beschreibung" maxlength="100">
+			<input type="text" id="beschreibung" name="beschreibung" required="required" maxlength="100">
 			<label for="preis">Preis in Euro*</label>
-			<input type="number" step="0.01" min="0" id="preis" name="preis" maxlength="7"><br>
+			<input type="number" step="0.01" min="0" id="preis" name="preis" required="required" maxlength="7"><br>
 			<button type="submit" id="links">Anlegen</button>
 			</div>
 		</form>	

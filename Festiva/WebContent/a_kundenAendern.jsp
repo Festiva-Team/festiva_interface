@@ -35,7 +35,7 @@ else {
 					<label for="nachname">Nachname</label>
 					<input type="text" id="nachname" name="nachname" maxlength="40" value="<%=benutzer.nachname%>">
 					<label for="email">E-Mail*</label>
-					<input type="email" id="email" name="email" maxlength="50" value="<%=benutzer.eMailAdresse%>">
+					<input type="email" id="email" name="email" maxlength="50" required="required" value="<%=benutzer.eMailAdresse%>">
 					<label for="strasse">Straße</label>
 					<input type="text" id="strasse" name="strasse" maxlength="50" value="<%=benutzer.strasse%>">
 					<label for="hausnummer">Hausnummer</label>
@@ -69,9 +69,9 @@ else {
 					<div id="spalterechts">
 					<h2>Passwort ändern</h2>
 					<label for="passwortneu">Neues Passwort</label>
-					<input type="password" id="passwortneu" name="passwortneu" maxlength="30">
+					<input type="password" id="passwortneu" name="passwortneu" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<label for="passwortbestätigung">Neues Passwort bestätigen</label>
-					<input type="password" id="passwortbestätigung" name="passwortbestätigung" maxlength="30">
+					<input type="password" id="passwortbestätigung" name="passwortbestätigung" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<button type="submit" id="links">Passwort ändern</button>
 					</div>
 					</form>
@@ -81,6 +81,9 @@ else {
 					<button type="submit" id="links">Kunden löschen</button>
 					</div>
 					</form>
+					<div id="spalterechts">
+					<p>Hinweis: Das Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
+				</div>	
 					<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>
