@@ -22,20 +22,27 @@ response.sendRedirect("k_anmelden.jsp");}
     	<jsp:param name="active" value="kategorieAnlegen"/>
     </jsp:include>
 	<div id="main">
-		<form action="kategorieAnlegen.jsp" id="kategorieAnlegen">
+		<form action="/Festiva/Kategorienverwaltung?aktion=anlegen" method="POST" enctype="multipart/form-data">
 			<label class="h2" form="kategorieAnlegen">Kategorie anlegen</label>
+			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="zeile">
 				<div id="spaltelinks">
-					<label for="name">Kategorienname</label>
-					<input type="text" id="name" maxlength="30">
-					<label for="beschreibung">Beschreibung</label>
-					<input type="text" id="beschreibung" maxlength="100">
+					<label for="name">Kategorienname*</label>
+					<input type="text" id="name" name="name" maxlength="30">
+					<label for="beschreibung">Beschreibung*</label>
+					<input type="text" id="beschreibung" name="beschreibung" maxlength="100">
 					<label for="bild">Bild</label>
-					<input type="file" accept="image/*"><br>
-					<button type="button" id="links">Speichern</button>
+					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+					<button type="submit" id="links">Anlegen</button>
 				</div>
 			</div>
 		</form>
+		<div id="spalterechts">
+					<% if (request.getSession().getAttribute("antwort") != null) 
+					{ %>
+					<p><%= request.getSession().getAttribute("antwort") %></p>
+					<% request.getSession().removeAttribute("antwort");}  %>
+				</div>	
 	<div id="leer"></div>
 	</div>
 	<div id="footer">
