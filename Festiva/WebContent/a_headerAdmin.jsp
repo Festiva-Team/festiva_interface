@@ -22,7 +22,7 @@
   			<ul>
 		    	<li><a href="a_startseiteAdmin.jsp">Home</a></li>
 		        <li><a href="/Festiva/Kategorienverwaltung?aktion=anzeigen"">Kategorienverwaltung</a></li>
-		        <li><a href="a_festivalverwaltung.jsp">Festivalverwaltung</a></li>
+		        <li><a href="/Festiva/Festivalverwaltung?aktion=anzeigen">Festivalverwaltung</a></li>
 		        <li><a href="/Festiva/Kundenverwaltung?aktion=anzeigen">Kundenverwaltung</a></li>
 		        <li><a href="#">Adminkonto</a>	
 		        	<ul>

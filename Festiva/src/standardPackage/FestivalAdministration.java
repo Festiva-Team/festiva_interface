@@ -102,7 +102,7 @@ public class FestivalAdministration {
 	 * Selektiert alle Festivals aus der Datenbank.
 	 * @return List<Festival>: Liste mit Festival-Objekten, die alle verfügbaren Daten beinhalten
 	 */
-	public static List<Festival> selektiereAlleFestival()
+	public static List<Festival> selektiereAlleFestivals()
 	{
 		List<Festival> listFestivals = new ArrayList<Festival>();;
 		String selectBefehl = "SELECT id, name, ort, kurzbeschreibung, langbeschreibung, startdatum, enddatum, istgelöscht, bildpfad, kategorien_id " + 
