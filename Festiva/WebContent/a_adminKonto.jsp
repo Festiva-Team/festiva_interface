@@ -20,7 +20,7 @@
     	<jsp:param name="active" value="adminKonto"/>
     </jsp:include>
 	<div id="main">
-		<form action="/Festiva/Kundendaten?aktion=p_aendern" method="post">
+		<form action="/Festiva/Benutzerdaten?aktion=p_aendern" method="post">
 			<div id="spaltelinks">
 				<h2>Mein Konto</h2>
 				<label for="email">E-Mail</label>

@@ -17,7 +17,7 @@
     	<jsp:param name="active" value="kundendaten"/>
     </jsp:include>
 		<div id="main">
-			<form action="/Festiva/Kundendaten?aktion=aendern" method="post">
+			<form action="/Festiva/Benutzerdaten?aktion=aendern" method="post">
 				<div id="zeile">
 					<div id="spaltelinks">
 						<h2>Meine persönlichen Daten</h2>
@@ -58,7 +58,7 @@
 				</div>
 			</form>
 			
-			<form action="/Festiva/Kundendaten?aktion=p_aendern" method="POST">
+			<form action="/Festiva/Benutzerdaten?aktion=p_aendern" method="POST">
 				<div id="zeile">
 				<div id="spaltelinks">
 					<h2>Mein Passwort</h2>
