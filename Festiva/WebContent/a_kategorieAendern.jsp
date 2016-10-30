@@ -48,8 +48,13 @@ bildLaden.tu_es();
 					<input type="text" id="name" name="name" maxlength="30" value="<%=kategorie.name%>">
 					<label for="beschreibung">Beschreibung*</label>
 					<textarea rows="5" id="beschreibung" name="beschreibung"><%=kategorie.beschreibung%></textarea>
+					<label for="bild">Bild</label>
+					<figure class="bild1">
+					<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150 />
+					<output id="list"></output>
+					</figure>
 					<label for="bild">Neues Bild</label>
-					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+					<input type="file" id = "files" name = "files" accept="image/*"><br>
 					<button type="submit">Änderungen speichern</button>
 				</div>
 			</div>
@@ -79,5 +84,35 @@ bildLaden.tu_es();
 	<footer></footer>
 </div>	
 </body>
+<script>
+	function dateiauswahl(evt) {
+			var dateien = evt.target.files; // FileList object
+			// Auslesen der gespeicherten Dateien durch Schleife
+			for (var i = 0, f; f = dateien[i]; i++) {
+				// nur Bild-Dateien
+				if (!f.type.match('image.*')) {
+					continue;
+				}
+				var reader = new FileReader();
+				reader.onload = (function (theFile) {
+					return function (e) {
+						// erzeuge Thumbnails.
+						var vorschau = document.createElement('img');
+						vorschau.className = 'vorschau';
+						vorschau.src = e.target.result;
+						vorschau.title = theFile.name;
+						document.getElementById('list')
+							.insertBefore(vorschau, null);
+					};
+				})(f);
+				// Bilder als Data URL auslesen.
+				reader.readAsDataURL(f);
+			}
+		}
+		// Auf neue Auswahl reagieren und gegebenenfalls Funktion dateiauswahl neu ausführen.
+	document.getElementById('files')
+		.addEventListener('change', dateiauswahl, false);
+
+</script>
 </html>
 <% request.getSession().removeAttribute("kategorie");}%>

@@ -146,7 +146,7 @@ input,textarea,select {
 	background-color: #FAEBD7;
 	border: 1px solid #990000;
 }
-label,textarea, input, select
+label,textarea, input, select, figure
 {	display: block;	
 	float: left;
 }
@@ -173,6 +173,18 @@ input[type="checkbox"]{
 	padding-left:.2em;
 	margin-left:1em;
 }
+**************
+.vorschau {
+	height: 10px;
+	border: 1px solid #000;
+	margin: 10px 5px 0 0;
+}
+
+output {
+	display: block;
+}
+
+**********
 /**************Tabelle**************************/
 table { 
 	margin-left:1em;
