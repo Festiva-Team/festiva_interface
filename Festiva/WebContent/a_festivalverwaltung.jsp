@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*"
+    session="false"	%>
 <%
 /** 
 	# Autor: Nicola Kloke
@@ -8,6 +9,8 @@
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}
+else {
+	List<Festival> listFestivals = (List<Festival>)request.getSession(false).getAttribute("listFestivals");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,7 +32,19 @@ response.sendRedirect("k_anmelden.jsp");}
 			</div>
 				<div id="spaltetabelle">
 				<table class="table">
-					<tr><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Kurzbeschreibung</th></tr>
+					<tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Kurzbeschreibung</th></tr>
+					<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
+						for (Festival festival : listFestivals) { %>
+					<tr>		
+								<td><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
+								<td><%=festival.name%></td>
+								<td><%=date.format(festival.startDatum)%></td>
+								<td><%=date.format(festival.endDatum)%></td>
+								<td><%=festival.ort%></td>
+								<td><%=(KategorienAdministration.selektiereKategorie(festival.kategorienID)).name%></td>
+								<td><%=festival.kurzbeschreibung%></td>
+					</tr>
+					<% } %>
 				</table>	
 				</div>		
 		</form> 
@@ -40,3 +55,4 @@ response.sendRedirect("k_anmelden.jsp");}
 </div>
 </body>
 </html>
+<% request.getSession().removeAttribute("listFestivals");}%>
