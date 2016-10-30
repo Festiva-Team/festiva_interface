@@ -21,17 +21,6 @@ else {
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="CSS/design.css">
 <title>Festiva - Kategorienverwaltung</title>
- <script type="text/javascript">
-var bildLaden = {
-count : (new Date()).getTime(),
-tu_es : function() {
-document.images['bild'].src = '/Festiva/Bilder/' + kategorie.bildpfad + '.jpg' + bildLaden.count;
-bildLaden.count++;
-window.setTimeout(bildLaden.tu_es(),300000);
-}
-}
-bildLaden.tu_es();
-</script>
 </head>
 <body>
 <div id="webseite">

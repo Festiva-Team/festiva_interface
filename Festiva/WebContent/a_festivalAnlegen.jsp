@@ -8,9 +8,11 @@
 	# JSP-Name: kategorieAnlegen.jsp
 	# JSP-Aktionen: Der Admin kann eine neue Kategorie anlegen.
 */
-List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
+
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
-response.sendRedirect("k_anmelden.jsp");}
+	response.sendRedirect("k_anmelden.jsp");} 
+else {
+	List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,7 +27,7 @@ response.sendRedirect("k_anmelden.jsp");}
     	<jsp:param name="active" value="festivalAnlegen"/>
     </jsp:include>
 	<div id="main">
-		<form action="festivalAendern.jsp" id="festivalAendern">
+		<form action="/Festiva/Festivalverwaltung?aktion=anlegen" method="POST" enctype="multipart/form-data">
 			<label class="h2">Festival anlegen</label>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="zeile1">
@@ -47,7 +49,7 @@ response.sendRedirect("k_anmelden.jsp");}
 						<% } %>
 						</select>
 					<label for="bild">Bild</label>
-					<input type="file" id="bild" name="name" accept="image/*">
+					<input type="file" id="bild" name="bild" accept="image/*">
 					<label for="enddatum">Enddatum*</label>
 					<input type="date" id="enddatum" name="enddatum" maxlength="30">
 					<label for="langbeschreibung">Langbeschreibung*</label>
@@ -69,3 +71,4 @@ response.sendRedirect("k_anmelden.jsp");}
 </div>	
 </body>
 </html>
+<% } %>
