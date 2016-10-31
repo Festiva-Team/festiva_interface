@@ -8,13 +8,15 @@
 	# JSP-Name: kategorieAendern.jsp
 	# JSP-Aktionen: Der Admin kann eine Kategorie ändern.
 */
-SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
-List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
+
 
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
-response.sendRedirect("k_anmelden.jsp");}
+	response.sendRedirect("k_anmelden.jsp");}	
 else {
+	SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+	List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
 	Festival festival = (Festival)request.getSession(false).getAttribute("festival");
+	List<Artikel> listArtikel = (List<Artikel>)request.getSession(false).getAttribute("listArtikel");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,19 +31,19 @@ else {
     	<jsp:param name="active" value="festivalAendern"/>
     </jsp:include>
 		<div id="main">
-			<form action="festivalAendern.jsp" id="festivalAendern">
+			<form action="/Festiva/Festivalverwaltung?aktion=datenaendern&festivalid=<%=festival.id%>" method="POST" enctype="multipart/form-data">
 			<label class="h2">Festival ändern</label>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				 <div class="row">
 					<div id="spaltelinks">
 						<label for="name">Festivalname*</label>
-						<input type="text" id="name" name="name" maxlength="30" value="<%=festival.name%>">
+						<input type="text" id="name" name="name" maxlength="30" required="required" value="<%=festival.name%>">
 						<label for="ort">Ort*</label>
-						<input type="text" id="ort" name="ort" maxlength="30" value="<%=festival.ort%>">				
+						<input type="text" id="ort" name="ort" maxlength="30" required="required" value="<%=festival.ort%>">				
 						<label for="startdatum">Startdatum*</label>
-						<input type="date" id="startdatum" name="startdatum" maxlength="30" value="<%=date.format(festival.startDatum)%>">
+						<input type="date" id="startdatum" name="startdatum" maxlength="30" required="required" value="<%=date.format(festival.startDatum)%>">
 						<label for="kurzbeschreibung">Kurzbeschreibung*</label>
-						<textarea rows="5" id="kurzbeschreibung" name="kurzbeschreibung" cols="25"><%=festival.kurzbeschreibung%></textarea>
+						<textarea rows="5" id="kurzbeschreibung" name="kurzbeschreibung" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
 					</div>
 					<div id="spalterechts">
 						<label for="kategorie">Kategorie*</label>	
@@ -56,21 +58,35 @@ else {
 						<label for="bild">Neues Bild</label>
 						<input type="file" id="bild" name="bild" accept="image/*">
 						<label for="enddatum">Enddatum*</label>
-						<input type="date" id="enddatum" name="enddatum" maxlength="30" value="<%=date.format(festival.endDatum)%>">
+						<input type="date" id="enddatum" name="enddatum" maxlength="30" required="required" value="<%=date.format(festival.endDatum)%>">
 						<label for="langbeschreibung">Langbeschreibung*</label>
-						<textarea rows="10" id="langbeschreibung" name="langbeschreibung" cols="25"><%=festival.langbeschreibung%></textarea>
+						<textarea rows="10" id="langbeschreibung" name="langbeschreibung" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
 						<button type="submit" id="links">Änderungen speichern</button>
 					</div>
 				</div>
 				<div id="zeile">
 					<div id="spalterechts">
 					<table class= "artikel"><h2>Artikel</h2>
-						<tr><th>Beschreibung</th><th>Preis</th></tr>
-						<tr><td>Beschreibung selektieren</td><td>Preis selektieren</td></tr>
+						<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Gelöscht</th></tr>
+						<%for (Artikel artikel : listArtikel) { %>
+						<tr>		
+						<td><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></td>
+						<td><%=artikel.beschreibung%></td>
+						<td><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<%if (artikel.istGelöscht == false) { %>
+						<td><%="nein"%></td>
+						<% } else { %>
+						<td><%="ja"%></td>
+						<% } %>
+			</tr>
+			<% } %>
 					</table>
 					</div>		
 				</div>					
 			</form>	
+			<div id="spaltelinks">
+				<button type="button" id="anlegen" onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
+			</div>
 			<form action="/Festiva/Festivalverwaltung?aktion=loeschen&festivalid=<%=festival.id%>" method="post">
 			<div id="spaltelinks">
 					<button type="submit" id="links">Festival löschen</button>
@@ -97,4 +113,4 @@ else {
 </div>	
 </body>
 </html>
-<% request.getSession().removeAttribute("festival");}%>
+<% request.getSession().removeAttribute("festival"); request.getSession().removeAttribute("listArtikel");}%>

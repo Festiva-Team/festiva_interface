@@ -21,17 +21,6 @@ else {
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="CSS/design.css">
 <title>Festiva - Kategorienverwaltung</title>
- <script type="text/javascript">
-var bildLaden = {
-count : (new Date()).getTime(),
-tu_es : function() {
-document.images['bild'].src = '/Festiva/Bilder/' + kategorie.bildpfad + '.jpg' + bildLaden.count;
-bildLaden.count++;
-window.setTimeout(bildLaden.tu_es(),300000);
-}
-}
-bildLaden.tu_es();
-</script>
 </head>
 <body>
 <div id="webseite">
@@ -45,16 +34,11 @@ bildLaden.tu_es();
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<div id="spaltelinks">
 					<label for="name">Kategorienname*</label>
-					<input type="text" id="name" name="name" maxlength="30" value="<%=kategorie.name%>">
+					<input type="text" id="name" name="name" maxlength="30" required="required" value="<%=kategorie.name%>">
 					<label for="beschreibung">Beschreibung*</label>
-					<textarea rows="5" id="beschreibung" name="beschreibung"><%=kategorie.beschreibung%></textarea>
-					<label for="bild">Bild</label>
-					<figure class="bild1">
-					<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150 />
-					<output id="list"></output>
-					</figure>
+					<textarea rows="5" id="beschreibung" name="beschreibung" required="required"><%=kategorie.beschreibung%></textarea>
 					<label for="bild">Neues Bild</label>
-					<input type="file" id = "files" name = "files" accept="image/*"><br>
+					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
 					<button type="submit">Änderungen speichern</button>
 				</div>
 			</div>

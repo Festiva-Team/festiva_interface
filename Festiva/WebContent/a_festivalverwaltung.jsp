@@ -28,11 +28,11 @@ else {
   		<form action="festivalverwaltung.jsp" id="festivalverwaltung">
 			<label class="h2">Festivalverwaltung</label>
 			<div id="spaltelinks">
-				<button type="button" id="anlegen" onClick="window.location.href='a_festivalAnlegen.jsp'">Anlegen</button>
+				<button type="button" id="anlegen" onClick="window.location.href='a_festivalAnlegen.jsp'">Neues Festival anlegen</button>
 			</div>
 				<div id="spaltetabelle">
 				<table class="table">
-					<tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Kurzbeschreibung</th></tr>
+					<tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr>
 					<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
 						for (Festival festival : listFestivals) { %>
 					<tr>		
@@ -42,7 +42,16 @@ else {
 								<td><%=date.format(festival.endDatum)%></td>
 								<td><%=festival.ort%></td>
 								<td><%=(KategorienAdministration.selektiereKategorie(festival.kategorienID)).name%></td>
-								<td><%=festival.kurzbeschreibung%></td>
+								<%if (festival.bildpfad == null || (festival.bildpfad).equals("")) { %>
+								<td><%="nein"%></td>
+								<% } else { %>
+								<td><%="ja"%></td>
+								<% } %>
+								<%if (festival.istGelöscht == false) { %>
+								<td><%="nein"%></td>
+								<% } else { %>
+								<td><%="ja"%></td>
+								<% } %>
 					</tr>
 					<% } %>
 				</table>	

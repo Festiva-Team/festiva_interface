@@ -26,13 +26,14 @@ response.sendRedirect("k_anmelden.jsp");}
 			<div id="zeile">
 			<div id="spaltelinks">
 				<h2>Kunden anlegen</h2>
-				<label for="email">E-Mail</label>
+				<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+				<label for="email">E-Mail*</label>
 				<input type="email" name="email" id="email" maxlength="30" required="required" placeholder="E-Mail">
-				<label for="emailbestätigung">E-Mail bestätigen</label>
+				<label for="emailbestätigung">E-Mail bestätigen*</label>
 				<input type="email" name="emailbestätigung" id="emailbestätigung" maxlength="30" required="required" placeholder="E-Mail bestätigen">
-				<label for="passwort">Passwort</label>
+				<label for="passwort">Passwort*</label>
 				<input type="password" name="passwort" id="passwort" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" placeholder="Passwort"/>
-				<label for="passwortbestätigung">Passwort bestätigen</label>
+				<label for="passwortbestätigung">Passwort bestätigen*</label>
 				<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" placeholder="Passwort bestätigen"/>
 				<button type="submit" id="links">Anlegen</button>
 			</div>

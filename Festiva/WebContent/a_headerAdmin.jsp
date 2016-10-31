@@ -26,7 +26,7 @@
 		        <li><a href="/Festiva/Kundenverwaltung?aktion=anzeigen">Kundenverwaltung</a></li>
 		        <li><a href="#">Adminkonto</a>	
 		        	<ul>
-		        		<li><a href="/Festiva/Kundendaten?aktion=anzeigen">Meine Daten</a></li> 
+		        		<li><a href="/Festiva/Benutzerdaten?aktion=anzeigen">Meine Daten</a></li> 
 		        		<li><a href="/Festiva/Logout" accesskey="1" title="">Abmelden</a></li>
 		        	</ul>
 		        </li>

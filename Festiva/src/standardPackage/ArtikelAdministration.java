@@ -11,6 +11,7 @@ import java.util.List;
  *
  */
 public class ArtikelAdministration {
+	 
 	
 	/**
 	 * Erstellt für das übergebene Artikel-Objekt den Datensatz in der Datenbank.
@@ -21,8 +22,8 @@ public class ArtikelAdministration {
 	{		
 		String insertBefehl = "INSERT INTO festiva.artikel " +
 							   "(beschreibung, preis, festivals_id ) " +
-							   "VALUES ('%s', '%f', '%d')";
-		insertBefehl = String.format(insertBefehl, p_artikel.beschreibung, p_artikel.preis, p_artikel.festivalID);
+							   "VALUES ('%s', '%s', '%d')";
+		insertBefehl = String.format(insertBefehl, p_artikel.beschreibung, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.festivalID);
 		p_artikel.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
 	}
 	
@@ -34,9 +35,9 @@ public class ArtikelAdministration {
 	public static void aktualisiereArtikel(Artikel p_artikel)
 	{	
 		String updateBefehl = "UPDATE festiva.artikel " +
-							  "SET beschreibung = '%s', preis = '%f', festivals_id = '%d' " +
+							  "SET beschreibung = '%s', preis = '%s', festivals_id = '%d' " +
 							  "WHERE id = '%d'";
-		updateBefehl = String.format(updateBefehl, p_artikel.beschreibung, p_artikel.preis, p_artikel.festivalID, p_artikel.id);
+		updateBefehl = String.format(updateBefehl, p_artikel.beschreibung, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.festivalID, p_artikel.id);
 		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(updateBefehl);
 	}
 	
@@ -173,6 +174,43 @@ public class ArtikelAdministration {
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE festivals_id = '%d' AND istgelöscht = 0 ORDER BY beschreibung ASC";
+		selectBefehl  = String.format(selectBefehl, p_festivalID);
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int id = ergebnismenge.getInt("id");				
+				String beschreibung = ergebnismenge.getString("beschreibung");
+				float preis = ergebnismenge.getFloat("preis");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				
+				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, p_festivalID));
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listArtikel;
+	}
+	
+	
+	/**
+	 * Selektiert alle Artikel (auch gelöschte), die zu einem bestimmen Festival gehören (alphabetisch sortiert)
+	 * @param p_festivalID: ID des gewünschten Festivals
+	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 */
+	public static List<Artikel> selektiereAlleArtikelVonFestival(int p_festivalID)
+	{
+		List<Artikel> listArtikel = new ArrayList<Artikel>();
+		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
+							  "FROM festiva.artikel " + 
+							  "WHERE festivals_id = '%d' ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl, p_festivalID);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
