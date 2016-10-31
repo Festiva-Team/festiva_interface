@@ -29,7 +29,7 @@
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
 		<div id="main">
-			<form>
+			<form action="/Festiva/ShopSuche" method="post">
 				<label class="h2">Shop</label>
 				<div id="zeile">
 					<div id="spaltelinks">
@@ -37,18 +37,18 @@
 						<input type="search" id="name" maxlength="30">
 					</div>
 					<div id="spalterechts">
-						<label for="name">Ort</label>
+						<label for="ort">Ort</label>
 						<input type="text" id="ort" maxlength="30">
 					</div>
 				</div>
 				<div id="zeile">
 					<div id="spaltelinks">		
 						<label for="kategorie">Kategorie
-						<select><option value="festival.kategorienID"></option></select>	
+						<select><option value="Kategorie.name"></option></select>	
 						</label>					
 					</div>	
 					<div id="spalterechts">
-						<button type="button" id="rechts">suchen</button>
+						<button type="submit" id="rechts">suchen</button>
 					</div>
 				</div>		
 			<div id="content">
@@ -57,13 +57,25 @@
 						<th>Festival</th><th>Datum</th><th>Ort</th><th>Kateorie</th><th>Preis</th>
 					</tr>
 					<%
-						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(0, "", "", null, null, 0);
+						 String sucheOrt = request.getSession().getAttribute("ort");
+						 String sucheName = request.getSession().getAttribute("name");
+						//String sucheOrt = "";
+						//String sucheName = "";
+						
+						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(0, sucheOrt, sucheName, null, null, 0);
 						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
 						for (FestivalSuchobjekt festival : festivalliste)
 						{%>
 							<tr>
 								<td><%=festival.name%></td>
+								<% if (festival.startDatum.compareTo(festival.endDatum) == 0)
+								{%>
+								<td><%=sd.format(festival.startDatum)%></td>
+								<%}
+								else
+								{%>
 								<td><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
+								<%} %>
 								<td><%=festival.ort%></td>
 								<td><%=festival.kategorienID%></td>
 								<% if (festival.vonPreis == festival.bisPreis)
