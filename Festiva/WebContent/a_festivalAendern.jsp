@@ -41,7 +41,7 @@ else {
 						<label for="ort">Ort*</label>
 						<input type="text" id="ort" name="ort" maxlength="30" required="required" value="<%=festival.ort%>">				
 						<label for="startdatum">Startdatum*</label>
-						<input type="date" id="startdatum" name="startdatum" maxlength="30" required="required" value="<%=date.format(festival.startDatum)%>">
+						<input type="text" id="startdatum" name="startdatum" maxlength="30" required="required" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" value="<%=date.format(festival.startDatum)%>">
 						<label for="kurzbeschreibung">Kurzbeschreibung*</label>
 						<textarea rows="5" id="kurzbeschreibung" name="kurzbeschreibung" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
 					</div>
@@ -58,10 +58,10 @@ else {
 						<label for="bild">Neues Bild</label>
 						<input type="file" id="bild" name="bild" accept="image/*">
 						<label for="enddatum">Enddatum*</label>
-						<input type="date" id="enddatum" name="enddatum" maxlength="30" required="required" value="<%=date.format(festival.endDatum)%>">
+						<input type="text" id="enddatum" name="enddatum" maxlength="30" required="required" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" value="<%=date.format(festival.endDatum)%>">
 						<label for="langbeschreibung">Langbeschreibung*</label>
 						<textarea rows="10" id="langbeschreibung" name="langbeschreibung" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
-						<button type="submit" id="links">Änderungen speichern</button>
+						<button type="submit">Änderungen speichern</button>
 					</div>
 				</div>
 				<div id="zeile">
@@ -89,7 +89,7 @@ else {
 			</div>
 			<form action="/Festiva/Festivalverwaltung?aktion=loeschen&festivalid=<%=festival.id%>" method="post">
 			<div id="spaltelinks">
-					<button type="submit" id="links">Festival löschen</button>
+					<button type="submit">Festival löschen</button>
 					</div>
 					</form>
 					<form action="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>&t=<%=new Date().getTime()%>" method="post">
@@ -97,7 +97,7 @@ else {
 					<figure class="bild1">
 					<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150 />
 					<h5>Das aktuellste Bild wird noch nicht angezeigt? Bitte aktualisieren Sie die Seite.</h5>
-					<button type="submit" id="links">Aktualisieren</button>
+					<button type="submit">Aktualisieren</button>
 					</figure>
 					<%} %>
 					</form>	

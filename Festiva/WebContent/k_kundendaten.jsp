@@ -18,11 +18,11 @@
     </jsp:include>
 		<div id="main">
 			<form action="/Festiva/Benutzerdaten?aktion=aendern" method="post">
+			<h2>Meine persönlichen Daten</h2>
+			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			<h5>Achtung: Wenn Sie eine Bestellung durchführen möchten, müssen Sie alle Daten (außer Ihrer BIC) angeben!</h5>
 				<div id="zeile">
-					<div id="spaltelinks">
-						<h2>Meine persönlichen Daten</h2>
-						<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-						<h5>Achtung: Wenn Sie eine Bestellung durchführen möchten, müssen Sie alle Daten (außer Ihrer BIC) angeben!</h5>
+					<div id="spaltelinks">				
 						<label for="vorname">Vorname</label>
 						<input type="text" id="vorname" name="vorname" maxlength="30" value="<%=benutzer.vorname%>">
 						<label for="nachname">Nachname</label>
@@ -60,9 +60,8 @@
 			
 			<form action="/Festiva/Benutzerdaten?aktion=p_aendern" method="POST">
 				<div id="zeile">
+				<h2>Mein Passwort</h2>
 				<div id="spaltelinks">
-					<h2>Mein Passwort</h2>
-					<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 					<label for="passwortalt">Altes Passwort*</label>
 					<input type="password" name="passwortalt" id="passwortalt" maxlength="40" required="required">
 					<label for="passwortneu">Neues Passwort*</label>

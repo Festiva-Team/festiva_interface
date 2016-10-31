@@ -27,10 +27,10 @@
 				<div id="spaltelinks">
 					<h2>Anmelden</h2>
 					<label for="email">E-Mail</label>
-					<input type="email" name="email" id="email" maxlength="30" required="required" placeholder="E-Mail">
+					<input type="email" name="email" id="email" maxlength="30" required="required">
 					<label for="passwort">Passwort</label>
-					<input type="password" name="passwort" id="passwort" maxlength="40" required="required" placeholder="Passwort">
-					<button type="submit" id="links">Anmelden</button>	
+					<input type="password" name="passwort" id="passwort" maxlength="40" required="required">
+					<button type="submit">Anmelden</button>	
 				</div>
 				<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 

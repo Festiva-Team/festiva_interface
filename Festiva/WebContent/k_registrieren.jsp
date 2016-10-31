@@ -28,14 +28,14 @@
 				<h2>Registrierung</h2>
 				<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<label for="email">E-Mail*</label>
-				<input type="email" name="email" id="email" maxlength="30" required="required" placeholder="E-Mail">
+				<input type="email" name="email" id="email" maxlength="30" required="required">
 				<label for="emailbestätigung">E-Mail bestätigen*</label>
-				<input type="email" name="emailbestätigung" id="emailbestätigung" maxlength="30" required="required" placeholder="E-Mail bestätigen">
+				<input type="email" name="emailbestätigung" id="emailbestätigung" maxlength="30" required="required">
 				<label for="passwort">Passwort*</label>
-				<input type="password" name="passwort" id="passwort" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" placeholder="Passwort"/>
+				<input type="password" name="passwort" id="passwort" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
 				<label for="passwortbestätigung">Passwort bestätigen*</label>
-				<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" placeholder="Passwort bestätigen"/>
-				<button type="submit" id="links">Registrieren</button>
+				<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+				<button type="submit">Registrieren</button>
 			</div>
 			<div id="spalterechts">
 					<p>Hinweis: Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>

@@ -142,12 +142,13 @@ input,textarea,select {
 	width: 60%;
 	margin-bottom:.5em;
 	margin-right: 1em;
+	margin-left:.5em;
 	padding: .2em ;
 	background-color: #FAEBD7;
 	border: 1px solid #990000;
 }
-label,textarea, input, select, figure
-{	display: block;	
+label,textarea, input, select, figure, checkbox
+{	display: block;
 	float: left;
 }
 button
@@ -178,7 +179,6 @@ output {
 **********
 /**************Tabelle**************************/
 table { 
-	margin-left:1em;
  	border-collapse: collapse;
  }
  
@@ -280,6 +280,7 @@ nav li ul
 label
 {	width:90%;
 	text-align: left;
+	margin: 0;
 	margin-left: 0.4em;
 }
 input,textarea,select {

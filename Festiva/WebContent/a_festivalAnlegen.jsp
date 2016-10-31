@@ -28,7 +28,7 @@ else {
     </jsp:include>
 	<div id="main">
 		<form action="/Festiva/Festivalverwaltung?aktion=anlegen" method="POST" enctype="multipart/form-data">
-			<label class="h2">Festival anlegen</label>
+			<h2>Festival anlegen</h2>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="zeile1">
 				<div id="spaltelinks">
@@ -37,7 +37,7 @@ else {
 					<label for="ort">Ort*</label>
 					<input type="text" id="ort"  name="ort" required="required" maxlength="30">	
 					<label for="startdatum">Startdatum*</label>
-					<input type="date" id="startdatum" name="startdatum" required="required" maxlength="30">
+					<input type="text" id="startdatum" name="startdatum" required="required" maxlength="30" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}">
 					<label for="kurzbeschreibung">Kurzbeschreibung*</label>
 					<textarea rows="5" cols="25" id="kurzbeschreibung" name="kurzbeschreibung" required="required"></textarea>
 				</div>
@@ -51,10 +51,10 @@ else {
 					<label for="bild">Bild</label>
 					<input type="file" id="bild" name="bild" accept="image/*">
 					<label for="enddatum">Enddatum*</label>
-					<input type="date" id="enddatum" name="enddatum" required="required" maxlength="30">
+					<input type="text" id="enddatum" name="enddatum" required="required" maxlength="30" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}">
 					<label for="langbeschreibung">Langbeschreibung*</label>
-					<textarea rows="10" cols="25" id="langbeschreibung" name="langbeschreibung" required="required"></textarea>
-					<button type="submit" id="links">Anlegen</button>
+					<textarea rows="10" cols="25" id="langbeschreibung" name="langbeschreibung" required="required" ></textarea>
+					<button type="submit">Anlegen</button>
 				</div>
 			</div>	
 			</form>	
