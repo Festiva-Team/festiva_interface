@@ -13,8 +13,7 @@
 	<title>Festiva</title>
 </head>
 <body>
-
-	<div id="webseite">
+<div id="webseite">
 	    <jsp:include page="k_header.jsp">
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
@@ -43,6 +42,7 @@
 					 </a>
 				</figure> 
 			</figure>
+			<div id="leer"></div>
 		<footer></footer>
 	</div>	
 </body>

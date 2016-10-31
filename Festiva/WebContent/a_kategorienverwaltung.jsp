@@ -28,7 +28,6 @@ else {
 	    	<h2>Kategorienverwaltung</h2>
 	    		<div id="spaltelinks">
 				<button type="button" id="anlegen" onClick="window.location.href='a_kategorieAnlegen.jsp'"> Neue Kategorie anlegen </button>
-				<input type="search" id="suche" maxlength="30" placeholder="Suche">
 				</div>
 				<div id="zeile">
 				<table>

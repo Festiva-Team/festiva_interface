@@ -25,10 +25,9 @@ else {
    		<jsp:param name="active" value="kundenverwaltung"/>
   	</jsp:include>	
     <div id="main">
-			<div id="spaltelinks">
     		<h2>Kundenverwaltung</h2>
+			<div id="spaltelinks">
 				<button type="button" id="anlegen" onClick="window.location.href='a_kundenAnlegen.jsp'">Neuen Kunden anlegen </button>
-				<input type="search" id="suche" maxlength="30" placeholder="Suche">
 				</div>
 			<div id ="zeile">
 				<table>

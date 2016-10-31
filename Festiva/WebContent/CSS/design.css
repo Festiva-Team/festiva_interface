@@ -164,15 +164,6 @@ input[type="checkbox"]{
 {	margin-left:1em;
 	float: left;
 }
-#suche
-{
-	width: 15em;
-	border: 1px solid #dbdbdb; 
-	background-color: #f4f4f4;
-	border-radius: 10px;
-	padding-left:.2em;
-	margin-left:1em;
-}
 **************
 .vorschau {
 	height: 10px;
@@ -294,9 +285,6 @@ label
 input,textarea,select {
 	width: 90%;
 	margin-right: 0.5em;
-}
-#suche
-{	float:left;
 }
 img{
 	width: 100%;

@@ -39,6 +39,7 @@ else {
 					<textarea rows="5" id="beschreibung" name="beschreibung" required="required"><%=kategorie.beschreibung%></textarea>
 					<label for="bild">Neues Bild</label>
 					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+					<output id="list"></output>
 					<button type="submit">Änderungen speichern</button>
 				</div>
 			</div>
@@ -91,10 +92,12 @@ else {
 				})(f);
 				// Bilder als Data URL auslesen.
 				reader.readAsDataURL(f);
+				vorschau.width = 50;
+				dateien.appendChild(img);
 			}
 		}
 		// Auf neue Auswahl reagieren und gegebenenfalls Funktion dateiauswahl neu ausführen.
-	document.getElementById('files')
+	document.getElementById('bild')
 		.addEventListener('change', dateiauswahl, false);
 
 </script>

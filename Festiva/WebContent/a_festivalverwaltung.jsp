@@ -25,42 +25,39 @@ else {
    		<jsp:param name="active" value="festivalverwaltung"/>
 	</jsp:include>
  	<div id="main">
-  		<form action="festivalverwaltung.jsp" id="festivalverwaltung">
-			<label class="h2">Festivalverwaltung</label>
+			<h2>Festivalverwaltung</h2>
 			<div id="spaltelinks">
 				<button type="button" id="anlegen" onClick="window.location.href='a_festivalAnlegen.jsp'">Neues Festival anlegen</button>
 			</div>
-				<div id="spaltetabelle">
-				<table class="table">
-					<tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr>
+			<div id="zeile">
+				<table>
+					<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 					<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
 						for (Festival festival : listFestivals) { %>
-					<tr>		
-								<td><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
-								<td><%=festival.name%></td>
-								<td><%=date.format(festival.startDatum)%></td>
-								<td><%=date.format(festival.endDatum)%></td>
-								<td><%=festival.ort%></td>
-								<td><%=(KategorienAdministration.selektiereKategorie(festival.kategorienID)).name%></td>
+					<tbody><tr>		
+								<th data-label="Festival"><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
+								<td data-label="Name"><%=festival.name%></td>
+								<td data-label="Startdatum"><%=date.format(festival.startDatum)%></td>
+								<td data-label="Enddatum"><%=date.format(festival.endDatum)%></td>
+								<td data-label="Ort"><%=festival.ort%></td>
+								<td data-label="Kategorie"><%=(KategorienAdministration.selektiereKategorie(festival.kategorienID)).name%></td>
 								<%if (festival.bildpfad == null || (festival.bildpfad).equals("")) { %>
-								<td><%="nein"%></td>
+								<td data-label="Bild"><%="nein"%></td>
 								<% } else { %>
-								<td><%="ja"%></td>
+								<td data-label="Bild"><%="ja"%></td>
 								<% } %>
 								<%if (festival.istGelöscht == false) { %>
-								<td><%="nein"%></td>
+								<td data-label="Gelöscht"><%="nein"%></td>
 								<% } else { %>
-								<td><%="ja"%></td>
+								<td data-label="Gelöscht"><%="ja"%></td>
 								<% } %>
-					</tr>
+					</tr></tbody>
 					<% } %>
 				</table>	
-				</div>		
-		</form> 
+				</div>
 	<div id="leer"></div>
    	</div>
-  		<div id="footer">
-	</div>
+  		<footer></footer>
 </div>
 </body>
 </html>
