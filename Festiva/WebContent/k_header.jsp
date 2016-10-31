@@ -30,7 +30,7 @@ HttpSession session = request.getSession(false);
 			<li><a href="k_shop.jsp">Shop</a></li>
 			<li><a href="#">Mein Konto</a>
 			<ul>
-			<% if (session != null && session.getAttribute("begrüßung") != null) 
+			<% if (session != null && session.getAttribute("begrüßung") != null && session.getAttribute("gruppenid") != null && Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) == 2) 
 					{ %>
 				
 				<li><a href="/Festiva/Benutzerdaten?aktion=anzeigen">Meine Daten</a></li> 
@@ -46,7 +46,6 @@ HttpSession session = request.getSession(false);
 				<li><a href="k_registrieren.jsp">Registrieren</a></li>
 				<% } %>
 				
-
 </ul>
 		</nav>
 </body>

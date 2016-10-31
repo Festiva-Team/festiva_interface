@@ -141,7 +141,7 @@ public class Festivalverwaltung extends HttpServlet {
 						    
 						    if (file.exists()) file.delete();
 						    
-						    festival.bildpfad = "Kategorie" + "_" + festival.id + "_" + new Date().getTime();
+						    festival.bildpfad = "Festival" + "_" + festival.id + "_" + new Date().getTime();
 						    file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg");
 						    
 						    try (InputStream input = filePart.getInputStream()) {
