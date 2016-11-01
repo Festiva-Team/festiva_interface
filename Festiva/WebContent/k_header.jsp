@@ -38,7 +38,7 @@ HttpSession session = request.getSession(false);
 				<li><a href="/Festiva/Logout" accesskey="1" title="">Abmelden</a></li>
 				</ul>
 				</li>					      
-				<li><a href="k_warenkorb.jsp">Warenkorb</a></li> 
+				<li><a href="/Festiva/Warenkorbverwaltung?aktion=anzeigen">Warenkorb</a></li> 
 				
 					<% } else { %>
 				

@@ -1,10 +1,9 @@
 package standardPackage;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.List;
 
-import servletPackage.Registrierung;
+
 
 // import com.mysql.jdbc.Connection;
 
@@ -57,20 +56,20 @@ public static void main(String[] args) {
 //	KategorienAdministration.erstelleKategorie(kategorie);
 	
 //
-		java.util.Date start = null;
-		try {
-			start = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-03");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		java.util.Date end = null;
-		try {
-			end = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-05");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		java.util.Date start = null;
+//		try {
+//			start = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-03");
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		java.util.Date end = null;
+//		try {
+//			end = new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-05");
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 ////		
 //		Festival festival = new Festival(-1, "Rock am Ring", "Eifel", "Rock am Ring ist ein schönes Festival", "Rock im Park ist ein schönes Festival und das hier ist die Langbeschreibung", start, end, "ichBinDerGeänderteBildpfad", false, 1);
 //		FestivalAdministration.erstelleFestival(festival);
@@ -82,12 +81,27 @@ public static void main(String[] args) {
 //	System.out.println(festival.id + " " + festival.name + " " + festival.ort + " " + festival.kurzbeschreibung + " " + festival.langbeschreibung + " " + festival.startDatum + " " + festival.endDatum + " " + festival.bildpfad + " " + festival.kategorienID + " " + festival.istGelöscht);
 //	
 
-	List<Artikel> liste1 = ArtikelAdministration.selektiereArtikelVonFestivalMitMaxPreis(1, (float)15.0);
-	List<Artikel> liste2 = ArtikelAdministration.selektiereArtikelVonFestivalÜberMaxPreis(1, (float)15.0);
-	
-	List<FestivalSuchobjekt> liste = FestivalAdministration.selektiereFestivalsInSuche(1, "Eifel", "", "2017-06-03", "2017-06-05", (float)25.0);
+//	List<Artikel> liste1 = ArtikelAdministration.selektiereArtikelVonFestivalMitMaxPreis(1, (float)15.0);
+//	List<Artikel> liste2 = ArtikelAdministration.selektiereArtikelVonFestivalÜberMaxPreis(1, (float)15.0);
+//	
+//	List<FestivalSuchobjekt> liste = FestivalAdministration.selektiereFestivalsInSuche(1, "Eifel", "", "2017-06-03", "2017-06-05", (float)25.0);
+//
+//	Benutzer benutzer1 = BenutzerAdministration.selektiereBenutzer("admin@festiva.de");
+//	benutzer1.passwortHash = Registrierung.generiereHash(benutzer1.passwortHash + "76ZuOp(6?ssXY0");
+//	BenutzerAdministration.aktualisiereBenutzer(benutzer1);
+//	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);
+	Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1);
+	List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+	for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { 
+				for (Festival festival : listFestivals) { 
+					if (festival.id == warenkorbelement.artikel.festivalID) { 
+				System.out.println(festival.name);
+				} } 
+				System.out.println(warenkorbelement.artikel.beschreibung);
+				System.out.println(warenkorbelement.artikel.preis);
+				System.out.println(warenkorbelement.menge);
+				System.out.println((warenkorbelement.menge * warenkorbelement.artikel.preis));
+				 } 
 
-	Benutzer benutzer1 = BenutzerAdministration.selektiereBenutzer("admin@festiva.de");
-	benutzer1.passwortHash = Registrierung.generiereHash(benutzer1.passwortHash + "76ZuOp(6?ssXY0");
-	BenutzerAdministration.aktualisiereBenutzer(benutzer1);
-	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);}}
+	} 
+}

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import standardPackage.Benutzer;
 import standardPackage.BenutzerAdministration;
+import standardPackage.WarenkorbAdministration;
 
 /**
 *
@@ -55,6 +56,7 @@ public class Registrierung extends HttpServlet {
 				passwort = passwort + "76ZuOp(6?ssXY0";
 				Benutzer benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 2);
 				BenutzerAdministration.erstelleKunden(benutzer);
+				WarenkorbAdministration.erstelleLeerenWarenkorb(benutzer.id);
 				antwort = "Die Registrierung wurde erfolgreich durchgeführt.";
 			}
 		}

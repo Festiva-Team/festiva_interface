@@ -84,12 +84,14 @@ public class Kundenverwaltung extends HttpServlet {
 							String strasse = request.getParameter("strasse");
 							String hausnummer = request.getParameter("hausnummer");
 							int plz = 0;
-							try{
-								plz = Integer.parseInt(request.getParameter("plz"));
-							} catch (Exception e) {
-								e.printStackTrace();
-								plz = 0;
-							}
+							
+							if(!request.getParameter("plz").equals("")) {
+								try{
+									plz = Integer.parseInt(request.getParameter("plz"));
+								} catch (Exception e) {
+									e.printStackTrace();
+									plz = 0;
+								} }
 							
 							String ort = request.getParameter("ort");	
 							String iban = request.getParameter("iban");

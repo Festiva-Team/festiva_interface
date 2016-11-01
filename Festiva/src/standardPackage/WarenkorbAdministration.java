@@ -73,8 +73,11 @@ public class WarenkorbAdministration {
 						int menge = ergebnismengeElemente.getInt("menge");
 
 						Artikel artikel = ArtikelAdministration.selektiereArtikel(ergebnismengeElemente.getInt("artikel_id"));
-						
-						listElemente.add(new Warenkorbelement(elementID, menge, artikel));
+						if(artikel.istGelöscht == true) {
+							loescheWarenkorbelement(elementID);
+						} else {
+							listElemente.add(new Warenkorbelement(elementID, menge, artikel));
+						}
 					}
 				}
 				catch(SQLException e)
@@ -103,7 +106,7 @@ public class WarenkorbAdministration {
 							  "(benutzer_id) " +
 							  "VALUES ('%d')";
 		insertBefehl = String.format(insertBefehl, p_benutzerID);
-		int warenkorbID = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
+		Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
 		
 	}
 	
@@ -139,7 +142,7 @@ public class WarenkorbAdministration {
 	/**
 	 * Fügt das übergebene Warenkorbelement in der Datenbank ein und ordnet es dem Warenkorb des Kunden mit der übergebenen ID zu
 	 * 
-	 * @param Warenkorbelement: Warenkorbelement-Obejekt, das in der Datenbank erstellt werden soll
+	 * @param Warenkorbelement: Warenkorbelement-Objekt, das in der Datenbank erstellt werden soll
 	 * @param p_benutzerID: eindeutige ID des Benutzers, für den das Warenkorbelement in der Datenbank erstellt werden soll
 	 */
 	public static void fügeWarenkorbelementEin(Warenkorbelement p_warenkorbelement, int p_benutzerID)
@@ -156,4 +159,70 @@ public class WarenkorbAdministration {
 		
 	}
 
+	
+	/**
+	 * Aktualisiert das übergebene Warenkorbelement in der Datenbank
+	 * 
+	 * @param Warenkorbelement: Warenkorbelement-Objekt, das in der Datenbank aktualisiert werden soll
+	 */
+	public static void aktualisiereWarenkorbelement(Warenkorbelement p_warenkorbelement)
+	{		
+		String updateBefehl = "UPDATE festiva.warenkorbelemente SET " +
+							  "menge = '%d' " +
+							  "WHERE id = '%d'";
+		updateBefehl = String.format(updateBefehl, p_warenkorbelement.menge, p_warenkorbelement.id);
+		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(updateBefehl);		
+	}
+	
+	
+	/**
+	 * Selektiert das Warenkorbelement mit der übergebenen ID aus der Datenbank
+	 * 
+	 * @param p_ID: eindeutige ID des Warenkorbelements, das aus der Datenbank selektiert werden soll
+	 * @return Warenkorbelement: Warenkorbelement-Objekt mit der vorgegebenen ID, gibt null zurück, wenn das Objekt mit der ID nicht existiert
+	 */
+	public static Warenkorbelement selektiereWarenkorbelement(int p_id)
+	{	
+		Warenkorbelement warenkorbelement = null;
+		String selectBefehl = "SELECT id, menge, artikel_id " + 
+							  "FROM festiva.warenkorbelemente " +
+							  "WHERE id = '%d'";
+		selectBefehl = String.format(selectBefehl, p_id);
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);	
+		 
+		try
+		{
+			if(ergebnismenge.next())
+			{
+				int menge = ergebnismenge.getInt("menge");
+				int artikelID = ergebnismenge.getInt("artikel_id");
+				
+				Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelID);
+								
+				warenkorbelement = new Warenkorbelement(p_id, menge, artikel);
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return warenkorbelement;
+	}
+	
+	
+	/**
+	 * Löscht das Warenkorbelement mit der übergebenen ID in der Datenbank dauerhaft
+	 * 
+	 * @param p_id: ID des Warenkorbelement-Objekts, das in der Datenbank gelöscht werden soll
+	 */
+	public static void loescheWarenkorbelement(int p_id)
+	{		
+		String deleteBefehl = "DELETE FROM festiva.warenkorbelemente WHERE id = " + p_id;
+
+		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(deleteBefehl);		
+	}
+	
 }
