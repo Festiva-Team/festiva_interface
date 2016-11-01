@@ -50,8 +50,16 @@ public class Festivalverwaltung extends HttpServlet {
 			
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
 				List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
+				session.setAttribute("listKategorien", listKategorien);
 				session.setAttribute("listFestivals", listFestivals);
 				request.getRequestDispatcher("a_festivalverwaltung.jsp").include(request, response);
+			} else { 
+				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
+				session.setAttribute("listKategorien", listKategorien);
+				if((request.getParameter("aktion")).equals("anlegenanzeigen")) {
+				
+				request.getRequestDispatcher("a_festivalAnlegen.jsp").include(request, response);
 			} else {
 				
 				if((request.getParameter("aktion")).equals("anlegen")) {
@@ -107,7 +115,7 @@ public class Festivalverwaltung extends HttpServlet {
 					session.setAttribute("listArtikel", listArtikel);
 					
 					if ((request.getParameter("aktion")).equals("aendern")) {
-							
+
 					} else {
 						
 						if ((request.getParameter("aktion")).equals("datenaendern")) {
@@ -167,12 +175,13 @@ public class Festivalverwaltung extends HttpServlet {
 								FestivalAdministration.löscheFestival(festival);
 								antwort = "Das Festival wurde erfolgreich gelöscht.";
 								session.setAttribute("antwort", antwort);
-							}
+							} 						
 						}
 					}
 					session.setAttribute("festival", festival);
 					request.getRequestDispatcher("a_festivalAendern.jsp").include(request, response);
 				}
+			  }
 			}		
 		} else {
 			response.sendRedirect("k_anmelden.jsp");

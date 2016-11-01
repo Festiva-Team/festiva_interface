@@ -11,6 +11,7 @@ if (request.getSession(false) == null || request.getSession(false).getAttribute(
 response.sendRedirect("k_anmelden.jsp");}
 else {
 	List<Festival> listFestivals = (List<Festival>)request.getSession(false).getAttribute("listFestivals");
+	List<Kategorie> listKategorien = (List<Kategorie>)request.getSession(false).getAttribute("listKategorien");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -26,9 +27,11 @@ else {
 	</jsp:include>
  	<div id="main">
 			<h2>Festivalverwaltung</h2>
+			<form action="/Festiva/Festivalverwaltung?aktion=anlegenanzeigen" method="post">
 			<div id="spaltelinks">
-				<button type="button" id="anlegen" onClick="window.location.href='a_festivalAnlegen.jsp'">Neues Festival anlegen</button>
-			</div>
+					<button type="submit">Neues Festival anlegen</button>
+					</div>
+					</form>
 			<div id="zeile">
 				<table>
 					<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>
@@ -40,7 +43,10 @@ else {
 								<td data-label="Startdatum"><%=date.format(festival.startDatum)%></td>
 								<td data-label="Enddatum"><%=date.format(festival.endDatum)%></td>
 								<td data-label="Ort"><%=festival.ort%></td>
-								<td data-label="Kategorie"><%=(KategorienAdministration.selektiereKategorie(festival.kategorienID)).name%></td>
+								<%for(Kategorie kategorie : listKategorien){
+     							  if(kategorie.id == festival.kategorienID){ %>
+      							<td data-label="Kategorie"><%=kategorie.name%></td>       
+   								<%  } } %>
 								<%if (festival.bildpfad == null || (festival.bildpfad).equals("")) { %>
 								<td data-label="Bild"><%="nein"%></td>
 								<% } else { %>
@@ -61,4 +67,4 @@ else {
 </div>
 </body>
 </html>
-<% request.getSession().removeAttribute("listFestivals");}%>
+<% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("listKategorien");}%>

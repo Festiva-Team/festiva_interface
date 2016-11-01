@@ -14,7 +14,7 @@ if (request.getSession(false) == null || request.getSession(false).getAttribute(
 	response.sendRedirect("k_anmelden.jsp");}	
 else {
 	SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
-	List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
+	List<Kategorie> listKategorien = (List<Kategorie>)request.getSession(false).getAttribute("listKategorien");
 	Festival festival = (Festival)request.getSession(false).getAttribute("festival");
 	List<Artikel> listArtikel = (List<Artikel>)request.getSession(false).getAttribute("listArtikel");
 %>
@@ -113,4 +113,4 @@ else {
 </div>	
 </body>
 </html>
-<% request.getSession().removeAttribute("festival"); request.getSession().removeAttribute("listArtikel");}%>
+<% request.getSession().removeAttribute("festival"); request.getSession().removeAttribute("listArtikel"); request.getSession().removeAttribute("listKategorien");}%>
