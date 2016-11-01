@@ -37,10 +37,11 @@ public class Benutzerdaten extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		String antwort = "";
-		int userGruppenID = Integer.parseInt(session.getAttribute("gruppenid").toString()); 
+	 
 		
 		if(session != null && session.getAttribute("begrüßung") != null ) {
 			
+			int userGruppenID = Integer.parseInt(session.getAttribute("gruppenid").toString());			
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
 			Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
 					
@@ -68,12 +69,13 @@ public class Benutzerdaten extends HttpServlet {
 					boolean einzugsermächtigungErteilt = benutzer.einzugsermächtigungErteilt;
 					int plz = 0;
 					
+					if(!request.getParameter("plz").equals("")) {
 					try{
 						plz = Integer.parseInt(request.getParameter("plz"));
 					} catch (Exception e) {
 						e.printStackTrace();
 						plz = 0;
-					}
+					} }
 					
 					if(request.getParameter("einzugsermächtigungErteilt") != null){
 						einzugsermächtigungErteilt = true;
@@ -89,8 +91,11 @@ public class Benutzerdaten extends HttpServlet {
 					if ((request.getParameter("aktion")).equals("p_aendern")) {
 						
 						String passwortAlt = request.getParameter("passwortalt");
+						passwortAlt = Registrierung.generiereHash((passwortAlt + "76ZuOp(6?ssXY0"));
 						String passwortNeu = request.getParameter("passwortneu");
+						passwortNeu = Registrierung.generiereHash((passwortNeu + "76ZuOp(6?ssXY0"));
 						String passwortBestätigung = request.getParameter("passwortbestätigung");
+						passwortBestätigung = Registrierung.generiereHash((passwortBestätigung + "76ZuOp(6?ssXY0"));
 						antwort = aenderePasswort(passwortAlt, passwortNeu, passwortBestätigung, benutzer);
 						session.setAttribute("antwort", antwort);
 						request.getRequestDispatcher("/Benutzerdaten?aktion=anzeigen").include(request, response); } 

@@ -56,7 +56,8 @@ public class Login extends HttpServlet {
 						request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 
 					} else {
-						if ((benutzer.passwortHash).equals(request.getParameter("passwort"))) {
+						String pwHash = Registrierung.generiereHash((request.getParameter("passwort") + "76ZuOp(6?ssXY0"));
+						if ((benutzer.passwortHash).equals(pwHash)) {
 						HttpSession session = request.getSession(true);
 						session.setAttribute("userid", benutzer.id);
 						session.setAttribute("gruppenid", benutzer.gruppenID);

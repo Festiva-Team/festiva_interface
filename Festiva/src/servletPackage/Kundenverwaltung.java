@@ -57,6 +57,7 @@ public class Kundenverwaltung extends HttpServlet {
 						if(!passwortNeu.equals(passwortBestätigung)) {
 							antwort = "Das neue Passwort und die Wiederholung des Passworts stimmen nicht überein. Keine Passwortänderung durchgeführt.";
 						} else {
+							passwortNeu = Registrierung.generiereHash((passwortNeu + "76ZuOp(6?ssXY0"));
 							benutzer.passwortHash = passwortNeu;
 							BenutzerAdministration.aktualisiereBenutzer(benutzer);
 							antwort = "Das Passwort wurde erfolgreich geändert.";

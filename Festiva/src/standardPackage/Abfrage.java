@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import servletPackage.Registrierung;
+
 // import com.mysql.jdbc.Connection;
 
 public class Abfrage {
@@ -85,5 +87,7 @@ public static void main(String[] args) {
 	
 	List<FestivalSuchobjekt> liste = FestivalAdministration.selektiereFestivalsInSuche(1, "Eifel", "", "2017-06-03", "2017-06-05", (float)25.0);
 
-	Benutzer benutzer1 = BenutzerAdministration.selektiereBenutzer("alina.fankhaenel@festiva.de");
+	Benutzer benutzer1 = BenutzerAdministration.selektiereBenutzer("admin@festiva.de");
+	benutzer1.passwortHash = Registrierung.generiereHash(benutzer1.passwortHash + "76ZuOp(6?ssXY0");
+	BenutzerAdministration.aktualisiereBenutzer(benutzer1);
 	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);}}

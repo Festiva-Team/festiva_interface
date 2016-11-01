@@ -1,6 +1,9 @@
 package servletPackage;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +52,8 @@ public class Registrierung extends HttpServlet {
 			if(!passwort.equals(passwortBestätigung)) {
 				antwort = "Die beiden eingegebenen Passwörter stimmen nicht überein. Registrierung wurde nicht durchgeführt.";
 			} else {
-				Benutzer benutzer = new Benutzer(-1, "", "", email, passwort, "", "", 0, "", false, "", "", false, false, 2);
+				passwort = passwort + "76ZuOp(6?ssXY0";
+				Benutzer benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 2);
 				BenutzerAdministration.erstelleKunden(benutzer);
 				antwort = "Die Registrierung wurde erfolgreich durchgeführt.";
 			}
@@ -75,6 +79,33 @@ public class Registrierung extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	
+	/**
+	 * Methode zur Generierung eines Hash-Keys
+	 * 
+	 * @param p_input: String, der in einen Hash verwandelt werden soll
+	 * @return String: Hash-Wert zu dem eingegebenen String
+	 */
+	public static String generiereHash(String p_input) {
+		StringBuilder hash = new StringBuilder();
+
+		try {
+			MessageDigest sha = MessageDigest.getInstance("SHA-1");
+			byte[] hashedBytes = sha.digest(p_input.getBytes());
+			char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+					'a', 'b', 'c', 'd', 'e', 'f' };
+			for (int idx = 0; idx < hashedBytes.length; ++idx) {
+				byte b = hashedBytes[idx];
+				hash.append(digits[(b & 0xf0) >> 4]);
+				hash.append(digits[b & 0x0f]);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			// handle error here.
+		}
+
+		return hash.toString();
 	}
 
 }
