@@ -43,7 +43,17 @@ public class Warenkorbverwaltung extends HttpServlet {
 			session.setAttribute("listFestivals", listFestivals);
 			session.setAttribute("warenkorb", warenkorb);
 			request.getRequestDispatcher("k_warenkorb.jsp").include(request, response);
-			} else {
+			} else { 
+					if ((request.getParameter("aktion")).equals("k_anzeigen")) {
+						int userid = Integer.parseInt(session.getAttribute("userid").toString());
+						Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid);
+						Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
+						List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+						session.setAttribute("listFestivals", listFestivals);
+						session.setAttribute("warenkorb", warenkorb);
+						session.setAttribute("benutzer", benutzer);
+						request.getRequestDispatcher("k_kasse.jsp").include(request, response);
+					} else {
 				int elementID = Integer.parseInt(request.getParameter("elementid"));
 				if ((request.getParameter("aktion")).equals("aendern")) {
 					int mengeNeu = Integer.parseInt(request.getParameter("menge"));
@@ -55,9 +65,11 @@ public class Warenkorbverwaltung extends HttpServlet {
 					if ((request.getParameter("aktion")).equals("loeschen")) {
 						WarenkorbAdministration.loescheWarenkorbelement(elementID);
 						
-					}
+					} 
 				}
 				request.getRequestDispatcher("/Warenkorbverwaltung?aktion=anzeigen").include(request, response);
+			}
+				
 			}
 			
 		} else {

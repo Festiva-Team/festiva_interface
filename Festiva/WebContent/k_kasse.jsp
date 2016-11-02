@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" 
+    session="false"	%>
   
 <%  if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
-	response.sendRedirect("k_anmelden.jsp");} %>
+		response.sendRedirect("k_anmelden.jsp");}
+	else {
+		Warenkorb warenkorb = (Warenkorb)request.getSession(false).getAttribute("warenkorb");
+		List<Festival> listFestivals = (List<Festival>)request.getSession(false).getAttribute("listFestivals");
+		Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer"); 
+		int id = 1; 
+		float gesamtsumme = 0;
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,34 +28,58 @@
 				<div id="spaltelinks">
 				<h2>Kasse</h2>
 				<fieldset id="Lieferungsdaten" disabled>		
-					<h2>Lieferungsdaten</h2><br/>
+					<h2>Lieferdaten</h2><br/>
 				    <label for="input2">Vorname</label> 
-				    <input value=""><br/> 
+				    <input name="vorname" id="vorname" value="<%=benutzer.vorname%>"><br/> 
 				    <label for="input2">Nachname</label> 
-				    <input value=""><br/>
+				    <input name="nachname" id="nachname" value="<%=benutzer.nachname%>"><br/>
 				    <label for="input2">Straﬂe</label> 
-				    <input value=""><br/>
+				    <input name="strasse" id="strasse" value="<%=benutzer.strasse%>"><br/>
 				    <label for="input2">Hausnummer</label> 
-				    <input value=""><br/>
+				    <input name="hausnummer" id="hausnummer" value="<%=benutzer.hausnummer%>"><br/>
 				    <label for="input2">PLZ</label> 
-				    <input value=""><br/>
+				    <input name="plz" id="plz" value="<%=benutzer.plz%>"><br/>
 				    <label for="input2">Ort</label> 
-				    <input value=""><br/>
+				    <input name="ort" id="ort" value="<%=benutzer.ort%>"><br/>
 				  </fieldset>
 				</div>
 				<div id="spalterechts">
 					<fieldset id="Zahlungsdaten" disabled>
 					  	<h2>Zahlungsdaten</h2><br/>
-					    <label for="input2">IBAN:</label> <input value=""><br/> 
-					    <label for="input2">BIC:</label> <input value=""><br/>
+					    <label for="input2">IBAN:</label> <input name="iban" id="iban" value="<%=benutzer.iban%>"><br/> 
+					    <label for="input2">BIC:</label> <input name="bic" id="bic" value="<%=benutzer.bic%>"><br/>
 					</fieldset>
 				</div>
 			</div>
+			 
 			<div id="zeile">
-				<table class= "artikel">
-					<tr><th>Festival</th><th>Artikeleschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr>			
+			<h2>Bestellpositionen</h2><br/>
+								<table class= "artikel">
+					<thead><tr><th>ID</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
+					  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
+					<tbody><tr>
+								<td data-label="ID"><%=id%></td>
+								<% for (Festival festival : listFestivals) { 
+									if (festival.id == warenkorbelement.artikel.festivalID) { %>
+								<td data-label="Festival"><%=festival.name%></td>
+								<% } } %>
+								<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
+								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> </td>
+								<td data-label="Anzahl"><%=warenkorbelement.menge%></td>
+								<td data-label="Gesamtpreis"><%=String.format("%.2f",(warenkorbelement.menge * warenkorbelement.artikel.preis))%> &#8364;</td>
+								
+					</tr></tbody>
+					<% id++; gesamtsumme = gesamtsumme + (warenkorbelement.menge * warenkorbelement.artikel.preis); } %>
+					<tr><td></td><td></td><td></td><td></td><td></td><td><%=String.format("%.2f", gesamtsumme)%> &#8364;</td>
+					</tr>
 				</table>
-				<button type="button">Kaufen</button>
+				<h2>Versand</h2><br/>
+				<form action="">
+ 			 <input type="radio" name="versand" value="female" required="required"> Per Post (+2,50 &#8364;)<br>
+ 			 <input type="radio" name="versand" value="other" required="required"> Per Mail
+ 			 <button type="button">Verbindlich bestellen</button>
+			 </form>
+				
 			</div>
 			</div>
 	<div id="leer"></div>
@@ -56,3 +88,4 @@
 </div>
 </body>
 </html>
+<% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb"); request.getSession().removeAttribute("benutzer");}%>

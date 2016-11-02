@@ -24,7 +24,6 @@
     	</jsp:include>
     	<div id="main">
 				<h2>Warenkorb</h2>
-				<p id="demo"></p>
 				<table class= "artikel">
 					<thead><tr><th>ID</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
 					  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
@@ -53,7 +52,7 @@
 					</tr>
 				</table>
 				<div id="spalterechts">
-						<button type="button" onClick="window.location.href='k_kasse.jsp'">Zur Kasse</button>
+						<button type="button" onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=k_anzeigen'">Zur Kasse</button>
 				</div>			
 		</div>
 		<div id="leer"></div>
@@ -68,4 +67,4 @@
 
 </script>
 </html>
-<% }%>
+<% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb");}%>

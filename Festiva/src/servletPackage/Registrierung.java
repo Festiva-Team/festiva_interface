@@ -64,13 +64,13 @@ public class Registrierung extends HttpServlet {
 		request.getSession(false).setAttribute("antwort", antwort);
 		
 		if(request.getSession(false).getAttribute("gruppenid") == null) {
-			request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
+			request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 		} else {
 			int gruppenid = Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString());
 			if(gruppenid == 1) {
 				request.getRequestDispatcher("a_kundenAnlegen.jsp").include(request, response);
 			} else {
-				request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
+				request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 			}
 		}
 	}
@@ -104,7 +104,7 @@ public class Registrierung extends HttpServlet {
 				hash.append(digits[b & 0x0f]);
 			}
 		} catch (NoSuchAlgorithmException e) {
-			// handle error here.
+			
 		}
 
 		return hash.toString();
