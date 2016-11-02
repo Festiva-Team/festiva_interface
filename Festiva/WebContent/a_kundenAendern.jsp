@@ -78,7 +78,7 @@ else {
 			</div>
 			<form action="/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=<%=benutzer.id%>" method="post">
 				<div id="spalterechts">
-					<button type="submit" id="links">Kunden löschen</button>
+					<input type="submit" value="l&ouml;schen" onclick="return confirm('Wirklich weghauen das Zeugs?')">
 					</div>
 					</form>
 					<div id="spalterechts">
@@ -95,5 +95,26 @@ else {
 		<footer></footer>
 </div>	
 </body>
+<script type="text/javascript">
+var pop = null;
+
+function popdown() {
+  if (pop && !pop.closed) pop.close();
+}
+
+function popup(obj,w,h) {
+  var url = (obj.getAttribute) ? obj.getAttribute('href') : obj.href;
+  if (!url) return true;
+  w = (w) ? w += 20 : 150;  // 150px*150px is the default size
+  h = (h) ? h += 25 : 150;
+  var args = 'width='+w+',height='+h+',resizable';
+  popdown();
+  pop = window.open(url,'',args);
+  return (pop) ? false : true;
+}
+
+window.onunload = popdown;
+window.onfocus = popdown;
+</script>
 </html>
 <% request.getSession().removeAttribute("benutzer");}%>
