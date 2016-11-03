@@ -75,8 +75,8 @@
 				</table>
 				<h2>Versand</h2><br/>
 				<form action="">
- 			 <input type="radio" name="versand" value="female" required="required"> Per Post (+2,50 &#8364;)<br>
- 			 <input type="radio" name="versand" value="other" required="required"> Per Mail
+ 			 <input type="radio" id="mail" name="mail" value="mail" required="required" checked="checked" onchange="versenden()"> Per Mail <br>
+ 			 <input type="radio" id="post" name="post" value="post" required="required" onchange="versenden()"> Per Post (+2,50 &#8364;)
  			 <button type="button">Verbindlich bestellen</button>
 			 </form>
 				
@@ -87,5 +87,17 @@
 	<footer></footer>
 </div>
 </body>
+<script type="text/javascript">
+	function versenden(objekt) {
+	    var x = document.getElementById(objekt.id).value;
+	    
+	    if(x == "post") {
+	    	document.location.href='/Festiva/Warenkorbverwaltung?aktion=aendern&elementid=' + id + '&menge=' + x;
+	    } else {
+	    	
+	    }
+	}
+
+</script>
 </html>
 <% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb"); request.getSession().removeAttribute("benutzer");}%>
