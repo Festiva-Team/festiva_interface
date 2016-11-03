@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import standardPackage.Warenkorb;
+import standardPackage.WarenkorbAdministration;
+
 /**
 *
 * @author Alina Fankhänel
@@ -32,7 +35,8 @@ public class Bestellverwaltung extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 			if ((request.getParameter("aktion")).equals("anlegen")) {
-				
+				int userid = Integer.parseInt(session.getAttribute("userid").toString());
+				Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
 			}
 		} else {
 			response.sendRedirect("k_anmelden.jsp");

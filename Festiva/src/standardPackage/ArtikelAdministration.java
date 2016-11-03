@@ -268,7 +268,7 @@ public class ArtikelAdministration {
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
 							  "FROM festiva.artikel " + 
-							  "WHERE festivals_id is null AND istgelöscht = 0 ORDER BY beschreibung ASC";
+							  "WHERE festivals_id is null AND istgelöscht = 0 AND id != 6 ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
