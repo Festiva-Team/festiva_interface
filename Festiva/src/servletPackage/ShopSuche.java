@@ -28,14 +28,13 @@ public class ShopSuche extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String name = request.getParameter("name");
 		String ort = request.getParameter("ort");
 		
 
 		request.getSession(false).setAttribute("name", name);
 		request.getSession(false).setAttribute("ort", ort);
-		request.getRequestDispatcher("k_shop2.jsp").include(request, response);
+		request.getRequestDispatcher("k_shop.jsp").include(request, response);
 		
 		
 	}

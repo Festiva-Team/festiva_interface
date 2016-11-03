@@ -1,3 +1,7 @@
+<%@ page import = "standardPackage.*" %>
+<%@ page import = "java.util.*" %>
+<%@ page import = "java.text.*" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%
@@ -25,32 +29,135 @@
     		<jsp:param name="active" value="shop"/>
     	</jsp:include>
 		<div id="main">
+			<form action="/Festiva/ShopSuche" method="post">
 				<div id="zeile1">
 				<h2>Shop</h2>
 					<div id="spaltelinks">					
 						<label for="name">Name</label>
-						<input type="search" id="name" maxlength="30" placeholder="Festivalname">
+						<%if (request.getSession().getAttribute("name") != null) 
+						{%>
+						<input type="search" id="name" maxlength="30" placeholder="Festivalname" name="name" value=<%=request.getSession().getAttribute("name").toString()%>>
+						<%}
+						else
+						{%>
+						<input type="search" id="name" maxlength="30" placeholder="Festivalname" name="name">
+						<%}%>
+						
 						<label for="kategorie">Kategorie</label>	
 						<select><option value="Kategorie.name"></option></select>
 						<label for="name">Ort</label>
-						<input type="text" id="ort" maxlength="30">
-					</div>
+						<%if (request.getSession().getAttribute("ort") != null) 
+						{%>
+						<input type="text" id="ort" maxlength="30" name="ort" value=<%=request.getSession().getAttribute("ort").toString()%>>
+						<%}
+						else
+						{%>
+						<input type="text" id="ort" maxlength="30" name="ort">
+						<%}%>
+						</div>
 					<div id="spalterechts">						
 						<label for="datum">Startdatum</label>
-						<input type="date" id="datum" maxlength="30" placeholder="Startdatum">	
+						<%if (request.getSession().getAttribute("startdatum") != null) 
+						{%>
+						<input type="date" id="datum" maxlength="30" placeholder="Startdatum" name="startdatum" value=<%=request.getSession().getAttribute("startdatum").toString()%>>
+						<%}
+						else
+						{%>
+						<input type="date" id="datum" maxlength="30" placeholder="Startdatum" name="startdatum">
+						<%}%>
+							
 						<label for="datum">Enddatum</label>
-						<input type="date" id="datum" maxlength="30">
+						<%if (request.getSession().getAttribute("enddatum") != null) 
+						{%>
+						<input type="date" id="datum" maxlength="30" name="enddatum" value=<%=request.getSession().getAttribute("enddatum").toString()%>>
+						<%}
+						else
+						{%>
+						<input type="date" id="datum" maxlength="30" name="enddatum">
+						<%}%>
+						
 						<label for="preis">max Preis</label>
-						<input type="text" id="preis" maxlength="8">
-						<button type="button">suchen</button>
+						<%if (request.getSession().getAttribute("maxPreis") != null) 
+						{%>
+						<input type="text" id="preis" maxlength="8" name="maxPreis" value=<%=request.getSession().getAttribute("maxPreis").toString()%>>
+						<%}
+						else
+						{%>
+						<input type="text" id="preis" maxlength="8" name="maxPreis">
+						<%}%>
+						
+						<button type="submit">suchen</button>
 					</div>
 				</div>		
 				<table>
 					<thead>
 					<tr><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kateorie</th><th>Preis</th></tr></thead>
-					<tbody><tr><td>Festival</td><td>Datum</td><td>Ort</td><td id="kategorie">Kateorie</td><td>Preis</td></tr></tbody>
+					<tbody>
+					<% 
+					String sucheOrt= "";
+					String sucheName = "";
+					Date sucheStartdatum = null;
+					Date sucheEnddatum = null;
+					float sucheMaxPreis = 0;
 					
+					if (request.getSession().getAttribute("ort") != null)
+						{ 
+							sucheOrt = request.getSession().getAttribute("ort").toString();
+						}
+					
+					if (request.getSession().getAttribute("name") != null)
+					{
+						 sucheName = request.getSession().getAttribute("name").toString();
+					}
+					
+					if (request.getSession().getAttribute("startdatum") != null)
+					{
+						 //sucheStartdatum = Date.parse(request.getSession().getAttribute("startdatum").toString());
+					}
+					
+					if (request.getSession().getAttribute("enddatum") != null)
+					{
+						 //sucheEnddatum = request.getSession().getAttribute("enddatum").toString();
+					}
+					
+					if (request.getSession().getAttribute("maxPreis") != null)
+					{
+						 sucheMaxPreis = Float.parseFloat(request.getSession().getAttribute("maxPreis").toString());
+					}
+					
+											
+						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(0, sucheOrt, sucheName, null, null, sucheMaxPreis);
+						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
+						for (FestivalSuchobjekt festival : festivalliste)
+						{%>
+							<tr>
+								<td><%=festival.name%></td>
+								<% if (festival.startDatum.compareTo(festival.endDatum) == 0)
+								{%>
+								<td><%=sd.format(festival.startDatum)%></td>
+								<%}
+								else
+								{%>
+								<td><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
+								<%} %>
+								<td><%=festival.ort%></td>
+								<td><%=festival.kategorienID%></td>
+								<% if (festival.vonPreis == festival.bisPreis)
+								{%>
+								<td><%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
+								<%}
+								else
+								{%>
+								<td><%=String.format("%.2f",festival.vonPreis)%> &#8364; - <%=String.format("%.2f",festival.bisPreis)%> &#8364;</td>
+								<%} %>
+							</tr><%
+							}
+							request.getSession().removeAttribute("ort");
+							request.getSession().removeAttribute("name");%>
+					</tbody>
 				</table>
+				</table>
+			</form>
 		<div id="leer"></div>
 		</div>
 			<footer></footer>

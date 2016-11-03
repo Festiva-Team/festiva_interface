@@ -34,11 +34,11 @@
 				<div id="zeile">
 					<div id="spaltelinks">
 						<label for="name">Name</label>
-						<input type="search" id="name" maxlength="30">
+						<input type="search" id="name" name="name" maxlength="30">
 					</div>
 					<div id="spalterechts">
 						<label for="ort">Ort</label>
-						<input type="text" id="ort" maxlength="30">
+						<input type="text" id="ort" name="ort" maxlength="30">
 					</div>
 				</div>
 				<div id="zeile">
@@ -56,12 +56,20 @@
 					<tr>
 						<th>Festival</th><th>Datum</th><th>Ort</th><th>Kateorie</th><th>Preis</th>
 					</tr>
-					<%
-						 String sucheOrt = request.getSession().getAttribute("ort");
-						 String sucheName = request.getSession().getAttribute("name");
-						//String sucheOrt = "";
-						//String sucheName = "";
-						
+					<% 
+					String sucheOrt= "";
+					String sucheName = "";
+					if (request.getSession().getAttribute("ort") != null)
+						{ 
+							sucheOrt = request.getSession().getAttribute("ort").toString();
+						}
+					
+					if (request.getSession().getAttribute("name") != null)
+					{
+						 sucheName = request.getSession().getAttribute("name").toString();
+					}
+					
+											
 						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(0, sucheOrt, sucheName, null, null, 0);
 						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
 						for (FestivalSuchobjekt festival : festivalliste)
