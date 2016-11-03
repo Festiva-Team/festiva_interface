@@ -29,10 +29,13 @@
 					  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
 					<tbody><tr>
 								<td data-label="ID"><%=id%></td>
+								<% if (warenkorbelement.artikel.festivalID == 0) { %>
+								<td data-label="Festival"><%=""%></td>
+								<% }  else { %>
 								<% for (Festival festival : listFestivals) { 
 									if (festival.id == warenkorbelement.artikel.festivalID) { %>
-								<th data-label="Festival"><a href=""><%=festival.name%></a></td>
-								<% } } %>
+								<td data-label="Festival"><%=festival.name%></td>
+								<% } } } %>
 								<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
 								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
 								<td data-label="Anzahl"> <select onchange="myFunction(this, <%=warenkorbelement.id%>);" id="menge<%=id%>" name="menge<%=id%>">

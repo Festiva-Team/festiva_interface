@@ -93,9 +93,9 @@ public static void main(String[] args) {
 
 
 	
-	Artikel lst = ArtikelAdministration.selektiereArtikel(7);
+	//Artikel lst = ArtikelAdministration.selektiereArtikel(7);
 	
-	Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1);
+	Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1, true);
 	List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
 
 	for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { 
@@ -107,6 +107,9 @@ public static void main(String[] args) {
 		System.out.println(warenkorbelement.artikel.preis);
 		System.out.println(warenkorbelement.menge);
 		System.out.println((warenkorbelement.menge * warenkorbelement.artikel.preis));
-		 } 
+		 }
+	
+	String test = "    ";
+	System.out.println(test.trim().length());
 	} 
 }

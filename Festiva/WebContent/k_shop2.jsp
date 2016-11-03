@@ -57,10 +57,10 @@
 						<th>Festival</th><th>Datum</th><th>Ort</th><th>Kateorie</th><th>Preis</th>
 					</tr>
 					<%
-						 String sucheOrt = request.getSession().getAttribute("ort");
-						 String sucheName = request.getSession().getAttribute("name");
-						//String sucheOrt = "";
-						//String sucheName = "";
+		//				 String sucheOrt = request.getSession().getAttribute("ort");
+		//				 String sucheName = request.getSession().getAttribute("name");
+						String sucheOrt = "";
+						String sucheName = "";
 						
 						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(0, sucheOrt, sucheName, null, null, 0);
 						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
