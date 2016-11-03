@@ -1,7 +1,7 @@
 package standardPackage;
 
 
-import java.util.List;
+
 
 
 
@@ -93,23 +93,30 @@ public static void main(String[] args) {
 
 
 	
-	//Artikel lst = ArtikelAdministration.selektiereArtikel(7);
+//	List<Artikel> lst = ArtikelAdministration.selektiereUnabhaengigeArtikel();
 	
-	Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1, true);
-	List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
-
-	for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { 
-		for (Festival festival : listFestivals) { 
-			if (festival.id == warenkorbelement.artikel.festivalID) { 
-		System.out.println(festival.name);
-		} } 
-		System.out.println(warenkorbelement.artikel.beschreibung);
-		System.out.println(warenkorbelement.artikel.preis);
-		System.out.println(warenkorbelement.menge);
-		System.out.println((warenkorbelement.menge * warenkorbelement.artikel.preis));
-		 }
+//	Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1, true);
+//	List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+//
+//	for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { 
+//		for (Festival festival : listFestivals) { 
+//			if (festival.id == warenkorbelement.artikel.festivalID) { 
+//		System.out.println(festival.name);
+//		} } 
+//		System.out.println(warenkorbelement.artikel.beschreibung);
+//		System.out.println(warenkorbelement.artikel.preis);
+//		System.out.println(warenkorbelement.menge);
+//		System.out.println((warenkorbelement.menge * warenkorbelement.artikel.preis));
+//		 }
+//	
+//	String test = "    ";
+//	System.out.println(test.trim().length());
 	
-	String test = "    ";
-	System.out.println(test.trim().length());
-	} 
+//	Warenkorb p_warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1, true);
+//	List<Bestellposition> listPositionen = null;
+//	
+//	for(Warenkorbelement warenkorbelement : p_warenkorb.listElemente) {
+//		listPositionen.add(new Bestellposition(-1, warenkorbelement.menge, warenkorbelement.artikel.id, warenkorbelement.artikel.beschreibung, warenkorbelement.artikel.preis));
+//	}
+} 
 }

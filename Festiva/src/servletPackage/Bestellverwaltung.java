@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import standardPackage.Warenkorb;
-import standardPackage.WarenkorbAdministration;
+import standardPackage.*;
 
 /**
 *
@@ -36,7 +35,21 @@ public class Bestellverwaltung extends HttpServlet {
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 			if ((request.getParameter("aktion")).equals("anlegen")) {
 				int userid = Integer.parseInt(session.getAttribute("userid").toString());
+				String versand = request.getParameter("versand");
+				boolean perPost = false;
+				
+				if(versand.equals("post")) {
+					perPost = true;
+				}
+				
 				Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
+				Bestellung bestellung = new Bestellung(warenkorb, perPost);
+				BestellungsAdministration.erstelleBestellung(bestellung);
+				WarenkorbAdministration.loescheWarenkorbinhalt(warenkorb.id);
+			} else {
+				if ((request.getParameter("aktion")).equals("anzeigen")) {
+					
+				}
 			}
 		} else {
 			response.sendRedirect("k_anmelden.jsp");

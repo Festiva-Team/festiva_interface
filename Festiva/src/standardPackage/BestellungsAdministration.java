@@ -33,8 +33,8 @@ public static void erstelleBestellung(Bestellung p_bestellung)
 	{
 		insertBefehl = "INSERT INTO festiva.bestellpositionen " + 
 					   "(menge, artikel_id, beschreibung, preis, bestellungen_id) " +
-					   "VALUES ('%d', '%d', '%s', '%f', '%d')";
-		insertBefehl = String.format(insertBefehl, bestellposition.menge, bestellposition.artikelID, bestellposition.beschreibung, bestellposition.preis, p_bestellung.id);
+					   "VALUES ('%d', '%d', '%s', '%s', '%d')";
+		insertBefehl = String.format(insertBefehl, bestellposition.menge, bestellposition.artikelID, bestellposition.beschreibung, String.format("%.2f",bestellposition.preis).replace(',', '.'), p_bestellung.id);
 		bestellposition.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
 	}
 }

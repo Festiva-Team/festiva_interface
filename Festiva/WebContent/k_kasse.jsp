@@ -78,10 +78,10 @@
 					</tr>
 				</table>
 				<h2>Versand</h2><br/>
-				<form action="">
+				<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
  			 <input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false)) { %> checked="checked" <% }%> onclick="versenden(this)"> Per Mail <br>
  			 <input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true)) { %> checked="checked" <% }%> onclick="versenden(this)"> Per Post 
- 			 <button type="button" id="Verbindlich bestellen" onClick="window.location.href='/Festiva/Bestellverwaltung?aktion=anlegen'" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
+ 			 <button type="submit" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
 			 </form>
 			 <%if(kundendatenVollstaendig.equals(false)) { %>
 			 <p> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt haben. Hier können Sie Ihre Kundendaten anpassen: </p>

@@ -268,4 +268,17 @@ public class WarenkorbAdministration {
 		
 		return warenkorbelement;
 	}
+	
+	
+	/**
+	 * Löscht den Inhalt des Warenkorbs mit der übergebenen ID in der Datenbank dauerhaft
+	 * 
+	 * @param p_id: ID des Warenkorb-Objekts, dessen Inhalt in der Datenbank gelöscht werden soll
+	 */
+	public static void loescheWarenkorbinhalt(int p_id)
+	{		
+		String deleteBefehl = "DELETE FROM festiva.warenkorbelemente WHERE warenkörbe_id = " + p_id;
+
+		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(deleteBefehl);		
+	}
 }
