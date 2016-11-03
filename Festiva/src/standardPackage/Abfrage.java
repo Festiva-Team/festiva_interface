@@ -90,18 +90,23 @@ public static void main(String[] args) {
 //	benutzer1.passwortHash = Registrierung.generiereHash(benutzer1.passwortHash + "76ZuOp(6?ssXY0");
 //	BenutzerAdministration.aktualisiereBenutzer(benutzer1);
 //	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);
+
+
+	
+	Artikel lst = ArtikelAdministration.selektiereArtikel(7);
+	
 	Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1);
 	List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
-	for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { 
-				for (Festival festival : listFestivals) { 
-					if (festival.id == warenkorbelement.artikel.festivalID) { 
-				System.out.println(festival.name);
-				} } 
-				System.out.println(warenkorbelement.artikel.beschreibung);
-				System.out.println(warenkorbelement.artikel.preis);
-				System.out.println(warenkorbelement.menge);
-				System.out.println((warenkorbelement.menge * warenkorbelement.artikel.preis));
-				 } 
 
+	for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { 
+		for (Festival festival : listFestivals) { 
+			if (festival.id == warenkorbelement.artikel.festivalID) { 
+		System.out.println(festival.name);
+		} } 
+		System.out.println(warenkorbelement.artikel.beschreibung);
+		System.out.println(warenkorbelement.artikel.preis);
+		System.out.println(warenkorbelement.menge);
+		System.out.println((warenkorbelement.menge * warenkorbelement.artikel.preis));
+		 } 
 	} 
 }

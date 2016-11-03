@@ -24,9 +24,9 @@ else {
    		<jsp:param name="active" value="artikelverwaltung"/>
 	</jsp:include>
  	<div id="main">
- 		<h2>Artikelverwaltung</h2>
+ 		<h2>Festivalübergreifende Artikelverwaltung</h2>
 			<div id="spaltelinks">
-					<button type="submit" id="anlegen">Neuen Artikel anlegen</button>
+					<button type="button" onClick="window.location.href='a_artikelAnlegen.jsp?'" id="anlegen">Neuen Artikel anlegen</button>
 					</div>					
 				<div id="zeile">
 					<div id="spaltelinks">
@@ -55,3 +55,4 @@ else {
 </div>
 </body>
 </html>
+<% request.getSession().removeAttribute("listArtikel"); }%>
