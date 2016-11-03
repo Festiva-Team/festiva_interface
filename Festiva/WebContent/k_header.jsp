@@ -27,7 +27,8 @@ HttpSession session = request.getSession(false);
 		<nav>
 		<ul>
 			<li><a href="k_startseite.jsp">Home</a></li>
-			<li><a href="k_shop.jsp">Shop</a></li>
+			<li><a href="k_shop.jsp">Ticketshop</a></li>
+			<li><a href="/Festiva/MerchandiseShop?aktion=anzeigen">Merchandiseshop</a></li>
 			<li><a href="#">Mein Konto</a>
 			<ul>
 			<% if (session != null && session.getAttribute("begrüßung") != null && session.getAttribute("gruppenid") != null && Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) == 2) 
