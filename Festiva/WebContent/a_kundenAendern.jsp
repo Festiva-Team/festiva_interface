@@ -72,13 +72,13 @@ else {
 					<input type="password" id="passwortneu" name="passwortneu" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<label for="passwortbestätigung">Neues Passwort bestätigen</label>
 					<input type="password" id="passwortbestätigung" name="passwortbestätigung" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
-					<button type="submit" id="links">Passwort ändern</button>
+					<button type="submit">Passwort ändern</button>
 					</div>
 					</form>
 			</div>
 			<form action="/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=<%=benutzer.id%>" method="post">
 				<div id="spalterechts">
-					<input type="submit" value="l&ouml;schen" onclick="return confirm('Wirklich weghauen das Zeugs?')">
+					<button onclick="del()">Kunden löschen</button>
 					</div>
 					</form>
 					<div id="spalterechts">
@@ -96,25 +96,13 @@ else {
 </div>	
 </body>
 <script type="text/javascript">
-var pop = null;
 
-function popdown() {
-  if (pop && !pop.closed) pop.close();
+function del(){
+	app.alert("Hello World", 3);
+   	// User Pressed Yes, Do submission //this.submitForm(...);
+   }
 }
 
-function popup(obj,w,h) {
-  var url = (obj.getAttribute) ? obj.getAttribute('href') : obj.href;
-  if (!url) return true;
-  w = (w) ? w += 20 : 150;  // 150px*150px is the default size
-  h = (h) ? h += 25 : 150;
-  var args = 'width='+w+',height='+h+',resizable';
-  popdown();
-  pop = window.open(url,'',args);
-  return (pop) ? false : true;
-}
-
-window.onunload = popdown;
-window.onfocus = popdown;
 </script>
 </html>
 <% request.getSession().removeAttribute("benutzer");}%>
