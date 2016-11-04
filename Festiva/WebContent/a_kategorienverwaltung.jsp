@@ -39,9 +39,9 @@ else {
 								<td data-label="Name"><%=kategorie.name%></td>
 								<td data-label="Beschreibung"><%=kategorie.beschreibung%></td>
 								<%if (kategorie.bildpfad == null || (kategorie.bildpfad).equals("")) { %>
-								<td data-label="Bild"><%="kein Bild vorhanden"%></td>
+								<td data-label="Bild"><%="Nein"%></td>
 								<% } else { %>
-								<td data-label="Bild"><img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150/><br /></td>
+								<td data-label="Bild"><%="Ja"%></td>
 								<% } %>
 								<%if (kategorie.istGelöscht == false) { %>
 								<td data-label="Gelöscht"><%="nein"%></td>

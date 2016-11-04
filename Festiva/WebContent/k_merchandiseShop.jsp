@@ -30,7 +30,7 @@ if (request.getSession(false) != null) {
 			<div id="zeile">
 				<table>
 								
-					<thead><tr><th>Bild</th><th>Beschreibung</th><th>Preis</th></tr></thead>
+					<thead><tr><th>Bild</th><th>Beschreibung</th><th>Preis</th><th>Anzahl</th></tr></thead>
 					<%					
 						for (Artikel artikel : listArtikel)
 						{%>
@@ -38,7 +38,9 @@ if (request.getSession(false) != null) {
 								<td data-label="Bild">"artikel.bildpfad"</td>
 								<td data-label="Beschreibung"><%=artikel.beschreibung%></td>
 								<td data-label="Preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-								<td><button type="submit" id="Artikel in Warenkorb" onClick="window.location.href='/Festiva/MerchandiseShop?aktion=hinzufuegen&elementid&userid=<%=warenkorbelement.id%>'">In den Warenkorb</button></td>
+								<td data-label="Anzahl">l
+								<select><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+								<td><button type="submit" id="Artikel in Warenkorb">In den Warenkorb</button></td>
 							</tr></tbody>
 						<%}	%>
 
@@ -50,4 +52,4 @@ if (request.getSession(false) != null) {
 	</div>
 </body>
 </html> 
-<% } %>
+<% request.getSession().removeAttribute("listArtikel");} %>

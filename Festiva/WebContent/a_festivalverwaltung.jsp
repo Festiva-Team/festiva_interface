@@ -48,9 +48,9 @@ else {
       							<td data-label="Kategorie"><%=kategorie.name%></td>       
    								<%  } } %>
 								<%if (festival.bildpfad == null || (festival.bildpfad).equals("")) { %>
-								<td data-label="Bild"><%="kein Bild vorhanden"%></td>
+								<td data-label="Bild"><%="Nein"%></td>
 								<% } else { %>
-								<td data-label="Bild"><img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150/><br /></td>
+								<td data-label="Bild"><%="Ja"%></td>
 								<% } %>
 								<%if (festival.istGelöscht == false) { %>
 								<td data-label="Gelöscht"><%="nein"%></td>
