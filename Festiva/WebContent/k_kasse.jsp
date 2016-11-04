@@ -12,6 +12,7 @@
 		int id = 1; 
 		float gesamtsumme = 0;
 		Boolean perPost = false;
+		Boolean disabled = false;
 		
 		if(request.getSession(false).getAttribute("perPost") != null) {
 			perPost = (Boolean)request.getSession(false).getAttribute("perPost");
@@ -20,6 +21,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" type="text/css" href="CSS/design.css">
 	<title>Festiva - Kasse</title>
@@ -61,7 +65,7 @@
 								<td data-label="ID"><%=id%></td>
 								<% if (warenkorbelement.artikel.festivalID == 0) { %>
 								<td data-label="Festival"><%=""%></td>
-								<% }  else { %>
+								<% if(warenkorbelement.artikel.id != 6) { disabled = true; } }  else { %>
 								<% for (Festival festival : listFestivals) { 
 									if (festival.id == warenkorbelement.artikel.festivalID) { %>
 								<td data-label="Festival"><%=festival.name%></td>
@@ -77,10 +81,10 @@
 					<tr><td></td><td></td><td></td><td></td><td></td><td><%=String.format("%.2f", gesamtsumme)%> &#8364;</td>
 					</tr>
 				</table>
-				<h2>Versand</h2><br/>
+				<h2>Versand</h2><br/><h5>Hinweis: Wenn Sie einen oder mehrere Merchandise-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</h5>
 				<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
- 			 <input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false)) { %> checked="checked" <% }%> onclick="versenden(this)"> Per Mail <br>
- 			 <input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true)) { %> checked="checked" <% }%> onclick="versenden(this)"> Per Post 
+ 			 <input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" > Per Mail <br>
+ 			 <input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)"> Per Post 
  			 <button type="submit" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
 			 </form>
 			 <%if(kundendatenVollstaendig.equals(false)) { %>

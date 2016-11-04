@@ -8,6 +8,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Festiva - Meine Daten</title>
 </head>
@@ -20,7 +23,7 @@
 			<form action="/Festiva/Benutzerdaten?aktion=aendern" method="post">
 			<h2>Meine persönlichen Daten</h2>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-			<h5>Achtung: Wenn Sie eine Bestellung durchführen möchten, müssen Sie alle Daten (außer Ihrer BIC) angeben!</h5>
+			<h5>Achtung: Wenn Sie eine Bestellung durchführen möchten, müssen Sie alle Ihre Daten (außer der BIC) angeben!</h5>
 				<div id="zeile">
 					<div id="spaltelinks">				
 						<label for="vorname">Vorname</label>

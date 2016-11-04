@@ -330,4 +330,41 @@ public class ArtikelAdministration {
 		return listArtikel;
 	}
 	
+	
+	/**
+	 * Selektiert alle Artikel (alphabetisch sortiert)
+	 * @return listArtikel: Liste aller Artikel
+	 */
+	public static List<Artikel> selektiereAlleArtikel()
+	{
+		List<Artikel> listArtikel = new ArrayList<Artikel>();
+		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht, festivals_id " + 
+							  "FROM festiva.artikel " + 
+							  "ORDER BY beschreibung ASC";
+		selectBefehl  = String.format(selectBefehl);
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int id = ergebnismenge.getInt("id");				
+				String beschreibung = ergebnismenge.getString("beschreibung");
+				float preis = ergebnismenge.getFloat("preis");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				int festivalid = ergebnismenge.getInt("festivals_id");
+				
+				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, festivalid));
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listArtikel;
+	}
+	
 }

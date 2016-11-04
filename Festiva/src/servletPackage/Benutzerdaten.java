@@ -37,6 +37,9 @@ public class Benutzerdaten extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		String antwort = "";
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
 	 
 		
 		if(session != null && session.getAttribute("begrüßung") != null ) {

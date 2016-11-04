@@ -1,6 +1,8 @@
 package servletPackage;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +34,9 @@ public class Bestellverwaltung extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session = request.getSession(false);
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 			if ((request.getParameter("aktion")).equals("anlegen")) {
 				int userid = Integer.parseInt(session.getAttribute("userid").toString());
@@ -49,6 +54,13 @@ public class Bestellverwaltung extends HttpServlet {
 				request.getRequestDispatcher("/Bestellverwaltung?aktion=anzeigen").include(request, response);
 			} else {
 				if ((request.getParameter("aktion")).equals("anzeigen")) {
+					int userid = Integer.parseInt(session.getAttribute("userid").toString());
+					List<Bestellung> listBestellungen = BestellungsAdministration.selektiereBestellungenVonKunden(userid);
+					List<Artikel> listArtikel = ArtikelAdministration.selektiereAlleArtikel();
+					List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+					session.setAttribute("listArtikel", listArtikel);
+					session.setAttribute("listFestivals", listFestivals);
+					session.setAttribute("listBestellungen", listBestellungen);
 					request.getRequestDispatcher("k_bestellungen.jsp").include(request, response);
 				}
 			}
