@@ -80,9 +80,13 @@ public class Artikelverwaltung extends HttpServlet {
 					session.setAttribute("antwort", antwort);
 				} else {
 					if((request.getParameter("aktion")).equals("loeschen")) {
-						artikel.istGelöscht = true;
-						ArtikelAdministration.löscheArtikel(artikel);
-						antwort = "Der Artikel wurde erfolgreich gelöscht.";
+						if(artikel.id != 6) {
+							artikel.istGelöscht = true;
+							ArtikelAdministration.löscheArtikel(artikel);
+							antwort = "Der Artikel wurde erfolgreich gelöscht.";}
+						else {
+							antwort = "Dieser Artikel darf nicht gelöscht werden.";
+						}
 						session.setAttribute("antwort", antwort);
 					}
 				}

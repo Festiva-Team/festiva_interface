@@ -64,6 +64,11 @@ else {
 						<textarea rows="5" id="kurzbeschreibung" name="kurzbeschreibung" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
 						<label for="langbeschreibung">Langbeschreibung*</label>
 						<textarea rows="10" id="langbeschreibung" name="langbeschreibung" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
+						<label for="geloescht">Ist Gelöscht</label>
+					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
+	      					   "<%=festival.istGelöscht%>"
+	      					   <% if (festival.istGelöscht == true) {%>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
 						<button type="submit">Änderungen speichern</button>
 					</div>
 				</div>
@@ -94,7 +99,7 @@ else {
 			</div>
 			<form action="/Festiva/Festivalverwaltung?aktion=loeschen&festivalid=<%=festival.id%>" method="post">
 			<div id="spaltelinks">
-					<button type="submit">Festival löschen</button>
+					<button type="submit" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>
 					</div>
 					</form>
 					<form action="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>&t=<%=new Date().getTime()%>" method="post">

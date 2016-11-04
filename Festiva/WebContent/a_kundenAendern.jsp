@@ -62,6 +62,11 @@ else {
 	      					   "<%=benutzer.istGesperrt%>"
 	      					   <% if (benutzer.istGesperrt == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
+	      		    <label for="geloescht">Ist Gelöscht</label>
+					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
+	      					   "<%=benutzer.istGelöscht%>"
+	      					   <% if (benutzer.istGelöscht == true) {%>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
 					<button type="submit">Änderungen speichern</button>
 					</div>
 			</form>	
@@ -78,7 +83,7 @@ else {
 			</div>
 			<form action="/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=<%=benutzer.id%>" method="post">
 				<div id="spalterechts">
-					<input type="submit" value="l&ouml;schen" onclick="del()">
+					<input <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %> type="submit" value="l&ouml;schen" onclick="del()">
 					</div>
 					</form>
 					<div id="spalterechts">
