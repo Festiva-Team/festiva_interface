@@ -33,6 +33,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
+		String antwort = "";
 		
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 			
@@ -73,6 +74,45 @@ public class Warenkorbverwaltung extends HttpServlet {
 								request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
 								
 							} else {
+								if((request.getParameter("aktion")).equals("hinzufuegen")) {
+									int userid = Integer.parseInt(session.getAttribute("userid").toString());
+									int artikelid = Integer.parseInt(request.getParameter("artikelid"));
+									int menge = Integer.parseInt(request.getParameter("menge"));
+									Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelid);
+									Warenkorbelement warenkorbelement = new Warenkorbelement(-1, menge, artikel);
+									WarenkorbAdministration.fügeWarenkorbelementEin(warenkorbelement, userid);
+									antwort = "Der Artikel '" + artikel.beschreibung + "' wurde dem Warenkorb mit der Menge " + menge + " hinzugefügt.";
+									session.setAttribute("antwort", antwort);
+									if(artikel.festivalID == 0) {
+									request.getRequestDispatcher("/MerchandiseShop?aktion=m_anzeigen").include(request, response); }
+									else {
+									request.getRequestDispatcher("k_shop.jsp").include(request, response);	
+									}
+								} else { 
+									if((request.getParameter("aktion")).equals("aktualisieren")) {
+										int artikelid = Integer.parseInt(request.getParameter("artikelid"));
+										int menge = Integer.parseInt(request.getParameter("menge"));
+										Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelid);	
+										Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(artikelid);
+										warenkorbelement.menge = warenkorbelement.menge + menge;
+										if(warenkorbelement.menge > 10) {
+											if((warenkorbelement.menge - menge) == 10) {
+												antwort = "Sie können keine weitere Einheit des Artikels '" + artikel.beschreibung + "' in den Warenkorb legen, da die maximale Anzahl von 10 erreicht ist.";
+											} else {
+										antwort = "Sie können nur noch " + (10 - (warenkorbelement.menge - menge)) + " Einheit(en) dieses Artikels in den Warenkorb legen, da dann die maximale Anzahl von 10 erreicht ist.";
+										} } 
+											else {
+										WarenkorbAdministration.aktualisiereWarenkorbelement(warenkorbelement);
+
+										antwort = "Die Anzahl des Artikels '" + artikel.beschreibung + "' wurde in Ihrem Warenkorb um " + menge + " erhöht.";}
+										session.setAttribute("antwort", antwort);
+										if(artikel.festivalID == 0) {
+										request.getRequestDispatcher("/MerchandiseShop?aktion=m_anzeigen").include(request, response); }
+										else {
+										request.getRequestDispatcher("k_shop.jsp").include(request, response);	
+										}
+									} else {
+									
 				int elementID = Integer.parseInt(request.getParameter("elementid"));
 				if ((request.getParameter("aktion")).equals("aendern")) {
 					int mengeNeu = Integer.parseInt(request.getParameter("menge"));
@@ -87,13 +127,19 @@ public class Warenkorbverwaltung extends HttpServlet {
 					} 
 				}
 				request.getRequestDispatcher("/Warenkorbverwaltung?aktion=anzeigen").include(request, response);
-			}
+			}}}
 						}
 					}	
 			}
 			
 		} else {
+			if((request.getParameter("aktion")).equals("anmelden")) {
+				antwort = "Sie müssen sich erst anmelden bevor Sie Artikel in Ihren Warenkorb legen können.";
+				session.setAttribute("antwort", antwort);
+				request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
+			} else {
 			response.sendRedirect("k_anmelden.jsp");
+			}
 		}
 	}
 

@@ -46,9 +46,10 @@ public class Bestellverwaltung extends HttpServlet {
 				Bestellung bestellung = new Bestellung(warenkorb, perPost);
 				BestellungsAdministration.erstelleBestellung(bestellung);
 				WarenkorbAdministration.loescheWarenkorbinhalt(warenkorb.id);
+				request.getRequestDispatcher("/Bestellverwaltung?aktion=anzeigen").include(request, response);
 			} else {
 				if ((request.getParameter("aktion")).equals("anzeigen")) {
-					
+					request.getRequestDispatcher("k_bestellungen.jsp").include(request, response);
 				}
 			}
 		} else {
