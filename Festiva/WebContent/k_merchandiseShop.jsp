@@ -30,7 +30,7 @@ if (request.getSession(false) != null) {
 			<div id="zeile">
 				<table>
 								
-					<thead><tr><th>Bild</th><th>Beschreibung</th><th>Preis</th><th>Anzahl</th></tr></thead>
+					<thead><tr><th>Bild</th><th>Beschreibung</th><th>Preis</th></tr></thead>
 					<%					
 						for (Artikel artikel : listArtikel)
 						{%>
@@ -52,4 +52,4 @@ if (request.getSession(false) != null) {
 	</div>
 </body>
 </html> 
-<% request.getSession().removeAttribute("listArtikel");} %>
+<% } %>

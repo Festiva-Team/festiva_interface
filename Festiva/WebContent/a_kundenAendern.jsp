@@ -26,9 +26,9 @@ else {
     </jsp:include>
 		<div id="main">
 			<div id="zeile">
+					<h2>Kunden ändern</h2>
 			<form action="/Festiva/Kundenverwaltung?aktion=datenaendern&kundenid=<%=benutzer.id%>" method="post">
 					<div id="spaltelinks">
-					<h2>Kunden ändern</h2>
 					<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 					<label for="vorname">Vorname</label>
 					<input type="text" id="vorname" name="vorname" maxlength="30" value="<%=benutzer.vorname%>">
@@ -78,7 +78,7 @@ else {
 			</div>
 			<form action="/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=<%=benutzer.id%>" method="post">
 				<div id="spalterechts">
-					<button onclick="del()">Kunden löschen</button>
+					<input type="submit" value="l&ouml;schen" onclick="del()">
 					</div>
 					</form>
 					<div id="spalterechts">
@@ -98,11 +98,9 @@ else {
 <script type="text/javascript">
 
 function del(){
-	app.alert("Hello World", 3);
-   	// User Pressed Yes, Do submission //this.submitForm(...);
-   }
+	   if(confirm("Soll der Kunde wirklich gelöscht werden?") == true)
+	      document.form.submit();
 }
-
 </script>
 </html>
 <% request.getSession().removeAttribute("benutzer");}%>
