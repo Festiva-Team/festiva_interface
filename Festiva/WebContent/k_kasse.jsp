@@ -68,7 +68,7 @@
 								<% } } } %>
 
 								<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
-								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> </td>
+								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
 								<td data-label="Anzahl"><%=warenkorbelement.menge%></td>
 								<td data-label="Gesamtpreis"><%=String.format("%.2f",(warenkorbelement.menge * warenkorbelement.artikel.preis))%> &#8364;</td>
 								
