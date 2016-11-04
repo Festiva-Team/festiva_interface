@@ -9,6 +9,10 @@
 		List<Festival> listFestivals = (List<Festival>)request.getSession(false).getAttribute("listFestivals");
 		int id = 1; 
 		float gesamtsumme = 0;
+		boolean keineElemente = false;
+		if((warenkorb.listElemente).isEmpty()) {
+			keineElemente = true;
+		}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -55,8 +59,11 @@
 					</tr>
 				</table>
 				<div id="spalterechts">
-						<button type="button" onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=k_anzeigen'">Zur Kasse</button>
-				</div>			
+						<button type="button" <%if(keineElemente == true) { %> disabled="disabled" <% } %> onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=k_anzeigen'">Zur Kasse</button>
+				</div>	
+				<%if(keineElemente == true) { %>
+			 <p> Sie können erst zur Kasse, wenn Sie Artikel in Ihrem Warenkorb haben. </p>
+			 <% } %>	
 		</div>
 		<div id="leer"></div>
 		<footer></footer>
