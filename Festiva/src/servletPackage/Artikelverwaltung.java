@@ -1,6 +1,7 @@
 package servletPackage;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,6 +38,7 @@ public class Artikelverwaltung extends HttpServlet {
 			
 			String antwort = "";
 			if((request.getParameter("aktion")).equals("anlegen")) {
+				
 				int festivalid = Integer.parseInt(request.getParameter("festivalid"));
 				String beschreibung = request.getParameter("beschreibung");
 				
@@ -51,6 +53,12 @@ public class Artikelverwaltung extends HttpServlet {
 				session.setAttribute("antwort", antwort);
 			    request.getRequestDispatcher("a_artikelAnlegen.jsp").include(request, response);
 			} else {
+				
+				if((request.getParameter("aktion")).equals("anzeigen")) {
+					List<Artikel> listArtikel = ArtikelAdministration.selektiereAlleUnabhaengigenArtikel();
+					session.setAttribute("listArtikel", listArtikel);
+					request.getRequestDispatcher("a_artikelverwaltung.jsp").include(request, response);
+				} else {
 				int artikelid = Integer.parseInt(request.getParameter("artikelid").toString());
 				Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelid);
 			if ((request.getParameter("aktion")).equals("aendern")) {			
@@ -72,18 +80,24 @@ public class Artikelverwaltung extends HttpServlet {
 					session.setAttribute("antwort", antwort);
 				} else {
 					if((request.getParameter("aktion")).equals("loeschen")) {
-						artikel.istGelöscht = true;
-						ArtikelAdministration.löscheArtikel(artikel);
-						antwort = "Der Artikel wurde erfolgreich gelöscht.";
+						if(artikel.id != 6) {
+							artikel.istGelöscht = true;
+							ArtikelAdministration.löscheArtikel(artikel);
+							antwort = "Der Artikel wurde erfolgreich gelöscht.";}
+						else {
+							antwort = "Dieser Artikel darf nicht gelöscht werden.";
+						}
 						session.setAttribute("antwort", antwort);
-					} else {
 					}
 				}
+			
 			}
 			session.setAttribute("artikel", artikel);	
 			request.getRequestDispatcher("a_artikelAendern.jsp").include(request, response);
 		  } 
+	     }
 		}
+		
 		else {
 			response.sendRedirect("k_anmelden.jsp");
 		}

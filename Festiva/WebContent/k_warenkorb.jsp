@@ -9,6 +9,10 @@
 		List<Festival> listFestivals = (List<Festival>)request.getSession(false).getAttribute("listFestivals");
 		int id = 1; 
 		float gesamtsumme = 0;
+		boolean keineElemente = false;
+		if((warenkorb.listElemente).isEmpty()) {
+			keineElemente = true;
+		}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,10 +33,13 @@
 					  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
 					<tbody><tr>
 								<td data-label="ID"><%=id%></td>
+								<% if (warenkorbelement.artikel.festivalID == 0) { %>
+								<td data-label="Festival"><%=""%></td>
+								<% }  else { %>
 								<% for (Festival festival : listFestivals) { 
 									if (festival.id == warenkorbelement.artikel.festivalID) { %>
-								<th data-label="Festival"><a href=""><%=festival.name%></a></td>
-								<% } } %>
+								<td data-label="Festival"><%=festival.name%></td>
+								<% } } } %>
 								<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
 								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
 								<td data-label="Anzahl"> <select onchange="myFunction(this, <%=warenkorbelement.id%>);" id="menge<%=id%>" name="menge<%=id%>">
@@ -52,8 +59,11 @@
 					</tr>
 				</table>
 				<div id="spalterechts">
-						<button type="button" onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=k_anzeigen'">Zur Kasse</button>
-				</div>			
+						<button type="button" <%if(keineElemente == true) { %> disabled="disabled" <% } %> onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=k_anzeigen'">Zur Kasse</button>
+				</div>	
+				<%if(keineElemente == true) { %>
+			 <p> Sie können erst zur Kasse, wenn Sie Artikel in Ihrem Warenkorb haben. </p>
+			 <% } %>	
 		</div>
 		<div id="leer"></div>
 		<footer></footer>

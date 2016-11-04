@@ -39,9 +39,9 @@ else {
 								<td data-label="Name"><%=kategorie.name%></td>
 								<td data-label="Beschreibung"><%=kategorie.beschreibung%></td>
 								<%if (kategorie.bildpfad == null || (kategorie.bildpfad).equals("")) { %>
-								<td data-label="Bild"><%="nein"%></td>
+								<td data-label="Bild"><%="Nein"%></td>
 								<% } else { %>
-								<td data-label="Bild"><%="ja"%></td>
+								<td data-label="Bild"><%="Ja"%></td>
 								<% } %>
 								<%if (kategorie.istGelöscht == false) { %>
 								<td data-label="Gelöscht"><%="nein"%></td>

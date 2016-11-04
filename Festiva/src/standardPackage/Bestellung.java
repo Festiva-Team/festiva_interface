@@ -1,4 +1,5 @@
 package standardPackage;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,9 +42,11 @@ public class Bestellung {
 	 * @param p_perPost: zeigt, ob die Artikel per Post versendet werden sollen
 	 */
 	public Bestellung (Warenkorb p_warenkorb, boolean p_perPost) {
+
 		this.id = -1;
 		this.perPost = p_perPost;
 		this.benutzerID = p_warenkorb.benutzerID;
+		this.listPositionen = new ArrayList<Bestellposition>();
 		
 		for(Warenkorbelement warenkorbelement : p_warenkorb.listElemente) {
 			this.listPositionen.add(new Bestellposition(-1, warenkorbelement.menge, warenkorbelement.artikel.id, warenkorbelement.artikel.beschreibung, warenkorbelement.artikel.preis));

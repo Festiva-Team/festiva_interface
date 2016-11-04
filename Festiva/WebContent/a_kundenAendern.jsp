@@ -26,9 +26,9 @@ else {
     </jsp:include>
 		<div id="main">
 			<div id="zeile">
+					<h2>Kunden ändern</h2>
 			<form action="/Festiva/Kundenverwaltung?aktion=datenaendern&kundenid=<%=benutzer.id%>" method="post">
 					<div id="spaltelinks">
-					<h2>Kunden ändern</h2>
 					<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 					<label for="vorname">Vorname</label>
 					<input type="text" id="vorname" name="vorname" maxlength="30" value="<%=benutzer.vorname%>">
@@ -62,6 +62,11 @@ else {
 	      					   "<%=benutzer.istGesperrt%>"
 	      					   <% if (benutzer.istGesperrt == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
+	      		    <label for="geloescht">Ist Gelöscht</label>
+					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
+	      					   "<%=benutzer.istGelöscht%>"
+	      					   <% if (benutzer.istGelöscht == true) {%>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
 					<button type="submit">Änderungen speichern</button>
 					</div>
 			</form>	
@@ -72,13 +77,13 @@ else {
 					<input type="password" id="passwortneu" name="passwortneu" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<label for="passwortbestätigung">Neues Passwort bestätigen</label>
 					<input type="password" id="passwortbestätigung" name="passwortbestätigung" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
-					<button type="submit" id="links">Passwort ändern</button>
+					<button type="submit">Passwort ändern</button>
 					</div>
 					</form>
 			</div>
 			<form action="/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=<%=benutzer.id%>" method="post">
 				<div id="spalterechts">
-					<input type="submit" value="l&ouml;schen" onclick="return confirm('Wirklich weghauen das Zeugs?')">
+					<input <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %> type="submit" value="l&ouml;schen" onclick="del()">
 					</div>
 					</form>
 					<div id="spalterechts">
@@ -96,25 +101,11 @@ else {
 </div>	
 </body>
 <script type="text/javascript">
-var pop = null;
 
-function popdown() {
-  if (pop && !pop.closed) pop.close();
+function del(){
+	   if(confirm("Soll der Kunde wirklich gelöscht werden?") == true)
+	      document.form.submit();
 }
-
-function popup(obj,w,h) {
-  var url = (obj.getAttribute) ? obj.getAttribute('href') : obj.href;
-  if (!url) return true;
-  w = (w) ? w += 20 : 150;  // 150px*150px is the default size
-  h = (h) ? h += 25 : 150;
-  var args = 'width='+w+',height='+h+',resizable';
-  popdown();
-  pop = window.open(url,'',args);
-  return (pop) ? false : true;
-}
-
-window.onunload = popdown;
-window.onfocus = popdown;
 </script>
 </html>
 <% request.getSession().removeAttribute("benutzer");}%>

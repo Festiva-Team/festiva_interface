@@ -1,7 +1,7 @@
 package standardPackage;
 
 
-import java.util.List;
+
 
 
 
@@ -90,18 +90,33 @@ public static void main(String[] args) {
 //	benutzer1.passwortHash = Registrierung.generiereHash(benutzer1.passwortHash + "76ZuOp(6?ssXY0");
 //	BenutzerAdministration.aktualisiereBenutzer(benutzer1);
 //	System.out.println(benutzer1.vorname+ " " + benutzer1.nachname);
-	Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1);
-	List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
-	for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { 
-				for (Festival festival : listFestivals) { 
-					if (festival.id == warenkorbelement.artikel.festivalID) { 
-				System.out.println(festival.name);
-				} } 
-				System.out.println(warenkorbelement.artikel.beschreibung);
-				System.out.println(warenkorbelement.artikel.preis);
-				System.out.println(warenkorbelement.menge);
-				System.out.println((warenkorbelement.menge * warenkorbelement.artikel.preis));
-				 } 
 
-	} 
+
+	
+//	List<Artikel> lst = ArtikelAdministration.selektiereUnabhaengigeArtikel();
+	
+//	Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1, true);
+//	List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+//
+//	for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { 
+//		for (Festival festival : listFestivals) { 
+//			if (festival.id == warenkorbelement.artikel.festivalID) { 
+//		System.out.println(festival.name);
+//		} } 
+//		System.out.println(warenkorbelement.artikel.beschreibung);
+//		System.out.println(warenkorbelement.artikel.preis);
+//		System.out.println(warenkorbelement.menge);
+//		System.out.println((warenkorbelement.menge * warenkorbelement.artikel.preis));
+//		 }
+//	
+//	String test = "    ";
+//	System.out.println(test.trim().length());
+	
+//	Warenkorb p_warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(1, true);
+//	List<Bestellposition> listPositionen = null;
+//	
+//	for(Warenkorbelement warenkorbelement : p_warenkorb.listElemente) {
+//		listPositionen.add(new Bestellposition(-1, warenkorbelement.menge, warenkorbelement.artikel.id, warenkorbelement.artikel.beschreibung, warenkorbelement.artikel.preis));
+//	}
+} 
 }

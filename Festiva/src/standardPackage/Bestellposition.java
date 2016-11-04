@@ -11,7 +11,7 @@ public class Bestellposition {
 	public int menge;
 	public int artikelID;
 	public String beschreibung;
-	public double preis;
+	public float preis;
 	
 	/**
 	 * Konstruktor zur Erstellung eines Bestellposition-Objekts mit den nachfolgenden Parametern
@@ -24,7 +24,7 @@ public class Bestellposition {
 	 * @param p_beschreibung: Beschreibung des bestellten Artikels
 	 * @param p_preis: Preis des bestellten Artikels
 	 */
-	public Bestellposition(int p_id, int p_menge, int p_artikelID, String p_beschreibung, double p_preis) {
+	public Bestellposition(int p_id, int p_menge, int p_artikelID, String p_beschreibung, float p_preis) {
 		this.id = p_id;
 		this.menge = p_menge;
 		this.artikelID = p_artikelID;

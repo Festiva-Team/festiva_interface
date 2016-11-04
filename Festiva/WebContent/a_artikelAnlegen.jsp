@@ -6,7 +6,9 @@
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 	response.sendRedirect("k_anmelden.jsp");}
 else {
-	int festivalid = Integer.parseInt(request.getParameter("festivalid"));
+	int festivalid = 0;
+	if(request.getParameter("festivalid") != null) {
+	festivalid = Integer.parseInt(request.getParameter("festivalid"));}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

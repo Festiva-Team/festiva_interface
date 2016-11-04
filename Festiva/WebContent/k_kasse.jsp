@@ -8,8 +8,14 @@
 		Warenkorb warenkorb = (Warenkorb)request.getSession(false).getAttribute("warenkorb");
 		List<Festival> listFestivals = (List<Festival>)request.getSession(false).getAttribute("listFestivals");
 		Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer"); 
+		Boolean kundendatenVollstaendig = (Boolean)request.getSession(false).getAttribute("kundendatenVollstaendig");
 		int id = 1; 
 		float gesamtsumme = 0;
+		Boolean perPost = false;
+		
+		if(request.getSession(false).getAttribute("perPost") != null) {
+			perPost = (Boolean)request.getSession(false).getAttribute("perPost");
+		} 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,25 +35,19 @@
 				<h2>Kasse</h2>
 				<fieldset id="Lieferungsdaten" disabled>		
 					<h2>Lieferdaten</h2><br/>
-				    <label for="input2">Vorname</label> 
-				    <input name="vorname" id="vorname" value="<%=benutzer.vorname%>"><br/> 
-				    <label for="input2">Nachname</label> 
-				    <input name="nachname" id="nachname" value="<%=benutzer.nachname%>"><br/>
-				    <label for="input2">Straße</label> 
-				    <input name="strasse" id="strasse" value="<%=benutzer.strasse%>"><br/>
-				    <label for="input2">Hausnummer</label> 
-				    <input name="hausnummer" id="hausnummer" value="<%=benutzer.hausnummer%>"><br/>
-				    <label for="input2">PLZ</label> 
-				    <input name="plz" id="plz" value="<%=benutzer.plz%>"><br/>
-				    <label for="input2">Ort</label> 
-				    <input name="ort" id="ort" value="<%=benutzer.ort%>"><br/>
+				    <label for="input2">Vorname: <%=benutzer.vorname%></label><br/>
+				    <label for="input2">Nachname: <%=benutzer.nachname%></label><br/>
+				    <label for="input2">Straße: <%=benutzer.strasse%></label><br/>
+				    <label for="input2">Hausnummer: <%=benutzer.hausnummer%></label><br/>
+				    <label for="input2">PLZ: <%=benutzer.plz%></label><br/>
+				    <label for="input2">Ort: <%=benutzer.ort%></label><br/>
 				  </fieldset>
 				</div>
 				<div id="spalterechts">
 					<fieldset id="Zahlungsdaten" disabled>
 					  	<h2>Zahlungsdaten</h2><br/>
-					    <label for="input2">IBAN:</label> <input name="iban" id="iban" value="<%=benutzer.iban%>"><br/> 
-					    <label for="input2">BIC:</label> <input name="bic" id="bic" value="<%=benutzer.bic%>"><br/>
+					    <label for="input2">IBAN: <%=benutzer.iban%><br/> 
+					    <label for="input2">BIC: <%=benutzer.bic%><br/>
 					</fieldset>
 				</div>
 			</div>
@@ -59,12 +59,16 @@
 					  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
 					<tbody><tr>
 								<td data-label="ID"><%=id%></td>
+								<% if (warenkorbelement.artikel.festivalID == 0) { %>
+								<td data-label="Festival"><%=""%></td>
+								<% }  else { %>
 								<% for (Festival festival : listFestivals) { 
 									if (festival.id == warenkorbelement.artikel.festivalID) { %>
 								<td data-label="Festival"><%=festival.name%></td>
-								<% } } %>
+								<% } } } %>
+
 								<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
-								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> </td>
+								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
 								<td data-label="Anzahl"><%=warenkorbelement.menge%></td>
 								<td data-label="Gesamtpreis"><%=String.format("%.2f",(warenkorbelement.menge * warenkorbelement.artikel.preis))%> &#8364;</td>
 								
@@ -74,11 +78,17 @@
 					</tr>
 				</table>
 				<h2>Versand</h2><br/>
-				<form action="">
- 			 <input type="radio" name="versand" value="female" required="required"> Per Post (+2,50 &#8364;)<br>
- 			 <input type="radio" name="versand" value="other" required="required"> Per Mail
- 			 <button type="button">Verbindlich bestellen</button>
+				<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
+ 			 <input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false)) { %> checked="checked" <% }%> onclick="versenden(this)"> Per Mail <br>
+ 			 <input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true)) { %> checked="checked" <% }%> onclick="versenden(this)"> Per Post 
+ 			 <button type="submit" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
 			 </form>
+			 <%if(kundendatenVollstaendig.equals(false)) { %>
+			 <p> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt haben. Hier können Sie Ihre Kundendaten anpassen: </p>
+			 <% } else { %>
+			 <p> Bitte kontrollieren Sie Ihre Angaben auf dieser Seite bevor Sie die Bestellung abschließen. Sie möchten Ihre Kundendaten anpassen? Dann klicken Sie bitte hier: </p>
+			 <% } %>
+			 <button type="button" id="Kundendaten aendern" onClick="window.location.href='/Festiva/Benutzerdaten?aktion=anzeigen'">Meine Daten</button>
 				
 			</div>
 			</div>
@@ -87,5 +97,27 @@
 	<footer></footer>
 </div>
 </body>
+<script type="text/javascript">
+	
+<!--
+var arrObjRadio = new Array();
+function versenden(objRadio){
+// Falls der Radiobutton gesetzt ist und ein neuer Radiobutton gewählt wurde
+if((objRadio.checked == true) && (objRadio != arrObjRadio[objRadio.name])){
+// Aktuelles Objekt merken
+arrObjRadio[objRadio.name] = objRadio;
+
+// Änderungen durchführen
+switch(objRadio.value){
+  case "post"  : document.location.href='/Festiva/Warenkorbverwaltung?aktion=p_versand';
+                       break;
+  case "mail" : document.location.href='/Festiva/Warenkorbverwaltung?aktion=m_versand';
+                       break;
+}
+}
+}
+//-->
+
+</script>
 </html>
-<% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb"); request.getSession().removeAttribute("benutzer");}%>
+<% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb"); request.getSession().removeAttribute("benutzer"); request.getSession().removeAttribute("perPost"); request.getSession().removeAttribute("kundendatenVollstaendig");}%>

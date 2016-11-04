@@ -42,11 +42,16 @@ else {
 					<output id="list"></output>
 					<button type="submit">Änderungen speichern</button>
 				</div>
+				 <label for="geloescht">Ist Gelöscht</label>
+					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
+	      					   "<%=kategorie.istGelöscht%>"
+	      					   <% if (kategorie.istGelöscht == true) {%>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
 			</div>
 		</form>
 		<form action="/Festiva/Kategorienverwaltung?aktion=loeschen&kategorienid=<%=kategorie.id%>" method="post">
 			<div id="spaltelinks">
-					<button type="submit" id="links">Kategorie löschen</button>
+					<button type="submit" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %> id="links">Kategorie löschen</button>
 					</div>
 					</form>
 					<form action="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>&t=<%=new Date().getTime()%>" method="post">

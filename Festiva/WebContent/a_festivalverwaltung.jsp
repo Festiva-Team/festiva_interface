@@ -29,7 +29,7 @@ else {
 			<h2>Festivalverwaltung</h2>
 			<form action="/Festiva/Festivalverwaltung?aktion=anlegenanzeigen" method="post">
 			<div id="spaltelinks">
-					<button type="submit">Neues Festival anlegen</button>
+					<button type="submit" id="anlegen">Neues Festival anlegen</button>
 					</div>
 					</form>
 			<div id="zeile">
@@ -48,9 +48,9 @@ else {
       							<td data-label="Kategorie"><%=kategorie.name%></td>       
    								<%  } } %>
 								<%if (festival.bildpfad == null || (festival.bildpfad).equals("")) { %>
-								<td data-label="Bild"><%="nein"%></td>
+								<td data-label="Bild"><%="Nein"%></td>
 								<% } else { %>
-								<td data-label="Bild"><%="ja"%></td>
+								<td data-label="Bild"><%="Ja"%></td>
 								<% } %>
 								<%if (festival.istGelöscht == false) { %>
 								<td data-label="Gelöscht"><%="nein"%></td>

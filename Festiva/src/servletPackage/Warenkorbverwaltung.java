@@ -38,7 +38,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 			
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
-			Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid);
+			Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, false);
 			List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
 			session.setAttribute("listFestivals", listFestivals);
 			session.setAttribute("warenkorb", warenkorb);
@@ -46,14 +46,33 @@ public class Warenkorbverwaltung extends HttpServlet {
 			} else { 
 					if ((request.getParameter("aktion")).equals("k_anzeigen")) {
 						int userid = Integer.parseInt(session.getAttribute("userid").toString());
-						Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid);
+						Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
 						Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
 						List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+						boolean kundendatenVollstaendig = ueberpruefeKundendaten(benutzer);
+						session.setAttribute("kundendatenVollstaendig", kundendatenVollstaendig);
 						session.setAttribute("listFestivals", listFestivals);
 						session.setAttribute("warenkorb", warenkorb);
 						session.setAttribute("benutzer", benutzer);
 						request.getRequestDispatcher("k_kasse.jsp").include(request, response);
 					} else {
+						if ((request.getParameter("aktion")).equals("p_versand")) {
+							int userid = Integer.parseInt(session.getAttribute("userid").toString());
+							Artikel artikel = ArtikelAdministration.selektiereArtikel(6);
+							Warenkorbelement warenkorbelement = new Warenkorbelement(-1, 1, artikel);
+							WarenkorbAdministration.fügeWarenkorbelementEin(warenkorbelement, userid);
+							boolean perPost = true;
+							session.setAttribute("perPost", perPost);
+							request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
+						} else {
+							if ((request.getParameter("aktion")).equals("m_versand")) {	
+								Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(6);
+								WarenkorbAdministration.loescheWarenkorbelement(warenkorbelement.id);
+								boolean perPost = false;
+								session.setAttribute("perPost", perPost);
+								request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
+								
+							} else {
 				int elementID = Integer.parseInt(request.getParameter("elementid"));
 				if ((request.getParameter("aktion")).equals("aendern")) {
 					int mengeNeu = Integer.parseInt(request.getParameter("menge"));
@@ -69,7 +88,8 @@ public class Warenkorbverwaltung extends HttpServlet {
 				}
 				request.getRequestDispatcher("/Warenkorbverwaltung?aktion=anzeigen").include(request, response);
 			}
-				
+						}
+					}	
 			}
 			
 		} else {
@@ -82,6 +102,16 @@ public class Warenkorbverwaltung extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	private boolean ueberpruefeKundendaten(Benutzer benutzer) {
+		if(benutzer.vorname.trim().length() == 0 || benutzer.nachname.trim().length() == 0 || benutzer.strasse.trim().length() == 0 ||
+		   benutzer.hausnummer.trim().length() == 0 || benutzer.ort.trim().length() == 0 || benutzer.iban.trim().length() == 0 ||
+		   benutzer.plz == 0 || benutzer.einzugsermächtigungErteilt == false) {
+			return false;
+		} else {
+		return true;
+		}
 	}
 
 }
