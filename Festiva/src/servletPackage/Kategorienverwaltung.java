@@ -44,6 +44,7 @@ public class Kategorienverwaltung extends HttpServlet {
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
 		
+		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 1) {
 			String antwort = "";
 			
@@ -139,8 +140,13 @@ public class Kategorienverwaltung extends HttpServlet {
 					
 				}
 			}
+		} else {
+			response.sendRedirect("k_anmelden.jsp");
 		}
-			
+		} catch (DatenbankException e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
+		}			
 	}
 	
 	

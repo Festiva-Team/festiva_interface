@@ -17,7 +17,7 @@ public class BenutzerAdministration {
 	 * 
 	 * @param p_benutzer: Benutzer-Objekt, das erstellt werden soll
 	 */
-	public static void erstelleKunden(Benutzer p_benutzer)
+	public static void erstelleKunden(Benutzer p_benutzer) throws DatenbankException
 	{		
 		String insertBefehl = "INSERT INTO festiva.benutzer " +
 							   "(vorname, nachname, strasse, hausnummer, plz, ort, emailadresse, passworthash, iban, bic, gruppen_id) " +
@@ -33,7 +33,7 @@ public class BenutzerAdministration {
 	 * 
 	 * @param p_benutzer: Benutzer-Objekt, das in der Datenbank aktualisiert werden soll
 	 */
-	public static void aktualisiereBenutzer(Benutzer p_benutzer)
+	public static void aktualisiereBenutzer(Benutzer p_benutzer) throws DatenbankException
 	{	
 		String updateBefehl = "UPDATE festiva.benutzer " +
 							  "SET vorname = '%s', nachname = '%s', strasse = '%s', hausnummer = '%s', plz = '%d', ort = '%s', "
@@ -51,7 +51,7 @@ public class BenutzerAdministration {
 	 * 
 	 * @param p_benutzer: Benutzer-Objekt, das in der Datenbank logisch gelöscht werden soll
 	 */
-	public static void löscheBenutzer(Benutzer p_benutzer)
+	public static void löscheBenutzer(Benutzer p_benutzer) throws DatenbankException
 	{
 		String updateBefehl = "UPDATE festiva.benutzer SET istgelöscht = '%d' WHERE id = '%d'";
 		updateBefehl = String.format(updateBefehl, p_benutzer.istGelöscht?1:0, p_benutzer.id);
@@ -67,7 +67,7 @@ public class BenutzerAdministration {
 	 * @return benutzer: Benutzer-Objekt mit allen verfügbaren Daten
 	 * 					 Falls der Benutzer nicht existiert wird null zurückgeliefert
 	 */
-	public static Benutzer selektiereBenutzer(String p_eMailAdresse)
+	public static Benutzer selektiereBenutzer(String p_eMailAdresse) throws DatenbankException
 	{
 		Benutzer benutzer = null;
 		String selectBefehl = 
@@ -77,6 +77,9 @@ public class BenutzerAdministration {
 		selectBefehl = String.format(selectBefehl, p_eMailAdresse);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		if(ergebnismenge == null) {
+			return benutzer;
+		} else {
 		try
 		{
 			if(ergebnismenge.next())
@@ -105,6 +108,7 @@ public class BenutzerAdministration {
 		}
 
 		return benutzer;
+		}
 	}
 	
 	
@@ -116,7 +120,7 @@ public class BenutzerAdministration {
 	 * @return benutzer: Benutzer-Objekt mit allen verfügbaren Daten
 	 * 					 Falls der Benutzer nicht existiert wird null zurückgeliefert
 	 */
-	public static Benutzer selektiereBenutzerMitID(int p_benutzerID)
+	public static Benutzer selektiereBenutzerMitID(int p_benutzerID) throws DatenbankException
 	{
 		Benutzer benutzer = null;
 		String selectBefehl = 
@@ -126,8 +130,12 @@ public class BenutzerAdministration {
 		selectBefehl = String.format(selectBefehl, p_benutzerID);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		
+		if(ergebnismenge == null) {
+			return benutzer;
+		} else {
 		try
-		{
+		{	
 			if(ergebnismenge.next())
 			{
 				String vorname = ergebnismenge.getString("vorname");
@@ -154,6 +162,7 @@ public class BenutzerAdministration {
 		}
 
 		return benutzer;
+		}
 	}
 	
 	
@@ -163,7 +172,7 @@ public class BenutzerAdministration {
 	 * 
 	 * @return List<Benutzer>: Liste mit Benutzer-Objekten, die alle verfügbaren Daten beinhalten
 	 */
-	public static List<Benutzer> selektiereAlleKunden()
+	public static List<Benutzer> selektiereAlleKunden() throws DatenbankException
 	{
 		List<Benutzer> listBenutzer = new ArrayList<Benutzer>();
 		
@@ -173,6 +182,9 @@ public class BenutzerAdministration {
 		"FROM festiva.benutzer WHERE gruppen_id = 2 ORDER BY id ASC";			
 			
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		if(ergebnismenge == null) {
+			return listBenutzer;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -204,6 +216,6 @@ public class BenutzerAdministration {
 		}
 
 		return listBenutzer;
-	}
+	}}
 	
 }

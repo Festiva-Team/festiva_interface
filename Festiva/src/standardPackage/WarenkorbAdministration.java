@@ -20,7 +20,7 @@ public class WarenkorbAdministration {
 	 * 
 	 * @param p_warenkorb: Warenkorb-Objekt, das in die Datenbanktabellen geschrieben werden soll
 	 */
-	public static void erstelleWarenkorb(Warenkorb p_warenkorb)
+	public static void erstelleWarenkorb(Warenkorb p_warenkorb) throws DatenbankException
 	{
 		// Eintragungen in die Tabelle "warenkörbe"
 		String insertBefehl = "INSERT INTO festiva.warenkörbe " +
@@ -48,13 +48,14 @@ public class WarenkorbAdministration {
 	 * @param p_inKasse: gibt an ob die Darstellung für die Kasse gewünscht ist
 	 * @return Warenkorb: Warenkorb-Objekt, das zu dem gewünschten Kunden gehört
 	 */
-	public static Warenkorb selektiereWarenkorbVonKunden(int p_benutzerID, boolean p_inKasse)
+	public static Warenkorb selektiereWarenkorbVonKunden(int p_benutzerID, boolean p_inKasse) throws DatenbankException
 	{
 		Warenkorb warenkorb = null;
 		
 		int warenkorbID = selektiereWarenkorbID(p_benutzerID);
-		
-		if (warenkorbID != -1) {				
+		if(warenkorbID == -1)  {
+			return warenkorb;
+		} else {				
 				List<Warenkorbelement> listElemente = new ArrayList<Warenkorbelement>();
 				
 				// Selektiere von der Tabelle "warenkorbelemente"
@@ -64,10 +65,14 @@ public class WarenkorbAdministration {
 							   		  "ORDER BY id ASC";
 				selectBefehl = String.format(selectBefehl, warenkorbID);
 				
-				try
-				{
+				
 					ResultSet ergebnismengeElemente = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+					if(ergebnismengeElemente == null) {
+						return warenkorb;
+					} else {
 					
+						try
+						{
 					while(ergebnismengeElemente.next())
 					{
 						int elementID = ergebnismengeElemente.getInt("id");
@@ -94,9 +99,9 @@ public class WarenkorbAdministration {
 				
 				// Warenkorb wird erst erstellt, wenn alle Warenkorbelemente ausgelesen wurden
 				warenkorb = new Warenkorb(warenkorbID, p_benutzerID, listElemente);		
-		} 
-			
-		return warenkorb;
+		}
+					return warenkorb;
+		}
 	}
 	
 	
@@ -105,7 +110,7 @@ public class WarenkorbAdministration {
 	 * 
 	 * @param p_benutzerID: eindeutige ID des Benutzers, für den ein Warenkorb-Objekt in der Datenbank erstellt werden soll
 	 */
-	public static void erstelleLeerenWarenkorb(int p_benutzerID)
+	public static void erstelleLeerenWarenkorb(int p_benutzerID) throws DatenbankException
 	{
 		// Eintragungen in die Tabelle "warenkörbe"
 		String insertBefehl = "INSERT INTO festiva.warenkörbe " +
@@ -123,7 +128,7 @@ public class WarenkorbAdministration {
 	 * @param p_benutzerID: eindeutige ID des Benutzers, dessen WarenkorbID ermittelt werden soll
 	 * @return int: ID des gesuchten Warenkorbs, wenn keiner gefunden wird, wird -1 zurückgegeben
 	 */
-	public static int selektiereWarenkorbID(int p_benutzerID)
+	public static int selektiereWarenkorbID(int p_benutzerID) throws DatenbankException
 	{
 		int warenkorbID = -1;
 		String selectBefehl = "SELECT id " +
@@ -131,8 +136,12 @@ public class WarenkorbAdministration {
 							  "WHERE benutzer_id = '%d' ";
 		selectBefehl = String.format(selectBefehl, p_benutzerID);
 			
-		try {
+		
 			ResultSet ergebnismengeWarenkörbe = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+			if(ergebnismengeWarenkörbe == null) {
+				return warenkorbID;
+			} else {
+				try {
 			while(ergebnismengeWarenkörbe.next())
 			{
 				warenkorbID = ergebnismengeWarenkörbe.getInt("id");
@@ -141,7 +150,7 @@ public class WarenkorbAdministration {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return warenkorbID;
+		return warenkorbID;}
 	}
 	
 	
@@ -151,7 +160,7 @@ public class WarenkorbAdministration {
 	 * @param Warenkorbelement: Warenkorbelement-Objekt, das in der Datenbank erstellt werden soll
 	 * @param p_benutzerID: eindeutige ID des Benutzers, für den das Warenkorbelement in der Datenbank erstellt werden soll
 	 */
-	public static void fügeWarenkorbelementEin(Warenkorbelement p_warenkorbelement, int p_benutzerID)
+	public static void fügeWarenkorbelementEin(Warenkorbelement p_warenkorbelement, int p_benutzerID) throws DatenbankException
 	{
 		int warenkorbID = selektiereWarenkorbID(p_benutzerID);
 		
@@ -171,7 +180,7 @@ public class WarenkorbAdministration {
 	 * 
 	 * @param Warenkorbelement: Warenkorbelement-Objekt, das in der Datenbank aktualisiert werden soll
 	 */
-	public static void aktualisiereWarenkorbelement(Warenkorbelement p_warenkorbelement)
+	public static void aktualisiereWarenkorbelement(Warenkorbelement p_warenkorbelement) throws DatenbankException
 	{		
 		String updateBefehl = "UPDATE festiva.warenkorbelemente SET " +
 							  "menge = '%d' " +
@@ -187,7 +196,7 @@ public class WarenkorbAdministration {
 	 * @param p_ID: eindeutige ID des Warenkorbelements, das aus der Datenbank selektiert werden soll
 	 * @return Warenkorbelement: Warenkorbelement-Objekt mit der vorgegebenen ID, gibt null zurück, wenn das Objekt mit der ID nicht existiert
 	 */
-	public static Warenkorbelement selektiereWarenkorbelement(int p_id)
+	public static Warenkorbelement selektiereWarenkorbelement(int p_id) throws DatenbankException
 	{	
 		Warenkorbelement warenkorbelement = null;
 		String selectBefehl = "SELECT id, menge, artikel_id " + 
@@ -196,7 +205,9 @@ public class WarenkorbAdministration {
 		selectBefehl = String.format(selectBefehl, p_id);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);	
-		 
+		if(ergebnismenge == null) {
+			return warenkorbelement;
+		} else {
 		try
 		{
 			if(ergebnismenge.next())
@@ -215,7 +226,7 @@ public class WarenkorbAdministration {
 			System.out.println(e.getMessage());
 		}
 		
-		return warenkorbelement;
+		return warenkorbelement;}
 	}
 	
 	
@@ -224,7 +235,7 @@ public class WarenkorbAdministration {
 	 * 
 	 * @param p_id: ID des Warenkorbelement-Objekts, das in der Datenbank gelöscht werden soll
 	 */
-	public static void loescheWarenkorbelement(int p_id)
+	public static void loescheWarenkorbelement(int p_id) throws DatenbankException
 	{		
 		String deleteBefehl = "DELETE FROM festiva.warenkorbelemente WHERE id = " + p_id;
 
@@ -238,7 +249,7 @@ public class WarenkorbAdministration {
 	 * @param p_ID: eindeutige ID des Artikels, den das Warenkorbelement, das aus der Datenbank selektiert werden soll, beinhalten soll
 	 * @return Warenkorbelement: gewünschtes Warenkorbelement-Objekt, gibt null zurück, wenn es kein Objekt gibt, dass die Artikel-ID beinhaltet
 	 */
-	public static Warenkorbelement selektiereWarenkorbelementMitArtikelID(int p_id)
+	public static Warenkorbelement selektiereWarenkorbelementMitArtikelID(int p_id) throws DatenbankException
 	{	
 		Warenkorbelement warenkorbelement = null;
 		String selectBefehl = "SELECT id, menge " + 
@@ -247,7 +258,9 @@ public class WarenkorbAdministration {
 		selectBefehl = String.format(selectBefehl, p_id);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);	
-		 
+		if(ergebnismenge == null) {
+			return warenkorbelement;
+		} else {
 		try
 		{
 			if(ergebnismenge.next())
@@ -266,7 +279,7 @@ public class WarenkorbAdministration {
 			System.out.println(e.getMessage());
 		}
 		
-		return warenkorbelement;
+		return warenkorbelement;}
 	}
 	
 	
@@ -275,7 +288,7 @@ public class WarenkorbAdministration {
 	 * 
 	 * @param p_id: ID des Warenkorb-Objekts, dessen Inhalt in der Datenbank gelöscht werden soll
 	 */
-	public static void loescheWarenkorbinhalt(int p_id)
+	public static void loescheWarenkorbinhalt(int p_id) throws DatenbankException
 	{		
 		String deleteBefehl = "DELETE FROM festiva.warenkorbelemente WHERE warenkörbe_id = " + p_id;
 

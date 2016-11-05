@@ -19,7 +19,7 @@ public class BestellungsAdministration {
  * 
  * @param p_bestellung: Bestellungs-Objekt, das in die Datenbanktabellen geschrieben werden soll
  */
-public static void erstelleBestellung(Bestellung p_bestellung)
+public static void erstelleBestellung(Bestellung p_bestellung) throws DatenbankException
 {
 	// Eintragungen in die Tabelle "bestellungen"
 	String insertBefehl = "INSERT INTO festiva.bestellungen " +
@@ -46,7 +46,7 @@ public static void erstelleBestellung(Bestellung p_bestellung)
  * @param p_benutzerID: ID des Kunden, dessen Bestellungs-Objekte zurückgegeben werden sollen
  * @return List<Bestellung>: Liste mit den Bestellungs-Objekten, die zu dem gewünschten Kunden gehören (nach Bestelldatum absteigend sortiert)
  */
-public static List<Bestellung> selektiereBestellungenVonKunden(int p_benutzerID)
+public static List<Bestellung> selektiereBestellungenVonKunden(int p_benutzerID) throws DatenbankException
 {
 	List<Bestellung> listBestellungen = new ArrayList<Bestellung>();
 	
@@ -57,10 +57,14 @@ public static List<Bestellung> selektiereBestellungenVonKunden(int p_benutzerID)
 						  "ORDER BY datum DESC";
 	selectBefehl = String.format(selectBefehl, p_benutzerID);
 	
-	try 
-	{
+
 		ResultSet ergebnismengeBestellungen = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		if(ergebnismengeBestellungen == null) {
+			return listBestellungen;
+		} else {
 		
+		try 
+		{
 		while(ergebnismengeBestellungen.next())
 		{
 			int bestellungsID = ergebnismengeBestellungen.getInt("id");
@@ -107,5 +111,6 @@ public static List<Bestellung> selektiereBestellungenVonKunden(int p_benutzerID)
 	}		
 	
 	return listBestellungen;
+	}
 }
 }

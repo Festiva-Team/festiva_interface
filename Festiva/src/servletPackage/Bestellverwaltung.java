@@ -37,6 +37,8 @@ public class Bestellverwaltung extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
+		
+		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 			if ((request.getParameter("aktion")).equals("anlegen")) {
 				int userid = Integer.parseInt(session.getAttribute("userid").toString());
@@ -66,6 +68,10 @@ public class Bestellverwaltung extends HttpServlet {
 			}
 		} else {
 			response.sendRedirect("k_anmelden.jsp");
+		}
+		} catch (DatenbankException e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
 		}
 		
 	}

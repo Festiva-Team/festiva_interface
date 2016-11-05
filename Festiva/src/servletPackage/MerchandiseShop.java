@@ -38,6 +38,7 @@ public class MerchandiseShop extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
+		try{
 
 		if ((request.getParameter("aktion")).equals("m_anzeigen")) {
 			
@@ -49,10 +50,14 @@ public class MerchandiseShop extends HttpServlet {
 					listArtikelID.add(warenkorbelement.artikel.id);					
 				}
 				session.setAttribute("listArtikelID", listArtikelID);
-			} 
+			}
 			List<Artikel> listArtikel = ArtikelAdministration.selektiereUnabhaengigeArtikel();
 			session.setAttribute("listArtikel", listArtikel);
-			request.getRequestDispatcher("k_merchandiseShop.jsp").include(request, response);
+			request.getRequestDispatcher("k_merchandiseShop.jsp").include(request, response);		
+		}
+		} catch (DatenbankException e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
 		}
 	}
 

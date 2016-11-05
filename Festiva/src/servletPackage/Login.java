@@ -44,6 +44,7 @@ public class Login extends HttpServlet {
 		String antwort = " ";
 		String begrüßung = " ";
 
+		try{
 		Benutzer benutzer = BenutzerAdministration.selektiereBenutzer(request.getParameter("email"));
 
 		if (benutzer != null) {
@@ -95,6 +96,10 @@ public class Login extends HttpServlet {
 			request.getSession(false).setAttribute("antwort", antwort);
 			request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 
+		}
+		} catch (DatenbankException e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
 		}
 
 	}

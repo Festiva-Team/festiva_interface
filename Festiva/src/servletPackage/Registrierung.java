@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import standardPackage.Benutzer;
 import standardPackage.BenutzerAdministration;
+import standardPackage.DatenbankException;
 import standardPackage.WarenkorbAdministration;
 
 /**
@@ -44,6 +45,7 @@ public class Registrierung extends HttpServlet {
 		String passwortBestätigung = request.getParameter("passwortbestätigung");
 		
 		String antwort = "";
+		try{
 		
 		if (BenutzerAdministration.selektiereBenutzer(email) != null) {
 			antwort = "Zu der eingegebenen E-Mail-Adresse existiert bereits ein Benutzerkonto. Verwenden Sie bitte eine andere E-Mail-Adresse.";
@@ -75,6 +77,10 @@ public class Registrierung extends HttpServlet {
 			} else {
 				request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 			}
+		}
+		} catch (DatenbankException e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
 		}
 	}
 

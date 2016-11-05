@@ -20,7 +20,7 @@ public class FestivalAdministration {
 	 * 
 	 * @param p_festival: Festival-Objekt, das erstellt werden soll
 	 */
-	public static void erstelleFestival(Festival p_festival)
+	public static void erstelleFestival(Festival p_festival) throws DatenbankException
 	{		
 		String insertBefehl = "INSERT INTO festiva.festivals " +
 							   "(name, ort, kurzbeschreibung, langbeschreibung, startdatum, enddatum, bildpfad, kategorien_id) " +
@@ -35,7 +35,7 @@ public class FestivalAdministration {
 	 * 
 	 * @param p_festival: Festival-Objekt, das in der Datenbank aktualisiert werden soll
 	 */
-	public static void aktualisiereFestival(Festival p_festival)
+	public static void aktualisiereFestival(Festival p_festival) throws DatenbankException
 	{	
 		String updateBefehl = "UPDATE festiva.festivals " +
 							  "SET name = '%s', ort = '%s', kurzbeschreibung = '%s', langbeschreibung = '%s', startdatum = '%tY-%tm-%td', enddatum = '%tY-%tm-%td', bildpfad = '%s', kategorien_id = '%d' " +
@@ -50,7 +50,7 @@ public class FestivalAdministration {
 	 * 
 	 * @param p_festival: Festival-Objekt, das in der Datenbank logisch gelöscht werden soll
 	 */
-	public static void löscheFestival(Festival p_festival)
+	public static void löscheFestival(Festival p_festival) throws DatenbankException
 	{
 		String updateBefehl = "UPDATE festiva.festivals SET istgelöscht = '%d' WHERE id = '%d'";
 		updateBefehl = String.format(updateBefehl, p_festival.istGelöscht?1:0, p_festival.id);
@@ -63,14 +63,16 @@ public class FestivalAdministration {
 	 * @param p_festivalID: ID des gewünschten Festivals
 	 * @return Festival: gewünschtes Festival, falls kein Festival gefunden wurde, wird null zurück gegeben
 	 */
-	public static Festival selektiereFestival(int p_festivalID)
+	public static Festival selektiereFestival(int p_festivalID) throws DatenbankException
 	{
 		Festival festival = null;
 		String selectBefehl = "SELECT name, ort, kurzbeschreibung, langbeschreibung, startdatum, enddatum, istgelöscht, bildpfad, kategorien_id " + 
 							  "FROM festiva.festivals " + 
 							  "WHERE id = " + p_festivalID;
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
-		
+		if(ergebnismenge == null) {
+			return festival;
+		} else {
 		try
 		{
 			if(ergebnismenge.next())
@@ -95,6 +97,7 @@ public class FestivalAdministration {
 		}
 		
 		return festival;
+		}
 	}
 	
 	
@@ -102,14 +105,16 @@ public class FestivalAdministration {
 	 * Selektiert alle Festivals aus der Datenbank.
 	 * @return List<Festival>: Liste mit Festival-Objekten, die alle verfügbaren Daten beinhalten
 	 */
-	public static List<Festival> selektiereAlleFestivals()
+	public static List<Festival> selektiereAlleFestivals() throws DatenbankException
 	{
 		List<Festival> listFestivals = new ArrayList<Festival>();;
 		String selectBefehl = "SELECT id, name, ort, kurzbeschreibung, langbeschreibung, startdatum, enddatum, istgelöscht, bildpfad, kategorien_id " + 
 							  "FROM festiva.festivals " + 
 							  "ORDER BY id ASC";
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
-		
+		if(ergebnismenge == null) {
+			return listFestivals;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -135,6 +140,7 @@ public class FestivalAdministration {
 		}
 		
 		return listFestivals;
+		}
 	}
 	
 	
@@ -143,7 +149,7 @@ public class FestivalAdministration {
 	 * @param p_kategorienID: ID der gewünschten Kategorie
 	 * @return listFestivals: Liste aller Festivals, die zu der gewünschten Kategorie gehören (nach Startdatum absteigend sortiert)
 	 */
-	public static List<FestivalSuchobjekt> selektiereFestivalsVonKategorie(int p_kategorienID)
+	public static List<FestivalSuchobjekt> selektiereFestivalsVonKategorie(int p_kategorienID) throws DatenbankException
 	{
 		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
 		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
@@ -155,7 +161,9 @@ public class FestivalAdministration {
 		selectBefehl  = String.format(selectBefehl, p_kategorienID);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
-		
+		if(ergebnismenge == null) {
+			return listFestivals;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -180,7 +188,7 @@ public class FestivalAdministration {
 			System.out.println(e.getMessage());
 		}
 		
-		return listFestivals;
+		return listFestivals;}
 	}
 	
 	
@@ -195,7 +203,7 @@ public class FestivalAdministration {
 	 * @return listFestivals: Liste aller Festivals, die zu den gewünschten Kriterien passen (nach Startdatum absteigend sortiert)
 	 */
 	public static List<FestivalSuchobjekt> selektiereFestivalsInSuche(int p_kategorienID, String p_ort, String p_name,
-															String p_vonDatum, String p_bisDatum, float p_bisPreis)
+															String p_vonDatum, String p_bisDatum, float p_bisPreis) throws DatenbankException
 	{
 		boolean where = false;
 		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
@@ -298,7 +306,9 @@ public class FestivalAdministration {
 		selectBefehl = selectBefehl	+ "GROUP BY f.id ORDER BY f.startdatum, f.name DESC";
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
-		
+		if(ergebnismenge == null) {
+			return listFestivals;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -323,6 +333,7 @@ public class FestivalAdministration {
 		}
 		
 		return listFestivals;
+		}
 	}
 
 
