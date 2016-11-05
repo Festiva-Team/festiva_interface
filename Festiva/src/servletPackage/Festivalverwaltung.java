@@ -158,6 +158,13 @@ public class Festivalverwaltung extends HttpServlet {
 						    
 						    try (InputStream input = filePart.getInputStream()) {
 						        Files.copy(input, file.toPath());
+
+						        try {
+									Thread.sleep(3000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 						    }
 						    
 						}
