@@ -71,7 +71,7 @@ public class Datenbankverbindung {
 	 * @return erfolgreich: Rückmeldung, ob Update durchgeführt werden konnte
 	 *         
 	 */
-	public boolean aktualisiereInDatenbank(String p_update_befehl) {
+	public boolean aktualisiereInDatenbank(String p_update_befehl) throws DatenbankException {
 		boolean erfolgreich = false;
 
 		if (this.verbindung != null) {
@@ -81,7 +81,10 @@ public class Datenbankverbindung {
 				erfolgreich = true;
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
+				throw new DatenbankException();
 			}
+		} else {
+			throw new DatenbankException();
 		}
 		return erfolgreich;
 	}
@@ -94,7 +97,7 @@ public class Datenbankverbindung {
 	 *                         Wenn kein Datensatz eingefügt werden konnte, wird -1 zurückgeliefert
 	 * 
 	 */
-	public int fügeInDatenbankEin(String p_insert_befehl) {
+	public int fügeInDatenbankEin(String p_insert_befehl) throws DatenbankException {
 		int neuerSchlüssel = -1;
 
 		if (this.verbindung != null) {
@@ -107,7 +110,10 @@ public class Datenbankverbindung {
 					neuerSchlüssel = schlüsselSet.getInt(1);
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
+				throw new DatenbankException();
 			}
+		} else {
+			throw new DatenbankException();
 		}
 		return neuerSchlüssel;
 	}
@@ -118,7 +124,7 @@ public class Datenbankverbindung {
 	 * @param p_select_befehl: Select-Befehl in SQL
 	 * @return ergebnismenge: Ergebnismenge des Selects
 	 */
-	public ResultSet selektiereVonDatenbank(String p_select_befehl) {
+	public ResultSet selektiereVonDatenbank(String p_select_befehl) throws DatenbankException {
 		ResultSet ergebnismenge = null;
 
 		if (this.verbindung != null) {
@@ -127,7 +133,10 @@ public class Datenbankverbindung {
 				ergebnismenge = statement.executeQuery(p_select_befehl);
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
+				throw new DatenbankException();
 			}
+		} else {
+			throw new DatenbankException();
 		}
 		return ergebnismenge;
 	}

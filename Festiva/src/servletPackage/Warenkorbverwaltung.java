@@ -34,7 +34,11 @@ public class Warenkorbverwaltung extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		String antwort = "";
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
 		
+		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 			
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
@@ -47,7 +51,24 @@ public class Warenkorbverwaltung extends HttpServlet {
 			} else { 
 					if ((request.getParameter("aktion")).equals("k_anzeigen")) {
 						int userid = Integer.parseInt(session.getAttribute("userid").toString());
+						boolean perPost = false;
+						boolean postEnthalten = false;
 						Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
+						for(Warenkorbelement warenkorbelement : warenkorb.listElemente) {
+							if (warenkorbelement.artikel.festivalID == 0) {
+								perPost = true;
+							}
+							if(warenkorbelement.artikel.id == 6) {
+								postEnthalten = true;
+							}
+						}
+						if(perPost == true && postEnthalten == false) {
+							Artikel artikel = ArtikelAdministration.selektiereArtikel(6);
+							Warenkorbelement warenkorbelement = new Warenkorbelement(-1, 1, artikel);
+							WarenkorbAdministration.fügeWarenkorbelementEin(warenkorbelement, userid);
+							warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
+						}
+						
 						Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
 						List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
 						boolean kundendatenVollstaendig = ueberpruefeKundendaten(benutzer);
@@ -140,6 +161,10 @@ public class Warenkorbverwaltung extends HttpServlet {
 			} else {
 			response.sendRedirect("k_anmelden.jsp");
 			}
+		}
+		} catch (DatenbankException e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
 		}
 	}
 

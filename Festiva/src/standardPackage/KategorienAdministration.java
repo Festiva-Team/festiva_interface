@@ -18,7 +18,7 @@ public class KategorienAdministration {
 	 * 
 	 * @param p_kategorie: Kategorie-Objekt, das erstellt werden soll
 	 */
-	public static void erstelleKategorie(Kategorie p_kategorie)
+	public static void erstelleKategorie(Kategorie p_kategorie) throws DatenbankException
 	{		
 		String insertBefehl = "INSERT INTO festiva.kategorien " +
 							   "(name, beschreibung, bildpfad) " +
@@ -33,7 +33,7 @@ public class KategorienAdministration {
 	 * 
 	 * @param p_kategorie: Kategorie-Objekt, das in der Datenbank aktualisiert werden soll
 	 */
-	public static void aktualisiereKategorie(Kategorie p_kategorie)
+	public static void aktualisiereKategorie(Kategorie p_kategorie) throws DatenbankException
 	{	
 		String updateBefehl = "UPDATE festiva.kategorien " +
 							  "SET name = '%s', beschreibung = '%s', bildpfad = '%s' " +
@@ -48,7 +48,7 @@ public class KategorienAdministration {
 	 * 
 	 * @param p_kategorie: Kategorie-Objekt, das in der Datenbank logisch gelöscht werden soll
 	 */
-	public static void löscheKategorie(Kategorie p_kategorie)
+	public static void löscheKategorie(Kategorie p_kategorie) throws DatenbankException
 	{
 		String updateBefehl = "UPDATE festiva.kategorien SET istgelöscht = '%d' WHERE id = '%d'";
 		updateBefehl = String.format(updateBefehl, p_kategorie.istGelöscht?1:0, p_kategorie.id);
@@ -61,14 +61,16 @@ public class KategorienAdministration {
 	 * @param p_kategorieID: ID der gewünschten Kategorie
 	 * @return kategorie: gewünschte Kategorie, falls keine Kategorie gefunden wurde, wird null zurück gegeben
 	 */
-	public static Kategorie selektiereKategorie(int p_kategorieID)
+	public static Kategorie selektiereKategorie(int p_kategorieID) throws DatenbankException
 	{
 		Kategorie kategorie = null;
 		String selectBefehl = "SELECT name, beschreibung, istgelöscht, bildpfad " + 
 							  "FROM festiva.kategorien " + 
 							  "WHERE id = " + p_kategorieID;
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
-		
+		if(ergebnismenge == null) {
+			return kategorie;
+		} else {
 		try
 		{
 			if(ergebnismenge.next())
@@ -87,7 +89,7 @@ public class KategorienAdministration {
 			System.out.println(e.getMessage());
 		}
 		
-		return kategorie;
+		return kategorie;}
 	}
 	
 	
@@ -95,14 +97,16 @@ public class KategorienAdministration {
 	 * Selektiert alle Kategorien aus der Datenbank (sortiert nach ID aufsteigend).
 	 * @return List<Kategorie>: Liste mit allen verfügbaren Kategorien und deren zugehörigen Daten
 	 */
-	public static List<Kategorie> selektiereAlleKategorien()
+	public static List<Kategorie> selektiereAlleKategorien() throws DatenbankException
 	{
 		List<Kategorie> listKategorien = new ArrayList<Kategorie>();
 		String selectBefehl = "SELECT id, name, beschreibung, istgelöscht, bildpfad " + 
 							  "FROM festiva.kategorien " + 
 							  "ORDER BY id ASC";
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
-		
+		if(ergebnismenge == null) {
+			return listKategorien;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -122,6 +126,6 @@ public class KategorienAdministration {
 			System.out.println(e.getMessage());
 		}
 		
-		return listKategorien;
+		return listKategorien;}
 	}
 }

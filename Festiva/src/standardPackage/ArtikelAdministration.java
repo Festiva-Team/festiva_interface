@@ -18,7 +18,7 @@ public class ArtikelAdministration {
 	 * 
 	 * @param p_artikel: Artikel-Objekt, das erstellt werden soll
 	 */
-	public static void erstelleArtikel(Artikel p_artikel)
+	public static void erstelleArtikel(Artikel p_artikel) throws DatenbankException
 	{	
 		String insertBefehl = "";
 		if(p_artikel.festivalID != 0) {
@@ -42,7 +42,7 @@ public class ArtikelAdministration {
 	 * 
 	 * @param p_artikel: Artikel-Objekt, das in der Datenbank aktualisiert werden soll
 	 */
-	public static void aktualisiereArtikel(Artikel p_artikel)
+	public static void aktualisiereArtikel(Artikel p_artikel) throws DatenbankException
 	{	
 		String updateBefehl = "";
 		if(p_artikel.festivalID != 0) {
@@ -64,7 +64,7 @@ public class ArtikelAdministration {
 	 * 
 	 * @param p_artikel: Artikel-Objekt, das in der Datenbank logisch gelöscht werden soll
 	 */
-	public static void löscheArtikel(Artikel p_artikel)
+	public static void löscheArtikel(Artikel p_artikel) throws DatenbankException
 	{
 		String updateBefehl = "UPDATE festiva.artikel SET istgelöscht = '%d' WHERE id = '%d'";
 		updateBefehl = String.format(updateBefehl, p_artikel.istGelöscht?1:0, p_artikel.id);
@@ -76,7 +76,7 @@ public class ArtikelAdministration {
 	 * @param p_artikelID: ID des gewünschten Artikels
 	 * @return artikel: gewünschter Artikel, falls kein Artikel gefunden wurde, wird null zurück gegeben
 	 */
-	public static Artikel selektiereArtikel(int p_artikelID)
+	public static Artikel selektiereArtikel(int p_artikelID) throws DatenbankException
 	{
 		Artikel artikel = null;
 		String selectBefehl = "SELECT beschreibung, preis, istgelöscht, festivals_id " + 
@@ -84,6 +84,9 @@ public class ArtikelAdministration {
 							  "WHERE id = " + p_artikelID;
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		
+		if(ergebnismenge == null) {
+			return artikel;
+		} else {
 		try
 		{
 			if(ergebnismenge.next())
@@ -101,8 +104,8 @@ public class ArtikelAdministration {
 			// TODO
 			System.out.println(e.getMessage());
 		}
-		
 		return artikel;
+		}
 	}
 
 	/**
@@ -111,7 +114,7 @@ public class ArtikelAdministration {
 	 * @param p_maxPreis: maximaler Preis, den die zurückgegebenen Artikel haben dürfen
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
 	 */
-	public static List<Artikel> selektiereArtikelVonFestivalMitMaxPreis(int p_festivalID, float p_maxPreis)
+	public static List<Artikel> selektiereArtikelVonFestivalMitMaxPreis(int p_festivalID, float p_maxPreis) throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
@@ -121,6 +124,9 @@ public class ArtikelAdministration {
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		
+		if(ergebnismenge == null) {
+			return listArtikel;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -140,6 +146,7 @@ public class ArtikelAdministration {
 		}
 		
 		return listArtikel;
+		}
 	}
 	
 	
@@ -149,7 +156,7 @@ public class ArtikelAdministration {
 	 * @param p_maxPreis: maximaler Preis, den die zurückgegebenen Artikel übersteigen müssen
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
 	 */
-	public static List<Artikel> selektiereArtikelVonFestivalÜberMaxPreis(int p_festivalID, float p_maxPreis)
+	public static List<Artikel> selektiereArtikelVonFestivalÜberMaxPreis(int p_festivalID, float p_maxPreis) throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
@@ -159,6 +166,9 @@ public class ArtikelAdministration {
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		
+		if(ergebnismenge == null) {
+			return listArtikel;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -178,6 +188,7 @@ public class ArtikelAdministration {
 		}
 		
 		return listArtikel;
+		}
 	}
 	
 	
@@ -186,7 +197,7 @@ public class ArtikelAdministration {
 	 * @param p_festivalID: ID des gewünschten Festivals
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
 	 */
-	public static List<Artikel> selektiereArtikelVonFestival(int p_festivalID)
+	public static List<Artikel> selektiereArtikelVonFestival(int p_festivalID) throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
@@ -196,6 +207,9 @@ public class ArtikelAdministration {
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		
+		if(ergebnismenge == null) {
+			return listArtikel;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -215,6 +229,7 @@ public class ArtikelAdministration {
 		}
 		
 		return listArtikel;
+		}
 	}
 	
 	
@@ -223,7 +238,7 @@ public class ArtikelAdministration {
 	 * @param p_festivalID: ID des gewünschten Festivals
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
 	 */
-	public static List<Artikel> selektiereAlleArtikelVonFestival(int p_festivalID)
+	public static List<Artikel> selektiereAlleArtikelVonFestival(int p_festivalID) throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
@@ -233,6 +248,9 @@ public class ArtikelAdministration {
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		
+		if(ergebnismenge == null) {
+			return listArtikel;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -252,6 +270,7 @@ public class ArtikelAdministration {
 		}
 		
 		return listArtikel;
+		}
 	}
 	
 	
@@ -263,7 +282,7 @@ public class ArtikelAdministration {
 	 * Selektiert alle Artikel, die zu keinem Festival gehören (alphabetisch sortiert)
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
 	 */
-	public static List<Artikel> selektiereUnabhaengigeArtikel()
+	public static List<Artikel> selektiereUnabhaengigeArtikel() throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
@@ -273,6 +292,9 @@ public class ArtikelAdministration {
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		
+		if(ergebnismenge == null) {
+			return listArtikel;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -292,6 +314,7 @@ public class ArtikelAdministration {
 		}
 		
 		return listArtikel;
+		}
 	}
 	
 	
@@ -299,7 +322,7 @@ public class ArtikelAdministration {
 	 * Selektiert alle Artikel, die zu keinem Festival gehören (nach ID sortiert, auch gelöschte)
 	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
 	 */
-	public static List<Artikel> selektiereAlleUnabhaengigenArtikel()
+	public static List<Artikel> selektiereAlleUnabhaengigenArtikel() throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
 		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
@@ -308,7 +331,9 @@ public class ArtikelAdministration {
 		selectBefehl  = String.format(selectBefehl);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
-		
+		if(ergebnismenge == null) {
+			return listArtikel;
+		} else {
 		try
 		{
 			while(ergebnismenge.next())
@@ -328,6 +353,47 @@ public class ArtikelAdministration {
 		}
 		
 		return listArtikel;
+		}
+	}
+	
+	
+	/**
+	 * Selektiert alle Artikel (alphabetisch sortiert)
+	 * @return listArtikel: Liste aller Artikel
+	 */
+	public static List<Artikel> selektiereAlleArtikel() throws DatenbankException
+	{
+		List<Artikel> listArtikel = new ArrayList<Artikel>();
+		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht, festivals_id " + 
+							  "FROM festiva.artikel " + 
+							  "ORDER BY beschreibung ASC";
+		selectBefehl  = String.format(selectBefehl);
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		if(ergebnismenge == null) {
+			return listArtikel;
+		} else {
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int id = ergebnismenge.getInt("id");				
+				String beschreibung = ergebnismenge.getString("beschreibung");
+				float preis = ergebnismenge.getFloat("preis");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				int festivalid = ergebnismenge.getInt("festivals_id");
+				
+				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, festivalid));
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listArtikel;
+		}
 	}
 	
 }

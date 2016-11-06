@@ -1,11 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*" import="java.io.File"
+    session="false"	%>
     
 <%  if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
-	response.sendRedirect("k_anmelden.jsp");} %>
+	response.sendRedirect("k_anmelden.jsp");}
+	else {
+	int id = 1; 
+	float gesamtsumme = 0;
+	SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+	List<Bestellung> listBestellungen = (List<Bestellung>)request.getSession(false).getAttribute("listBestellungen");
+	List<Festival> listFestivals = (List<Festival>)request.getSession(false).getAttribute("listFestivals");
+	List<Artikel> listArtikel = (List<Artikel>)request.getSession(false).getAttribute("listArtikel");
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="CSS/design.css">
 <title>Festiva - Meine Daten</title>
@@ -17,16 +29,42 @@
     	</jsp:include>
     	<div id="main">
     		<form id="table">
-				<h2>Meine Bestellungen</h2>
+				<h2>Meine vergangenen Bestellungen</h2>
+				<br/><br/>
+				<% for (Bestellung bestellung : listBestellungen) {%>
+
+				<h4>Ihre Bestellung vom <%=date.format(bestellung.datum)%> Uhr:</h4>
+				
 				<table class= "artikel">
-					<tr><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr>
-					<tr><td>Festival</td><td>Beschreibung</td><td>Preis</td><td>Anzahl</td><td>Preis*Anzahl</td></tr>
+					<thead><tr><th>Position</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
+					 <%for (Bestellposition bestellposition : bestellung.listPositionen) { %>
+					<tbody><tr>
+								<td data-label="ID"><%=id%></td>
+								<% for(Artikel artikel : listArtikel) {
+								   if (bestellposition.artikelID == artikel.id) {
+									   if(artikel.festivalID == 0) { %>
+							    <td data-label="Festival"><%=""%></td>   
+								<%	   } else {
+									   for(Festival festival : listFestivals) {
+										   if (festival.id == artikel.festivalID) { %>
+										   <td data-label="Festival"><%=festival.name%></td>
+										<% }}}}} %>
+								<td data-label="Artikelbeschreibung"><%=bestellposition.beschreibung%></td>
+								<td data-label="Preis"><%=String.format("%.2f",bestellposition.preis)%> &#8364;</td>
+								<td data-label="Anzahl"><%=bestellposition.menge%></td>
+								<td data-label="Gesamtpreis"><%=String.format("%.2f",(bestellposition.menge * bestellposition.preis))%> &#8364;</td>
+					</tr></tbody>
+					<% id++; gesamtsumme = gesamtsumme + (bestellposition.menge * bestellposition.preis); } %>
+					<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tfoot>
+					</tr>
 				</table>
-			</form>
-			
+				<br/><br/>
+				<% id = 1; } %>
+			</form>	
 		</div>
 		<div id="leer"></div>
 		<footer></footer>
 	</div>
 </body>
 </html>
+<% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("listArtikel"); request.getSession().removeAttribute("listBestellungen"); } %>

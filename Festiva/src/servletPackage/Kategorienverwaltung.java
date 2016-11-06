@@ -40,7 +40,11 @@ public class Kategorienverwaltung extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
 		
+		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 1) {
 			String antwort = "";
 			
@@ -110,6 +114,12 @@ public class Kategorienverwaltung extends HttpServlet {
 						    
 						    try (InputStream input = filePart.getInputStream()) {
 						        Files.copy(input, file.toPath());
+						        try {
+									Thread.sleep(3000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 						    }
 						    
 						}
@@ -136,8 +146,13 @@ public class Kategorienverwaltung extends HttpServlet {
 					
 				}
 			}
+		} else {
+			response.sendRedirect("k_anmelden.jsp");
 		}
-			
+		} catch (DatenbankException e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
+		}			
 	}
 	
 	

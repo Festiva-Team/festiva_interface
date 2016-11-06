@@ -37,13 +37,20 @@ public class Benutzerdaten extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		String antwort = "";
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
 	 
-		
+		try{
 		if(session != null && session.getAttribute("begrüßung") != null ) {
 			
 			int userGruppenID = Integer.parseInt(session.getAttribute("gruppenid").toString());			
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
 			Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
+		//	if(benutzer == null) {
+		//		response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
+			//	response.sendRedirect("fehlerseite.html");
+		//	} else {
 					
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
 				
@@ -100,9 +107,14 @@ public class Benutzerdaten extends HttpServlet {
 						session.setAttribute("antwort", antwort);
 						request.getRequestDispatcher("/Benutzerdaten?aktion=anzeigen").include(request, response); } 
 					
-				} else {
+				
+		} else {
 					response.sendRedirect("k_anmelden.jsp");
 			}
+		} catch (DatenbankException e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
+		}
 		}
 
 
@@ -123,7 +135,7 @@ public class Benutzerdaten extends HttpServlet {
 	 * @param p_benutzer: BenutzerObjekt, an dem die Passwortänderung durchgeführt werden soll
 	 * @return String: Rückmeldung über die durchgeführten Aktivitäten, die an den Kunden weitergeleitet werden kann
 	 */
-	private String aenderePasswort(String p_pwAlt, String p_pwNeu, String p_pwBestätigung, Benutzer p_benutzer) {
+	private String aenderePasswort(String p_pwAlt, String p_pwNeu, String p_pwBestätigung, Benutzer p_benutzer) throws DatenbankException {
 					
 			if(!p_pwAlt.equals(p_benutzer.passwortHash)) {
 				return "Das eingegebene alte Passwort ist falsch. Keine Passwortänderung durchgeführt.";
@@ -155,7 +167,7 @@ public class Benutzerdaten extends HttpServlet {
 	 * @param p_benutzer: BenutzerObjekt, an dem die Datenänderung durchgeführt werden soll
 	 * @return String: Rückmeldung über die durchgeführten Aktivitäten, die an den Kunden weitergeleitet werden kann
 	 */
-	private String aendereDaten(String p_vorname, String p_nachname, String p_strasse, String p_hausnummer, int p_plz, String p_ort, String p_iban, String p_bic, boolean p_einzugsermächtigungErteilt, String p_Email, Benutzer p_benutzer) {
+	private String aendereDaten(String p_vorname, String p_nachname, String p_strasse, String p_hausnummer, int p_plz, String p_ort, String p_iban, String p_bic, boolean p_einzugsermächtigungErteilt, String p_Email, Benutzer p_benutzer) throws DatenbankException {
 		
 		if ((!(p_benutzer.eMailAdresse).equals(p_Email)) && BenutzerAdministration.selektiereBenutzer(p_Email) != null) {
 			return "Zu der eingegebenen E-Mail-Adresse existiert bereits ein anderes Benutzerkonto. Verwenden Sie bitte eine andere E-Mail-Adresse.";
