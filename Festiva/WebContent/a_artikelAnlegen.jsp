@@ -26,7 +26,7 @@ else {
     	<jsp:param name="active" value="artikelAnlegen"/>
     </jsp:include>
 	<div id="main">
-		<form action="/Festiva/Artikelverwaltung?aktion=anlegen&festivalid=<%=festivalid%>" method="post">
+		<form action="/Festiva/Artikelverwaltung?aktion=anlegen&festivalid=<%=festivalid%>" method="post" enctype="multipart/form-data">
 			<label class="h2">Artikel anlegen</label>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="spaltelinks">
@@ -34,6 +34,10 @@ else {
 			<input type="text" id="beschreibung" name="beschreibung" required="required" maxlength="100">
 			<label for="preis">Preis in Euro*</label>
 			<input type="number" step="0.01" min="0" id="preis" name="preis" required="required" maxlength="7"><br>
+			<% if(festivalid == 0) { %>
+			<label for="bild">Bild</label>
+			<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+			<% } %>
 			<button type="submit" id="links">Anlegen</button>
 			</div>
 		</form>	

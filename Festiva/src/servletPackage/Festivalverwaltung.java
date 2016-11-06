@@ -184,7 +184,12 @@ public class Festivalverwaltung extends HttpServlet {
 							if((request.getParameter("aktion")).equals("loeschen")) {
 								festival.istGelöscht = true;
 								FestivalAdministration.löscheFestival(festival);
-								antwort = "Das Festival wurde erfolgreich gelöscht.";
+								for (Artikel artikel : listArtikel) {
+									artikel.istGelöscht = true;
+									ArtikelAdministration.löscheArtikel(artikel);
+								}
+								
+								antwort = "Das Festival und alle dazugehörigen Artikel wurden erfolgreich gelöscht.";
 								session.setAttribute("antwort", antwort);
 							} 						
 						}

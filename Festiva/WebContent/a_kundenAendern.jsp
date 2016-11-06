@@ -84,11 +84,7 @@ else {
 					</div>
 					</form>
 			</div>
-			<form action="/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=<%=benutzer.id%>" method="post">
-				<div id="spalterechts">
-					<input <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %> type="submit" value="l&ouml;schen" onclick="del()">
-					</div>
-					</form>
+					<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>
 					<div id="spalterechts">
 					<p>Hinweis: Das Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
 				</div>	
@@ -105,9 +101,13 @@ else {
 </body>
 <script type="text/javascript">
 
-function del(){
-	   if(confirm("Soll der Kunde wirklich gelöscht werden?") == true)
-	      document.form.submit();
+function del(id){
+	   if(confirm("Möchten Sie den aktuellen Kunden wiklich löschen?") == true) {
+		   document.location.href='/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=' + id;
+	      } else {
+	    	 document.location.href='/Festiva/Kundenverwaltung?aktion=aendern&kundenid=' + id;
+	      }
+
 }
 </script>
 </html>

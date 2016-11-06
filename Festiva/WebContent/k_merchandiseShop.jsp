@@ -2,7 +2,7 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*"
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*" import="java.io.File"
     session="false"	%>
 <%
 /** 
@@ -36,20 +36,29 @@ if (request.getSession(false) != null) {
 			<div id="zeile">
 				<table>
 								
-					<thead><tr><th>Bild</th><th>Beschreibung</th><th>Preis</th></tr></thead>
+					<thead><tr><th>Bild</th><th>Beschreibung</th><th>Preis</th><th></th><th></th></tr></thead>
 					<%					
 						for (Artikel artikel : listArtikel)
 						{%>
 						<tbody>	<tr>
-								<td data-label="Bild">"artikel.bildpfad"</td>
+						<%if(!(artikel.bildpfad).equals("")) { %>
+						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
+						<td><figure class="bild1">
+						<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
+						</figure></td>
+						<% } else { %>
+								<td data-label="Bild">Kein Bild verfügbar</td>
+								<% } %>
+						<% } else { %>
+								<td data-label="Bild">Kein Bild verfügbar</td>
+								<% }	%>
 								<td data-label="Beschreibung"><%=artikel.beschreibung%></td>
 								<td data-label="Preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 								<td data-label="Anzahl">
 								<select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 								<td><button type="submit" id="Artikel in Warenkorb" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td>
 							</tr></tbody>
-						<%}	%>
-
+						<% }	%>
 				</table>
 				<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 

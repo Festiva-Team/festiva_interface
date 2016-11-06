@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.text.DecimalFormat"
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.text.DecimalFormat" import="java.io.File" import="java.util.*" import="java.text.*"
     session="false"	%>
     
 <%  if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
@@ -24,7 +24,7 @@ else {
     	<jsp:param name="active" value="artikelAendern"/>
     </jsp:include>
 	<div id="main">
-		<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post">
+		<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post" enctype="multipart/form-data">
 			<label class="h2">Artikel ändern</label>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="spaltelinks">
@@ -32,6 +32,10 @@ else {
 				<input type="text" id="beschreibung" name="beschreibung" maxlength="100" required="required" value="<%=artikel.beschreibung%>">
 				<label for="preis">Preis in Euro*</label>
 				<input type="number" step="0.01" min="0" id="preis" name="preis" maxlength="7" required="required" value="<%=artikel.preis%>"><br>				
+				<% if(artikel.festivalID == 0) { %>
+				<label for="bild">Bild</label>
+				<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+				<% } %>
 				<label for="geloescht">Ist Gelöscht</label>
 					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
 	      					   "<%=artikel.istGelöscht%>"
@@ -40,6 +44,19 @@ else {
 				<button type="submit" id="links">Änderungen speichern</button>
 			</div>
 		</form>
+		<%if(artikel.festivalID == 0 ) { %>
+		<form action="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>&t=<%=new Date().getTime()%>" method="post">
+					<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
+					<figure class="bild1">
+					<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
+					<h5>Das aktuellste Bild wird noch nicht angezeigt? Bitte aktualisieren Sie die Seite.</h5>
+					<button type="submit">Aktualisieren</button>
+					</figure>
+					<% } else { %>
+						<p>Kein Bild vorhanden</p>
+						<% } %>
+					</form>
+					<% } %>
 		<form action="/Festiva/Artikelverwaltung?aktion=loeschen&artikelid=<%=artikel.id%>" method="post">
 		<button type="submit" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
 		</form>

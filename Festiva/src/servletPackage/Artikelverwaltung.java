@@ -1,14 +1,20 @@
 package servletPackage;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import standardPackage.*;
 
@@ -17,6 +23,7 @@ import standardPackage.*;
 * @author Alina Fankhänel
 */
 @WebServlet("/Artikelverwaltung")
+@MultipartConfig
 public class Artikelverwaltung extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,8 +58,24 @@ public class Artikelverwaltung extends HttpServlet {
 					antwort = "Sie können den Artikel erst anlegen, wenn Sie alle Pflichtfelder gefüllt haben.";
 				} else {
 				float preis = Float.parseFloat(request.getParameter("preis"));
-				Artikel artikel = new Artikel(-1, beschreibung, preis, false, festivalid);
+				
+				Artikel artikel = new Artikel(-1, beschreibung, preis, false, "", festivalid);
 				ArtikelAdministration.erstelleArtikel(artikel);
+				
+			    Part filePart = request.getPart("bild");
+			    
+				if (filePart != null && getFileName(filePart) != null && !getFileName(filePart).equals("")) {
+					
+					artikel.bildpfad = "Artikel" + "_" + artikel.id + "_" + new Date().getTime();
+				    File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg");
+				    
+				    try (InputStream input = filePart.getInputStream()) {
+				        Files.copy(input, file.toPath());
+				    }
+				    
+					ArtikelAdministration.aktualisiereArtikel(artikel);
+				}
+
 				antwort = "Der Artikel '" + artikel.beschreibung + "' wurde erfolgreich mit der ID " + artikel.id + " angelegt.";
 				}
 				session.setAttribute("antwort", antwort);
@@ -76,6 +99,28 @@ public class Artikelverwaltung extends HttpServlet {
 					if(beschreibung.equals("") || request.getParameter("preis").equals("")) {
 						antwort = "Sie können den Artikel erst ändern, wenn Sie alle Pflichtfelder gefüllt haben.";
 					} else {
+						
+						Part filePart = request.getPart("bild"); 
+						
+						if ( filePart != null && getFileName(filePart) != null && !getFileName(filePart).equals("")) {
+					    File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg");
+					    
+					    if (file.exists()) file.delete();
+					    
+					    artikel.bildpfad = "Artikel" + "_" + artikel.id + "_" + new Date().getTime();
+					    file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg");
+					    
+					    try (InputStream input = filePart.getInputStream()) {
+					        Files.copy(input, file.toPath());
+					        try {
+								Thread.sleep(3000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+					    }
+						}
+						
 					float preis = Float.parseFloat(request.getParameter("preis"));
 					artikel.beschreibung = beschreibung;
 					artikel.preis = preis;
@@ -120,5 +165,17 @@ public class Artikelverwaltung extends HttpServlet {
 		doGet(request, response);
 	}
 	
+	
+	private String getFileName(Part part) {
+		String partHeader = part.getHeader("content-disposition");
+		log("Part Header = " + partHeader);
+		for (String cd : part.getHeader("content-disposition").split(";")) {
+			if (cd.trim().startsWith("filename")) {
+				return cd.substring(cd.indexOf('=') + 1).trim()
+						.replace("\"", "");
+			}
+		}
+		return null;
+	}
 
 }

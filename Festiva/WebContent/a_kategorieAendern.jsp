@@ -38,30 +38,35 @@ else {
 					<label for="beschreibung">Beschreibung*</label>
 					<textarea rows="5" id="beschreibung" name="beschreibung" required="required"><%=kategorie.beschreibung%></textarea>
 					<label for="bild">Neues Bild</label>
-					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+					<input type="file" id="bild" name="bild" accept="image/*">
 					<output id="list"></output>
 					<button type="submit">Änderungen speichern</button>
-				</div>
-				 <label for="geloescht">Ist Gelöscht</label>
+					<label for="geloescht">Ist Gelöscht</label>
 					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
 	      					   "<%=kategorie.istGelöscht%>"
 	      					   <% if (kategorie.istGelöscht == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
-			</div>
-		</form>
-		<form action="/Festiva/Kategorienverwaltung?aktion=loeschen&kategorienid=<%=kategorie.id%>" method="post">
-			<div id="spaltelinks">
-					<button type="submit" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %> id="links">Kategorie löschen</button>
-					</div>
-					</form>
-					<form action="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>&t=<%=new Date().getTime()%>" method="post">
+				</div>
+				<div id="spalterechts">
+				<form action="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>&t=<%=new Date().getTime()%>" method="post">
 					<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) { %>
 					<figure class="bild1">
 					<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150 />
 					<h5>Das aktuellste Bild wird noch nicht angezeigt? Bitte aktualisieren Sie die Seite.</h5>
 					<button type="submit">Aktualisieren</button>
 					</figure>
-					<%} %>
+					<% } else { %>
+						<p>Kein Bild vorhanden</p>
+						<% } %>
+					</form>
+						
+				</div> 
+			</div>
+		</form>
+		<form action="/Festiva/Kategorienverwaltung?aktion=loeschen&kategorienid=<%=kategorie.id%>" method="post">
+			<div id="spaltelinks">
+					<button type="submit" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %> id="links">Kategorie löschen</button>
+					</div>
 					</form>
 					<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 

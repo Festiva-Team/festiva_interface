@@ -39,10 +39,14 @@ else {
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				 <div class="row">
 						<div id="spaltelinks">
-						<label for="bild">Bild</label>
+						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
+						<label for="bild"></label>
 						<figure class="bild1" >
 						<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150/>
 						</figure>	
+						<% } else { %>
+						<p>Kein Bild vorhanden</p>
+						<% } %>
 						<label for="bild">Neues Bild</label>
 						<input type="file" id="bild" name="bild" accept="image/*">
 						<label for="name">Festivalname*</label>
@@ -100,11 +104,7 @@ else {
 			<div id="spaltelinks">
 				<button type="button" id="anlegen" onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
 			</div>
-			<form action="/Festiva/Festivalverwaltung?aktion=loeschen&festivalid=<%=festival.id%>" method="post">
-			<div id="spaltelinks">
-					<button type="submit" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>
-					</div>
-					</form>
+					<button type="submit" onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>
 					<form action="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>&t=<%=new Date().getTime()%>" method="post">
 					<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
 					<figure class="bild1">
@@ -124,5 +124,16 @@ else {
 		<div id="footer"></div>
 </div>	
 </body>
+<script type="text/javascript">
+
+function del(id){
+	   if(confirm("Achtung! Wenn Sie das Festival löschen, werden automatisch alle dazugehörigen Artikel gelöscht. Möchten Sie fortfahren?") == true) {
+		   document.location.href='/Festiva/Festivalverwaltung?aktion=loeschen&festivalid=' + id;
+	      } else {
+	    	 document.location.href='/Festiva/Festivalverwaltung?aktion=aendern&festivalid=' + id;
+	      }
+
+}
+</script>
 </html>
 <% request.getSession().removeAttribute("festival"); request.getSession().removeAttribute("listArtikel"); request.getSession().removeAttribute("listKategorien");}%>
