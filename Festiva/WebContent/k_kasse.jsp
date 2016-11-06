@@ -81,22 +81,25 @@
 				<div id="spaltelinks">
 					<h2>Versand</h2>
 					<h5>Hinweis: Wenn Sie einen oder mehrere Merchandise-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</h5>
+	 				<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
 	 				<label>Per Mail</label>
 	 				<input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" >
 	 				<label>Per Post</label>
 	 				<input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)"> 
+	 			    <button type="submit" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
+			 		</form>
 	 			 </div>	
 	 			 <div id="spalterechts">
 	 			 	<%if(kundendatenVollstaendig.equals(false)) { %>
 					 <p> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt haben. Hier können Sie Ihre Kundendaten anpassen: </p>
 					 <% } else { %>
-					 <p> Bitte kontrollieren Sie Ihre Angaben auf dieser Seite bevor Sie die Bestellung abschließen. Sie möchten Ihre Kundendaten anpassen? Dann klicken Sie bitte hier: 
-					 <button type="button" id="Kundendaten aendern" onClick="window.location.href='/Festiva/Benutzerdaten?aktion=anzeigen'">Meine Daten</button></p>
+					 <p> Bitte kontrollieren Sie Ihre Angaben auf dieser Seite bevor Sie die Bestellung abschließen. Sie möchten Ihre Kundendaten anpassen? Dann klicken Sie bitte hier: 					 
 					 <% } %>
+					 <button type="button" id="Kundendaten aendern" onClick="window.location.href='/Festiva/Benutzerdaten?aktion=anzeigen'">Meine Daten</button></p>
 	 			 </div>
 	 			 </form>
 				</div>
-				<button type="submit" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
+				
 				 
 	<div id="leer"></div>
 	</div>

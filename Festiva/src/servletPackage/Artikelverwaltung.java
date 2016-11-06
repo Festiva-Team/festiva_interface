@@ -138,6 +138,16 @@ public class Artikelverwaltung extends HttpServlet {
 							antwort = "Dieser Artikel darf nicht gelöscht werden.";
 						}
 						session.setAttribute("antwort", antwort);
+					} else {
+						if((request.getParameter("aktion")).equals("b_loeschen")) {
+							File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg");
+						    
+						    if (file.exists()) file.delete();
+						    artikel.bildpfad = "";
+						    ArtikelAdministration.aktualisiereArtikel(artikel);
+						    antwort = "Das Bild wurde erfolgreich gelöscht.";
+						    session.setAttribute("antwort", antwort);
+						}
 					}
 				}
 			

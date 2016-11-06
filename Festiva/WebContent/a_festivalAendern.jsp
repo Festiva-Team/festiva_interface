@@ -100,7 +100,8 @@ else {
 					</table>
 					</div>		
 				</div>					
-			</form>	
+			</form>	 
+			<button type="submit" onClick="window.location.href='/Festiva/Festivalverwaltung?aktion=b_loeschen&festivalid=<%=festival.id%>'">Aktuelles Bild löschen</button>
 			<div id="spaltelinks">
 				<button type="button" id="anlegen" onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
 			</div>

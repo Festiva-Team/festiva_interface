@@ -149,6 +149,16 @@ public class Kategorienverwaltung extends HttpServlet {
 								}
 								
 								session.setAttribute("antwort", antwort);
+							} else {
+								if((request.getParameter("aktion")).equals("b_loeschen")) {
+									File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg");
+								    
+								    if (file.exists()) file.delete();
+								    kategorie.bildpfad = "";
+								    KategorienAdministration.aktualisiereKategorie(kategorie);
+								    antwort = "Das Bild wurde erfolgreich gelöscht.";
+								    session.setAttribute("antwort", antwort);
+								}
 							}
 						}
 					}

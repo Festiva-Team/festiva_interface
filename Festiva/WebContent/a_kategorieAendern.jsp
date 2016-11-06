@@ -59,10 +59,12 @@ else {
 						<p>Kein Bild vorhanden</p>
 						<% } %>
 					</form>
-						
-				</div> 
+					</div> 	
 			</div>
 		</form>
+		<button type="submit" onClick="window.location.href='/Festiva/Kategorienverwaltung?aktion=b_loeschen&kategorienid=<%=kategorie.id%>'">Aktuelles Bild löschen</button>
+		
+				
 					<button type="submit" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
 					<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 

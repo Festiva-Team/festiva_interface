@@ -80,16 +80,25 @@ public class Warenkorbverwaltung extends HttpServlet {
 					} else {
 						if ((request.getParameter("aktion")).equals("p_versand")) {
 							int userid = Integer.parseInt(session.getAttribute("userid").toString());
+							boolean postEnthalten = false;
+							Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
+							for(Warenkorbelement warenkorbelement : warenkorb.listElemente) {
+								if(warenkorbelement.artikel.id == 6) {
+									postEnthalten = true;
+								}
+							}
+							if(postEnthalten == false) {
 							Artikel artikel = ArtikelAdministration.selektiereArtikel(6);
 							Warenkorbelement warenkorbelement = new Warenkorbelement(-1, 1, artikel);
-							WarenkorbAdministration.fügeWarenkorbelementEin(warenkorbelement, userid);
+							WarenkorbAdministration.fügeWarenkorbelementEin(warenkorbelement, userid);}
 							boolean perPost = true;
 							session.setAttribute("perPost", perPost);
 							request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
 						} else {
 							if ((request.getParameter("aktion")).equals("m_versand")) {	
 								Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(6);
-								WarenkorbAdministration.loescheWarenkorbelement(warenkorbelement.id);
+								if(warenkorbelement != null) {
+								WarenkorbAdministration.loescheWarenkorbelement(warenkorbelement.id);}
 								boolean perPost = false;
 								session.setAttribute("perPost", perPost);
 								request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);

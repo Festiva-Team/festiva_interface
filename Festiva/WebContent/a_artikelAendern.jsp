@@ -23,10 +23,12 @@ else {
     <jsp:include page="a_headerAdmin.jsp">
     	<jsp:param name="active" value="artikelAendern"/>
     </jsp:include>
-	<div id="main">
-		<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post" enctype="multipart/form-data">
-			<label class="h2">Artikel ändern</label>
+    <label class="h2">Artikel ändern</label>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+	<div id="main">
+	
+		<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post" enctype="multipart/form-data">
+			
 			<div id="spaltelinks">
 				<label for="beschreibung">Beschreibung*</label>
 				<input type="text" id="beschreibung" name="beschreibung" maxlength="100" required="required" value="<%=artikel.beschreibung%>">
@@ -56,7 +58,9 @@ else {
 						<p>Kein Bild vorhanden</p>
 						<% } %>
 					</form>
-					<% } %>
+					<% } if(artikel.festivalID == 0 ) { %>
+			<button type="submit" onClick="window.location.href='/Festiva/Artikelverwaltung?aktion=b_loeschen&artikelid=<%=artikel.id%>'">Aktuelles Bild löschen</button>
+		<% } %>
 		<button type="submit" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
 		<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 

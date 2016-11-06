@@ -191,7 +191,17 @@ public class Festivalverwaltung extends HttpServlet {
 								
 								antwort = "Das Festival und alle dazugehörigen Artikel wurden erfolgreich gelöscht.";
 								session.setAttribute("antwort", antwort);
-							} 						
+							} 	else {
+								if((request.getParameter("aktion")).equals("b_loeschen")) {
+									File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg");
+								    
+								    if (file.exists()) file.delete();
+								    festival.bildpfad = "";
+								    FestivalAdministration.aktualisiereFestival(festival);
+								    antwort = "Das Bild wurde erfolgreich gelöscht.";
+								    session.setAttribute("antwort", antwort);
+								}
+							}
 						}
 					}
 					session.setAttribute("festival", festival);
