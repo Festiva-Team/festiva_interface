@@ -27,13 +27,15 @@ HttpSession session = request.getSession(false);
 	<header>
 		<img src="/Festiva/Bilder/HeaderMitLogo.png" width="100%"/>
 	</header>
-		<nav>
-		<ul>
+	<nav>
+		<label for="show-menu" class="show-menu">Menü</label>
+		<input type="checkbox" id="show-menu" role="button">
+		<ul id= menu>
 			<li><a href="k_startseite.jsp">Home</a></li>
 			<li><a href="k_shop.jsp">Ticket Shop</a></li>
 			<li><a href="/Festiva/MerchandiseShop?aktion=m_anzeigen">Merchandise Shop</a></li>
 			<li><a href="#">Mein Konto</a>
-			<ul>
+			<ul class ="hidden">
 			<% if (session != null && session.getAttribute("begrüßung") != null && session.getAttribute("gruppenid") != null && Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) == 2) 
 					{ %>
 				
@@ -48,9 +50,8 @@ HttpSession session = request.getSession(false);
 				
 				<li><a href="k_anmelden.jsp">Anmelden</a></li>
 				<li><a href="k_registrieren.jsp">Registrieren</a></li>
-				<% } %>
-				
-</ul>
-		</nav>
+				<% } %>			
+		</ul>
+	</nav>
 </body>
 </html>

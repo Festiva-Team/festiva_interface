@@ -67,8 +67,8 @@ if (request.getSession(false) != null) {
 					<% request.getSession().removeAttribute("antwort");}  %>
 				</div> 
 			</div>
-		<div id="leer"></div>
 		</div>
+		<div id="leer"></div>
 			<footer></footer>
 	</div>
 </body>

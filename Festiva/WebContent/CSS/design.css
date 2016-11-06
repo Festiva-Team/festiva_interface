@@ -24,47 +24,33 @@ footer{
 	background: black;
 }
 /************Navigationsleiste*****************************/
+/*Strip the ul of padding and list styling*/
 nav {
 	width: 100%;
-	height: 2.5em;
+	height: 2em;
 	background-color: black;
 }
-nav:after {
-	content:''; 
-	clear: left;
-}
-nav li {
-  	list-style-type: none; /* ohne Aufzählungspunkte */
- 	float: left;
-  	position: relative;
-}
-nav ul
-{	padding: 0;
-	margin: 0;
-}
-nav ul ul {
-	/* Unterseite ausblenden */
-	font: 0/0 serif;
-	margin: .4em 0 0 0;
- 	padding: 0;
+ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
 	position: absolute;
-	top: 1.9em; 
-	z-index:-1;
 }
-nav ul li:hover ul {
- 	/* Unterseite einblenden */
-	font: inherit;
-	z-index: auto;
+
+/*Create a horizontal list with spacing*/
+li {
+	display:inline-block;
+	float: left;
+	margin-right: 1px;
 }
-nav ul ul li {
-  float: none;
-  display: block;
-}
-nav a,
-nav span {
-	display: block;
-	width: 10em;
-	margin: .4em 0 0 0;
+
+/*Style for menu links*/
+li a {
+	display:block;
+	min-width:10em;
+	text-align: center;
+	text-decoration: none;
+	margin: 0;
 	padding: 0.3em;
 	text-decoration: none;
 	font-weight: bold;
@@ -74,17 +60,73 @@ nav span {
 	color: black;
 	background-color: white;
 }
-nav ul ul a,
-nav ul ul span {
-	border-radius: 10px;
-}
-nav a:focus,
-nav a:hover,
-nav span {
-	/* aktuelle Seite hervorheben */
+
+/*Hover state for top level links*/
+li:hover a {
 	color: white;
-	background-color: #990000;
+	background: #990000;
 }
+
+/*Style for dropdown links*/
+li:hover ul a {
+	background: white;
+	color: black;
+	border-radius: 10px;
+	padding: 0.3em;
+}
+
+/*Hover state for dropdown links*/
+li:hover ul a:hover {
+	background: grey;
+	color: #fff;
+}
+
+/*Hide dropdown links until they are needed*/
+li ul {
+	display: none;
+}
+
+/*Make dropdown links vertical*/
+li ul li {
+	display: block;
+	float: none;
+}
+
+/*Prevent text wrapping*/
+li ul li a {
+	width: auto;
+	padding: 0;
+}
+
+/*Display the dropdown on hover*/
+ul li a:hover + .hidden, .hidden:hover {
+	display: block;
+}
+
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	padding:.2em 0;
+	display: none;
+}
+
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+    -webkit-appearance: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
+
+
+
+
 /*******************Seitenaufteilung*****************+*/	
 figure{
   margin: 0;
@@ -98,22 +140,61 @@ figure.bild2 {
   display: inline-block;
   width: 49%;
 }
-#zeile
-{	width: 100%;
+#zeile{	
+	width: 100%;
 	float: left;
 }
-#spaltelinks
-{	width: 50%;
+#spaltelinks{	
+	width: 50%;
 	float:left;
 }
-#spalterechts
-{	width: 50%;
-	float:left;
-	
+#spalterechts{	
+	width: 50%;
+	float:left;	
 }
-#leer
-{
+
+#leer{	
 	clear:both;
+}
+/******Slideshow***********/
+#container {
+	height: 450px;
+	width: 100%;
+	margin-top: 80px;
+	position: relative;
+	top: 30%;
+}
+#img {
+	height: 300px;
+	width: 600px;
+}
+#left_holder {
+	height: 450px;
+	width: 60px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+#right_holder {
+	height: 450px;
+	width: 60px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.left {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 40%;
+	left: 0px;
+}
+.right {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 40%;
+	right: 0px;
 }
 /*******************Formulardaten***********************/
 label.h2 {
@@ -255,44 +336,31 @@ h1{
   /***********Navigationsleiste************/
 nav{
 	height:1.5em;
-	padding-top:0.2em;
 }
-nav li
-{	float: none;
-	text-align:left;
+/*Make dropdown links appear inline*/
+ul {
+	margin: 0;
+	position: static;
+	display: none;
 }
-nav a,
-nav span,
-nav ul ul a{
-	 border-radius: 0;
-	 margin:0;
-	 width: 96%;
- }
-nav  ul  li {
-  display: none;
+/*Make all menu links full width*/
+ul li, li a {
+	text-align: left;
+	width: 98.3%;
+	border-radius: 0;
 }
-nav  ul:hover li {
-  display: block;
+li:hover ul a {
+	border-radius: 0;
+	padding: 0.3em;
+	width: 100%;
+	font-weight: normal;
 }
-nav > ul::before {
-  text-align: center;
-  display: block;
-  content: "Menü";
-  padding-top: 10x;
-  color: white;
-  font-weight: bold;
-  border: 1px solid black;
-  color: white;
-  background-color: black;
+/*Display 'show menu' link*/
+.show-menu {
+	display:block;
+	content: "Menü";
 }
 
-nav li ul
-		{	margin:0;
-			position: static;
-			padding-left:1em;
-			width: 96%;
-
-		}
 /****************Seitenaufteilung**********/
 #zeile
 {
@@ -364,6 +432,9 @@ td {
 	display: block;
 	min-width: 30%;
 	padding: .2em;
+	text-align: left;
+}
+#preis{
 	text-align: left;
 }
 
