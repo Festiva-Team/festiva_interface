@@ -102,7 +102,7 @@ else {
 <script type="text/javascript">
 
 function del(id){
-	   if(confirm("Möchten Sie den aktuellen Kunden wiklich löschen?") == true) {
+	   if(confirm("Möchten Sie den aktuellen Kunden wirklich löschen?") == true) {
 		   document.location.href='/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=' + id;
 	      } else {
 	    	 document.location.href='/Festiva/Kundenverwaltung?aktion=aendern&kundenid=' + id;

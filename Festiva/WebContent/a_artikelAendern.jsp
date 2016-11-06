@@ -57,9 +57,7 @@ else {
 						<% } %>
 					</form>
 					<% } %>
-		<form action="/Festiva/Artikelverwaltung?aktion=loeschen&artikelid=<%=artikel.id%>" method="post">
-		<button type="submit" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
-		</form>
+		<button type="submit" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
 		<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>
@@ -72,5 +70,16 @@ else {
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+
+function del(id){
+	   if(confirm("Möchten Sie den Artikel wirklich löschen?") == true) {
+		   document.location.href='/Festiva/Artikelverwaltung?aktion=loeschen&artikelid=' + id;
+	      } else {
+	    	 document.location.href='/Festiva/Artikelverwaltung?aktion=aendern&artikelid=' + id;
+	      }
+
+}
+</script>
 </html>
 <% request.getSession().removeAttribute("festival"); }%>

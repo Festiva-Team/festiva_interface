@@ -105,7 +105,15 @@ public class Benutzerdaten extends HttpServlet {
 						passwortBestätigung = Registrierung.generiereHash((passwortBestätigung + "76ZuOp(6?ssXY0"));
 						antwort = aenderePasswort(passwortAlt, passwortNeu, passwortBestätigung, benutzer);
 						session.setAttribute("antwort", antwort);
-						request.getRequestDispatcher("/Benutzerdaten?aktion=anzeigen").include(request, response); } 
+						request.getRequestDispatcher("/Benutzerdaten?aktion=anzeigen").include(request, response); }
+					
+					
+					if((request.getParameter("aktion")).equals("loeschen")) {
+							benutzer.istGelöscht = true;
+							BenutzerAdministration.löscheBenutzer(benutzer);
+							request.getRequestDispatcher("/Logout").include(request, response); 
+						}
+					
 					
 				
 		} else {

@@ -63,11 +63,7 @@ else {
 				</div> 
 			</div>
 		</form>
-		<form action="/Festiva/Kategorienverwaltung?aktion=loeschen&kategorienid=<%=kategorie.id%>" method="post">
-			<div id="spaltelinks">
-					<button type="submit" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %> id="links">Kategorie löschen</button>
-					</div>
-					</form>
+					<button type="submit" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
 					<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>
@@ -80,7 +76,7 @@ else {
 </div>	
 </body>
 <script>
-	function dateiauswahl(evt) {
+/* 	function dateiauswahl(evt) {
 			var dateien = evt.target.files; // FileList object
 			// Auslesen der gespeicherten Dateien durch Schleife
 			for (var i = 0, f; f = dateien[i]; i++) {
@@ -106,10 +102,20 @@ else {
 				dateien.appendChild(img);
 			}
 		}
+	
+	
 		// Auf neue Auswahl reagieren und gegebenenfalls Funktion dateiauswahl neu ausführen.
 	document.getElementById('bild')
-		.addEventListener('change', dateiauswahl, false);
+		.addEventListener('change', dateiauswahl, false); */
 
+function del(id){
+	   if(confirm("Möchten Sie die Kategorie wirklich löschen?") == true) {
+		   document.location.href='/Festiva/Kategorienverwaltung?aktion=loeschen&kategorienid=' + id;
+	      } else {
+	    	 document.location.href='/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=' + id;
+	      }
+
+}
 </script>
 </html>
 <% request.getSession().removeAttribute("kategorie");}%>

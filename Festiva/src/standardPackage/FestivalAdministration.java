@@ -335,6 +335,53 @@ public class FestivalAdministration {
 		return listFestivals;
 		}
 	}
+	
+	
+	/**
+	 * Selektiert alle Festivals zu der eingegebenen Kategorie aus der Datenbank.
+	 * 
+	 * @param p_id: ID der Kategorie, zu der die Festivals ermittelt weren sollen
+	 * @return List<Festival>: Liste mit Festival-Objekten, die alle verfügbaren Daten beinhalten
+	 */
+	public static List<Festival> selektiereAlleFestivalObjekteVonKategorie(int p_id) throws DatenbankException
+	{
+		List<Festival> listFestivals = new ArrayList<Festival>();
+		String selectBefehl = "SELECT id, name, ort, kurzbeschreibung, langbeschreibung, startdatum, enddatum, istgelöscht, bildpfad, kategorien_id " + 
+							  "FROM festiva.festivals WHERE kategorien_id = '%d' " + 
+							  "ORDER BY id ASC";
+		
+		selectBefehl  = String.format(selectBefehl, p_id);
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		if(ergebnismenge == null) {
+			return listFestivals;
+		} else {
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int festivalID = ergebnismenge.getInt("id");
+				String name = ergebnismenge.getString("name");
+				String ort = ergebnismenge.getString("ort");
+				String kurzbeschreibung = ergebnismenge.getString("kurzbeschreibung");
+				String langbeschreibung = ergebnismenge.getString("langbeschreibung");
+				Date startDatum = ergebnismenge.getDate("startdatum");
+				Date endDatum = ergebnismenge.getDate("enddatum");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				String bildpfad = ergebnismenge.getString("bildpfad");
+				int kategorienID = ergebnismenge.getInt("kategorien_id");
+				
+				listFestivals.add(new Festival(festivalID, name, ort, kurzbeschreibung, langbeschreibung, startDatum, endDatum, bildpfad, istGelöscht, kategorienID));
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listFestivals;
+		}
+	}
 
 
 }

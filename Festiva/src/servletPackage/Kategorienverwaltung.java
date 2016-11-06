@@ -133,9 +133,21 @@ public class Kategorienverwaltung extends HttpServlet {
 							
 						} else {
 							if((request.getParameter("aktion")).equals("loeschen")) {
-								kategorie.istGelöscht = true;
-								KategorienAdministration.löscheKategorie(kategorie);
-								antwort = "Die Kategorie wurde erfolgreich gelöscht.";
+								List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivalObjekteVonKategorie(kategorie.id);
+								boolean loeschenMoeglich = true;
+								for(Festival festival : listFestivals) {
+									if(festival.istGelöscht == false) {
+										loeschenMoeglich = false;
+									}
+								}
+								if(loeschenMoeglich) {
+									kategorie.istGelöscht = true;
+									KategorienAdministration.löscheKategorie(kategorie);
+									antwort = "Die Kategorie wurde erfolgreich gelöscht.";
+								} else{
+									antwort = "Die Kategorie konnte nicht gelöscht werden, da sie Festivals beinhaltet, die noch nicht gelöscht wurden.";
+								}
+								
 								session.setAttribute("antwort", antwort);
 							}
 						}
