@@ -115,19 +115,24 @@ figure.bild2 {
 {
 	clear:both;
 }
-fieldset
-{	
-	border: none;
-}
 /*******************Formulardaten***********************/
 label.h2 {
 	text-align: left;
 	font-weight: bold;
-	font-size: 150%;
-	width: 100%;
-	margin-bottom:1em;
-	margin-left:2em;
-	margin-top: 1em;
+	font-size: 120%;
+	width: 90%;
+}
+h5 {
+	text-align: left;
+	font-weight: bold;
+	margin: none;
+	padding: none;
+}
+label.kasse {
+	text-align: left;
+	width: 20%;
+	font-weight: bold;
+	padding-right: 1em;
 }
 label {
 	text-align: right;
@@ -147,7 +152,7 @@ input,textarea,select {
 	background-color: #FAEBD7;
 	border: 1px solid #990000;
 }
-label,textarea, input, select, figure, checkbox
+label,textarea, input, select, figure, checkbox, radio
 {	display: block;
 	float: left;
 }
@@ -161,6 +166,11 @@ input[type="checkbox"]{
     float: left;
     width: 5%;
 }
+input[type="radio"]{
+    float: left;
+    width: 5%;
+    text-align: left;
+}
 input[type='submit']{
 
     background-color: #D3D3D3;
@@ -171,6 +181,15 @@ input[type='submit']{
 #anlegen
 {	margin-left:1em;
 	float: left;
+}
+fieldset
+{	width: 70%;
+	border-color: #990000;
+	margin-left:3em;
+}
+p
+{	text-align:left;
+	margin-left: .5em;
 }
 **************
 .vorschau {
@@ -189,16 +208,18 @@ table {
  	border-collapse: collapse;
  }
  
- td,
- th {text-align: left;
- 	padding: .5em;
- }
+td,
+th {text-align: left;
+	padding: .5em;
+}
  
- th:last-child,
- td:last-child {
- 	padding-right: .5em;
- }
- 
+th:last-child,
+td:last-child {
+	padding-right: .5em;
+}
+#preis{
+	text-align: right;
+}
  thead th {
  	border-bottom: 2px solid #990000;
  }
@@ -293,15 +314,22 @@ label
 	margin: 0;
 	margin-left: 0.4em;
 }
-input,textarea,select {
+input,textarea{
 	width: 90%;
 	margin-right: 0.5em;
+}
+select, option
+{	width: 40px;
 }
 img{
 	width: 100%;
 	height: auto;
 }
-	
+fieldset
+{
+	margin: .5em;
+	width: 85%;
+}	
 /** *****************Tabelle******************/
 thead {
 	display: none;
@@ -336,9 +364,6 @@ td {
 	display: block;
 	min-width: 30%;
 	padding: .2em;
-	text-align: left;
-}
-td:nth-child(3) {
 	text-align: left;
 }
 

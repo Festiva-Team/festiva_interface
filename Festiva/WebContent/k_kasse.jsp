@@ -34,68 +34,70 @@
    		<jsp:param name="active" value="warenkorb"/>
    	</jsp:include>
    	<div id="main">
-			<div id="zeile">
-				<div id="spaltelinks">
-				<h2>Kasse</h2>
-				<fieldset id="Lieferungsdaten" disabled>		
-					<h2>Lieferdaten</h2><br/>
-				    <label for="input2">Vorname: <%=benutzer.vorname%></label><br/>
-				    <label for="input2">Nachname: <%=benutzer.nachname%></label><br/>
-				    <label for="input2">Straße: <%=benutzer.strasse%></label><br/>
-				    <label for="input2">Hausnummer: <%=benutzer.hausnummer%></label><br/>
-				    <label for="input2">PLZ: <%=benutzer.plz%></label><br/>
-				    <label for="input2">Ort: <%=benutzer.ort%></label><br/>
-				  </fieldset>
+			<div id="zeile">			
+				<h2>Kasse</h2>	
+				<div id="spaltelinks">		
+				<fieldset>
+					<label class="h2">Lieferdaten</label>
+					<label class="kasse">Name:</label><p><%=benutzer.vorname%> <%=benutzer.nachname%></p>
+					<label class="kasse">Adresse:</label><p><%=benutzer.strasse%> <%=benutzer.hausnummer%></p>
+				    <label class="kasse"></label><p><%=benutzer.plz%> <%=benutzer.ort%> </p>
+				</fieldset>
 				</div>
 				<div id="spalterechts">
-					<fieldset id="Zahlungsdaten" disabled>
-					  	<h2>Zahlungsdaten</h2><br/>
-					    <label for="input2">IBAN: <%=benutzer.iban%><br/> 
-					    <label for="input2">BIC: <%=benutzer.bic%><br/>
-					</fieldset>
+				<fieldset>
+				  	<label class ="h2">Zahlungsdaten</label>
+				    <label class="kasse">IBAN:</label> <p><%=benutzer.iban%></p>
+				    <label class="kasse">BIC:</label><p><%=benutzer.bic%></p>
+				</fieldset>
 				</div>
-			</div>
-			 
+			</div>		 
 			<div id="zeile">
-			<h2>Bestellpositionen</h2><br/>
-								<table class= "artikel">
-					<thead><tr><th>ID</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
-					  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
-					<tbody><tr>
-								<td data-label="ID"><%=id%></td>
-								<% if (warenkorbelement.artikel.festivalID == 0) { %>
-								<td data-label="Festival"><%=""%></td>
-								<% if(warenkorbelement.artikel.id != 6) { disabled = true; } }  else { %>
-								<% for (Festival festival : listFestivals) { 
-									if (festival.id == warenkorbelement.artikel.festivalID) { %>
-								<td data-label="Festival"><%=festival.name%></td>
-								<% } } } %>
-
-								<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
-								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
-								<td data-label="Anzahl"><%=warenkorbelement.menge%></td>
-								<td data-label="Gesamtpreis"><%=String.format("%.2f",(warenkorbelement.menge * warenkorbelement.artikel.preis))%> &#8364;</td>
-								
-					</tr></tbody>
+			<h2>Bestellpositionen</h2>
+			<table>
+				<thead><tr><th>ID</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
+				  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
+				<tbody><tr>
+					<td data-label="ID"><%=id%></td>
+					<% if (warenkorbelement.artikel.festivalID == 0) { %>
+					<td data-label="Festival"><%=""%></td>
+					<% if(warenkorbelement.artikel.id != 6) { disabled = true; } }  else { %>
+					<% for (Festival festival : listFestivals) { 
+						if (festival.id == warenkorbelement.artikel.festivalID) { %>
+					<td data-label="Festival"><%=festival.name%></td>
+					<% } } } %>
+					<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
+					<td data-label="Preis" id="preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
+					<td data-label="Anzahl"><%=warenkorbelement.menge%></td>
+					<td data-label="Gesamtpreis" id="preis"><%=String.format("%.2f",(warenkorbelement.menge * warenkorbelement.artikel.preis))%> &#8364;</td>		
+				</tr></tbody>
 					<% id++; gesamtsumme = gesamtsumme + (warenkorbelement.menge * warenkorbelement.artikel.preis); } %>
-					<tr><td></td><td></td><td></td><td></td><td></td><td><%=String.format("%.2f", gesamtsumme)%> &#8364;</td>
-					</tr>
-				</table>
-				<h2>Versand</h2><br/><h5>Hinweis: Wenn Sie einen oder mehrere Merchandise-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</h5>
+				<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th id="preis"><%=String.format("%.2f", gesamtsumme)%> &#8364;</th>
+				</tr></tfoot>
+			</table>			
+			</div>
+			<div id="zeile">
 				<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
- 			 <input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" > Per Mail <br>
- 			 <input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)"> Per Post 
- 			 <button type="submit" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
-			 </form>
-			 <%if(kundendatenVollstaendig.equals(false)) { %>
-			 <p> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt haben. Hier können Sie Ihre Kundendaten anpassen: </p>
-			 <% } else { %>
-			 <p> Bitte kontrollieren Sie Ihre Angaben auf dieser Seite bevor Sie die Bestellung abschließen. Sie möchten Ihre Kundendaten anpassen? Dann klicken Sie bitte hier: </p>
-			 <% } %>
-			 <button type="button" id="Kundendaten aendern" onClick="window.location.href='/Festiva/Benutzerdaten?aktion=anzeigen'">Meine Daten</button>
-				
-			</div>
-			</div>
+				<div id="spaltelinks">
+					<h2>Versand</h2>
+					<h5>Hinweis: Wenn Sie einen oder mehrere Merchandise-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</h5>
+	 				<label>Per Mail</label>
+	 				<input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" >
+	 				<label>Per Post</label>
+	 				<input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)"> 
+	 			 </div>	
+	 			 <div id="spalterechts">
+	 			 	<%if(kundendatenVollstaendig.equals(false)) { %>
+					 <p> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt haben. Hier können Sie Ihre Kundendaten anpassen: </p>
+					 <% } else { %>
+					 <p> Bitte kontrollieren Sie Ihre Angaben auf dieser Seite bevor Sie die Bestellung abschließen. Sie möchten Ihre Kundendaten anpassen? Dann klicken Sie bitte hier: 
+					 <button type="button" id="Kundendaten aendern" onClick="window.location.href='/Festiva/Benutzerdaten?aktion=anzeigen'">Meine Daten</button></p>
+					 <% } %>
+	 			 </div>
+	 			 </form>
+				</div>
+				<button type="submit" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
+				 
 	<div id="leer"></div>
 	</div>
 	<footer></footer>

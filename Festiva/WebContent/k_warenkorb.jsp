@@ -31,35 +31,34 @@
     	</jsp:include>
     	<div id="main">
 				<h2>Warenkorb</h2>
-				<table class= "artikel">
+				<table>
 					<thead><tr><th>ID</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
 					  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
 					<tbody><tr>
-								<td data-label="ID"><%=id%></td>
-								<% if (warenkorbelement.artikel.festivalID == 0) { %>
-								<td data-label="Festival"><%=""%></td>
-								<% }  else { %>
-								<% for (Festival festival : listFestivals) { 
-									if (festival.id == warenkorbelement.artikel.festivalID) { %>
-								<td data-label="Festival"><%=festival.name%></td>
-								<% } } } %>
-								<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
-								<td data-label="Preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
-								<td data-label="Anzahl"> <select onchange="myFunction(this, <%=warenkorbelement.id%>);" id="menge<%=id%>" name="menge<%=id%>">
-								<%for (int i=1; i<= 10; i++) { 
-								  if(i == warenkorbelement.menge) { %>
-								<option selected="selected" value="<%=i%>"><%=i%></option>
-								<% } else { %>
-								<option value="<%=i%>"><%=i%></option>
-								<% } } %>
-								</select></td>
-								<td data-label="Gesamtpreis"><%=String.format("%.2f",(warenkorbelement.menge * warenkorbelement.artikel.preis))%> &#8364;</td>
-								<td><button type="submit" id="Position löschen" onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=loeschen&elementid=<%=warenkorbelement.id%>'">Position löschen</button>
-								</td>
+						<td data-label="ID"><%=id%></td>
+						<% if (warenkorbelement.artikel.festivalID == 0) { %>
+						<td data-label="Festival"><%=""%></td>
+						<% }  else { %>
+						<% for (Festival festival : listFestivals) { 
+							if (festival.id == warenkorbelement.artikel.festivalID) { %>
+						<td data-label="Festival"><%=festival.name%></td>
+						<% } } } %>
+						<td data-label="Artikelbeschreibung"><%=warenkorbelement.artikel.beschreibung%></td>
+						<td data-label="Preis" id="preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
+						<td data-label="Anzahl"> <select onchange="myFunction(this, <%=warenkorbelement.id%>);" id="menge<%=id%>" name="menge<%=id%>">
+						<%for (int i=1; i<= 10; i++) { 
+						  if(i == warenkorbelement.menge) { %>
+						<option selected="selected" value="<%=i%>"><%=i%></option>
+						<% } else { %>
+						<option value="<%=i%>"><%=i%></option>
+						<% } } %>
+						</select></td>
+						<td data-label="Gesamtpreis" id="preis"><%=String.format("%.2f",(warenkorbelement.menge * warenkorbelement.artikel.preis))%> &#8364;</td>
+						<td><button type="submit" id="Position löschen" onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=loeschen&elementid=<%=warenkorbelement.id%>'">Position löschen</button>
+						</td>
 					</tr></tbody>
 					<% id++; gesamtsumme = gesamtsumme + (warenkorbelement.menge * warenkorbelement.artikel.preis); } %>
-					<tr><td></td><td></td><td></td><td></td><td></td><td><%=String.format("%.2f", gesamtsumme)%> &#8364;</td>
-					</tr>
+					<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th id="preis"><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tr></tfoot>
 				</table>
 				<div id="spalterechts">
 						<button type="button" <%if(keineElemente == true) { %> disabled="disabled" <% } %> onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=k_anzeigen'">Zur Kasse</button>
