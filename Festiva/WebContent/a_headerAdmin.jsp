@@ -22,14 +22,16 @@
 		<img src="/Festiva/Bilder/HeaderMitLogo.png" width="100%"/>
 	</header>
 		<nav>
-  			<ul>
+		<label for="show-menu" class="show-menu">Menü</label>
+		<input type="checkbox" id="show-menu" role="button">
+  			<ul id="menu">
 		    	<li><a href="a_startseiteAdmin.jsp">Home</a></li>
 		        <li><a href="/Festiva/Kategorienverwaltung?aktion=anzeigen">Kategorienverwaltung</a></li>
 		        <li><a href="/Festiva/Festivalverwaltung?aktion=anzeigen">Festivalverwaltung</a></li>
 		        <li><a href="/Festiva/Artikelverwaltung?aktion=anzeigen">Artikelverwaltung</a></li>
 		        <li><a href="/Festiva/Kundenverwaltung?aktion=anzeigen">Kundenverwaltung</a></li>
 		        <li><a href="#">Adminkonto</a>	
-		        	<ul>
+		        	<ul class="hidden">
 		        		<li><a href="/Festiva/Benutzerdaten?aktion=anzeigen">Meine Daten</a></li> 
 		        		<li><a href="/Festiva/Logout" accesskey="1" title="">Abmelden</a></li>
 		        	</ul>
