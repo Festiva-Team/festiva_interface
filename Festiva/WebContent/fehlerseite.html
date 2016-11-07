@@ -1,14 +1,67 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <script type="text/javascript" language="JavaScript">
+        var offsetx=20
+        var offsety=0
+        function InfoBoxAusblenden() {
+             document.getElementById('InfoBox').style.visibility = "hidden";
+        }
+        function InfoBoxAnzeigen(e,Inhalte,offsetX,offsetY) {
+            if (offsetX) {offsetx=offsetX;} else {offsetx=20;}
+            if (offsetY) {offsety=offsetY;} else {offsety=0;}
+            var PositionX = 0;
+            var PositionY = 0;
+            if (!e) var e = window.event;
+            if (e.pageX || e.pageY) {
+                PositionX = e.pageX;
+                PositionY = e.pageY;
+            }
+            else if (e.clientX || e.clientY) {
+                PositionX = e.clientX + document.body.scrollLeft;
+                PositionY = e.clientY + document.body.scrollTop;
+            }
+            document.getElementById("BoxInhalte").innerHTML = Inhalte;
+            document.getElementById('InfoBox').style.left = (PositionX+offsetx)+"px";
+            document.getElementById('InfoBox').style.top = (PositionY+offsety)+"px";
+            document.getElementById('InfoBox').style.visibility = "visible";
+        }
+    </script>
+    <style type="text/css">
+        #InfoBox {
+            visibility:hidden;
+            position:absolute;
+            top:10px;
+            left:10px;
+            border-radius: 10px;
+            z-index:1;
+            /* diese Angaben können Sie anpassen */
+            width:200px;
+            background-color:#FDFEFF;
+            border:1px solid #808080;
+        }
+        
+        /* weitere Box in der Info-Box für padding */
+        #BoxInnen {
+            padding:15px;
+        }
+        /* Formatierung Texte in der Info-Box */
+        #BoxInhalte {
+            font-family:Verdana,Arial,Helvetica,sans-serif;
+            font-size:11px;
+            color:#5F5F5F;
+            line-height:130%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 <body>
-<h1>Sorry! Der Inhalt ist nicht da und wahrscheinlich gerade im Urlaub.</h1>  
-<p>Bitte versuchen Sie es später noch einmal oder informieren unseren Support: admin@festiva.de
-   Hier geht es wieder zur Startseite: <a href="http://localhost:8080/Festiva/k_startseite.jsp">Startseite</a>
-</p> 
-
+    <!-- Anfang DIV für die InfoBox -->
+    <div id="InfoBox" style="z-index:1; visibility:hidden;"></div>
+     <div id="BoxInnen"><span id="BoxInhalte"></span></div>
+    <!-- Ende DIV für die InfoBox -->
+    <p>    E-Mail: </p><td><input class="ipt" onMouseOver="InfoBoxAnzeigen(event, 'Hier steht Text', 20, -30)" onMouseOut="InfoBoxAusblenden()" id="iptLoginEmail" type="text" name="loginEmail"/>        
 </body>
-</html>
+</html>>
