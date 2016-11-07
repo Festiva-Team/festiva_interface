@@ -23,12 +23,10 @@ else {
     <jsp:include page="a_headerAdmin.jsp">
     	<jsp:param name="active" value="artikelAendern"/>
     </jsp:include>
-    <label class="h2">Artikel ändern</label>
+	<div id="main">		
+			<h2>Artikel ändern</h2>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-	<div id="main">
-	
-		<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post" enctype="multipart/form-data">
-			
+		<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post" enctype="multipart/form-data">		
 			<div id="spaltelinks">
 				<label for="beschreibung">Beschreibung*</label>
 				<input type="text" id="beschreibung" name="beschreibung" maxlength="100" required="required" value="<%=artikel.beschreibung%>">
@@ -47,7 +45,8 @@ else {
 			</div>
 		</form>
 		<%if(artikel.festivalID == 0 ) { %>
-		<form action="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>&t=<%=new Date().getTime()%>" method="post">
+			<div id="spalterechts">
+			<form action="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>&t=<%=new Date().getTime()%>" method="post">
 					<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 					<figure class="bild1">
 					<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
@@ -57,7 +56,8 @@ else {
 					<% } else { %>
 						<p>Kein Bild vorhanden</p>
 						<% } %>
-					</form>
+			</form>
+			</div>
 					<% } if(artikel.festivalID == 0 ) { %>
 			<button type="submit" onClick="window.location.href='/Festiva/Artikelverwaltung?aktion=b_loeschen&artikelid=<%=artikel.id%>'">Aktuelles Bild löschen</button>
 		<% } %>
@@ -70,8 +70,7 @@ else {
 				</div>		
 	</div>
 	<div id="leer"></div>
-	<div id="footer">
-	</div>
+	<footer></footer>
 </div>
 </body>
 <script type="text/javascript">

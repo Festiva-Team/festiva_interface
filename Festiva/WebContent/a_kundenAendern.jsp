@@ -30,9 +30,9 @@ else {
 		<div id="main">
 			<div id="zeile">
 					<h2>Kunden ändern</h2>
+					<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<form action="/Festiva/Kundenverwaltung?aktion=datenaendern&kundenid=<%=benutzer.id%>" method="post">
 					<div id="spaltelinks">
-					<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 					<label for="vorname">Vorname</label>
 					<input type="text" id="vorname" name="vorname" maxlength="30" value="<%=benutzer.vorname%>">
 					<label for="nachname">Nachname</label>
@@ -55,37 +55,33 @@ else {
 					<input type="text" id="iban" name="iban" minlength="22" maxlength="22" value="<%=benutzer.iban%>">
 					<label for="bic">BIC</label>
 					<input type="text" id="bic" name="bic" minlength="9" maxlength="11" value="<%=benutzer.bic%>">
-					<label for="einzugsermächtigungErteilt">Einzugsermächtigung erteilt</label>
 	      			<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value=
 	      					   "<%=benutzer.einzugsermächtigungErteilt%>"
 	      					   <% if (benutzer.einzugsermächtigungErteilt == true) {%>
-	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
-					<label for="gesperrt">Ist Gesperrt</label>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> > Einzugsermächtigung erteilt<br/>
 					<input type="checkbox" id="gesperrt" name="gesperrt" value=
 	      					   "<%=benutzer.istGesperrt%>"
 	      					   <% if (benutzer.istGesperrt == true) {%>
-	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
-	      		    <label for="geloescht">Ist Gelöscht</label>
-					<input type="checkbox" id="geloescht" name="geloescht" value=
-	      					   "<%=benutzer.istGelöscht%>">
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >Ist Gesperrt<br/>
+	      			<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
+	      					   "<%=benutzer.istGelöscht%>"
+	      					   <% if (benutzer.istGelöscht == true) {%>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >Ist Gelöscht<br/>
 					<button type="submit">Änderungen speichern</button>
 					</div>
 			</form>	
 			<form action="/Festiva/Kundenverwaltung?aktion=pw_aendern&kundenid=<%=benutzer.id%>" method="post">
 					<div id="spalterechts">
-					<h2>Passwort ändern</h2>
+					<h3>Passwort ändern</h3>
+					<p>Hinweis: Das Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>	
 					<label for="passwortneu">Neues Passwort</label>
 					<input type="password" id="passwortneu" name="passwortneu" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<label for="passwortbestätigung">Neues Passwort bestätigen</label>
 					<input type="password" id="passwortbestätigung" name="passwortbestätigung" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
-					<button type="submit">Passwort ändern</button>
-					</div>
+					<button type="submit">Passwort ändern</button></div>
 					</form>
 			</div>
-					<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>
-					<div id="spalterechts">
-					<p>Hinweis: Das Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
-				</div>	
+					<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>	
 					<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>

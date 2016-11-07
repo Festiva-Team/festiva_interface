@@ -32,9 +32,9 @@ else {
 			<h2>Festivalverwaltung</h2>
 			<form action="/Festiva/Festivalverwaltung?aktion=anlegenanzeigen" method="post">
 			<div id="spaltelinks">
-					<button type="submit" id="anlegen">Neues Festival anlegen</button>
-					</div>
-					</form>
+				<button type="submit" id="anlegen">Neues Festival anlegen</button>
+			</div>
+			</form>
 			<div id="zeile">
 				<table>
 					<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>

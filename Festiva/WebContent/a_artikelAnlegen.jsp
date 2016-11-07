@@ -27,9 +27,10 @@ else {
     </jsp:include>
 	<div id="main">
 		<form action="/Festiva/Artikelverwaltung?aktion=anlegen&festivalid=<%=festivalid%>" method="post" enctype="multipart/form-data">
-			<label class="h2">Artikel anlegen</label>
-			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			
 			<div id="spaltelinks">
+			<h2>Artikel anlegen</h2>
+			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<label for="beschreibung">Beschreibung*</label>
 			<input type="text" id="beschreibung" name="beschreibung" required="required" maxlength="100">
 			<label for="preis">Preis in Euro*</label>
@@ -49,8 +50,7 @@ else {
 				</div>		
 	<div id="leer"></div>
 	</div>
-	<div id="footer">
-	</div>
+	<footer></footer>
 </div>	
 </body>
 </html>

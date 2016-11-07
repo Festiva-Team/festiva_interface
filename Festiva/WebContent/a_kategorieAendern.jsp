@@ -40,12 +40,12 @@ else {
 					<label for="bild">Neues Bild</label>
 					<input type="file" id="bild" name="bild" accept="image/*">
 					<output id="list"></output>
-					<button type="submit">Änderungen speichern</button>
 					<label for="geloescht">Ist Gelöscht</label>
 					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
 	      					   "<%=kategorie.istGelöscht%>"
 	      					   <% if (kategorie.istGelöscht == true) {%>
-	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> ><br/>
+					<button type="submit">Änderungen speichern</button>
 				</div>
 				<div id="spalterechts">
 				<form action="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>&t=<%=new Date().getTime()%>" method="post">
@@ -59,9 +59,9 @@ else {
 						<p>Kein Bild vorhanden</p>
 						<% } %>
 					</form>
-					</div> 	
-			</div>
-		</form>
+				</div> 	
+				</div>
+				</form>
 		<button type="submit" onClick="window.location.href='/Festiva/Kategorienverwaltung?aktion=b_loeschen&kategorienid=<%=kategorie.id%>'">Aktuelles Bild löschen</button>
 		
 				

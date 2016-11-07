@@ -7,6 +7,7 @@ body {
 #webseite{
 	width:80%;
 	margin:0 auto;
+	height: auto;
 	background: white;
 }
 header{
@@ -14,6 +15,8 @@ header{
 }
 #main{	
 	width:100%;
+	min-height: 390px;
+	height:auto;
 	background:white;
 }	
 
@@ -204,10 +207,7 @@ label.h2 {
 	width: 90%;
 }
 h5 {
-	text-align: left;
 	font-weight: bold;
-	margin: none;
-	padding: none;
 }
 label.kasse {
 	text-align: left;
@@ -233,7 +233,7 @@ input,textarea,select{
 	background-color: #FAEBD7;
 	border: 1px solid #990000;
 }
-label,textarea, input, select, figure, radio, checkbox
+label,textarea, input, select, figure, radio
 {	display: block;
 	float: left;
 }
@@ -243,10 +243,18 @@ button
 	margin-bottom:0.5em;
 	margin-right: 1em;
 }
+#check{
+	float: none;
+	text-align: left;
+}
+
 input[type="checkbox"]{
-    float: left;
-    width: 5%;
-    text-align: left;
+    float: right;
+	text-align: left;
+	width: 1;
+	margin: 0;
+	padding: 0;
+	border: none;
 }
 input[type="radio"]{
     float: left;
@@ -268,10 +276,6 @@ fieldset
 {	width: 70%;
 	border-color: #990000;
 	margin-left:3em;
-}
-p
-{	text-align:left;
-	margin-left: .5em;
 }
 **************
 .vorschau {

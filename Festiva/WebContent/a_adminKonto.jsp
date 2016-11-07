@@ -23,9 +23,9 @@
     	<jsp:param name="active" value="adminKonto"/>
     </jsp:include>
 	<div id="main">
+		<h2>Mein Konto</h2>
 		<form action="/Festiva/Benutzerdaten?aktion=p_aendern" method="post">
 			<div id="spaltelinks">
-				<h2>Mein Konto</h2>
 				<label for="email">E-Mail</label>
 				<input type="email" id="email" name="email" maxlength="50" disabled="disabled" value="<%=benutzer.eMailAdresse%>">
 				<label for="passwortalt">Altes Passwort</label>

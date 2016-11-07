@@ -37,13 +37,15 @@ else {
 			<form action="/Festiva/Festivalverwaltung?aktion=datenaendern&festivalid=<%=festival.id%>" method="POST" enctype="multipart/form-data">
 			<h2>Festival ändern</h2>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-				 <div class="row">
-						<div id="spaltelinks">
-						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
+				<div id="spaltelinks">
+				<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
 						<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150/>
 						<% } else { %>
 						<p>Kein Bild vorhanden</p>
 						<% } %>
+				</div>
+				 <div id="zeile">
+						<div id="spaltelinks">
 						<label for="bild">Neues Bild</label>
 						<input type="file" id="bild" name="bild" accept="image/*">
 						<label for="name">Festivalname*</label>
@@ -65,11 +67,11 @@ else {
 						</div>
 					<div id="spalterechts">
 						<label for="kurzbeschreibung">Kurzbeschreibung*</label>
-						<textarea rows="5" id="kurzbeschreibung" name="kurzbeschreibung" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
+						<textarea rows="4" id="kurzbeschreibung" name="kurzbeschreibung" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
 						<label for="langbeschreibung">Langbeschreibung*</label>
-						<textarea rows="10" id="langbeschreibung" name="langbeschreibung" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
+						<textarea rows="6" id="langbeschreibung" name="langbeschreibung" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
 						<label for="geloescht">Ist Gelöscht</label>
-					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
+						<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
 	      					   "<%=festival.istGelöscht%>"
 	      					   <% if (festival.istGelöscht == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
@@ -79,7 +81,10 @@ else {
 				<div id="zeile">
 					<div id="spaltelinks">
 					<h2>Artikel</h2>
-					<table class= "artikel">
+					<div id="spaltelinks">
+						<button type="button" id="anlegen" onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
+					</div>
+					<table>
 					<thead>
 						<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Gelöscht</th></tr></thead>
 						<%for (Artikel artikel : listArtikel) { %>
@@ -99,9 +104,6 @@ else {
 				</div>					
 			</form>	 
 			<button type="submit" onClick="window.location.href='/Festiva/Festivalverwaltung?aktion=b_loeschen&festivalid=<%=festival.id%>'">Aktuelles Bild löschen</button>
-			<div id="spaltelinks">
-				<button type="button" id="anlegen" onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
-			</div>
 					<button type="submit" onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>
 					<form action="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>&t=<%=new Date().getTime()%>" method="post">
 					<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
@@ -119,7 +121,7 @@ else {
 				</div>		
 		<div id="leer"></div>
 		</div>
-		<div id="footer"></div>
+		<footer></footer>
 </div>	
 </body>
 <script type="text/javascript">

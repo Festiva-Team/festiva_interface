@@ -35,28 +35,28 @@ else {
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div id="zeile1">
 				<div id="spaltelinks">
+					<label for="bild">Bild</label>
+					<input type="file" id="bild" name="bild" accept="image/*">
 					<label for="name">Festivalname*</label>
 					<input type="text" id="name" name="name" required="required" maxlength="30">
 					<label for="ort">Ort*</label>
 					<input type="text" id="ort"  name="ort" required="required" maxlength="30">	
-					<label for="startdatum">Startdatum*</label>
-					<input type="text" id="startdatum" name="startdatum" required="required" maxlength="30" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}">
-					<label for="kurzbeschreibung">Kurzbeschreibung*</label>
-					<textarea rows="5" cols="25" id="kurzbeschreibung" name="kurzbeschreibung" required="required"></textarea>
-				</div>
-				<div id="spalterechts">
 					<label for="kategorie">Kategorie*</label>	
 						<select id="kategorie" name="kategorie">
 						<%for (Kategorie kategorie : listKategorien) { %>
 						<option value="<%=kategorie.id%>"><%=kategorie.name%></option>
 						<% } %>
 						</select>
-					<label for="bild">Bild</label>
-					<input type="file" id="bild" name="bild" accept="image/*">
+					<label for="startdatum">Startdatum*</label>
+					<input type="text" id="startdatum" name="startdatum" required="required" maxlength="30" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}">		
 					<label for="enddatum">Enddatum*</label>
 					<input type="text" id="enddatum" name="enddatum" required="required" maxlength="30" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}">
+				</div>
+				<div id="spalterechts">		
+					<label for="kurzbeschreibung">Kurzbeschreibung*</label>
+					<textarea rows="4" cols="25" id="kurzbeschreibung" name="kurzbeschreibung" required="required"></textarea>
 					<label for="langbeschreibung">Langbeschreibung*</label>
-					<textarea rows="10" cols="25" id="langbeschreibung" name="langbeschreibung" required="required" ></textarea>
+					<textarea rows="6" cols="25" id="langbeschreibung" name="langbeschreibung" required="required" ></textarea>
 					<button type="submit">Anlegen</button>
 				</div>
 			</div>	

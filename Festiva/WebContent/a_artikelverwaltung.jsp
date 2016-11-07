@@ -33,8 +33,7 @@ else {
 					</div>					
 				<div id="zeile">
 					<div id="spaltelinks">
-					<h2>Artikel</h2>
-					<table class= "artikel">
+					<table>
 					<thead>
 						<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 						<%for (Artikel artikel : listArtikel) { %>
