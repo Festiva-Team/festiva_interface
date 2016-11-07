@@ -66,9 +66,9 @@ if (request.getSession(false) != null) {
 							</tr></tbody>
 						<% }	%>
 				</table>
-			</div>
-		</div>
+			</div>	
 		<div id="leer"></div>
+		</div>
 			<footer></footer>
 	</div>
 </body>

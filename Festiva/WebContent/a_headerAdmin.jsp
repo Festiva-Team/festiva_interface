@@ -30,9 +30,10 @@
 		        <li><a href="/Festiva/Festivalverwaltung?aktion=anzeigen">Festivalverwaltung</a></li>
 		        <li><a href="/Festiva/Artikelverwaltung?aktion=anzeigen">Artikelverwaltung</a></li>
 		        <li><a href="/Festiva/Kundenverwaltung?aktion=anzeigen">Kundenverwaltung</a></li>
-		        <li><a href="#">Adminkonto</a>	
+		        <li><a href="#">Administration</a>	
 		        	<ul class="hidden">
-		        		<li><a href="/Festiva/Benutzerdaten?aktion=anzeigen">Meine Daten</a></li> 
+		        		<li><a href="/Festiva/Benutzerdaten?aktion=anzeigen">Mein Konto</a></li> 
+		        		<li><a href="a_adminAnlegen.jsp">Admin anlegen</a></li> 
 		        		<li><a href="/Festiva/Logout" accesskey="1" title="">Abmelden</a></li>
 		        	</ul>
 		        </li>

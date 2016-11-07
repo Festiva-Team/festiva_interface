@@ -419,7 +419,7 @@ th::before {
 }
 td::before
 {
-	content: attr(data-label) ": ";
+	content: attr(data-label);
 }
 table,
 tbody,

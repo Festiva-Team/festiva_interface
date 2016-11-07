@@ -30,8 +30,8 @@ response.sendRedirect("k_anmelden.jsp");}
 	<div id="main">
 		<h1>Adminbereich</h1>
 		<p><%= request.getSession().getAttribute("begrüßung") %></p>
-	</div>
 	<div id="leer"></div>
+	</div>
 	 <footer></footer>
 	</div>	
 </body>
