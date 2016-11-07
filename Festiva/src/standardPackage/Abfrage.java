@@ -117,7 +117,7 @@ public static void main(String[] args) {
 //	}
 	List<Kategorie> listKategorien = null;
 	try {
-		listKategorien = KategorienAdministration.selektiereAlleKategorienFuerSlightshow();
+		listKategorien = KategorienAdministration.selektiereAlleKategorienFuerSlideshow();
 	} catch (DatenbankException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

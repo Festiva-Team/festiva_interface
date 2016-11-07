@@ -134,7 +134,7 @@ public class KategorienAdministration {
 	 * Selektiert alle Kategorien für die Slightshow aus der Datenbank (sortiert nach ID aufsteigend).
 	 * @return List<Kategorie>: Liste mit allen Kategorien, die ein Bild haben und nicht gelöscht sind mit deren zugehörigen Daten
 	 */
-	public static List<Kategorie> selektiereAlleKategorienFuerSlightshow() throws DatenbankException
+	public static List<Kategorie> selektiereAlleKategorienFuerSlideshow() throws DatenbankException
 	{
 		List<Kategorie> listKategorien = new ArrayList<Kategorie>();
 		String selectBefehl = "SELECT id, name, beschreibung, istgelöscht, bildpfad " + 
