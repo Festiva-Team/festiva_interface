@@ -128,4 +128,41 @@ public class KategorienAdministration {
 		
 		return listKategorien;}
 	}
+	
+	
+	/**
+	 * Selektiert alle Kategorien für die Slightshow aus der Datenbank (sortiert nach ID aufsteigend).
+	 * @return List<Kategorie>: Liste mit allen Kategorien, die ein Bild haben und nicht gelöscht sind mit deren zugehörigen Daten
+	 */
+	public static List<Kategorie> selektiereAlleKategorienFuerSlightshow() throws DatenbankException
+	{
+		List<Kategorie> listKategorien = new ArrayList<Kategorie>();
+		String selectBefehl = "SELECT id, name, beschreibung, istgelöscht, bildpfad " + 
+							  "FROM festiva.kategorien WHERE istgelöscht = 0 AND bildpfad != '' " + 
+							  "ORDER BY id ASC";
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		if(ergebnismenge == null) {
+			return listKategorien;
+		} else {
+		try
+		{
+			while(ergebnismenge.next())
+			{
+				int kategorienID = ergebnismenge.getInt("id");
+				String name = ergebnismenge.getString("name");
+				String beschreibung = ergebnismenge.getString("beschreibung");
+				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
+				String bildpfad = ergebnismenge.getString("bildpfad");
+				
+				listKategorien.add(new Kategorie(kategorienID, name, beschreibung, bildpfad, istGelöscht));
+			}
+		}
+		catch(SQLException e)
+		{
+			// TODO
+			System.out.println(e.getMessage());
+		}
+		
+		return listKategorien;}
+	}
 }

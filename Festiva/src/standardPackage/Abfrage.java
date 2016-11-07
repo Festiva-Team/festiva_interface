@@ -1,9 +1,6 @@
 package standardPackage;
 
-
-
-
-
+import java.util.List;
 
 // import com.mysql.jdbc.Connection;
 
@@ -118,5 +115,15 @@ public static void main(String[] args) {
 //	for(Warenkorbelement warenkorbelement : p_warenkorb.listElemente) {
 //		listPositionen.add(new Bestellposition(-1, warenkorbelement.menge, warenkorbelement.artikel.id, warenkorbelement.artikel.beschreibung, warenkorbelement.artikel.preis));
 //	}
+	List<Kategorie> listKategorien = null;
+	try {
+		listKategorien = KategorienAdministration.selektiereAlleKategorienFuerSlightshow();
+	} catch (DatenbankException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	for (Kategorie kategorie : listKategorien) {
+		System.out.println(kategorie.name);
+	}
 } 
 }
