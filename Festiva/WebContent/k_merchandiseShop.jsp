@@ -23,7 +23,7 @@ if (request.getSession(false) != null) {
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <meta charset="ISO-8859-1">
-	<title>Festiva - Merchandiseshop</title>
+	<title>Festiva - Festival Zubehör</title>
 	<link rel="stylesheet" type="text/css" href="CSS/design.css">
 </head>
 <body>
@@ -32,7 +32,13 @@ if (request.getSession(false) != null) {
     		<jsp:param name="active" value="merchandiseShop"/>
     	</jsp:include>
 		<div id="main">
-				<h2>Merchandise Shop</h2>
+				<h2>Festival Zubehör</h2>
+					<div>
+					<% if (request.getSession().getAttribute("antwort") != null) 		
+					{ %> 
+					<p><%= request.getSession().getAttribute("antwort") %></p>	
+					<% request.getSession().removeAttribute("antwort");}  %>
+				</div> 
 			<div id="zeile">
 				<table>
 								
@@ -60,12 +66,6 @@ if (request.getSession(false) != null) {
 							</tr></tbody>
 						<% }	%>
 				</table>
-				<div id="spalterechts">
-					<% if (request.getSession().getAttribute("antwort") != null) 
-					{ %>
-					<p><%= request.getSession().getAttribute("antwort") %></p>
-					<% request.getSession().removeAttribute("antwort");}  %>
-				</div> 
 			</div>
 		</div>
 		<div id="leer"></div>
@@ -73,6 +73,10 @@ if (request.getSession(false) != null) {
 	</div>
 </body>
 <script type="text/javascript">
+
+function antworten(antwort) {
+window.alert("hii");
+}
 
 function einfuegen(id, elemente){
 	
@@ -96,6 +100,7 @@ function einfuegen(id, elemente){
 			} else {
 			
 				document.location.href='/Festiva/Warenkorbverwaltung?aktion=hinzufuegen&artikelid=' + id + '&menge=' + menge;
+				
 			}	
 	}
 }

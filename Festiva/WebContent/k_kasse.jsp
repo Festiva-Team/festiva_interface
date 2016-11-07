@@ -80,7 +80,7 @@
 				<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
 				<div id="spaltelinks">
 					<h2>Versand</h2>
-					<h5>Hinweis: Wenn Sie einen oder mehrere Merchandise-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</h5>
+					<h5>Hinweis: Wenn Sie einen oder mehrere Zubehör-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</h5>
 	 				<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
 	 				<label>Per Mail</label>
 	 				<input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" >
