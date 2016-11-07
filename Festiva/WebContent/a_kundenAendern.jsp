@@ -66,10 +66,8 @@ else {
 	      					   <% if (benutzer.istGesperrt == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
 	      		    <label for="geloescht">Ist Gelöscht</label>
-					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
-	      					   "<%=benutzer.istGelöscht%>"
-	      					   <% if (benutzer.istGelöscht == true) {%>
-	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
+					<input type="checkbox" id="geloescht" name="geloescht" value=
+	      					   "<%=benutzer.istGelöscht%>">
 					<button type="submit">Änderungen speichern</button>
 					</div>
 			</form>	

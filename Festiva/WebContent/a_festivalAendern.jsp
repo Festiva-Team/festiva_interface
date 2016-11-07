@@ -40,10 +40,7 @@ else {
 				 <div class="row">
 						<div id="spaltelinks">
 						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
-						<label for="bild"></label>
-						<figure class="bild1" >
 						<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150/>
-						</figure>	
 						<% } else { %>
 						<p>Kein Bild vorhanden</p>
 						<% } %>

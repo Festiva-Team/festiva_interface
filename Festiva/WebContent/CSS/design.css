@@ -114,13 +114,13 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 
 /*Hide checkbox*/
-input[type=checkbox]{
+#show-menu{
     display: none;
     -webkit-appearance: none;
 }
 
 /*Show menu when invisible checkbox is checked*/
-input[type=checkbox]:checked ~ #menu{
+#show-menu:checked ~ #menu{
     display: block;
 }
 
@@ -222,7 +222,7 @@ label {
 	width: 30%;
 	padding-right:.5em;
 }
-input,textarea,select {
+input,textarea,select{
 	float: right;
 	text-align: left;
 	width: 60%;
@@ -233,7 +233,7 @@ input,textarea,select {
 	background-color: #FAEBD7;
 	border: 1px solid #990000;
 }
-label,textarea, input, select, figure, checkbox, radio
+label,textarea, input, select, figure, radio, checkbox
 {	display: block;
 	float: left;
 }
@@ -246,6 +246,7 @@ button
 input[type="checkbox"]{
     float: left;
     width: 5%;
+    text-align: left;
 }
 input[type="radio"]{
     float: left;

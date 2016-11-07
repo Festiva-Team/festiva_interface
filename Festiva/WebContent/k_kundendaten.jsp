@@ -55,7 +55,7 @@
 	      				<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value=
 	      					   "<%=benutzer.einzugsermächtigungErteilt%>"
 	      					   <% if (benutzer.einzugsermächtigungErteilt == true) {%>
-	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> ><br>
+	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
 						<button type="submit">Änderungen speichern</button>
 					</div>
 				</div>
