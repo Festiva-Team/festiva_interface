@@ -1,6 +1,10 @@
 package servletPackage;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,10 +32,17 @@ public class ShopSuche extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		SimpleDateFormat datum = new SimpleDateFormat( "dd.MM.yyyy" );
 		String name = request.getParameter("name");
 		String ort = request.getParameter("ort");
-		
+		String  maxPreis = request.getParameter("maxPreis").toString();
+		String startdatum = request.getParameter("startdatum");
+		String enddatum = request.getParameter("enddatum");
 
+		
+		request.getSession(false).setAttribute("startdatum", startdatum);
+		request.getSession(false).setAttribute("enddatum", enddatum);
+		request.getSession(false).setAttribute("maxPreis", maxPreis);
 		request.getSession(false).setAttribute("name", name);
 		request.getSession(false).setAttribute("ort", ort);
 		request.getRequestDispatcher("k_shop.jsp").include(request, response);
