@@ -132,7 +132,7 @@ public class Kategorienverwaltung extends HttpServlet {
 							}
 							
 						} else {
-							if((request.getParameter("aktion")).equals("loeschen")) {
+							if((request.getParameter("aktion")).equals("loeschen")) {			
 								List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivalObjekteVonKategorie(kategorie.id);
 								boolean loeschenMoeglich = true;
 								for(Festival festival : listFestivals) {
@@ -147,7 +147,7 @@ public class Kategorienverwaltung extends HttpServlet {
 								} else{
 									antwort = "Die Kategorie konnte nicht gelöscht werden, da sie Festivals beinhaltet, die noch nicht gelöscht wurden.";
 								}
-								
+							
 								session.setAttribute("antwort", antwort);
 							} else {
 								if((request.getParameter("aktion")).equals("b_loeschen")) {

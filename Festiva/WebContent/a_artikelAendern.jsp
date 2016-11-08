@@ -32,19 +32,20 @@ else {
 				<input type="text" id="beschreibung" name="beschreibung" maxlength="100" required="required" value="<%=artikel.beschreibung%>">
 				<label for="preis">Preis in Euro*</label>
 				<input type="number" step="0.01" min="0" id="preis" name="preis" maxlength="7" required="required" value="<%=artikel.preis%>"><br>				
-				<% if(artikel.festivalID == 0) { %>
+				<% if(artikel.festivalID == 0 && artikel.id != 6) { %>
 				<label for="bild">Bild</label>
 				<input type="file" id = "bild" name = "bild" accept="image/*"><br>
-				<% } %>
+				<% } if(artikel.id != 6) { %>
 				<label for="geloescht">Ist Gelöscht</label>
 					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
 	      					   "<%=artikel.istGelöscht%>"
 	      					   <% if (artikel.istGelöscht == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
+	      					   <% } %>
 				<button type="submit" id="links">Änderungen speichern</button>
 			</div>
 		</form>
-		<%if(artikel.festivalID == 0 ) { %>
+		<%if(artikel.festivalID == 0 && artikel.id != 6) { %>
 			<div id="spalterechts">
 			<form action="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>&t=<%=new Date().getTime()%>" method="post">
 					<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
@@ -58,11 +59,12 @@ else {
 						<% } %>
 			</form>
 			</div>
-					<% } if(artikel.festivalID == 0 ) { %>
+					<% } if(artikel.festivalID == 0 && artikel.id != 6) { %>
 			<button type="submit" onClick="window.location.href='/Festiva/Artikelverwaltung?aktion=b_loeschen&artikelid=<%=artikel.id%>'">Aktuelles Bild löschen</button>
-		<% } %>
+		<% } if (artikel.id != 6) { %>
 		<button type="submit" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
 		<div id="spalterechts">
+		<% } %>
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>
 					<p><%= request.getSession().getAttribute("antwort") %></p>

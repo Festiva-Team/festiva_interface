@@ -42,7 +42,7 @@ if (request.getSession(false) != null) {
 			<div id="zeile">
 				<table>
 								
-					<thead><tr><th>Bild</th><th>Beschreibung</th><th>Preis</th><th></th><th></th></tr></thead>
+					
 					<%					
 						for (Artikel artikel : listArtikel)
 						{%>
@@ -50,7 +50,7 @@ if (request.getSession(false) != null) {
 						<%if(!(artikel.bildpfad).equals("")) { %>
 						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 						<td><figure class="bild1">
-						<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
+						<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=200 height=200/>
 						</figure></td>
 						<% } else { %>
 								<td data-label="Bild">Kein Bild verfügbar</td>
@@ -73,10 +73,6 @@ if (request.getSession(false) != null) {
 	</div>
 </body>
 <script type="text/javascript">
-
-function antworten(antwort) {
-window.alert("hii");
-}
 
 function einfuegen(id, elemente){
 	

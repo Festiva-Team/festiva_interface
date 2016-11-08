@@ -40,11 +40,14 @@ else {
 					<label for="bild">Neues Bild</label>
 					<input type="file" id="bild" name="bild" accept="image/*">
 					<output id="list"></output>
+					
+					<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { %>
 					<label for="geloescht">Ist Gelöscht</label>
 					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
 	      					   "<%=kategorie.istGelöscht%>"
 	      					   <% if (kategorie.istGelöscht == true) {%>
 	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> ><br/>
+	      			<% } %>
 					<button type="submit">Änderungen speichern</button>
 				</div>
 				<div id="spalterechts">
@@ -62,10 +65,12 @@ else {
 				</div> 	
 				</div>
 				</form>
+				<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { %>
 		<button type="submit" onClick="window.location.href='/Festiva/Kategorienverwaltung?aktion=b_loeschen&kategorienid=<%=kategorie.id%>'">Aktuelles Bild löschen</button>
 		
 				
 					<button type="submit" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
+					<% } %>
 					<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>

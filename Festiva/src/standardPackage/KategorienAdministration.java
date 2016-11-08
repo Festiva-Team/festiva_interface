@@ -138,7 +138,7 @@ public class KategorienAdministration {
 	{
 		List<Kategorie> listKategorien = new ArrayList<Kategorie>();
 		String selectBefehl = "SELECT id, name, beschreibung, istgelöscht, bildpfad " + 
-							  "FROM festiva.kategorien WHERE istgelöscht = 0 AND bildpfad != '' " + 
+							  "FROM festiva.kategorien WHERE id = 1 OR id = 2 OR id = 3 OR id = 4 " + 
 							  "ORDER BY id ASC";
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
 		if(ergebnismenge == null) {

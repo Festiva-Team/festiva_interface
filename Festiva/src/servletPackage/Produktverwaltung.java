@@ -14,18 +14,18 @@ import javax.servlet.http.HttpSession;
 import standardPackage.*;
 
 /**
- * Servlet implementation class MerchandiseShop
- * @author Nicola Kloke
+ * 
+ * @author Alina Fankhänel
  */
 
-@WebServlet("/MerchandiseShop")
-public class MerchandiseShop extends HttpServlet {
+@WebServlet("/Produktverwaltung")
+public class Produktverwaltung extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MerchandiseShop() {
+    public Produktverwaltung() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +40,7 @@ public class MerchandiseShop extends HttpServlet {
 		response.setDateHeader("Expires", 0);
 		try{
 
-		if ((request.getParameter("aktion")).equals("m_anzeigen")) {
+		if ((request.getParameter("aktion")).equals("z_anzeigen")) {
 			
 			if(session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 				int userid = Integer.parseInt(session.getAttribute("userid").toString());
@@ -54,6 +54,12 @@ public class MerchandiseShop extends HttpServlet {
 			List<Artikel> listArtikel = ArtikelAdministration.selektiereUnabhaengigeArtikel();
 			session.setAttribute("listArtikel", listArtikel);
 			request.getRequestDispatcher("k_merchandiseShop.jsp").include(request, response);		
+		} else {
+			if((request.getParameter("aktion")).equals("s_anzeigen")) {
+				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorienFuerSlideshow();
+				session.setAttribute("listKategorien", listKategorien);
+				request.getRequestDispatcher("k_slideshow.jsp").include(request, response);	
+			}
 		}
 		} catch (DatenbankException e) {
 			e.printStackTrace();

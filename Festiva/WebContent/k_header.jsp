@@ -33,7 +33,7 @@ HttpSession session = request.getSession(false);
 		<ul id= menu>
 			<li><a href="k_startseite.jsp">Home</a></li>
 			<li><a href="k_shop.jsp">Ticket Shop</a></li>
-			<li><a href="/Festiva/MerchandiseShop?aktion=m_anzeigen">Festival Zubehör</a></li>
+			<li><a href="/Festiva/Produktverwaltung?aktion=z_anzeigen">Festival Zubehör</a></li>
 			<li><a href="#">Mein Konto</a>
 			<ul class ="hidden">
 			<% if (session != null && session.getAttribute("begrüßung") != null && session.getAttribute("gruppenid") != null && Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) == 2) 
