@@ -96,7 +96,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 							request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
 						} else {
 							if ((request.getParameter("aktion")).equals("m_versand")) {	
-								Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(6);
+								int userid = Integer.parseInt(session.getAttribute("userid").toString());
+								int warenkorbid = WarenkorbAdministration.selektiereWarenkorbID(userid);
+								Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(6, warenkorbid);
 								if(warenkorbelement != null) {
 								WarenkorbAdministration.loescheWarenkorbelement(warenkorbelement.id);}
 								boolean perPost = false;
@@ -114,16 +116,18 @@ public class Warenkorbverwaltung extends HttpServlet {
 									antwort = "Der Artikel '" + artikel.beschreibung + "' wurde dem Warenkorb mit der Menge " + menge + " hinzugefügt.";
 									session.setAttribute("antwort", antwort);
 									if(artikel.festivalID == 0) {
-									request.getRequestDispatcher("/MerchandiseShop?aktion=m_anzeigen").include(request, response); }
+									request.getRequestDispatcher("/Produktverwaltung?aktion=z_anzeigen").include(request, response); }
 									else {
 									request.getRequestDispatcher("k_shop.jsp").include(request, response);	
 									}
 								} else { 
 									if((request.getParameter("aktion")).equals("aktualisieren")) {
+										int userid = Integer.parseInt(session.getAttribute("userid").toString());
 										int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 										int menge = Integer.parseInt(request.getParameter("menge"));
 										Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelid);	
-										Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(artikelid);
+										int warenkorbid = WarenkorbAdministration.selektiereWarenkorbID(userid);
+										Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(artikelid, warenkorbid);
 										warenkorbelement.menge = warenkorbelement.menge + menge;
 										if(warenkorbelement.menge > 10) {
 											if((warenkorbelement.menge - menge) == 10) {
@@ -137,7 +141,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 										antwort = "Die Anzahl des Artikels '" + artikel.beschreibung + "' wurde in Ihrem Warenkorb um " + menge + " erhöht.";}
 										session.setAttribute("antwort", antwort);
 										if(artikel.festivalID == 0) {
-										request.getRequestDispatcher("/MerchandiseShop?aktion=m_anzeigen").include(request, response); }
+										request.getRequestDispatcher("/Produktverwaltung?aktion=z_anzeigen").include(request, response); }
 										else {
 										request.getRequestDispatcher("k_shop.jsp").include(request, response);	
 										}

@@ -77,7 +77,7 @@
 			</table>			
 			</div>
 			<div id="zeile">
-				<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
+	<!--  			<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post"> -->
 				<div id="spaltelinks">
 					<h2>Versand</h2>
 					<h5>Hinweis: Wenn Sie einen oder mehrere Zubehör-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</h5>
@@ -97,7 +97,7 @@
 					 <% } %>
 					 <button type="button" id="Kundendaten aendern" onClick="window.location.href='/Festiva/Benutzerdaten?aktion=anzeigen'">Meine Daten</button></p>
 	 			 </div>
-	 			 </form>
+	 <!-- 			 </form>-->
 				</div>
 				
 				 

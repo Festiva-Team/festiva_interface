@@ -246,16 +246,17 @@ public class WarenkorbAdministration {
 	/**
 	 * Selektiert das Warenkorbelement mit der übergebenen ID aus der Datenbank
 	 * 
-	 * @param p_ID: eindeutige ID des Artikels, den das Warenkorbelement, das aus der Datenbank selektiert werden soll, beinhalten soll
+	 * @param p_artikelID: eindeutige ID des Artikels, den das Warenkorbelement, das aus der Datenbank selektiert werden soll, beinhalten soll
+	 * @param p_warenkorbID: eindeutige ID des Warenkorbs, in dem das Warenkorbelement enthalten sein soll
 	 * @return Warenkorbelement: gewünschtes Warenkorbelement-Objekt, gibt null zurück, wenn es kein Objekt gibt, dass die Artikel-ID beinhaltet
 	 */
-	public static Warenkorbelement selektiereWarenkorbelementMitArtikelID(int p_id) throws DatenbankException
+	public static Warenkorbelement selektiereWarenkorbelementMitArtikelID(int p_artikelID, int p_warenkorbID) throws DatenbankException
 	{	
 		Warenkorbelement warenkorbelement = null;
 		String selectBefehl = "SELECT id, menge " + 
 							  "FROM festiva.warenkorbelemente " +
-							  "WHERE artikel_id = '%d'";
-		selectBefehl = String.format(selectBefehl, p_id);
+							  "WHERE artikel_id = '%d' AND warenkörbe_id = '%d'";
+		selectBefehl = String.format(selectBefehl, p_artikelID, p_warenkorbID);
 		
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);	
 		if(ergebnismenge == null) {
@@ -268,7 +269,7 @@ public class WarenkorbAdministration {
 				int menge = ergebnismenge.getInt("menge");
 				int id = ergebnismenge.getInt("id");
 				
-				Artikel artikel = ArtikelAdministration.selektiereArtikel(p_id);
+				Artikel artikel = ArtikelAdministration.selektiereArtikel(p_artikelID);
 								
 				warenkorbelement = new Warenkorbelement(id, menge, artikel);
 			}

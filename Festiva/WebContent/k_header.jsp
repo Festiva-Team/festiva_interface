@@ -31,7 +31,7 @@ HttpSession session = request.getSession(false);
 		<label for="show-menu" class="show-menu">Menü</label>
 		<input type="checkbox" id="show-menu" role="button">
 		<ul id= menu>
-			<li><a href="k_startseite.jsp">Home</a></li>
+			<li><a href="/Festiva//Produktverwaltung?aktion=s_anzeigen">Home</a></li>
 			<li><a href="k_shop.jsp">Ticket Shop</a></li>
 			<li><a href="/Festiva/Produktverwaltung?aktion=z_anzeigen">Festival Zubehör</a></li>
 			<li><a href="#">Mein Konto</a>

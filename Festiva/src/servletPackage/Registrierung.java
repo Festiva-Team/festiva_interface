@@ -59,10 +59,18 @@ public class Registrierung extends HttpServlet {
 				antwort = "Die beiden eingegebenen Passwörter stimmen nicht überein. Registrierung wurde nicht durchgeführt.";
 			} else {
 				passwort = passwort + "76ZuOp(6?ssXY0";
-				Benutzer benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 2);
-				BenutzerAdministration.erstelleKunden(benutzer);
-				WarenkorbAdministration.erstelleLeerenWarenkorb(benutzer.id);
-				antwort = "Die Registrierung wurde erfolgreich durchgeführt.";
+				Benutzer benutzer = null;
+				if(request.getParameter("aktion") != null && request.getParameter("aktion").equals("a_anlegen") && request.getSession(false).getAttribute("gruppenid") != null && Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) == 1) {
+					benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 1);
+					BenutzerAdministration.erstelleKunden(benutzer);
+					antwort = "Der Administrator wurde erfolgreich angelegt.";
+				} else {
+				    benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 2);
+				    BenutzerAdministration.erstelleKunden(benutzer);
+					WarenkorbAdministration.erstelleLeerenWarenkorb(benutzer.id);
+					antwort = "Die Registrierung wurde erfolgreich durchgeführt.";
+					}
+				
 			}
 		}
 		}
@@ -73,7 +81,10 @@ public class Registrierung extends HttpServlet {
 		} else {
 			int gruppenid = Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString());
 			if(gruppenid == 1) {
-				request.getRequestDispatcher("a_kundenAnlegen.jsp").include(request, response);
+				if(request.getParameter("aktion") != null && request.getParameter("aktion").equals("a_anlegen")) {
+					request.getRequestDispatcher("a_adminAnlegen.jsp").include(request, response);
+				} else {
+				request.getRequestDispatcher("a_kundenAnlegen.jsp").include(request, response); }
 			} else {
 				request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 			}

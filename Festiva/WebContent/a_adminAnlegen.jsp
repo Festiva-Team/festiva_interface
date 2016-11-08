@@ -25,10 +25,10 @@
     		<jsp:param name="active" value="registrieren"/>
    	 	</jsp:include>
 		<div id="main">
-		<form action="/Festiva/Registrierung" method="post">
+		<form action="/Festiva/Registrierung?aktion=a_anlegen" method="post">
 			<div id="zeile">
 			<div id="spaltelinks">
-				<h2>Admin anlegen</h2>
+				<h2>Neuen Administrator anlegen</h2>
 				<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<label for="email">E-Mail*</label>
 				<input type="email" name="email" id="email" maxlength="30" required="required">
@@ -41,7 +41,7 @@
 				<button type="submit">Anlegen</button>
 			</div>
 			<div id="spalterechts">
-					<p>Hinweis: Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
+					<p>Hinweis: Das Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
 				</div>	
 			<div id="spalterechts">
 					<% if (request.getSession().getAttribute("antwort") != null) 
