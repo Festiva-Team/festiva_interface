@@ -35,6 +35,7 @@ public class ShopSuche extends HttpServlet {
 		SimpleDateFormat datum = new SimpleDateFormat( "dd.MM.yyyy" );
 		String name = request.getParameter("name");
 		String ort = request.getParameter("ort");
+		int kategorie = Integer.parseInt(request.getParameter("kategorie"));
 		String  maxPreis = request.getParameter("maxPreis").toString();
 		String startdatum = request.getParameter("startdatum");
 		String enddatum = request.getParameter("enddatum");
@@ -43,6 +44,7 @@ public class ShopSuche extends HttpServlet {
 		request.getSession(false).setAttribute("startdatum", startdatum);
 		request.getSession(false).setAttribute("enddatum", enddatum);
 		request.getSession(false).setAttribute("maxPreis", maxPreis);
+		request.getSession(false).setAttribute("kategorie", kategorie);
 		request.getSession(false).setAttribute("name", name);
 		request.getSession(false).setAttribute("ort", ort);
 		request.getRequestDispatcher("k_shop.jsp").include(request, response);

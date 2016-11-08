@@ -47,7 +47,19 @@
 						<%}%>
 						
 						<label for="kategorie">Kategorie</label>	
-						<select><option value="Kategorie.name"></option></select>
+						<select name="kategorie">
+						<option value="0"></option>
+						<%
+						List<Kategorie> kategorieliste = KategorienAdministration.selektiereAlleKategorien();
+						for (Kategorie kategorie : kategorieliste)
+						{ if (kategorie.id == Integer.parseInt(request.getSession().getAttribute("kategorie").toString()))
+							{%>
+							<option value=<%=kategorie.id%> selected><%=kategorie.name%></option>
+							<%} else{ %>
+							<option value=<%=kategorie.id%>><%=kategorie.name%></option>
+							<%} %>
+						<%} %>
+						</select>
 						<label for="name">Ort</label>
 						<%if (request.getSession().getAttribute("ort") != null) 
 						{%>
@@ -101,6 +113,7 @@
 					SimpleDateFormat datum2 = new SimpleDateFormat( "dd.MM.yyyy" );
 					String sucheOrt= "";
 					String sucheName = "";
+					int sucheKategorie = 0;
 					String sucheStartdatum = "";
 					String sucheEnddatum = "";
 					float sucheMaxPreis = 0;
@@ -113,6 +126,11 @@
 					if (request.getSession().getAttribute("name") != null)
 					{
 						 sucheName = request.getSession().getAttribute("name").toString();
+					}
+					
+					if (request.getSession().getAttribute("kategorie") != null)
+					{ 
+						sucheKategorie = Integer.parseInt(request.getSession().getAttribute("kategorie").toString());
 					}
 					
 					if (request.getSession().getAttribute("startdatum") != null)
@@ -144,7 +162,7 @@
 					if (request.getSession().getAttribute("maxPreis") != null)
 					{
 						String hilfs = request.getSession().getAttribute("maxPreis").toString();
-						if (hilfs == "")
+						if (hilfs.isEmpty())
 						{
 							hilfs = "0";
 						}
@@ -152,7 +170,7 @@
 					}
 					
 											
-						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(0, sucheOrt, sucheName, sucheStartdatum, sucheEnddatum, sucheMaxPreis);
+						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(sucheKategorie, sucheOrt, sucheName, sucheStartdatum, sucheEnddatum, sucheMaxPreis);
 						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
 						for (FestivalSuchobjekt festival : festivalliste)
 						{%>
@@ -167,7 +185,7 @@
 								<td><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
 								<%} %>
 								<td><%=festival.ort%></td>
-								<td><%=festival.kategorienID%></td>
+								<td><%=KategorienAdministration.selektiereKategorie(festival.kategorienID).name%></td>
 								<% if (festival.vonPreis == festival.bisPreis)
 								{%>
 								<td><%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
