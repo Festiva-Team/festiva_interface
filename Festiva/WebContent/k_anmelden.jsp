@@ -30,7 +30,7 @@
 				<div id="spaltelinks">
 					<h2>Anmelden</h2>
 					<label for="email">E-Mail</label>
-					<input type="email" name="email" id="email" maxlength="30" required="required">
+					<input type="email" name="email" id="email" maxlength="30" required="required" autofocus>
 					<label for="passwort">Passwort</label>
 					<input type="password" name="passwort" id="passwort" maxlength="40" required="required">
 					<button type="submit">Anmelden</button>	

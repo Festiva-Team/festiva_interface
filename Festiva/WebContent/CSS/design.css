@@ -155,7 +155,11 @@ figure.bild2 {
 	width: 50%;
 	float:left;	
 }
+#straﬂe{
 
+	float: left;
+	width: 80%;
+}
 #leer{	
 	clear:both;
 }
@@ -381,18 +385,19 @@ li:hover ul a {
 	width: 100%;
 	float:left;
 }
+
 label
 {	width:90%;
 	text-align: left;
 	margin: 0;
 	margin-left: 0.4em;
 }
-input,textarea{
+input,textarea, select, option{
 	width: 90%;
 	margin-right: 0.5em;
 }
-select, option
-{	width: 40px;
+button{
+	width: 60%;
 }
 img{
 	width: 100%;
@@ -403,6 +408,10 @@ fieldset
 	margin: .5em;
 	width: 85%;
 }	
+figure.bild1
+{
+	width: 80%;
+}
 /** *****************Tabelle******************/
 thead {
 	display: none;

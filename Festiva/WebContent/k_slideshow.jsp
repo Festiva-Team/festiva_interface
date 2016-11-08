@@ -17,20 +17,20 @@
 	<title>Festiva</title>
 <script type="text/javascript">
 	var imagecount =1;
-	var total = 5;
+	var total = 4;
 	function slide(x){
 	var Image = document.getElementById('img');
 	imagecount = imagecount + x;
 	if(imagecount > total) { imagecount = 1;}
 	if(imagecount < 1) { imagecount = total;}
-	Image.src = "/Festiva/Bilder/img" + imagecount + ".jpg";
+	Image.src = "/Festiva/Bilder/Kategorie_" + imagecount + ".jpg";
 	}
 	window.setInterval(	function slide(x){
 	var Image = document.getElementById('img');
 	imagecount = imagecount + x;
 	if(imagecount > total) { imagecount = 1;}
 	if(imagecount < 1) { imagecount = total;}
-	Image.src = "/Festiva/Bilder/img" + imagecount + ".jpg";
+	Image.src = "/Festiva/Bilder/Kategorie_" + imagecount + ".jpg";
 	},5000);
 </script>
 </head>
@@ -40,7 +40,7 @@
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
 			<div id="container">
-			<img src="/Festiva/Bilder/img1.jpg" id="img"/>
+			<img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/>
 			<div id="left_holder"><img onClick="slide(-1)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
 			<div id="right_holder"><img onClick="slide(1)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
 			</div>

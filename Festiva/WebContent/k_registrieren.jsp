@@ -31,7 +31,7 @@
 				<h2>Registrierung</h2>
 				<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<label for="email">E-Mail*</label>
-				<input type="email" name="email" id="email" maxlength="30" required="required">
+				<input type="email" name="email" id="email" maxlength="30" required="required" autofocus>
 				<label for="emailbestätigung">E-Mail bestätigen*</label>
 				<input type="email" name="emailbestätigung" id="emailbestätigung" maxlength="30" required="required">
 				<label for="passwort">Passwort*</label>
