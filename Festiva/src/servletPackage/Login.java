@@ -49,7 +49,12 @@ public class Login extends HttpServlet {
 
 		if (benutzer != null) {
 				if (benutzer.istGesperrt == true) {
+					
+					if(BenutzerAdministration.selektierePasswortZaehlerVonKunde(benutzer.id) >= 3) {
+						antwort = "Ihr Benutzerkonto wurde gesperrt, da Sie zu oft ein falsches Passwort eingegeben haben. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
+					} else {
 					antwort = "Ihr Benutzerkonto wurde gesperrt. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
+					}
 					request.getSession(false).setAttribute("antwort", antwort);
 					request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 					
@@ -74,6 +79,7 @@ public class Login extends HttpServlet {
 							request.getRequestDispatcher("a_startseiteAdmin.jsp").include(request, response);
 							
 						} else {
+							BenutzerAdministration.aktualisierePasswortZaehlerBeiKunde(benutzer.id, 0);
 							if((benutzer.vorname).equals("") && benutzer.nachname.equals("")) {
 							begrüßung = "Herzlich Willkommen bei Festiva!";	
 							} else {
@@ -85,7 +91,20 @@ public class Login extends HttpServlet {
 						}
 
 						} else {
-							antwort = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
+							
+							if(benutzer.gruppenID == 1) {
+								antwort = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
+							} else {
+								int zaehler = BenutzerAdministration.selektierePasswortZaehlerVonKunde(benutzer.id);
+								zaehler = zaehler + 1;
+								BenutzerAdministration.aktualisierePasswortZaehlerBeiKunde(benutzer.id, zaehler);
+								
+								if(zaehler >= 3) {
+									antwort = "Ihr Benutzerkonto wurde gesperrt, da Sie 3 Mal ein falsches Passwort eingegeben haben. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
+								} else {
+									antwort = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
+								}
+							}
 							request.getSession(false).setAttribute("antwort", antwort);
 							request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 						}

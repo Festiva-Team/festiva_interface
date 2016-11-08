@@ -63,6 +63,10 @@ public class Kundenverwaltung extends HttpServlet {
 						} else {
 							passwortNeu = Registrierung.generiereHash((passwortNeu + "76ZuOp(6?ssXY0"));
 							benutzer.passwortHash = passwortNeu;
+							//vielleicht muss dieser teil wieder raus
+							benutzer.istGesperrt = false;
+							BenutzerAdministration.aktualisierePasswortZaehlerBeiKunde(benutzer.id, 0);
+							// 
 							BenutzerAdministration.aktualisiereBenutzer(benutzer);
 							antwort = "Das Passwort wurde erfolgreich geändert.";
 								}

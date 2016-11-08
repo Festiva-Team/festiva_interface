@@ -218,4 +218,54 @@ public class BenutzerAdministration {
 		return listBenutzer;
 	}}
 	
+	
+	/**
+	 * Ändert den Passwortzähler bei dem Benutzer mit der übergebenen ID auf den übergebenen Wert
+	 * 
+	 * @param p_benutzerID: Benutzer, bei dem die Änderung am Passwortzähler durchgeführt werden soll
+	 * @param p_zaehlerWert: Wert, der als Zaehler gespeichert werden soll
+	 */
+	public static void aktualisierePasswortZaehlerBeiKunde(int p_benutzerID, int p_zaehlerWert) throws DatenbankException
+	{
+		String updateBefehl = "";
+		if( p_zaehlerWert >= 3 ) {
+			updateBefehl = "UPDATE festiva.benutzer SET istgesperrt = 1, passwortzaehler = '%d' WHERE id = '%d'";
+		} else {
+			updateBefehl = "UPDATE festiva.benutzer SET passwortzaehler = '%d' WHERE id = '%d'";
+		}
+
+		updateBefehl = String.format(updateBefehl, p_zaehlerWert, p_benutzerID);
+		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(updateBefehl);
+	}
+	
+	
+	/**
+	 * Selektiert den Passwortzähler des Benutzers mit der übergebenen ID 
+	 * 
+	 * @param p_benutzerID: Benutzer, dessen Passwortzähler ermittelt werden soll
+	 * @return zaehlerWert: Zähler-Wert des Kunden
+	 */
+	public static int selektierePasswortZaehlerVonKunde(int p_benutzerID) throws DatenbankException
+	{
+		int zaehlerWert = -1;
+		String selectBefehl = "SELECT passwortzaehler FROM festiva.benutzer WHERE id = '%d'";
+		selectBefehl = String.format(selectBefehl, p_benutzerID);
+		
+		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
+		if(ergebnismenge == null) {
+			return zaehlerWert;
+		} else {
+			try {
+		while(ergebnismenge.next())
+		{
+			zaehlerWert = ergebnismenge.getInt("passwortzaehler");
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return zaehlerWert;}
+		
+	}
+	
 }

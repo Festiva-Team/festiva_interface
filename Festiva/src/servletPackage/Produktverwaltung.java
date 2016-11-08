@@ -59,6 +59,22 @@ public class Produktverwaltung extends HttpServlet {
 				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorienFuerSlideshow();
 				session.setAttribute("listKategorien", listKategorien);
 				request.getRequestDispatcher("k_slideshow.jsp").include(request, response);	
+			} else {
+				if((request.getParameter("aktion")).equals("f_k_anzeigen")) {
+					int kategorienid = 0;
+					
+					if(!request.getParameter("kategorienid").equals("")) {
+						try{
+							kategorienid = Integer.parseInt(request.getParameter("kategorienid"));
+						} catch (Exception e) {
+							e.printStackTrace();
+							kategorienid = 0;
+						} }
+					List<FestivalSuchobjekt> listFestivalSuchobjekte = FestivalAdministration.selektiereFestivalsInSuche(kategorienid, null, null, null, null, (float)0.0);
+					session.setAttribute("listFestivalSuchobjekte", listFestivalSuchobjekte);
+					request.getRequestDispatcher("").include(request, response);	
+					
+				}
 			}
 		}
 		} catch (DatenbankException e) {
