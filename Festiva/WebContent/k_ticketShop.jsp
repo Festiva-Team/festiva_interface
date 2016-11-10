@@ -63,14 +63,14 @@ if (request.getSession(false) != null) {
 						</div>
 					<div id="spalterechts">						
 						<label for="startdatum">Startdatum</label>
-						<input type="text" id="startdatum" maxlength="30" name="startdatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.startDatum != null) { %> value="<%=datum.format(suchKriterien.startDatum)%>" <% } %>>
+						<input type="text" id="startdatum" maxlength="30" placeholder="TT.MM.JJJJ" name="startdatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.startDatum != null) { %> value="<%=datum.format(suchKriterien.startDatum)%>" <% } %>>
 													
 						<label for="enddatum">Enddatum</label>
-						<input type="text" id="enddatum" maxlength="30" name="enddatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.endDatum != null) { %> value="<%=datum.format(suchKriterien.endDatum)%>" <% } %>>
+						<input type="text" id="enddatum" maxlength="30" placeholder="TT.MM.JJJJ" name="enddatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.endDatum != null) { %> value="<%=datum.format(suchKriterien.endDatum)%>" <% } %>>
 						
 						
 						<label for="preis">Maximaler Preis</label>
-						<input type="number" step="0.01" min="0" id="preis" maxlength="8" name="maxpreis" <% if(suchKriterien.bisPreis != 0) { %> value="<%=suchKriterien.bisPreis%>" <% } %>>
+						<input type="number" step="0.01" min="0" id="preis" maxlength="8" placeholder="0,00" name="maxpreis" <% if(suchKriterien.bisPreis != 0) { %> value="<%=suchKriterien.bisPreis%>" <% } %>>
 						
 						<button type="submit">Suchen</button>
 					</div>
