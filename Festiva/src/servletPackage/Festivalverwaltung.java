@@ -62,7 +62,7 @@ public class Festivalverwaltung extends HttpServlet {
 				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
 				session.setAttribute("listKategorien", listKategorien);
 				if((request.getParameter("aktion")).equals("anlegenanzeigen")) {
-				
+					listKategorien = KategorienAdministration.selektiereAlleAktivenKategorien();
 				request.getRequestDispatcher("a_festivalAnlegen.jsp").include(request, response);
 			} else {
 				

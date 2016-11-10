@@ -270,17 +270,41 @@ public class FestivalAdministration {
 		// - vor dem angegebenen Zeitraum beginnen und innerhalb des Zeitraums enden
 		// - vor dem angegebenen Zeitraum beginngen und nach dem angegebenen Zeitraum enden
 		// ...werden angezeigt)
-				if (p_bisDatum != null && p_vonDatum != null) {
-					if (where == true) {
-						selectBefehl = selectBefehl + "AND ((f.startDatum >= '" + p_vonDatum + "' OR f.endDatum <= '" + p_bisDatum + "') "
-													+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
-					}
-					else {
-						selectBefehl = selectBefehl + "WHERE ((f.startDatum >= '" + p_vonDatum + "' OR f.endDatum <= '" + p_bisDatum + "') "
-													+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
-						where = true;
-					}
-				}
+//				if (p_bisDatum != null && p_vonDatum != null) {
+//					if (where == true) {
+//						selectBefehl = selectBefehl + "AND ((f.startDatum >= '" + p_vonDatum + "' OR f.endDatum <= '" + p_bisDatum + "') "
+//													+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
+//					}
+//					else {
+//						selectBefehl = selectBefehl + "WHERE ((f.startDatum >= '" + p_vonDatum + "' OR f.endDatum <= '" + p_bisDatum + "') "
+//													+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
+//						where = true;
+//					}
+//				}
+		
+//		if (p_bisDatum != null && p_vonDatum != null) {
+//			if (where == true) {
+//				selectBefehl = selectBefehl + "AND (((f.startDatum >= '" + p_vonDatum + "' AND f.endDatum <= '" + p_bisDatum + "' ) OR ( f.startDatum <= '" + p_vonDatum + "' AND f.endDatum >= '" + p_bisDatum + "')) "
+//											+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
+//			}
+//			else {
+//				selectBefehl = selectBefehl + "WHERE (((f.startDatum >= '" + p_vonDatum + "' AND f.endDatum <= '" + p_bisDatum + "' ) OR ( f.startDatum <= '" + p_vonDatum + "' AND f.endDatum <= '" + p_bisDatum + "')) "
+//											+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
+//				where = true;
+//			}
+//		}
+		
+		if (p_bisDatum != null && p_vonDatum != null) {
+			if (where == true) {
+				selectBefehl = selectBefehl + "AND (( '" + p_vonDatum + "' = f.startDatum ) OR ( '" + p_bisDatum + "' = f.endDatum ) OR ('" + p_vonDatum + "' < f.startDatum AND '" + p_bisDatum + "' >= f.startDatum) OR ('" + p_vonDatum + "' > f.startDatum AND '" + p_bisDatum + "' <= f.endDatum)) ";
+											
+			}
+			else {
+				selectBefehl = selectBefehl + "WHERE (( '" + p_vonDatum + "' = f.startDatum ) OR ( '" + p_bisDatum + "' = f.endDatum ) OR ('" + p_vonDatum + "' < f.startDatum AND '" + p_bisDatum + "' >= f.startDatum) OR ('" + p_vonDatum + "' > f.startDatum AND '" + p_bisDatum + "' <= f.endDatum)) ";
+											
+				where = true;
+			}
+		}
 				
 				// Bedingung zum Einschränken über den Maximalpreis
 				if (p_bisPreis != 0.0) {

@@ -118,7 +118,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 									if(artikel.festivalID == 0) {
 									request.getRequestDispatcher("/Produktverwaltung?aktion=z_anzeigen").include(request, response); }
 									else {
-									request.getRequestDispatcher("k_shop.jsp").include(request, response);	
+										int festivalid = Integer.parseInt(request.getParameter("festivalid"));
+										float maxpreis = Float.parseFloat(request.getParameter("maxpreis"));
+									request.getRequestDispatcher("/Ticketverwaltung?aktion=f_anzeigen&festivalid=" + festivalid + "&maxpreis=" + maxpreis).include(request, response);	
 									}
 								} else { 
 									if((request.getParameter("aktion")).equals("aktualisieren")) {
@@ -143,7 +145,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 										if(artikel.festivalID == 0) {
 										request.getRequestDispatcher("/Produktverwaltung?aktion=z_anzeigen").include(request, response); }
 										else {
-										request.getRequestDispatcher("k_shop.jsp").include(request, response);	
+											int festivalid = Integer.parseInt(request.getParameter("festivalid"));
+											float maxpreis = Float.parseFloat(request.getParameter("maxpreis"));
+											request.getRequestDispatcher("/Ticketverwaltung?aktion=f_anzeigen&festivalid=" + festivalid + "&maxpreis=" + maxpreis).include(request, response);		
 										}
 									} else {
 									
