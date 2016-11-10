@@ -50,7 +50,7 @@ if (request.getSession(false) != null) {
 						<%if(!(artikel.bildpfad).equals("")) { %>
 						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 						<td><figure class="bild1">
-						<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=200 height=200/>
+						<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
 						</figure></td>
 						<% } else { %>
 								<td data-label="Bild">Kein Bild verfügbar</td>
@@ -60,7 +60,7 @@ if (request.getSession(false) != null) {
 								<% }	%>
 								<td data-label="Beschreibung"><%=artikel.beschreibung%></td>
 								<td data-label="Preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-								<td data-label="Anzahl">
+								<td data-label="Anzahl" width="20%">
 								<select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 								<td><button type="submit" id="Artikel in Warenkorb" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td>
 							</tr></tbody>

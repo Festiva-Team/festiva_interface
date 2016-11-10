@@ -38,18 +38,18 @@ else {
 					<%for (Kategorie kategorie : listKategorien) { %>
 				<tbody><tr>
 								
-								<th data-label="Kategorie"><a href="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>"><%=kategorie.id%></a></td>
-								<td data-label="Name"><%=kategorie.name%></td>
-								<td data-label="Beschreibung"><%=kategorie.beschreibung%></td>
+								<th data-label="Kategorie: "><a href="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>"><%=kategorie.id%></a></td>
+								<td data-label="Name: "><%=kategorie.name%></td>
+								<td data-label="Beschreibung: "><%=kategorie.beschreibung%></td>
 								<%if (kategorie.bildpfad == null || (kategorie.bildpfad).equals("")) { %>
-								<td data-label="Bild"><%="Nein"%></td>
+								<td data-label="Bild: "><%="Nein"%></td>
 								<% } else { %>
-								<td data-label="Bild"><%="Ja"%></td>
+								<td data-label="Bild: "><%="Ja"%></td>
 								<% } %>
 								<%if (kategorie.istGelöscht == false) { %>
-								<td data-label="Gelöscht"><%="nein"%></td>
+								<td data-label="Gelöscht: "><%="nein"%></td>
 								<% } else { %>
-								<td data-label="gelöscht"><%="ja"%></td>
+								<td data-label="gelöscht: "><%="ja"%></td>
 								<% } %>
 					</tr></tbody>	
 					<% } %>

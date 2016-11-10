@@ -41,24 +41,24 @@ else {
 					<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
 						for (Festival festival : listFestivals) { %>
 					<tbody><tr>		
-								<th data-label="Festival"><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
-								<td data-label="Name"><%=festival.name%></td>
-								<td data-label="Startdatum"><%=date.format(festival.startDatum)%></td>
-								<td data-label="Enddatum"><%=date.format(festival.endDatum)%></td>
-								<td data-label="Ort"><%=festival.ort%></td>
+								<th data-label="Festival: "><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
+								<td data-label="Name: "><%=festival.name%></td>
+								<td data-label="Startdatum: "><%=date.format(festival.startDatum)%></td>
+								<td data-label="Enddatum: "><%=date.format(festival.endDatum)%></td>
+								<td data-label="Ort: "><%=festival.ort%></td>
 								<%for(Kategorie kategorie : listKategorien){
      							  if(kategorie.id == festival.kategorienID){ %>
-      							<td data-label="Kategorie"><%=kategorie.name%></td>       
+      							<td data-label="Kategorie: "><%=kategorie.name%></td>       
    								<%  } } %>
 								<%if (festival.bildpfad == null || (festival.bildpfad).equals("")) { %>
-								<td data-label="Bild"><%="Nein"%></td>
+								<td data-label="Bild: "><%="Nein"%></td>
 								<% } else { %>
-								<td data-label="Bild"><%="Ja"%></td>
+								<td data-label="Bild: "><%="Ja"%></td>
 								<% } %>
 								<%if (festival.istGelöscht == false) { %>
-								<td data-label="Gelöscht"><%="nein"%></td>
+								<td data-label="Gelöscht: "><%="nein"%></td>
 								<% } else { %>
-								<td data-label="Gelöscht"><%="ja"%></td>
+								<td data-label="Gelöscht: "><%="ja"%></td>
 								<% } %>
 					</tr></tbody>
 					<% } %>

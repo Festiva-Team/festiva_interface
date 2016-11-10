@@ -226,7 +226,7 @@ label {
 	width: 30%;
 	padding-right:.5em;
 }
-input,textarea,select{
+input,textarea, select{
 	float: right;
 	text-align: left;
 	width: 60%;
@@ -237,7 +237,7 @@ input,textarea,select{
 	background-color: #FAEBD7;
 	border: 1px solid #990000;
 }
-label,textarea, input, select, figure, radio
+label,textarea, input, figure, radio, select
 {	display: block;
 	float: left;
 }
@@ -245,7 +245,7 @@ button
 {	clear: right;
 	float: right;
 	margin-bottom:0.5em;
-	margin-right: 1em;
+	margin-right: 2.5em;
 }
 #check{
 	float: none;
@@ -429,6 +429,7 @@ th::before {
 td::before
 {
 	content: attr(data-label);
+	font-weight: bold;
 }
 table,
 tbody,
@@ -438,11 +439,13 @@ tr {
 tbody th {
 	display: block;
 	font-weight: bold;
+	font-size: 120%;
+	padding: .2em;
 }
 th a {
 	font-weight: normal;
 }
-td {
+td{
 	display: block;
 	min-width: 30%;
 	padding: .2em;
