@@ -47,19 +47,7 @@
 						<%}%>
 						
 						<label for="kategorie">Kategorie</label>	
-						<select name="kategorie">
-						<option value="0"></option>
-						<%
-						List<Kategorie> kategorieliste = KategorienAdministration.selektiereAlleKategorien();
-						for (Kategorie kategorie : kategorieliste)
-						{ if (kategorie.id == Integer.parseInt(request.getSession().getAttribute("kategorie").toString()))
-							{%>
-							<option value=<%=kategorie.id%> selected><%=kategorie.name%></option>
-							<%} else{ %>
-							<option value=<%=kategorie.id%>><%=kategorie.name%></option>
-							<%} %>
-						<%} %>
-						</select>
+						<select><option value="Kategorie.name"></option></select>
 						<label for="name">Ort</label>
 						<%if (request.getSession().getAttribute("ort") != null) 
 						{%>
@@ -88,7 +76,7 @@
 						<%}
 						else
 						{%>
-						<input type="date" id="datum" maxlength="30" placeholder="Enddatum" name="enddatum">
+						<input type="date" id="datum" maxlength="30" name="enddatum">
 						<%}%>
 						
 						<label for="preis">max Preis</label>
@@ -108,14 +96,11 @@
 					<thead>
 					<tr><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kateorie</th><th>Preis</th></tr></thead>
 					<tbody>
-					<%
-					SimpleDateFormat datum = new SimpleDateFormat( "yyyy-MM-dd" );
-					SimpleDateFormat datum2 = new SimpleDateFormat( "dd.MM.yyyy" );
+					<% 
 					String sucheOrt= "";
 					String sucheName = "";
-					int sucheKategorie = 0;
-					String sucheStartdatum = "";
-					String sucheEnddatum = "";
+					Date sucheStartdatum = null;
+					Date sucheEnddatum = null;
 					float sucheMaxPreis = 0;
 					
 					if (request.getSession().getAttribute("ort") != null)
@@ -128,54 +113,28 @@
 						 sucheName = request.getSession().getAttribute("name").toString();
 					}
 					
-					if (request.getSession().getAttribute("kategorie") != null)
-					{ 
-						sucheKategorie = Integer.parseInt(request.getSession().getAttribute("kategorie").toString());
-					}
-					
 					if (request.getSession().getAttribute("startdatum") != null)
 					{
-						String hilfs = request.getSession().getAttribute("startdatum").toString();
-						if (hilfs != "")
-						{
-							sucheStartdatum = request.getSession().getAttribute("startdatum").toString();
-							Date hilfs2 = datum2.parse(sucheStartdatum); 
-							sucheStartdatum = datum.format(hilfs2);
-						}
-							//hilfs2 = datum.format(hilfs2);
-						 //sucheStartdatum = String.format("yyyy-mm-dd",request.getSession().getAttribute("startdatum").toString());
+						 //sucheStartdatum = Date.parse(request.getSession().getAttribute("startdatum").toString());
 					}
 					
 					if (request.getSession().getAttribute("enddatum") != null)
 					{
-						String hilfs = request.getSession().getAttribute("enddatum").toString();
-						if (hilfs != "")
-						{
-							sucheEnddatum =request.getSession().getAttribute("enddatum").toString();	
-							Date hilfs2 = datum2.parse(sucheEnddatum);
-							sucheEnddatum = datum.format(hilfs2);
-						}
-						
-						 //sucheEnddatum = String.format("yyyy-mm-dd",request.getSession().getAttribute("enddatum").toString());
+						 //sucheEnddatum = request.getSession().getAttribute("enddatum").toString();
 					}
 					
 					if (request.getSession().getAttribute("maxPreis") != null)
 					{
-						String hilfs = request.getSession().getAttribute("maxPreis").toString();
-						if (hilfs.isEmpty())
-						{
-							hilfs = "0";
-						}
-						sucheMaxPreis = Float.parseFloat(hilfs);
+						 sucheMaxPreis = Float.parseFloat(request.getSession().getAttribute("maxPreis").toString());
 					}
 					
 											
-						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(sucheKategorie, sucheOrt, sucheName, sucheStartdatum, sucheEnddatum, sucheMaxPreis);
+						List<FestivalSuchobjekt> festivalliste = FestivalAdministration.selektiereFestivalsInSuche(0, sucheOrt, sucheName, null, null, sucheMaxPreis);
 						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
 						for (FestivalSuchobjekt festival : festivalliste)
 						{%>
 							<tr>
-								<td><a href="/Festiva/Festivaldetails?festivalid=<%=festival.id%>&maxPreis=<%=request.getSession().getAttribute("maxPreis")%>"><%=festival.name%></a></td>
+								<td><%=festival.name%></td>
 								<% if (festival.startDatum.compareTo(festival.endDatum) == 0)
 								{%>
 								<td><%=sd.format(festival.startDatum)%></td>
@@ -185,7 +144,7 @@
 								<td><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
 								<%} %>
 								<td><%=festival.ort%></td>
-								<td><%=KategorienAdministration.selektiereKategorie(festival.kategorienID).name%></td>
+								<td><%=festival.kategorienID%></td>
 								<% if (festival.vonPreis == festival.bisPreis)
 								{%>
 								<td><%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
@@ -197,10 +156,7 @@
 							</tr><%
 							}
 							request.getSession().removeAttribute("ort");
-							request.getSession().removeAttribute("name");
-							request.getSession().removeAttribute("maxPreis");
-							request.getSession().removeAttribute("startdatum");
-							request.getSession().removeAttribute("enddatum");%>
+							request.getSession().removeAttribute("name");%>
 					</tbody>
 				</table>
 				</table>
