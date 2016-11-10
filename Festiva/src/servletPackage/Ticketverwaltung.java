@@ -79,6 +79,9 @@ public class Ticketverwaltung extends HttpServlet {
 				if(request.getParameter("maxpreis") != null && request.getParameter("maxpreis").trim().length() != 0) {
 					maxPreis = Float.parseFloat(request.getParameter("maxpreis"));
 				}
+				if(startDatum != null && endDatum != null) {
+					
+				}
 				
 				FestivalSuchobjekt suchKriterien = new FestivalSuchobjekt(-1, name, ort, "", start, end, 0, maxPreis, kategorienID);
 				List<FestivalSuchobjekt> listFestivals = FestivalAdministration.selektiereFestivalsInSuche(kategorienID, ort, name, startDatum, endDatum, maxPreis);
