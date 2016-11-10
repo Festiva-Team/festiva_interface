@@ -27,35 +27,35 @@
 				<div id="zeile">
 					<div id="spaltelinks">				
 						<label for="vorname">Vorname</label>
-						<input type="text" id="vorname" name="vorname" maxlength="30" value="<%=benutzer.vorname%>">
+						<input type="text" id="vorname" name="vorname" title="Hier können Sie Ihren Vornamen eingeben." maxlength="30" value="<%=benutzer.vorname%>">
 						<label for="nachname">Nachname</label>
-						<input type="text" id="nachname" name="nachname" maxlength="40" value="<%=benutzer.nachname%>">
+						<input type="text" id="nachname" name="nachname" title="Hier können Sie Ihren Nachnamen eingeben." maxlength="40" value="<%=benutzer.nachname%>">
 						<label for="email">E-Mail*</label>
 						<input type="email" id="email" name="email" title="Bitte geben Sie eine gültige E-Mail Adresse ein!" maxlength="50" required="required" value="<%=benutzer.eMailAdresse%>">					
 						<label for="iban">IBAN</label>
-						<input type="text" id="iban" name="iban" title="Bitte geben Sie eine gültige IBAN ein!" minlength="22" maxlength="22" pattern="DE[0-9]{20}" value="<%=benutzer.iban%>">
+						<input type="text" id="iban" name="iban" title="Hier können Sie Ihre IBAN eingeben." minlength="22" maxlength="22" pattern="DE[0-9]{20}" value="<%=benutzer.iban%>">
 						<label for="bic">BIC</label>
-						<input type="text" id="bic" name="bic" title="Bitte geben Sie eine gültige BIC ein!" minlength="9" maxlength="11" value="<%=benutzer.bic%>">
+						<input type="text" id="bic" name="bic" title="Hier können Sie Ihre BIC eingeben." minlength="9" maxlength="11" value="<%=benutzer.bic%>">
 					</div>
 					<div id="spalterechts">
 						<label for="strasse">Straße</label>
-						<input type="text" id="strasse" name="strasse" maxlength="50" value="<%=benutzer.strasse%>">
+						<input type="text" id="strasse" name="strasse" maxlength="50" title="Hier können Sie Ihre Straße eingeben." value="<%=benutzer.strasse%>">
 						<label for="hausnummer">Hausnummer</label>
-						<input type="text" id="hausnummer" name="hausnummer" minlength="1" maxlength="5" value="<%=benutzer.hausnummer%>">
+						<input type="text" id="hausnummer" name="hausnummer" minlength="1" title="Hier können Sie Ihre Hausnummer eingeben." maxlength="5" value="<%=benutzer.hausnummer%>">
 						
 						<label for="plz">PLZ</label>
 						<%if(benutzer.plz == 0) { %>
-						<input type="text" id="plz" name="plz" pattern="[0-9]{5}" value="">
+						<input type="text" id="plz" name="plz" pattern="[0-9]{5}" title="Hier können Sie Ihre Postleitzahl eingeben." value="">
 						<% } else { %>
-						<input type="text" id="plz" name="plz" pattern="[0-9]{5}" value="<%=benutzer.plz%>">
+						<input type="text" id="plz" name="plz" pattern="[0-9]{5}" title="Hier können Sie Ihre Postleitzahl eingeben." value="<%=benutzer.plz%>">
 						<% } %>
 						<label for="ort">Ort</label>
-						<input type="text" id="ort" name="ort" maxlength="30" value="<%=benutzer.ort%>">
+						<input type="text" id="ort" name="ort" maxlength="30" title="Hier können Sie Ihren Wohnort eingeben." value="<%=benutzer.ort%>">
 						<label for="einzugsermächtigungErteilt">Einzugsermächtigung erteilt</label>
 	      				<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value=
 	      					   "<%=benutzer.einzugsermächtigungErteilt%>"
 	      					   <% if (benutzer.einzugsermächtigungErteilt == true) {%>
-	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> >
+	      					   checked=<%="checked"%>title="Sie haben uns die Einzugsermächtigung erteilt."<%} else {%><%=""%>title="Sie haben uns die Einzugsermächtigung noch nicht erteilt."<%} %> >
 						<button type="submit">Änderungen speichern</button>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 				<h2>Mein Passwort</h2>
 				<div id="spaltelinks">
 					<label for="passwortalt">Altes Passwort*</label>
-					<input type="password" name="passwortalt" id="passwortalt" maxlength="40" required="required">
+					<input type="password" name="passwortalt" id="passwortalt" title="Bitte geben Sie Ihr altes Passwort ein!" maxlength="40" required="required">
 					<label for="passwortneu">Neues Passwort*</label>
 					<input type="password" name="passwortneu" id="passwortneu" maxlength="40" title="Bitte beachten Sie bei der Wahl Ihres Passworts den rechtsstehenden Hinweis!" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<label for="passwortbestätigung">Neues Passwort bestätigen*</label>

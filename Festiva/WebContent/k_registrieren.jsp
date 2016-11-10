@@ -31,13 +31,13 @@
 				<h2>Registrierung</h2>
 				<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<label for="email">E-Mail*</label>
-				<input type="email" name="email" id="email" maxlength="30" required="required" autofocus>
+				<input type="email" name="email" id="email" maxlength="30" title="Bitte geben Sie eine gültige E-Mail Adresse ein!" required="required" autofocus>
 				<label for="emailbestätigung">E-Mail bestätigen*</label>
-				<input type="email" name="emailbestätigung" id="emailbestätigung" maxlength="30" required="required">
+				<input type="email" name="emailbestätigung" id="emailbestätigung" title="Bitte geben Sie eine gültige E-Mail Adresse ein!" maxlength="30" required="required">
 				<label for="passwort">Passwort*</label>
-				<input type="password" name="passwort" id="passwort" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
+				<input type="password" name="passwort" id="passwort" maxlength="40" title="Bitte beachten Sie bei der Wahl Ihres Passworts den rechtsstehenden Hinweis!" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
 				<label for="passwortbestätigung">Passwort bestätigen*</label>
-				<input type="password" name="passwortbestätigung" id="passwortbestätigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+				<input type="password" name="passwortbestätigung" id="passwortbestätigung" title="Bitte beachten Sie bei der Wahl Ihres Passworts den rechtsstehenden Hinweis!" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
 				<button type="submit">Registrieren</button>
 			</div>
 			<div id="spalterechts">

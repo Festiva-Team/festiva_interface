@@ -42,9 +42,9 @@ if (request.getSession(false) != null) {
 				<h2>Ticket Shop</h2>
 					<div id="spaltelinks">					
 						<label for="name">Name</label>
-						<input type="search" id="name" maxlength="30" name="name" <% if(suchKriterien.name != null) { %> value="<%=suchKriterien.name%>" <% } %>>
+						<input type="search" id="name" maxlength="30" title="Hier können Sie den Namen des gesuchten Festivals angeben." name="name" <% if(suchKriterien.name != null) { %> value="<%=suchKriterien.name%>" <% } %>>
 						<label for="kategorie">Kategorie</label>
-						<select id="kategorie" name="kategorie">
+						<select id="kategorie" name="kategorie" title="Hier können Sie nach den verfügbaren Kategorien selektieren.">
 						<option value=0></option>
 						<%for (Kategorie kategorie : listKategorien) { 
 							if(suchKriterien.kategorienID != 0 && kategorie.id == suchKriterien.kategorienID) { %>
@@ -54,19 +54,19 @@ if (request.getSession(false) != null) {
 						<% } } %>
 						</select>	
 						<label for="name">Ort</label>
-						<input type="text" id="ort" maxlength="30" name="ort" <% if(suchKriterien.ort != null) { %> value="<%=suchKriterien.ort%>" <% } %>>
+						<input type="text" id="ort" maxlength="30" name="ort" title="Hier können Sie den Ort des gesuchten Festivals angeben." <% if(suchKriterien.ort != null) { %> value="<%=suchKriterien.ort%>" <% } %>>
 						
 						</div>
 					<div id="spalterechts">						
-						<label for="startdatum">Startdatum</label>
-						<input type="text" id="startdatum" maxlength="30" placeholder="TT.MM.JJJJ" name="startdatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.startDatum != null) { %> value="<%=datum.format(suchKriterien.startDatum)%>" <% } %>>
+						<label for="startdatum">Im Zeitraum von</label>
+						<input type="text" id="startdatum" maxlength="30" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" placeholder="TT.MM.JJJJ" name="startdatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.startDatum != null) { %> value="<%=datum.format(suchKriterien.startDatum)%>" <% } %>>
 													
-						<label for="enddatum">Enddatum</label>
-						<input type="text" id="enddatum" maxlength="30" placeholder="TT.MM.JJJJ" name="enddatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.endDatum != null) { %> value="<%=datum.format(suchKriterien.endDatum)%>" <% } %>>
+						<label for="enddatum">bis</label>
+						<input type="text" id="enddatum" maxlength="30" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" placeholder="TT.MM.JJJJ" name="enddatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.endDatum != null) { %> value="<%=datum.format(suchKriterien.endDatum)%>" <% } %>>
 						
 						
 						<label for="preis">Maximaler Preis</label>
-						<input type="number" step="0.01" min="0" id="preis" maxlength="8" placeholder="0,00" name="maxpreis" <% if(suchKriterien.bisPreis != 0) { %> value="<%=suchKriterien.bisPreis%>" <% } %>>
+						<input type="number" step="0.01" min="0" id="preis" title="Hier können Sie festlegen, wie viel Geld Sie maximal ausgeben möchten." maxlength="8" placeholder="0,00" name="maxpreis" <% if(suchKriterien.bisPreis != 0) { %> value="<%=suchKriterien.bisPreis%>" <% } %>>
 						
 						<button type="submit">Suchen</button>
 					</div>
