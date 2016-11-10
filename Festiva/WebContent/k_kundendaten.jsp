@@ -31,11 +31,11 @@
 						<label for="nachname">Nachname</label>
 						<input type="text" id="nachname" name="nachname" maxlength="40" value="<%=benutzer.nachname%>">
 						<label for="email">E-Mail*</label>
-						<input type="email" id="email" name="email" maxlength="50" required="required" value="<%=benutzer.eMailAdresse%>">					
+						<input type="email" id="email" name="email" title="Bitte geben Sie eine g¸ltige E-Mail Adresse ein!" maxlength="50" required="required" value="<%=benutzer.eMailAdresse%>">					
 						<label for="iban">IBAN</label>
-						<input type="text" id="iban" name="iban" minlength="22" maxlength="22" pattern="DE[0-9]{20}" value="<%=benutzer.iban%>">
+						<input type="text" id="iban" name="iban" title="Bitte geben Sie eine g¸ltige IBAN ein!" minlength="22" maxlength="22" pattern="DE[0-9]{20}" value="<%=benutzer.iban%>">
 						<label for="bic">BIC</label>
-						<input type="text" id="bic" name="bic" minlength="9" maxlength="11" value="<%=benutzer.bic%>">
+						<input type="text" id="bic" name="bic" title="Bitte geben Sie eine g¸ltige BIC ein!" minlength="9" maxlength="11" value="<%=benutzer.bic%>">
 					</div>
 					<div id="spalterechts">
 						<label for="strasse">Straﬂe</label>
@@ -68,9 +68,9 @@
 					<label for="passwortalt">Altes Passwort*</label>
 					<input type="password" name="passwortalt" id="passwortalt" maxlength="40" required="required">
 					<label for="passwortneu">Neues Passwort*</label>
-					<input type="password" name="passwortneu" id="passwortneu" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+					<input type="password" name="passwortneu" id="passwortneu" maxlength="40" title="Bitte beachten Sie bei der Wahl Ihres Passworts den rechtsstehenden Hinweis!" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<label for="passwortbest‰tigung">Neues Passwort best‰tigen*</label>
-					<input type="password" name="passwortbest‰tigung" id="passwortbest‰tigung" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+					<input type="password" name="passwortbest‰tigung" id="passwortbest‰tigung" maxlength="40" title="Bitte beachten Sie bei der Wahl Ihres Passworts den rechtsstehenden Hinweis!" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<button type="submit">Passwort ‰ndern</button>	
 				</div>
 				<div id="spalterechts">

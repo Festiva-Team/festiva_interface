@@ -34,9 +34,9 @@ else {
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<div id="spaltelinks">
 					<label for="name">Kategorienname*</label>
-					<input type="text" id="name" name="name" maxlength="30" required="required" value="<%=kategorie.name%>">
+					<input type="text" id="name" name="name" maxlength="30" title="Bitte wählen Sie einen passenden Namen!" required="required" value="<%=kategorie.name%>">
 					<label for="beschreibung">Beschreibung*</label>
-					<textarea rows="5" id="beschreibung" name="beschreibung" required="required"><%=kategorie.beschreibung%></textarea>
+					<textarea rows="5" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"><%=kategorie.beschreibung%></textarea>
 					<label for="bild">Neues Bild</label>
 					<input type="file" id="bild" name="bild" accept="image/*">
 					<output id="list"></output>
@@ -46,28 +46,24 @@ else {
 					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
 	      					   "<%=kategorie.istGelöscht%>"
 	      					   <% if (kategorie.istGelöscht == true) {%>
-	      					   checked=<%="checked"%><%} else {%><%=""%><%} %> ><br/>
+	      					   checked=<%="checked"%> title="Die Kategorie ist gelöscht."<%} else {%><%=""%>title="Die Kategorie ist nicht gelöscht."<%} %> ><br/>
 	      			<% } %>
 					<button type="submit">Änderungen speichern</button>
 				</div>
 				<div id="spalterechts">
-				<form action="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>&t=<%=new Date().getTime()%>" method="post">
 					<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) { %>
 					<figure class="bild1">
 					<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150 />
-					<h5>Das aktuellste Bild wird noch nicht angezeigt? Bitte aktualisieren Sie die Seite.</h5>
-					<button type="submit">Aktualisieren</button>
 					</figure>
 					<% } else { %>
 						<p>Kein Bild vorhanden</p>
 						<% } %>
-					</form>
 				</div> 	
 				</div>
 				</form>
-				<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { %>
+				<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { if(new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) {%>
 		<button type="submit" onClick="window.location.href='/Festiva/Kategorienverwaltung?aktion=b_loeschen&kategorienid=<%=kategorie.id%>'">Aktuelles Bild löschen</button>
-		
+		<% } %>
 				
 					<button type="submit" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
 					<% } %>
