@@ -39,11 +39,11 @@
     	<div id="main">
     		<div id="zeile"><h1><%=festival.name%></h1>
 				<div id="spalterechts">
-				<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
+				<%if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
 						<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150/>
 						<% } else { %>
 						<p>Kein Bild vorhanden</p>
-						<% } %>
+				  		<% } %>
 				</div>
 				<div id="spalte2">
 					<table class= "festival">

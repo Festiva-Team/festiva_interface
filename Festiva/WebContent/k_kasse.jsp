@@ -49,6 +49,11 @@
 				  	<label class ="h2">Zahlungsdaten</label>
 				    <label class="kasse">IBAN:</label> <p><%=benutzer.iban%></p>
 				    <label class="kasse">BIC:</label><p><%=benutzer.bic%></p>
+				    <% if(benutzer.einzugsermächtigungErteilt == true) {%>
+				    <p>Die Einzugsermächtigung wurde erteilt.</p>
+				    <% } else { %>
+				    <p>Die Einzugsermächtigung wurde noch nicht erteilt.</p>
+				    <% } %>
 				</fieldset>
 				</div>
 			</div>		 
@@ -86,12 +91,12 @@
 	 				<input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" >
 	 				<label>Per Post</label>
 	 				<input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)"> 
-	 			    <button type="submit" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
+	 			    <button type="submit" onclick="return confirm('Sind Sie sicher, dass alle Eingaben richtig sind und Sie die Bestellung endgültig abschließen möchten?')" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>
 			 		</form>
 	 			 </div>	
 	 			 <div id="spalterechts">
 	 			 	<%if(kundendatenVollstaendig.equals(false)) { %>
-					 <p> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt haben. Hier können Sie Ihre Kundendaten anpassen: </p>
+					 <p> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt und uns die Einzugsermächtigung erteilt haben. Hier können Sie Ihre Kundendaten anpassen: </p>
 					 <% } else { %>
 					 <p> Bitte kontrollieren Sie Ihre Angaben auf dieser Seite bevor Sie die Bestellung abschließen. Sie möchten Ihre Kundendaten anpassen? Dann klicken Sie bitte hier: 					 
 					 <% } %>
@@ -107,7 +112,6 @@
 </div>
 </body>
 <script type="text/javascript">
-	
 <!--
 var arrObjRadio = new Array();
 function versenden(objRadio){
@@ -126,7 +130,6 @@ switch(objRadio.value){
 }
 }
 //-->
-
 </script>
 </html>
 <% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb"); request.getSession().removeAttribute("benutzer"); request.getSession().removeAttribute("perPost"); request.getSession().removeAttribute("kundendatenVollstaendig");}%>

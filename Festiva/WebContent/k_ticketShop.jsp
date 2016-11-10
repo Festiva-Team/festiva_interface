@@ -75,7 +75,8 @@ if (request.getSession(false) != null) {
 					<thead>
 					<tr><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kateorie</th><th>Preis</th></tr></thead>
 					<tbody>
-					<% 	SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
+					<% 	if(listFestivals != null && !listFestivals.isEmpty()) {
+						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
 						for (FestivalSuchobjekt festival : listFestivals)
 						{%>
 							<tr>
@@ -102,7 +103,7 @@ if (request.getSession(false) != null) {
 								<td> ab <%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
 								<%} %>
 							</tr><%
-							}%>
+							} }%>
 					</tbody>
 				</table>
 				</table>

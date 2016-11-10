@@ -10,8 +10,12 @@
 	# JSP-Name: merchandiseShop.jsp
 */
 if (request.getSession(false) != null) {
-	List<Artikel> listArtikel = (List<Artikel>)request.getSession(false).getAttribute("listArtikel");
 	List<Integer> listArtikelID = null;
+	List<Artikel> listArtikel = null;
+	if(request.getSession(false).getAttribute("listArtikel") != null) {
+	listArtikel = (List<Artikel>)request.getSession(false).getAttribute("listArtikel");
+	}
+	
 	if(request.getSession(false).getAttribute("listArtikelID") != null) {
 	listArtikelID = (List<Integer>)request.getSession(false).getAttribute("listArtikelID");
 	}
@@ -42,19 +46,15 @@ if (request.getSession(false) != null) {
 			<div id="zeile">
 				<table>
 								
-					
-					<%					
+					<%if(listArtikel != null && !listArtikel.isEmpty()) {
+										
 						for (Artikel artikel : listArtikel)
 						{%>
 						<tbody>	<tr>
-						<%if(!(artikel.bildpfad).equals("")) { %>
 						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 						<td><figure class="bild1">
 						<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
 						</figure></td>
-						<% } else { %>
-								<td data-label="Bild">Kein Bild verfügbar</td>
-								<% } %>
 						<% } else { %>
 								<td data-label="Bild">Kein Bild verfügbar</td>
 								<% }	%>
@@ -64,7 +64,7 @@ if (request.getSession(false) != null) {
 								<select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 								<td><button type="submit" id="Artikel in Warenkorb" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td>
 							</tr></tbody>
-						<% }	%>
+						<% } }%>
 				</table>
 			</div>	
 		<div id="leer"></div>
