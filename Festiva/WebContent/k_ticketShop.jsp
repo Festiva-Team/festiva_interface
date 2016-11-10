@@ -17,9 +17,13 @@
 */
 if (request.getSession(false) != null) {
 	SimpleDateFormat datum = new SimpleDateFormat("dd.MM.yyyy");
-	List<FestivalSuchobjekt> listFestivals = (List<FestivalSuchobjekt>)request.getSession(false).getAttribute("listFestivals");
+	List<FestivalSuchobjekt> listFestivals = null;
 	List<Kategorie> listKategorien = (List<Kategorie>)request.getSession(false).getAttribute("listKategorien");
 	FestivalSuchobjekt suchKriterien = suchKriterien = (FestivalSuchobjekt)request.getSession(false).getAttribute("suchKriterien");
+	
+	if(request.getSession(false).getAttribute("listFestivals") != null) {
+		listFestivals = (List<FestivalSuchobjekt>)request.getSession(false).getAttribute("listFestivals");
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,9 +43,9 @@ if (request.getSession(false) != null) {
 		<div id="main">
 			<form action="/Festiva/Ticketverwaltung?aktion=t_anzeigen" method="post">
 				<div id="zeile1">
-				<h2>Ticket Shop</h2>
+				<h2>Ticket Shop</h2> 
 					<div id="spaltelinks">					
-						<label for="name">Name</label>
+						<label for="name">Name des Festivals</label>
 						<input type="search" id="name" maxlength="30" name="name" <% if(suchKriterien.name != null) { %> value="<%=suchKriterien.name%>" <% } %>>
 						<label for="kategorie">Kategorie</label>
 						<select id="kategorie" name="kategorie">
@@ -70,7 +74,14 @@ if (request.getSession(false) != null) {
 						
 						<button type="submit">Suchen</button>
 					</div>
-				</div>		
+				</div>	
+				<div id=spalterechts>
+					<% if (request.getSession().getAttribute("antwort") != null) 		
+					{ %> 
+					<p><%= request.getSession().getAttribute("antwort") %></p>	
+					<% request.getSession().removeAttribute("antwort");}  %>
+				</div>	
+				<% if (listFestivals != null) { %>
 				<table>
 					<thead>
 					<tr><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kateorie</th><th>Preis</th></tr></thead>
@@ -105,7 +116,7 @@ if (request.getSession(false) != null) {
 							}%>
 					</tbody>
 				</table>
-				</table>
+				<% } %>
 			</form>
 		<div id="leer"></div>
 		</div>

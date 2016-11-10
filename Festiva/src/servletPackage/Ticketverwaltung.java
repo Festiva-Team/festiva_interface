@@ -53,6 +53,7 @@ public class Ticketverwaltung extends HttpServlet {
 				String startDatum = null;
 				String endDatum = null;
 				float maxPreis = 0;
+				String antwort = "";
 				
 				if(request.getParameter("kategorie") != null && request.getParameter("kategorie").trim().length() != 0) {
 					kategorienID = Integer.parseInt(request.getParameter("kategorie"));
@@ -79,15 +80,16 @@ public class Ticketverwaltung extends HttpServlet {
 				if(request.getParameter("maxpreis") != null && request.getParameter("maxpreis").trim().length() != 0) {
 					maxPreis = Float.parseFloat(request.getParameter("maxpreis"));
 				}
-				if(startDatum != null && endDatum != null) {
-					
+				if(start != null && end != null && start.compareTo(end) > 0) {
+						antwort = "Das eingegebene Enddatum liegt vor dem Startdatum. Bitte korrigieren Sie Ihre Eingabe.";
+						session.setAttribute("antwort", antwort);
+				} else {				
+					List<FestivalSuchobjekt> listFestivals = FestivalAdministration.selektiereFestivalsInSuche(kategorienID, ort, name, startDatum, endDatum, maxPreis);
+					session.setAttribute("listFestivals", listFestivals);	
 				}
-				
-				FestivalSuchobjekt suchKriterien = new FestivalSuchobjekt(-1, name, ort, "", start, end, 0, maxPreis, kategorienID);
-				List<FestivalSuchobjekt> listFestivals = FestivalAdministration.selektiereFestivalsInSuche(kategorienID, ort, name, startDatum, endDatum, maxPreis);
 				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleAktivenKategorien();
+				FestivalSuchobjekt suchKriterien = new FestivalSuchobjekt(-1, name, ort, "", start, end, 0, maxPreis, kategorienID);
 				session.setAttribute("suchKriterien", suchKriterien);
-				session.setAttribute("listFestivals", listFestivals);
 				session.setAttribute("listKategorien", listKategorien);
 				request.getRequestDispatcher("k_ticketShop.jsp").include(request, response);
 			} else {

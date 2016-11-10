@@ -223,10 +223,10 @@ public class FestivalAdministration {
 		// Bedingung zum Einschränken über den Ort
 		if (p_ort != null && p_ort != "") {
 			if (where == true) {
-				selectBefehl = selectBefehl + "AND UPPER(f.ort) = '" + p_ort.toUpperCase() + "' ";
+				selectBefehl = selectBefehl + "AND UPPER(f.ort) LIKE '%" + p_ort.toUpperCase() + "%' ";
 			}
 			else {
-				selectBefehl = selectBefehl + "WHERE UPPER(f.ort) = '" + p_ort.toUpperCase() + "' ";
+				selectBefehl = selectBefehl + "WHERE UPPER(f.ort) LIKE '%" + p_ort.toUpperCase() + "%' ";
 				where = true;
 			}
 			}
@@ -234,10 +234,10 @@ public class FestivalAdministration {
 		// Bedingung zum Einschränken über den Festivalnamen
 		if (p_name != null && p_name != "") {
 			if (where == true) {
-				selectBefehl = selectBefehl + "AND UPPER(f.name) = '" + p_name.toUpperCase() + "' ";
+				selectBefehl = selectBefehl + "AND UPPER(f.name) LIKE '%" + p_name.toUpperCase() + "%' ";
 			}
 			else {
-				selectBefehl = selectBefehl + "WHERE UPPER(f.name) = '" + p_name.toUpperCase() + "' ";
+				selectBefehl = selectBefehl + "WHERE UPPER(f.name) LIKE '%" + p_name.toUpperCase() + "%' ";
 				where = true;
 			}
 		}
