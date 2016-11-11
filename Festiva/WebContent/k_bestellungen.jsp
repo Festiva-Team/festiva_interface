@@ -39,23 +39,23 @@
 					<thead><tr><th>Position</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
 					 <%for (Bestellposition bestellposition : bestellung.listPositionen) { %>
 					<tbody><tr>
-								<td data-label="ID"><%=id%></td>
+								<td data-label="ID: "><%=id%></td>
 								<% for(Artikel artikel : listArtikel) {
 								   if (bestellposition.artikelID == artikel.id) {
 									   if(artikel.festivalID == 0) { %>
-							    <td data-label="Festival"><%=""%></td>   
+							    <td data-label="Festival: "><%=""%></td>   
 								<%	   } else {
 									   for(Festival festival : listFestivals) {
 										   if (festival.id == artikel.festivalID) { %>
-										   <td data-label="Festival"><%=festival.name%></td>
+										   <td data-label="Festival: "><%=festival.name%></td>
 										<% }}}}} %>
-								<td data-label="Artikelbeschreibung"><%=bestellposition.beschreibung%></td>
-								<td data-label="Preis"><%=String.format("%.2f",bestellposition.preis)%> &#8364;</td>
-								<td data-label="Anzahl"><%=bestellposition.menge%></td>
-								<td data-label="Gesamtpreis"><%=String.format("%.2f",(bestellposition.menge * bestellposition.preis))%> &#8364;</td>
+								<td data-label="Artikel: "><%=bestellposition.beschreibung%></td>
+								<td data-label="Preis: "><%=String.format("%.2f",bestellposition.preis)%> &#8364;</td>
+								<td data-label="Anzahl: "><%=bestellposition.menge%></td>
+								<td data-label="Gesamtpreis: "><%=String.format("%.2f",(bestellposition.menge * bestellposition.preis))%> &#8364;</td>
 					</tr></tbody>
 					<% id++; gesamtsumme = gesamtsumme + (bestellposition.menge * bestellposition.preis); } %>
-					<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tfoot>
+					<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th data-label="Gesamtsumme: "><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tfoot>
 					</tr>
 				</table>
 				<br/><br/>

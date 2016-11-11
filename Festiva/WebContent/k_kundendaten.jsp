@@ -74,16 +74,14 @@
 					<button type="submit">Passwort ändern</button>	
 				</div>
 				<div id="spalterechts">
-					<p>Hinweis: Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
-				</div>	
-				<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Mein Benutzerkonto löschen</button>
-				<div id="spalterechts">
+					<p id="text"><b>Hinweis:</b> Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>
-					<p><%= request.getSession().getAttribute("antwort") %></p>
+					<p id="antwort"><b><%= request.getSession().getAttribute("antwort") %></b></p>
 					<% } request.getSession().removeAttribute("antwort"); 
 					     request.getSession().removeAttribute("benutzer");%>
-				</div>
+				</div>	
+				<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Mein Benutzerkonto löschen</button>
 				</div>
 			</form>
 		<div id="leer"></div>
@@ -99,7 +97,6 @@ function del(id){
 	      } else {
 	    	 document.location.href='/Festiva/Benutzerdaten?aktion=anzeigen';
 	      }
-
 }
 </script>
 </html>

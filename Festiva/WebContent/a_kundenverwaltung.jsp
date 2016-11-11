@@ -38,27 +38,27 @@ else {
 					<%for (Benutzer benutzer : listBenutzer) { %>
 					<tbody><tr>
 								
-								<th data-label="Kunde"><a href="/Festiva/Kundenverwaltung?aktion=aendern&kundenid=<%=benutzer.id%>"><%=benutzer.id%></a></th>
+								<th data-label="Kunde: "><a href="/Festiva/Kundenverwaltung?aktion=aendern&kundenid=<%=benutzer.id%>"><%=benutzer.id%></a></th>
 								<%if (benutzer.nachname == null) { %>
-								<td data-label="Nachname"><%=""%></td>
+								<td data-label="Nachname: "><%=""%></td>
 								<% } else { %>
-								<td data-label="Nachname"><%=benutzer.nachname%></td>
+								<td data-label="Nachname: "><%=benutzer.nachname%></td>
 								<% } %>
 								<%if (benutzer.vorname == null) { %>
-								<td data-label="Vorname"><%=""%></td>
+								<td data-label="Vorname: "><%=""%></td>
 								<% } else { %>
-								<td data-label="Vorname"><%=benutzer.vorname%></td>
+								<td data-label="Vorname: "><%=benutzer.vorname%></td>
 								<% } %>
-								<td data-label="E-Mail"><%=benutzer.eMailAdresse%></td>
+								<td data-label="E-Mail: "><%=benutzer.eMailAdresse%></td>
 								<%if (benutzer.istGesperrt == false) { %>
-								<td data-label="Gesperrt"><%="nein"%></td>
+								<td data-label="Gesperrt: "><%="nein"%></td>
 								<% } else { %>
-								<td data-label="Gesperrt"><%="ja"%></td>
+								<td data-label="Gesperrt: "><%="ja"%></td>
 								<% } %>
 								<%if (benutzer.istGelöscht == false) { %>
-								<td data-label="Gelöscht"><%="nein"%></td>
+								<td data-label="Gelöscht: "><%="nein"%></td>
 								<% } else { %>
-								<td data-label="Gelöscht"><%="ja"%></td>
+								<td data-label="Gelöscht: "><%="ja"%></td>
 								<% } %>
 					</tr></tbody>
 					<% } %>

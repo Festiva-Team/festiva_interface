@@ -73,7 +73,7 @@ else {
 			<form action="/Festiva/Kundenverwaltung?aktion=pw_aendern&kundenid=<%=benutzer.id%>" method="post">
 					<div id="spalterechts">
 					<h3>Passwort ‰ndern</h3>
-					<p>Hinweis: Das Passwort muss aus mindestens einem Klein- und Groﬂbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestl‰nge des Passworts betr‰gt 8 Zeichen.</p>	
+					<p id="text"><b>Hinweis:</b> Das Passwort muss aus mindestens einem Klein- und Groﬂbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestl‰nge des Passworts betr‰gt 8 Zeichen.</p>	
 					<label for="passwortneu">Neues Passwort</label>
 					<input type="password" id="passwortneu" name="passwortneu" title="Bitte beachten Sie bei der Wahl des Passworts den obenstehenden Hinweis!" maxlength="40" required="required" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 					<label for="passwortbest‰tigung">Neues Passwort best‰tigen</label>

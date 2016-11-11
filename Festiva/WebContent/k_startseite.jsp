@@ -29,18 +29,18 @@
 		</div>
 			<figure class="bildzeile">
 				<figure class="bild1">
-					<a href="k_shop.jsp">
+					<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=1%>">
 					<img src="/Festiva/Bilder/Rock.jpg"/>
 					</a>
-					<a href="k_shop.jsp">
+					<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=3%>">
 					<img src="/Festiva/Bilder/Metal.jpg"/>
 					</a>
 				</figure>
 				<figure class="bild2">
-					 <a href="k_shop.jsp">
+					 <a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=4%>">
 					 <img src="/Festiva/Bilder/Electro.jpg"/>
 					 </a>
-					 <a href="k_shop.jsp">
+					 <a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=2%>">
 					 <img src="/Festiva/Bilder/Schlager.jpg"/>
 					 </a>
 				</figure> 

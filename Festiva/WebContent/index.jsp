@@ -7,5 +7,6 @@
 <jsp:forward page="/Produktverwaltung">
 <jsp:param name="aktion" value="s_anzeigen" ></jsp:param>
 </jsp:forward>
+
 </body> 
 </html>

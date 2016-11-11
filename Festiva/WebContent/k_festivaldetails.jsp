@@ -38,31 +38,31 @@
     	</jsp:include>
     	<div id="main">
     		<div id="zeile"><h1><%=festival.name%></h1>
-				<div id="spalterechts">
+				<div id="spaltelinks">
 				<%if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
 						<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150/>
 						<% } else { %>
 						<p>Kein Bild vorhanden</p>
 				  		<% } %>
 				</div>
-				<div id="spalte2">
+				<div id="spalterechts">
 					<table class= "festival">
 						<tr><td><b>Zeitraum:</b></td><td> <%=sd.format(festival.startDatum)%>  -  <%=sd.format(festival.endDatum)%></td></tr>
 						<tr><td><b>Ort:</b></td><td><%=festival.ort%></td></tr>
-						<tr><td><b>Beschreibung:</b></td><td><%=festival.kurzbeschreibung%></td></tr>
+						<tr><td width="20%"><b>Beschreibung:</b></td><td><%=festival.kurzbeschreibung%></td></tr>
 					</table>
 				</div>
 			</div>
-			<p>Langbeschreibung: <%=festival.langbeschreibung%></p>
+			<p id="text"><%=festival.langbeschreibung%></p>
 			<% if (listArtikel != null && !(listArtikel.isEmpty())) { %>
 					<label class="h2">Verfügbare Tickets</label>
 					<table class= "artikel">
 						<thead><tr><th>Beschreibung</th><th>Preis</th><th></th><th></th></tr></thead>
 						<%for (Artikel artikel : listArtikel) { %>
 						<tbody>	<tr>		
-						<th data-label="Beschreibung"><%=artikel.beschreibung%></th>
-						<td data-label="Preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-						<td data-label="Anzahl"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+						<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<td data-label="" width="20%"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 						<td><button type="submit" id="Artikel in Warenkorb" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 						</tr></tbody>
 						<% } %>
@@ -73,9 +73,9 @@
 						<thead><tr><th>Beschreibung</th><th>Preis</th><th></th><th></th></tr></thead>
 						<%for (Artikel artikel : listArtikelMitMaxPreis) { %>
 						<tbody>	<tr>		
-						<th data-label="Beschreibung"><%=artikel.beschreibung%></th>
-						<td data-label="Preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-						<td data-label="Anzahl"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+						<th data-label="Beschreibung: "><%=artikel.beschreibung%></th>
+						<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<td data-label=""><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 						<td><button type="submit" id="Artikel in Warenkorb" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 						</tr></tbody>
 						<% } %>
@@ -89,9 +89,9 @@
 						<thead><tr><th>Beschreibung</th><th>Preis</th><th></th><th></th></tr></thead>
 						<%for (Artikel artikel : listArtikelUeberMaxPreis) { %>
 						<tbody>	<tr>		
-						<th data-label="Beschreibung"><%=artikel.beschreibung%></th>
-						<td data-label="Preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-						<td data-label="Anzahl"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+						<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<td data-label=""><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 						<td><button type="submit" id="Artikel in Warenkorb" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 						</tr></tbody>
 						<% } %>

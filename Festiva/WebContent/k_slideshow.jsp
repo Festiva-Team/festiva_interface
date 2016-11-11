@@ -18,31 +18,58 @@ if (request.getSession(false) != null) {
 <meta http-equiv="Expires" content="0" />
 	<title>Festiva</title>
 <script type="text/javascript">
-var i = 0;
-var path = new Array();
- 
-// LIST OF IMAGES
-path[0] = "image_1.gif";
-path[1] = "image_2.gif";
-path[2] = "image_3.gif";
-function swapImage()
-{
-   document.slide.src = path[i];
-   if(i < path.length - 1) i++; else i = 0;
-   setTimeout("swapImage()",3000);
+var pfad;
+var katId
+
+var i = 1;
+var total = 4;
+function slide(x, pfade) {
+	var bilder;
+	i = i + x; 
+	for (var j = 0; j < pfade.length; j++){
+		var pfad = pfade[j];
+		var katId = parseInt.pfad.substr(10,1);
+		if(i > total) {
+			i = 1;
+			bilder.src = "/Festiva/Bilder/" + pfade[0] + ".jpg";
+		} else if(i < 1) {
+			i = total; 
+			bilder.src = "/Festiva/Bilder/" + pfade[i] + ".jpg";
+		} else if (katId == i){
+			bilder.src = "/Festiva/Bilder/" + pfad + ".jpg";
+		}
+	}  
 }
-window.onload=swapImage;
+window.setInterval(function slide1() {
+	var bilder;
+	i = i + 1; 
+	for (var j = 0; j < pfade.length; j++){
+		var pfad = pfade[j];
+		var katId = parseInt.pfad.substr(10,1);
+		if(i > total) {
+			i = 1;
+			bilder.src = "/Festiva/Bilder/" + pfade[0] + ".jpg";
+		} else if(i < 1) {
+			bilder.src = "/Festiva/Bilder/" + pfade[total] + ".jpg";
+		} else if (katId == i){
+			bilder.src = "/Festiva/Bilder/" + pfad + ".jpg";
+		}
+	}  
+}, 5000);
 </script>
 </head>
-<body>
+<body onLoad="slide1">
 <div id="webseite">
 	    <jsp:include page="k_header.jsp">
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
 			<div id="container">
-			<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen"><img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/></a>
-			<div id="left_holder"><img onClick="slide(-1), " class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
-			<div id="right_holder"><img onClick="slide(1)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
+			<% for (String bildpfad : listBildpfade){
+			int katId = Integer.parseInt(bildpfad.substring(10,1));%>
+			<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=katId%>"><img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/></a>
+ 			<div id="left_holder"><img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
+			<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
+			<% } %>
 			</div>
 			<div id="leer"></div>
 		<footer></footer>

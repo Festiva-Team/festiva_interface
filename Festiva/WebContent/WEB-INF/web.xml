@@ -4,4 +4,13 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-</web-app>
+<!-- <servlet>
+  <servlet-name>Login</servlet-name>
+  <jsp-file>*/k_anmelden.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+
+<servlet-name>Login</servlet-name>
+  <url-pattern>*.jsp</url-pattern>
+</servlet-mapping>
+ --></web-app>

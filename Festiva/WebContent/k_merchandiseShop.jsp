@@ -56,11 +56,11 @@ if (request.getSession(false) != null) {
 						<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
 						</figure></td>
 						<% } else { %>
-								<td data-label="Bild">Kein Bild verfügbar</td>
+								<td data-label="">Kein Bild verfügbar</td>
 								<% }	%>
-								<td data-label="Beschreibung"><%=artikel.beschreibung%></td>
-								<td data-label="Preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-								<td data-label="Anzahl" width="20%">
+								<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+								<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+								<td data-label="" width="20%">
 								<select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 								<td><button type="submit" id="Artikel in Warenkorb" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td>
 							</tr></tbody>

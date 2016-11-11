@@ -54,7 +54,7 @@ if (request.getSession(false) != null) {
 						<% } } %>
 						</select>	
 						<label for="name">Ort</label>
-						<input type="text" id="ort" maxlength="30" name="ort" title="Hier können Sie den Ort des gesuchten Festivals angeben." <% if(suchKriterien.ort != null) { %> value="<%=suchKriterien.ort%>" <% } %>>
+						<input type="search" id="ort" maxlength="30" name="ort" title="Hier können Sie den Ort des gesuchten Festivals angeben." <% if(suchKriterien.ort != null) { %> value="<%=suchKriterien.ort%>" <% } %>>
 						
 						</div>
 					<div id="spalterechts">						
@@ -66,7 +66,7 @@ if (request.getSession(false) != null) {
 						
 						
 						<label for="preis">Maximaler Preis</label>
-						<input type="number" step="0.01" min="0" id="preis" title="Hier können Sie festlegen, wie viel Geld Sie maximal ausgeben möchten." maxlength="8" placeholder="0,00" name="maxpreis" <% if(suchKriterien.bisPreis != 0) { %> value="<%=suchKriterien.bisPreis%>" <% } %>>
+						<input type="number" step="0.01" min="0" title="Hier können Sie festlegen, wie viel Geld Sie maximal ausgeben möchten." maxlength="8" placeholder="0,00" name="maxpreis" <% if(suchKriterien.bisPreis != 0) { %> value="<%=suchKriterien.bisPreis%>" <% } %>>
 						
 						<button type="submit">Suchen</button>
 					</div>
@@ -87,20 +87,20 @@ if (request.getSession(false) != null) {
 								<%}
 								else
 								{%>
-								<td><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
+								<td data-label="Zeit: "><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
 								<%} %>
-								<td><%=festival.ort%></td>
+								<td data-label="Ort: "><%=festival.ort%></td>
 								<%for(Kategorie kategorie : listKategorien){
      							  if(kategorie.id == festival.kategorienID){ %>
-      							<td><%=kategorie.name%></td>       
+      							<td data-label="Kategorie: "><%=kategorie.name%></td>       
    								<%  } } %>
 								<% if (festival.vonPreis == 0)
 								{%>
-								<td>keine Tickets verfügbar</td>
+								<td data-label="Artikel: ">keine Tickets verfügbar</td>
 								<%}
 								else
 								{%>
-								<td> ab <%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
+								<td data-label="Artikel: "> ab <%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
 								<%} %>
 							</tr><%
 							} }%>
