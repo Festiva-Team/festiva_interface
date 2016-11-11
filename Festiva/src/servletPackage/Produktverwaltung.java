@@ -57,7 +57,11 @@ public class Produktverwaltung extends HttpServlet {
 		} else {
 			if((request.getParameter("aktion")).equals("s_anzeigen")) {
 				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorienFuerSlideshow();
-				session.setAttribute("listKategorien", listKategorien);
+				List<String> listBildpfade = new ArrayList<String>();
+				for(Kategorie kategorie : listKategorien) {
+					listBildpfade.add(kategorie.bildpfad);					
+				}
+				session.setAttribute("listBildpfade", listBildpfade);
 				request.getRequestDispatcher("k_slideshow.jsp").include(request, response);	
 			} else {
 				if((request.getParameter("aktion")).equals("f_k_anzeigen")) {

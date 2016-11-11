@@ -8,7 +8,7 @@
 	# JSP-Aktionen:
 */
 if (request.getSession(false) != null) {
-	List<Kategorie> listKategorien = (List<Kategorie>)request.getSession(false).getAttribute("listKategorien");
+	List<String> listBildpfade = (List<String>)request.getSession(false).getAttribute("listBildpfade");
 	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -51,4 +51,4 @@ if (request.getSession(false) != null) {
 	</div>	
 </body>
 </html>
-<% request.getSession().removeAttribute("listKategorien"); } %>
+<% request.getSession().removeAttribute("listBildpfade"); } %>
