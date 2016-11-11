@@ -18,22 +18,20 @@ if (request.getSession(false) != null) {
 <meta http-equiv="Expires" content="0" />
 	<title>Festiva</title>
 <script type="text/javascript">
-	var imagecount =1;
-	var total = 4;
-	function slide(x){
-	var Image = document.getElementById('img');
-	imagecount = imagecount + x;
-	if(imagecount > total) { imagecount = 1;}
-	if(imagecount < 1) { imagecount = total;}
-	Image.src = "/Festiva/Bilder/Kategorie_" + imagecount + ".jpg";
-	}
-	window.setInterval(	function slide(x){
-	var Image = document.getElementById('img');
-	imagecount = imagecount + x;
-	if(imagecount > total) { imagecount = 1;}
-	if(imagecount < 1) { imagecount = total;}
-	Image.src = "/Festiva/Bilder/Kategorie_" + imagecount + ".jpg";
-	},5000);
+var i = 0;
+var path = new Array();
+ 
+// LIST OF IMAGES
+path[0] = "image_1.gif";
+path[1] = "image_2.gif";
+path[2] = "image_3.gif";
+function swapImage()
+{
+   document.slide.src = path[i];
+   if(i < path.length - 1) i++; else i = 0;
+   setTimeout("swapImage()",3000);
+}
+window.onload=swapImage;
 </script>
 </head>
 <body>
@@ -42,8 +40,8 @@ if (request.getSession(false) != null) {
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
 			<div id="container">
-			<img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/>
-			<div id="left_holder"><img onClick="slide(-1)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
+			<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen"><img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/></a>
+			<div id="left_holder"><img onClick="slide(-1), " class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
 			<div id="right_holder"><img onClick="slide(1)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
 			</div>
 			<div id="leer"></div>
