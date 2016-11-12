@@ -85,6 +85,11 @@ public class Benutzerdaten extends HttpServlet {
 					} else {
 						einzugsermächtigungErteilt = false;
 					}
+		
+					if(session.getAttribute("aufrufer") != null) {
+						String anforderer = session.getAttribute("aufrufer").toString();
+						session.removeAttribute("aufrufer");
+						session.setAttribute("anforderer", anforderer);}
 					
 					antwort = aendereDaten(vorname, nachname, strasse, hausnummer, plz, ort, iban, bic, einzugsermächtigungErteilt, eMail, benutzer);						
 					session.setAttribute("antwort", antwort);
