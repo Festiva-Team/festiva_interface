@@ -6,7 +6,6 @@ body {
 }
 #webseite{
 	width:80%;
-	min-height: 650px;
 	margin:0 auto;
 	height: auto;
 	background: white;
@@ -172,45 +171,41 @@ figure.bild2 {
 }
 /******Slideshow***********/
 #container {
-	height: 30x;
-	width: 80%;
-	margin-top: 90px;
+	height: 450px;
+	width: 100%;
+	margin-top: 20px;
 	position: relative;
-	border: 2px solid black;
-	left: 9%;
-	right: 9%;
-	z-index: 0;
 }
 #img {
-	height: 300px;
-	width: 300px;
+	height: 450px;
+	width: 100%;
 }
 #left_holder {
 	height: 450px;
-	width: 10%;
+	width: 60px;
 	position: absolute;
-	left: 0;
+	left: 0px;
 	top: 0px;
 }
 #right_holder {
 	height: 450px;
-	width: 10%;
+	width: 60px;
 	position: absolute;
-	right: 0%;
+	right: 0px;
 	top: 0px;
 }
 .left {
 	height: 50px;
 	width: 50px;
 	position: absolute;
-	top: 30%;
+	top: 40%;
 	left: 0px;
 }
 .right {
 	height: 50px;
 	width: 50px;
 	position: absolute;
-	top: 30%;
+	top: 40%;
 	right: 0px;
 }
 /*******************Formulardaten***********************/
@@ -500,26 +495,5 @@ h2{
 }
 h5{
 	font-size: 80%;	
-}
-#container {
-	height: 30x;
-	width: 100%;
-	margin-top: 90px;
-	border: none;
-	left: 0;
-	right: 0;
-	z-index: 0;
-}
-#left_holder {
-	height: 450px;
-	width: 10%;
-	left: 0;
-	top: 0px;
-}
-#right_holder {
-	height: 450px;
-	width: 10%;
-	right: 0%;
-	top: 0px;
 }
 }
