@@ -86,7 +86,7 @@ public class Login extends HttpServlet {
 							begrüßung = "Herzlich Willkommen bei Festiva, " + benutzer.vorname + " " + benutzer.nachname + "!";
 							}
 							request.getSession(false).setAttribute("begrüßung", begrüßung);
-							request.getRequestDispatcher("k_startseite.jsp").include(request, response);
+							request.getRequestDispatcher("/Produktverwaltung?aktion=s_anzeigen").include(request, response);
 
 						}
 
