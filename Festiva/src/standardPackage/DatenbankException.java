@@ -3,7 +3,7 @@ package standardPackage;
 public class DatenbankException extends Exception
 {
     /**
-	 * 
+	 * Exception, die geworfen wird, wenn die Kommunikation mit der Datenbank nicht möglich ist (Datenbank ist nicht erreichbar)
 	 */
 	private static final long serialVersionUID = 1L;
 

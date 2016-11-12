@@ -22,16 +22,16 @@ public class Festival {
 	/**
 	 * Konstruktor zur Erstellung eines Festival-Objekts mit den nachfolgenden Parametern
 	 * 
-	 * @param p_id: eindeutige ID des Festivals
-	 * @param p_name: Name des Festivals
-	 * @param p_ort: Ort des Festivals
-	 * @param p_kurzbeschreibung: Kurzbeschreibung des Festivals
-	 * @param p_langebeschreibung: Langbeschreibung des Festivals
-	 * @param p_startDatum: Startdatum des Festivals
-	 * @param p_endDatum: Enddatum des Festivals
-	 * @param p_bildpfad: Pfad zum Bild des Festivals
-	 * @param p_istGelöscht: zeigt, ob das Festival logisch gelöscht ist
-	 * @param p_kategorienID: eindeutige ID der Kategorie, der das Festival zugeordnet wurde
+	 * @param p_id eindeutige ID des Festivals
+	 * @param p_name Name des Festivals
+	 * @param p_ort Ort des Festivals
+	 * @param p_kurzbeschreibung Kurzbeschreibung des Festivals
+	 * @param p_langbeschreibung Langbeschreibung des Festivals
+	 * @param p_startDatum Startdatum des Festivals
+	 * @param p_endDatum Enddatum des Festivals
+	 * @param p_bildpfad Pfad zum Bild des Festivals
+	 * @param p_istGelöscht zeigt, ob das Festival logisch gelöscht ist
+	 * @param p_kategorienID eindeutige ID der Kategorie, der das Festival zugeordnet wurde
 	 */
 	public Festival(int p_id, String p_name, String p_ort, String p_kurzbeschreibung, String p_langbeschreibung, 
 			        Date p_startDatum, Date p_endDatum, String p_bildpfad, boolean p_istGelöscht, int p_kategorienID) {

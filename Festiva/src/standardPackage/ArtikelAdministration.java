@@ -16,7 +16,8 @@ public class ArtikelAdministration {
 	/**
 	 * Erstellt für das übergebene Artikel-Objekt den Datensatz in der Datenbank.
 	 * 
-	 * @param p_artikel: Artikel-Objekt, das erstellt werden soll
+	 * @param p_artikel Artikel-Objekt, das erstellt werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void erstelleArtikel(Artikel p_artikel) throws DatenbankException
 	{	
@@ -40,7 +41,8 @@ public class ArtikelAdministration {
 	/**
 	 * Aktualisiert für das übergebene Artikel-Objekt den Datensatz in der Datenbank.
 	 * 
-	 * @param p_artikel: Artikel-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @param p_artikel Artikel-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void aktualisiereArtikel(Artikel p_artikel) throws DatenbankException
 	{	
@@ -62,7 +64,8 @@ public class ArtikelAdministration {
 	/**
 	 * Löscht das übergebene Artikel-Objekt logisch in der Datenbank.
 	 * 
-	 * @param p_artikel: Artikel-Objekt, das in der Datenbank logisch gelöscht werden soll
+	 * @param p_artikel Artikel-Objekt, das in der Datenbank logisch gelöscht werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void löscheArtikel(Artikel p_artikel) throws DatenbankException
 	{
@@ -73,8 +76,9 @@ public class ArtikelAdministration {
 	
 	/**
 	 * Selektiert einen Artikel anhand der ID aus der Datenbank.
-	 * @param p_artikelID: ID des gewünschten Artikels
-	 * @return artikel: gewünschter Artikel, falls kein Artikel gefunden wurde, wird null zurück gegeben
+	 * @param p_artikelID ID des gewünschten Artikels
+	 * @return artikel gewünschter Artikel, falls kein Artikel gefunden wurde, wird null zurück gegeben
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static Artikel selektiereArtikel(int p_artikelID) throws DatenbankException
 	{
@@ -111,9 +115,10 @@ public class ArtikelAdministration {
 
 	/**
 	 * Selektiert alle Artikel, die zu einem bestimmen Festival gehören und nicht teurer als der vorgegebene Maximalpreis sind (alphabetisch sortiert)
-	 * @param p_festivalID: ID des gewünschten Festivals
-	 * @param p_maxPreis: maximaler Preis, den die zurückgegebenen Artikel haben dürfen
-	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @param p_festivalID ID des gewünschten Festivals
+	 * @param p_maxPreis maximaler Preis, den die zurückgegebenen Artikel haben dürfen
+	 * @return listArtikel Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Artikel> selektiereArtikelVonFestivalMitMaxPreis(int p_festivalID, float p_maxPreis) throws DatenbankException
 	{
@@ -153,9 +158,10 @@ public class ArtikelAdministration {
 	
 	/**
 	 * Selektiert alle Artikel, die zu einem bestimmen Festival gehören und teurer als der vorgegebene Maximalpreis sind (alphabetisch sortiert)
-	 * @param p_festivalID: ID des gewünschten Festivals
-	 * @param p_maxPreis: maximaler Preis, den die zurückgegebenen Artikel übersteigen müssen
-	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @param p_festivalID ID des gewünschten Festivals
+	 * @param p_maxPreis maximaler Preis, den die zurückgegebenen Artikel übersteigen müssen
+	 * @return listArtikel Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Artikel> selektiereArtikelVonFestivalÜberMaxPreis(int p_festivalID, float p_maxPreis) throws DatenbankException
 	{
@@ -195,8 +201,9 @@ public class ArtikelAdministration {
 	
 	/**
 	 * Selektiert alle Artikel, die zu einem bestimmen Festival gehören (alphabetisch sortiert)
-	 * @param p_festivalID: ID des gewünschten Festivals
-	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @param p_festivalID ID des gewünschten Festivals
+	 * @return listArtikel Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Artikel> selektiereArtikelVonFestival(int p_festivalID) throws DatenbankException
 	{
@@ -236,8 +243,9 @@ public class ArtikelAdministration {
 	
 	/**
 	 * Selektiert alle Artikel (auch gelöschte), die zu einem bestimmen Festival gehören (nach ID sortiert)
-	 * @param p_festivalID: ID des gewünschten Festivals
-	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @param p_festivalID ID des gewünschten Festivals
+	 * @return listArtikel Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Artikel> selektiereAlleArtikelVonFestival(int p_festivalID) throws DatenbankException
 	{
@@ -274,14 +282,11 @@ public class ArtikelAdministration {
 		}
 	}
 	
-	
-	
-	
-	//*********************************************************** Methoden für alle allgemeinen Artikel
 		
 	/**
 	 * Selektiert alle Artikel, die zu keinem Festival gehören (alphabetisch sortiert)
-	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @return listArtikel Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Artikel> selektiereUnabhaengigeArtikel() throws DatenbankException
 	{
@@ -322,7 +327,8 @@ public class ArtikelAdministration {
 	
 	/**
 	 * Selektiert alle Artikel, die zu keinem Festival gehören (nach ID sortiert, auch gelöschte)
-	 * @return listArtikel: Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @return listArtikel Liste aller Artikel, die zum gewünschten Festival gehören
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Artikel> selektiereAlleUnabhaengigenArtikel() throws DatenbankException
 	{
@@ -362,7 +368,8 @@ public class ArtikelAdministration {
 	
 	/**
 	 * Selektiert alle Artikel (alphabetisch sortiert)
-	 * @return listArtikel: Liste aller Artikel
+	 * @return listArtikel Liste aller Artikel
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Artikel> selektiereAlleArtikel() throws DatenbankException
 	{

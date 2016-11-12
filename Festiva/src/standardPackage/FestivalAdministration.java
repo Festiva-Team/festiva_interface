@@ -18,7 +18,8 @@ public class FestivalAdministration {
 	/**
 	 * Erstellt für das übergebene Festival-Objekt den Datensatz in der Datenbank.
 	 * 
-	 * @param p_festival: Festival-Objekt, das erstellt werden soll
+	 * @param p_festival Festival-Objekt, das erstellt werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void erstelleFestival(Festival p_festival) throws DatenbankException
 	{		
@@ -33,7 +34,8 @@ public class FestivalAdministration {
 	/**
 	 * Aktualisiert für das übergebene Festival-Objekt den Datensatz in der Datenbank.
 	 * 
-	 * @param p_festival: Festival-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @param p_festival Festival-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void aktualisiereFestival(Festival p_festival) throws DatenbankException
 	{	
@@ -48,7 +50,8 @@ public class FestivalAdministration {
 	/**
 	 * Löscht das übergebene Festival-Objekt logisch in der Datenbank.
 	 * 
-	 * @param p_festival: Festival-Objekt, das in der Datenbank logisch gelöscht werden soll
+	 * @param p_festival Festival-Objekt, das in der Datenbank logisch gelöscht werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void löscheFestival(Festival p_festival) throws DatenbankException
 	{
@@ -60,8 +63,9 @@ public class FestivalAdministration {
 	
 	/**
 	 * Selektiert ein Festival anhand der ID aus der Datenbank.
-	 * @param p_festivalID: ID des gewünschten Festivals
-	 * @return Festival: gewünschtes Festival, falls kein Festival gefunden wurde, wird null zurück gegeben
+	 * @param p_festivalID ID des gewünschten Festivals
+	 * @return Festival gewünschtes Festival, falls kein Festival gefunden wurde, wird null zurück gegeben
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static Festival selektiereFestival(int p_festivalID) throws DatenbankException
 	{
@@ -103,7 +107,8 @@ public class FestivalAdministration {
 	
 	/**
 	 * Selektiert alle Festivals aus der Datenbank.
-	 * @return List<Festival>: Liste mit Festival-Objekten, die alle verfügbaren Daten beinhalten
+	 * @return listFestivals Liste mit Festival-Objekten, die alle verfügbaren Daten beinhalten
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Festival> selektiereAlleFestivals() throws DatenbankException
 	{
@@ -146,8 +151,9 @@ public class FestivalAdministration {
 	
 	/**
 	 * Selektiert alle Festivals, die zu einer bestimmen Kategorie gehören (nach Startdatum absteigend sortiert)
-	 * @param p_kategorienID: ID der gewünschten Kategorie
-	 * @return listFestivals: Liste aller Festivals, die zu der gewünschten Kategorie gehören (nach Startdatum absteigend sortiert)
+	 * @param p_kategorienID ID der gewünschten Kategorie
+	 * @return listFestivals Liste aller Festivals, die zu der gewünschten Kategorie gehören (nach Startdatum absteigend sortiert)
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<FestivalSuchobjekt> selektiereFestivalsVonKategorie(int p_kategorienID) throws DatenbankException
 	{
@@ -194,13 +200,14 @@ public class FestivalAdministration {
 	
 	/**
 	 * Selektiert alle Festivals, die den übergebenen Kriterien gerecht werden (nach Startdatum absteigend sortiert)
-	 * @param p_kategorienID: ID der gewünschten Kategorie
-	 * @param p_vonDatum: Beginn des gewünschten Zeitraums (erwartet wird ein String in dem Format "yyyy-MM-dd", wenn kein Datum übergeben werden soll wird null erwartet)
-	 * @param p_bisDatum: Ende des gewünschten Zeitraums (erwartet wird ein String in dem Format "yyyy-MM-dd", wenn kein Datum übergeben werden soll wird null erwartet)
-	 * @param p_bisPreis: oberer Wert der gewünschten Preisspanne
-	 * @param p_ort: Ort der gewünschten Festivals
-	 * @param p_name: Name des gewünschten Festivals
-	 * @return listFestivals: Liste aller Festivals, die zu den gewünschten Kriterien passen (nach Startdatum absteigend sortiert)
+	 * @param p_kategorienID ID der gewünschten Kategorie
+	 * @param p_vonDatum Beginn des gewünschten Zeitraums (erwartet wird ein String in dem Format "yyyy-MM-dd", wenn kein Datum übergeben werden soll wird null erwartet)
+	 * @param p_bisDatum Ende des gewünschten Zeitraums (erwartet wird ein String in dem Format "yyyy-MM-dd", wenn kein Datum übergeben werden soll wird null erwartet)
+	 * @param p_bisPreis oberer Wert der gewünschten Preisspanne
+	 * @param p_ort Ort der gewünschten Festivals
+	 * @param p_name Name des gewünschten Festivals
+	 * @return listFestivals Liste aller Festivals, die zu den gewünschten Kriterien passen (nach Startdatum absteigend sortiert)
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<FestivalSuchobjekt> selektiereFestivalsInSuche(int p_kategorienID, String p_ort, String p_name,
 															String p_vonDatum, String p_bisDatum, float p_bisPreis) throws DatenbankException
@@ -270,29 +277,6 @@ public class FestivalAdministration {
 		// - vor dem angegebenen Zeitraum beginnen und innerhalb des Zeitraums enden
 		// - vor dem angegebenen Zeitraum beginngen und nach dem angegebenen Zeitraum enden
 		// ...werden angezeigt)
-//				if (p_bisDatum != null && p_vonDatum != null) {
-//					if (where == true) {
-//						selectBefehl = selectBefehl + "AND ((f.startDatum >= '" + p_vonDatum + "' OR f.endDatum <= '" + p_bisDatum + "') "
-//													+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
-//					}
-//					else {
-//						selectBefehl = selectBefehl + "WHERE ((f.startDatum >= '" + p_vonDatum + "' OR f.endDatum <= '" + p_bisDatum + "') "
-//													+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
-//						where = true;
-//					}
-//				}
-		
-//		if (p_bisDatum != null && p_vonDatum != null) {
-//			if (where == true) {
-//				selectBefehl = selectBefehl + "AND (((f.startDatum >= '" + p_vonDatum + "' AND f.endDatum <= '" + p_bisDatum + "' ) OR ( f.startDatum <= '" + p_vonDatum + "' AND f.endDatum >= '" + p_bisDatum + "')) "
-//											+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
-//			}
-//			else {
-//				selectBefehl = selectBefehl + "WHERE (((f.startDatum >= '" + p_vonDatum + "' AND f.endDatum <= '" + p_bisDatum + "' ) OR ( f.startDatum <= '" + p_vonDatum + "' AND f.endDatum <= '" + p_bisDatum + "')) "
-//											+ "OR (f.startDatum < '" + p_vonDatum + "' AND f.endDatum > '" + p_bisDatum + "')) ";
-//				where = true;
-//			}
-//		}
 		
 		if (p_bisDatum != null && p_vonDatum != null) {
 			if (where == true) {
@@ -364,8 +348,9 @@ public class FestivalAdministration {
 	/**
 	 * Selektiert alle Festivals zu der eingegebenen Kategorie aus der Datenbank.
 	 * 
-	 * @param p_id: ID der Kategorie, zu der die Festivals ermittelt weren sollen
-	 * @return List<Festival>: Liste mit Festival-Objekten, die alle verfügbaren Daten beinhalten
+	 * @param p_id ID der Kategorie, zu der die Festivals ermittelt weren sollen
+	 * @return listFestivals Liste mit Festival-Objekten, die alle verfügbaren Daten beinhalten
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Festival> selektiereAlleFestivalObjekteVonKategorie(int p_id) throws DatenbankException
 	{

@@ -17,7 +17,8 @@ public class BestellungsAdministration {
  * Erstellt für das übergebene Bestellungs-Objekt die Einträge in der Datenbank
  * verwendete Tabellen: bestellungen, bestellpositionen
  * 
- * @param p_bestellung: Bestellungs-Objekt, das in die Datenbanktabellen geschrieben werden soll
+ * @param p_bestellung Bestellungs-Objekt, das in die Datenbanktabellen geschrieben werden soll
+ * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
  */
 public static void erstelleBestellung(Bestellung p_bestellung) throws DatenbankException
 {
@@ -39,12 +40,14 @@ public static void erstelleBestellung(Bestellung p_bestellung) throws DatenbankE
 	}
 }
 
+
 /**
  * Selektiert alle Bestellungs-Objekte, die zu einem bestimmten Kunden gehören aus der Datenbank
  * verwendete Tabellen: bestellungen, bestellpositionen
  * 
- * @param p_benutzerID: ID des Kunden, dessen Bestellungs-Objekte zurückgegeben werden sollen
- * @return List<Bestellung>: Liste mit den Bestellungs-Objekten, die zu dem gewünschten Kunden gehören (nach Bestelldatum absteigend sortiert)
+ * @param p_benutzerID ID des Kunden, dessen Bestellungs-Objekte zurückgegeben werden sollen
+ * @return listBestellungen Liste mit den Bestellungs-Objekten, die zu dem gewünschten Kunden gehören (nach Bestelldatum absteigend sortiert)
+ * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
  */
 public static List<Bestellung> selektiereBestellungenVonKunden(int p_benutzerID) throws DatenbankException
 {

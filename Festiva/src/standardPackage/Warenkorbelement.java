@@ -16,9 +16,9 @@ public class Warenkorbelement {
 	 * (Verwendung einer aktuellen Referenz auf ein Artikel-Objekt, da immer ein aktueller Preis und eine aktuelle Beschreibung
 	 *  mit dem Warenkorbelement verknüpft sein muss)
 	 * 
-	 * @param p_id: eindeutige ID des Warenkorbelements
-	 * @param p_menge: gewünschte Menge des Warenkorbelements
-	 * @param p_artikel: Artikel auf den sich das Warenkorbelement bezieht
+	 * @param p_id eindeutige ID des Warenkorbelements
+	 * @param p_menge gewünschte Menge des Warenkorbelements
+	 * @param p_artikel Artikel auf den sich das Warenkorbelement bezieht
 	 */
 	public Warenkorbelement(int p_id, int p_menge, Artikel p_artikel) {
 		this.id = p_id;

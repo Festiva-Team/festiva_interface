@@ -15,9 +15,9 @@ public class Warenkorb {
 	/**
 	 * Konstruktor zur Erstellung eines Warenkorb-Objekts mit den nachfolgenden Parametern
 	 * 
-	 * @param p_id: eindeutige ID des Warenkorbs
-	 * @param p_benutzerID: eindeutige ID des Benutzers dem der Warenkorb gehört
-	 * @param p_listElemente: enthält alle Warenkorbelemente, die dem Warenkorb zugeordnet sind
+	 * @param p_id eindeutige ID des Warenkorbs
+	 * @param p_benutzerID eindeutige ID des Benutzers dem der Warenkorb gehört
+	 * @param p_listElemente enthält alle Warenkorbelemente, die dem Warenkorb zugeordnet sind
 	 */
 	public Warenkorb(int p_id, int p_benutzerID, List<Warenkorbelement> p_listElemente) {
 		this.id = p_id;

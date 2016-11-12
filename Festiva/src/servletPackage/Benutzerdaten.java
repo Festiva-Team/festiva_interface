@@ -14,7 +14,7 @@ import standardPackage.*;
 
 /** 
 * Servlet zur Steuerung der Benutzerdaten durch den Benutzer (Kunden oder Administrator) selbst
-* Ermöglicht das Anzeigen und Ändern der persönlichen Daten (für Kunden) sowie die Änderung des Passworts (für Kunden & Administrator)
+* Ermöglicht das Anzeigen und Ändern der persönlichen Daten (für Kunden) sowie die Änderung des Passworts (für Kunden und Administrator)
 * 
 * @author Alina Fankhänel
 */

@@ -16,7 +16,8 @@ public class KategorienAdministration {
 	/**
 	 * Erstellt für das übergebene Kategorie-Objekt den Datensatz in der Datenbank.
 	 * 
-	 * @param p_kategorie: Kategorie-Objekt, das erstellt werden soll
+	 * @param p_kategorie Kategorie-Objekt, das erstellt werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void erstelleKategorie(Kategorie p_kategorie) throws DatenbankException
 	{		
@@ -31,7 +32,8 @@ public class KategorienAdministration {
 	/**
 	 * Aktualisiert für das übergebene Kategorie-Objekt den Datensatz in der Datenbank.
 	 * 
-	 * @param p_kategorie: Kategorie-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @param p_kategorie Kategorie-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void aktualisiereKategorie(Kategorie p_kategorie) throws DatenbankException
 	{	
@@ -46,7 +48,8 @@ public class KategorienAdministration {
 	/**
 	 * Löscht das übergebene Kategorie-Objekt logisch in der Datenbank.
 	 * 
-	 * @param p_kategorie: Kategorie-Objekt, das in der Datenbank logisch gelöscht werden soll
+	 * @param p_kategorie Kategorie-Objekt, das in der Datenbank logisch gelöscht werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void löscheKategorie(Kategorie p_kategorie) throws DatenbankException
 	{
@@ -58,8 +61,9 @@ public class KategorienAdministration {
 	
 	/**
 	 * Selektiert eine Kategorie anhand der ID aus der Datenbank.
-	 * @param p_kategorieID: ID der gewünschten Kategorie
-	 * @return kategorie: gewünschte Kategorie, falls keine Kategorie gefunden wurde, wird null zurück gegeben
+	 * @param p_kategorieID ID der gewünschten Kategorie
+	 * @return kategorie gewünschte Kategorie, falls keine Kategorie gefunden wurde, wird null zurück gegeben
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static Kategorie selektiereKategorie(int p_kategorieID) throws DatenbankException
 	{
@@ -95,7 +99,8 @@ public class KategorienAdministration {
 	
 	/**
 	 * Selektiert alle Kategorien aus der Datenbank (sortiert nach ID aufsteigend).
-	 * @return List<Kategorie>: Liste mit allen verfügbaren Kategorien und deren zugehörigen Daten
+	 * @return listKategorien Liste mit allen verfügbaren Kategorien und deren zugehörigen Daten
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Kategorie> selektiereAlleKategorien() throws DatenbankException
 	{
@@ -132,7 +137,8 @@ public class KategorienAdministration {
 	
 	/**
 	 * Selektiert alle Kategorien für die Slightshow aus der Datenbank (sortiert nach ID aufsteigend).
-	 * @return List<Kategorie>: Liste mit allen Kategorien, die ein Bild haben und nicht gelöscht sind mit deren zugehörigen Daten
+	 * @return listKategorien Liste mit allen Kategorien, die ein Bild haben und nicht gelöscht sind mit deren zugehörigen Daten
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Kategorie> selektiereAlleKategorienFuerSlideshow() throws DatenbankException
 	{
@@ -169,7 +175,8 @@ public class KategorienAdministration {
 	
 	/**
 	 * Selektiert alle verfügbaren Kategorien aus der Datenbank (sortiert nach ID aufsteigend).
-	 * @return List<Kategorie>: Liste mit allen verfügbaren Kategorien und deren zugehörigen Daten
+	 * @return listKategorien Liste mit allen verfügbaren Kategorien und deren zugehörigen Daten
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Kategorie> selektiereAlleAktivenKategorien() throws DatenbankException
 	{

@@ -44,7 +44,7 @@ public class Datenbankverbindung {
 	/**
 	 * Erstellung einer Datenbankverbindung
 	 * 
-	 * @return Datenbankverbindung
+	 * @return Datenbankverbindung Verbindung, um mit der Datenbank kommunizieren zu können
 	 */
 	public static Datenbankverbindung erstelleDatenbankVerbindung() {
 		if (datenbankVerbindung == null)
@@ -55,7 +55,7 @@ public class Datenbankverbindung {
 	/**
 	 * Trennung der Datenbankverbindung
 	 * 
-	 * @throws SQLException
+	 * @throws SQLException Ausnahme, die auftritt, wenn ein Fehler im SQL vorliegt
 	 */
 	public static void trenneDatenbankVerbindung() throws SQLException {
 		if (datenbankVerbindung != null) {
@@ -67,8 +67,9 @@ public class Datenbankverbindung {
 	/**
 	 * Durchführung eines Update-Befehls
 	 * 
-	 * @param p_update_befehl: Update-Befehl in SQL
-	 * @return erfolgreich: Rückmeldung, ob Update durchgeführt werden konnte
+	 * @param p_update_befehl Update-Befehl in SQL
+	 * @return erfolgreich Rückmeldung, ob Update durchgeführt werden konnte
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 *         
 	 */
 	public boolean aktualisiereInDatenbank(String p_update_befehl) throws DatenbankException {
@@ -92,10 +93,9 @@ public class Datenbankverbindung {
 	/**
 	 * Durchführung eines Insert-Befehls
 	 * 
-	 * @param p_insert_befehl: Insert-Befehl in SQL
-	 * @return neuerSchlüssel: ID, um erstellten Datensatz eindeutig identifizieren zu können 
-	 *                         Wenn kein Datensatz eingefügt werden konnte, wird -1 zurückgeliefert
-	 * 
+	 * @param p_insert_befehl Insert-Befehl in SQL
+	 * @return neuerSchlüssel ID, um erstellten Datensatz eindeutig identifizieren zu können (wenn kein Datensatz eingefügt werden konnte, wird -1 zurückgeliefert) 
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public int fügeInDatenbankEin(String p_insert_befehl) throws DatenbankException {
 		int neuerSchlüssel = -1;
@@ -121,8 +121,9 @@ public class Datenbankverbindung {
 	/**
 	 * Durchführung eines Select-Befehls
 	 * 
-	 * @param p_select_befehl: Select-Befehl in SQL
-	 * @return ergebnismenge: Ergebnismenge des Selects
+	 * @param p_select_befehl Select-Befehl in SQL
+	 * @return ergebnismenge Ergebnismenge des Selects
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public ResultSet selektiereVonDatenbank(String p_select_befehl) throws DatenbankException {
 		ResultSet ergebnismenge = null;

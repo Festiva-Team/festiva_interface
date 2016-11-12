@@ -15,7 +15,8 @@ public class BenutzerAdministration {
 	/**
 	 * Erstellt für das übergebene Benutzer-Objekt den Datensatz in der Datenbank.
 	 * 
-	 * @param p_benutzer: Benutzer-Objekt, das erstellt werden soll
+	 * @param p_benutzer Benutzer-Objekt, das erstellt werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void erstelleKunden(Benutzer p_benutzer) throws DatenbankException
 	{		
@@ -31,7 +32,8 @@ public class BenutzerAdministration {
 	/**
 	 * Aktualisiert für das übergebene Benutzer-Objekt den Datensatz in der Datenbank.
 	 * 
-	 * @param p_benutzer: Benutzer-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @param p_benutzer Benutzer-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void aktualisiereBenutzer(Benutzer p_benutzer) throws DatenbankException
 	{	
@@ -49,7 +51,8 @@ public class BenutzerAdministration {
 	/**
 	 * Löscht das übergebene Benutzer-Objekt logisch in der Datenbank.
 	 * 
-	 * @param p_benutzer: Benutzer-Objekt, das in der Datenbank logisch gelöscht werden soll
+	 * @param p_benutzer Benutzer-Objekt, das in der Datenbank logisch gelöscht werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void löscheBenutzer(Benutzer p_benutzer) throws DatenbankException
 	{
@@ -63,9 +66,9 @@ public class BenutzerAdministration {
 	 * Selektiert die Daten eines Benutzers aus der Datenbank
 	 * und liefert ein Benutzer-Objekt zurück
 	 * 
-	 * @param p_eMailAdresse: Mailadresse des Zielanwenders in der Datenbank 
-	 * @return benutzer: Benutzer-Objekt mit allen verfügbaren Daten
-	 * 					 Falls der Benutzer nicht existiert wird null zurückgeliefert
+	 * @param p_eMailAdresse Mailadresse des Zielanwenders in der Datenbank 
+	 * @return benutzer Benutzer-Objekt mit allen verfügbaren Daten (falls der Benutzer nicht existiert wird null zurückgeliefert)
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static Benutzer selektiereBenutzer(String p_eMailAdresse) throws DatenbankException
 	{
@@ -116,9 +119,9 @@ public class BenutzerAdministration {
 	 * Selektiert die Daten eines Benutzers aus der Datenbank
 	 * und liefert ein Benutzer-Objekt zurück
 	 * 
-	 * @param p_benutzerID: eindeutige ID des Benutzers
-	 * @return benutzer: Benutzer-Objekt mit allen verfügbaren Daten
-	 * 					 Falls der Benutzer nicht existiert wird null zurückgeliefert
+	 * @param p_benutzerID eindeutige ID des Benutzers
+	 * @return benutzer Benutzer-Objekt mit allen verfügbaren Daten (falls der Benutzer nicht existiert, wird null zurückgeliefert)
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static Benutzer selektiereBenutzerMitID(int p_benutzerID) throws DatenbankException
 	{
@@ -170,7 +173,8 @@ public class BenutzerAdministration {
 	 * Selektiert alle Kunden aus der Datenbank
 	 * und liefert alle verfügbaren Daten zu den Kunden in Benutzer-Objekten
 	 * 
-	 * @return List<Benutzer>: Liste mit Benutzer-Objekten, die alle verfügbaren Daten beinhalten
+	 * @return listBenutzer Liste mit Benutzer-Objekten, die alle verfügbaren Daten beinhalten
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static List<Benutzer> selektiereAlleKunden() throws DatenbankException
 	{
@@ -222,8 +226,9 @@ public class BenutzerAdministration {
 	/**
 	 * Ändert den Passwortzähler bei dem Benutzer mit der übergebenen ID auf den übergebenen Wert
 	 * 
-	 * @param p_benutzerID: Benutzer, bei dem die Änderung am Passwortzähler durchgeführt werden soll
-	 * @param p_zaehlerWert: Wert, der als Zaehler gespeichert werden soll
+	 * @param p_benutzerID Benutzer, bei dem die Änderung am Passwortzähler durchgeführt werden soll
+	 * @param p_zaehlerWert Wert, der als Zaehler gespeichert werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void aktualisierePasswortZaehlerBeiKunde(int p_benutzerID, int p_zaehlerWert) throws DatenbankException
 	{
@@ -242,8 +247,9 @@ public class BenutzerAdministration {
 	/**
 	 * Selektiert den Passwortzähler des Benutzers mit der übergebenen ID 
 	 * 
-	 * @param p_benutzerID: Benutzer, dessen Passwortzähler ermittelt werden soll
-	 * @return zaehlerWert: Zähler-Wert des Kunden
+	 * @param p_benutzerID Benutzer, dessen Passwortzähler ermittelt werden soll
+	 * @return zaehlerWert Zähler-Wert des Kunden
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static int selektierePasswortZaehlerVonKunde(int p_benutzerID) throws DatenbankException
 	{

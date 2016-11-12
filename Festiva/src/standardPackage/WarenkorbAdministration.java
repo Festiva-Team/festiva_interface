@@ -18,7 +18,8 @@ public class WarenkorbAdministration {
 	 * Erstellt für das übergebene Warenkorb-Objekt die Einträge in der Datenbank
 	 * verwendete Tabellen: warenkörbe, warenkorbelemente
 	 * 
-	 * @param p_warenkorb: Warenkorb-Objekt, das in die Datenbanktabellen geschrieben werden soll
+	 * @param p_warenkorb Warenkorb-Objekt, das in die Datenbanktabellen geschrieben werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void erstelleWarenkorb(Warenkorb p_warenkorb) throws DatenbankException
 	{
@@ -44,9 +45,10 @@ public class WarenkorbAdministration {
 	/**
 	 * Selektiert das Warenkorb-Objekt, das zu einem bestimmten Kunden gehört aus der Datenbank
 	 * 
-	 * @param p_benutzerID: ID des Kunden, dessen Warenkorb-Objekt zurückgegeben werden soll
-	 * @param p_inKasse: gibt an ob die Darstellung für die Kasse gewünscht ist
-	 * @return Warenkorb: Warenkorb-Objekt, das zu dem gewünschten Kunden gehört
+	 * @param p_benutzerID ID des Kunden, dessen Warenkorb-Objekt zurückgegeben werden soll
+	 * @param p_inKasse gibt an ob die Darstellung für die Kasse gewünscht ist
+	 * @return warenkorb Warenkorb-Objekt, das zu dem gewünschten Kunden gehört
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static Warenkorb selektiereWarenkorbVonKunden(int p_benutzerID, boolean p_inKasse) throws DatenbankException
 	{
@@ -108,7 +110,8 @@ public class WarenkorbAdministration {
 	/**
 	 * Erstellt für den Kunden, der die übergebene ID hat, die Einträge für ein leeres Warenkorb-Objekt in der Datenbank
 	 * 
-	 * @param p_benutzerID: eindeutige ID des Benutzers, für den ein Warenkorb-Objekt in der Datenbank erstellt werden soll
+	 * @param p_benutzerID eindeutige ID des Benutzers, für den ein Warenkorb-Objekt in der Datenbank erstellt werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void erstelleLeerenWarenkorb(int p_benutzerID) throws DatenbankException
 	{
@@ -125,8 +128,9 @@ public class WarenkorbAdministration {
 	/**
 	 * Selektiert die ID des Warenkorbs, des Kunden dessen ID übergeben wurde, aus der Datenbank
 	 * 
-	 * @param p_benutzerID: eindeutige ID des Benutzers, dessen WarenkorbID ermittelt werden soll
-	 * @return int: ID des gesuchten Warenkorbs, wenn keiner gefunden wird, wird -1 zurückgegeben
+	 * @param p_benutzerID eindeutige ID des Benutzers, dessen WarenkorbID ermittelt werden soll
+	 * @return warenkorbID ID des gesuchten Warenkorbs, wenn keiner gefunden wird, wird -1 zurückgegeben
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static int selektiereWarenkorbID(int p_benutzerID) throws DatenbankException
 	{
@@ -157,8 +161,9 @@ public class WarenkorbAdministration {
 	/**
 	 * Fügt das übergebene Warenkorbelement in der Datenbank ein und ordnet es dem Warenkorb des Kunden mit der übergebenen ID zu
 	 * 
-	 * @param Warenkorbelement: Warenkorbelement-Objekt, das in der Datenbank erstellt werden soll
-	 * @param p_benutzerID: eindeutige ID des Benutzers, für den das Warenkorbelement in der Datenbank erstellt werden soll
+	 * @param p_warenkorbelement Warenkorbelement-Objekt, das in der Datenbank erstellt werden soll
+	 * @param p_benutzerID eindeutige ID des Benutzers, für den das Warenkorbelement in der Datenbank erstellt werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void fügeWarenkorbelementEin(Warenkorbelement p_warenkorbelement, int p_benutzerID) throws DatenbankException
 	{
@@ -178,7 +183,8 @@ public class WarenkorbAdministration {
 	/**
 	 * Aktualisiert das übergebene Warenkorbelement in der Datenbank
 	 * 
-	 * @param Warenkorbelement: Warenkorbelement-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @param p_warenkorbelement Warenkorbelement-Objekt, das in der Datenbank aktualisiert werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void aktualisiereWarenkorbelement(Warenkorbelement p_warenkorbelement) throws DatenbankException
 	{		
@@ -193,8 +199,9 @@ public class WarenkorbAdministration {
 	/**
 	 * Selektiert das Warenkorbelement mit der übergebenen ID aus der Datenbank
 	 * 
-	 * @param p_ID: eindeutige ID des Warenkorbelements, das aus der Datenbank selektiert werden soll
-	 * @return Warenkorbelement: Warenkorbelement-Objekt mit der vorgegebenen ID, gibt null zurück, wenn das Objekt mit der ID nicht existiert
+	 * @param p_id eindeutige ID des Warenkorbelements, das aus der Datenbank selektiert werden soll
+	 * @return warenkorbelement Warenkorbelement-Objekt mit der vorgegebenen ID, gibt null zurück, wenn das Objekt mit der ID nicht existiert
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static Warenkorbelement selektiereWarenkorbelement(int p_id) throws DatenbankException
 	{	
@@ -233,7 +240,8 @@ public class WarenkorbAdministration {
 	/**
 	 * Löscht das Warenkorbelement mit der übergebenen ID in der Datenbank dauerhaft
 	 * 
-	 * @param p_id: ID des Warenkorbelement-Objekts, das in der Datenbank gelöscht werden soll
+	 * @param p_id ID des Warenkorbelement-Objekts, das in der Datenbank gelöscht werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void loescheWarenkorbelement(int p_id) throws DatenbankException
 	{		
@@ -246,9 +254,10 @@ public class WarenkorbAdministration {
 	/**
 	 * Selektiert das Warenkorbelement mit der übergebenen ID aus der Datenbank
 	 * 
-	 * @param p_artikelID: eindeutige ID des Artikels, den das Warenkorbelement, das aus der Datenbank selektiert werden soll, beinhalten soll
-	 * @param p_warenkorbID: eindeutige ID des Warenkorbs, in dem das Warenkorbelement enthalten sein soll
-	 * @return Warenkorbelement: gewünschtes Warenkorbelement-Objekt, gibt null zurück, wenn es kein Objekt gibt, dass die Artikel-ID beinhaltet
+	 * @param p_artikelID eindeutige ID des Artikels, den das Warenkorbelement, das aus der Datenbank selektiert werden soll, beinhalten soll
+	 * @param p_warenkorbID eindeutige ID des Warenkorbs, in dem das Warenkorbelement enthalten sein soll
+	 * @return warenkorbelement gewünschtes Warenkorbelement-Objekt, gibt null zurück, wenn es kein Objekt gibt, dass die Artikel-ID beinhaltet
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static Warenkorbelement selektiereWarenkorbelementMitArtikelID(int p_artikelID, int p_warenkorbID) throws DatenbankException
 	{	
@@ -287,7 +296,8 @@ public class WarenkorbAdministration {
 	/**
 	 * Löscht den Inhalt des Warenkorbs mit der übergebenen ID in der Datenbank dauerhaft
 	 * 
-	 * @param p_id: ID des Warenkorb-Objekts, dessen Inhalt in der Datenbank gelöscht werden soll
+	 * @param p_id ID des Warenkorb-Objekts, dessen Inhalt in der Datenbank gelöscht werden soll
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	public static void loescheWarenkorbinhalt(int p_id) throws DatenbankException
 	{		

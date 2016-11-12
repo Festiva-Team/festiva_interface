@@ -18,12 +18,12 @@ public class Artikel {
 	/**
 	 * Konstruktor zur Erstellung eines Artikel-Objekts mit den nachfolgenden Parametern
 	 * 
-	 * @param p_id: eindeutige ID des Artikels
-	 * @param p_beschreibung: Beschreibung des Artikels
-	 * @param p_preis: Preis des Artikels
-	 * @param p_istGelöscht: zeigt, ob der Artikel logisch gelöscht wurde
-	 * @param p_bildpfad: gibt den Bildpfad für das Bild zurück
-	 * @param p_festivalID: eindeutige ID des Festivals, zu dem der Artikel gehört
+	 * @param p_id eindeutige ID des Artikels
+	 * @param p_beschreibung Beschreibung des Artikels
+	 * @param p_preis Preis des Artikels
+	 * @param p_istGelöscht zeigt, ob der Artikel logisch gelöscht wurde
+	 * @param p_bildpfad gibt den Bildpfad für das Bild zurück
+	 * @param p_festivalID eindeutige ID des Festivals, zu dem der Artikel gehört
 	 */
 	public Artikel(int p_id, String p_beschreibung, float p_preis, boolean p_istGelöscht, String p_bildpfad, int p_festivalID) {
 		this.id = p_id;
