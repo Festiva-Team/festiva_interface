@@ -19,24 +19,28 @@ if (request.getSession(false) != null) {
 	    	<jsp:param name="active" value="startseite"/>
 	    </jsp:include>
 	    <div id="zeile">
-	    <% if (request.getSession().getAttribute("begrüßung") != null) 
-		{ %>
-		<h1><%= request.getSession().getAttribute("begrüßung") %></h1>
-		<% }  
-		%>
+		    <% if (request.getSession().getAttribute("begrüßung") != null) 
+			{ %>
+			<h1><%= request.getSession().getAttribute("begrüßung") %></h1>
+			<% }  
+			%>
 		</div>
-<div class="slideshow-container" id="container">
-<% for (Kategorie kategorie : listKategorien) { %>
-<div class="mySlides fade">
-  <a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorie=<%=kategorie.id%>"><img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" style="width:40%"></a>
-<%--   <div class="numbertext"><%=kategorie.beschreibung%></div> --%>
+		<div class="slideshow-container" id="container">
+			<% for (Kategorie kategorie : listKategorien) { %>
+			<div class="mySlides fade">
+			  <a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorie=<%=kategorie.id%>"><img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" id="img"></a>
+			<%--   <div class="numbertext"><%=kategorie.beschreibung%></div> --%>
+			</div>
+			<% } %>
+			<div id="left_holder"><img onClick="plusSlides(-1)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
+			<div id="right_holder"><img onClick="plusSlides(1)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
+		</div>
+		<br> 
 </div>
-<% } %>
-<div id="left_holder"><img onClick="plusSlides(-1)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
-<div id="right_holder"><img onClick="plusSlides(1)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
-</div>
-<br> 
 </body>
+<jsp:include page="k_footer.jsp">
+	    	<jsp:param name="active" value="startseite"/>
+	    </jsp:include>
 <script>
 var timer = 0;
 var slideIndex = 0;
