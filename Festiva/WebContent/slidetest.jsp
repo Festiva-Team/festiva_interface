@@ -22,7 +22,7 @@ if (request.getSession(false) != null) {
 <% for (Kategorie kategorie : listKategorien) { %>
 <div class="mySlides fade">
 <!--  <div class="numbertext"><%=kategorie.id%> / 4</div>-->
-  <a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorie=<%=kategorie.id%>"><img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" style="width:40%"></a>
+  <a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorie=<%=kategorie.id%>"><img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" id="img"></a>
 
 </div>
 <% } %>
