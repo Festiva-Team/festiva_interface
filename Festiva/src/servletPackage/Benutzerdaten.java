@@ -47,10 +47,6 @@ public class Benutzerdaten extends HttpServlet {
 			int userGruppenID = Integer.parseInt(session.getAttribute("gruppenid").toString());			
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
 			Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
-		//	if(benutzer == null) {
-		//		response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");
-			//	response.sendRedirect("fehlerseite.html");
-		//	} else {
 					
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
 				
@@ -59,7 +55,6 @@ public class Benutzerdaten extends HttpServlet {
 					if(userGruppenID == 1) {
 						request.getRequestDispatcher("a_adminKonto.jsp").include(request, response);
 					} else {
-				//		String test = request.getAttribute("OriginURL").toString();
 						request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
 					}					
 			} 

@@ -39,7 +39,9 @@
 					<% if (request.getSession().getAttribute("antwort") != null) 
 					{ %>
 					<p><%= request.getSession().getAttribute("antwort") %></p>
-					<% request.getSession().removeAttribute("antwort");}  %>
+					<%if((request.getSession().getAttribute("antwort")).equals("Sie müssen sich erst anmelden, bevor Sie Artikel in Ihren Warenkorb legen können.")) { %>
+					<p>Sie sind noch nicht registriert? Dann klicken Sie bitte <a href="k_registrieren.jsp"> hier</a> !</p>
+					<% } request.getSession().removeAttribute("antwort");}  %>
 				</div>
 				</div>
 				

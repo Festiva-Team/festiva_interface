@@ -53,28 +53,33 @@ public class Produktverwaltung extends HttpServlet {
 			}
 			List<Artikel> listArtikel = ArtikelAdministration.selektiereUnabhaengigeArtikel();
 			session.setAttribute("listArtikel", listArtikel);
+			session.setAttribute("aufrufer", request.getRequestURI() + "?" + request.getQueryString());
 			request.getRequestDispatcher("k_merchandiseShop.jsp").include(request, response);		
 		} else {
 			if((request.getParameter("aktion")).equals("s_anzeigen")) {
 				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorienFuerSlideshow();
+				if(session != null){
 				session.setAttribute("listKategorien", listKategorien);
+				} else {
+					request.getSession(true).setAttribute("listKategorien", listKategorien);
+				}
 				request.getRequestDispatcher("k_startseite.jsp").include(request, response);	
 			} else {
-				if((request.getParameter("aktion")).equals("f_k_anzeigen")) {
-					int kategorienid = 0;
-					
-					if(!request.getParameter("kategorienid").equals("")) {
-						try{
-							kategorienid = Integer.parseInt(request.getParameter("kategorienid"));
-						} catch (Exception e) {
-							e.printStackTrace();
-							kategorienid = 0;
-						} }
-					List<FestivalSuchobjekt> listFestivalSuchobjekte = FestivalAdministration.selektiereFestivalsInSuche(kategorienid, null, null, null, null, (float)0.0);
-					session.setAttribute("listFestivalSuchobjekte", listFestivalSuchobjekte);
-					request.getRequestDispatcher("").include(request, response);	
-					
-				}
+//				if((request.getParameter("aktion")).equals("f_k_anzeigen")) {
+//					int kategorienid = 0;
+//					
+//					if(!request.getParameter("kategorienid").equals("")) {
+//						try{
+//							kategorienid = Integer.parseInt(request.getParameter("kategorienid"));
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//							kategorienid = 0;
+//						} }
+//					List<FestivalSuchobjekt> listFestivalSuchobjekte = FestivalAdministration.selektiereFestivalsInSuche(kategorienid, null, null, null, null, (float)0.0);
+//					session.setAttribute("listFestivalSuchobjekte", listFestivalSuchobjekte);
+//					request.getRequestDispatcher("").include(request, response);	
+//					
+//				}
 			}
 		}
 		} catch (DatenbankException e) {

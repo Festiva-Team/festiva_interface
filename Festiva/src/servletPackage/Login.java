@@ -67,6 +67,11 @@ public class Login extends HttpServlet {
 					} else {
 						String pwHash = Registrierung.generiereHash((request.getParameter("passwort") + "76ZuOp(6?ssXY0"));
 						if ((benutzer.passwortHash).equals(pwHash)) {
+							String anforderer = null;
+							if(request.getSession(false).getAttribute("anforderer") != null) {
+						    anforderer = request.getSession(false).getAttribute("anforderer").toString();
+						    request.getSession(false).removeAttribute("anforderer");
+							}
 						HttpSession session = request.getSession(true);
 						session.setAttribute("userid", benutzer.id);
 						session.setAttribute("gruppenid", benutzer.gruppenID);
@@ -86,7 +91,11 @@ public class Login extends HttpServlet {
 							begrüßung = "Herzlich Willkommen bei Festiva, " + benutzer.vorname + " " + benutzer.nachname + "!";
 							}
 							request.getSession(false).setAttribute("begrüßung", begrüßung);
-							request.getRequestDispatcher("/Produktverwaltung?aktion=s_anzeigen").include(request, response);
+							if(anforderer != null) {
+								request.getRequestDispatcher(anforderer.substring(8)).include(request, response);
+								
+							} else {
+							request.getRequestDispatcher("/Produktverwaltung?aktion=s_anzeigen").include(request, response); }
 
 						}
 
