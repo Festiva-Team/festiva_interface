@@ -17,6 +17,30 @@ if (request.getSession(false) != null) {
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 	<title>Festiva</title>
+
+</head>
+<body>
+<div id="webseite">
+	    <jsp:include page="k_header.jsp">
+	    	<jsp:param name="active" value="startseite"/>
+	    </jsp:include>
+			<div id="container">
+			<%-- <% for (String bildpfad : listBildpfade){
+			int katId = Integer.parseInt(bildpfad.substring(10,11));%>
+			<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=katId%>"><img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/></a>
+ 			<div id="left_holder"><img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
+			<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
+			<% } %> --%>
+			<%-- Das erste Bild des Array für den Start anzeigen --%>
+			<%-- <%-- <img src="/Festiva/Bilder/"+<%bildpfad.bildpfad%> id="img"/> --%> --%>
+ 			<div id="left_holder"><img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
+			<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
+			
+			</div>
+			<div id="leer"></div>
+		<footer></footer>
+	</div>	
+</body>
 <script type="text/javascript">
 var pfad;
 var katId
@@ -40,40 +64,6 @@ function slide(x, pfade) {
 		}
 	}  
 }
-window.setInterval(function slide1() {
-	var bilder;
-	i = i + 1; 
-	for (var j = 0; j < pfade.length; j++){
-		var pfad = pfade[j];
-		var katId = parseInt.pfad.substr(10,1);
-		if(i > total) {
-			i = 1;
-			bilder.src = "/Festiva/Bilder/" + pfade[0] + ".jpg";
-		} else if(i < 1) {
-			bilder.src = "/Festiva/Bilder/" + pfade[total] + ".jpg";
-		} else if (katId == i){
-			bilder.src = "/Festiva/Bilder/" + pfad + ".jpg";
-		}
-	}  
-}, 5000);
 </script>
-</head>
-<body onLoad="slide1">
-<div id="webseite">
-	    <jsp:include page="k_header.jsp">
-	    	<jsp:param name="active" value="startseite"/>
-	    </jsp:include>
-			<div id="container">
-			<% for (String bildpfad : listBildpfade){
-			int katId = Integer.parseInt(bildpfad.substring(10,1));%>
-			<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=katId%>"><img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/></a>
- 			<div id="left_holder"><img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
-			<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
-			<% } %>
-			</div>
-			<div id="leer"></div>
-		<footer></footer>
-	</div>	
-</body>
 </html>
 <% request.getSession().removeAttribute("listBildpfade"); } %>
