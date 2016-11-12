@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*"
     session="false"	%>	
-<%  if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
+<%
+/** 
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: k_kundendaten.jsp
+	# JSP-Aktionen:                
+*/
+	if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
 	response.sendRedirect("k_anmelden.jsp");
 	} else {
 	Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer"); %>
