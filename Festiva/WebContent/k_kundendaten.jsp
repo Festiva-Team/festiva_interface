@@ -60,6 +60,9 @@
 					</div>
 				</div>
 			</form>
+			<% if (request.getSession(false).getAttribute("anforderer_k") != null) {%>
+			<button type="submit" onClick="window.location.href='<%=request.getSession(false).getAttribute("anforderer_k")%>'">Zurück zur Kasse</button>
+			<% request.getSession(false).removeAttribute("anforderer_k");} %>
 			
 			<form action="/Festiva/Benutzerdaten?aktion=p_aendern" method="POST">
 				<div id="zeile">
@@ -100,4 +103,4 @@ function del(id){
 }
 </script>
 </html>
-<% } %>
+<% }  %>

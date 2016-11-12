@@ -72,6 +72,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 						Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
 						List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
 						boolean kundendatenVollstaendig = ueberpruefeKundendaten(benutzer);
+						
+						
+						session.setAttribute("aufrufer_k", request.getRequestURI() + "?" + request.getQueryString());
 						session.setAttribute("kundendatenVollstaendig", kundendatenVollstaendig);
 						session.setAttribute("listFestivals", listFestivals);
 						session.setAttribute("warenkorb", warenkorb);

@@ -44,6 +44,10 @@ public class Bestellverwaltung extends HttpServlet {
 				int userid = Integer.parseInt(session.getAttribute("userid").toString());
 				String versand = request.getParameter("versand");
 				boolean perPost = false;
+				if(session.getAttribute("aufrufer_k") != null) {
+				session.removeAttribute("aufrufer_k");}
+				if(session.getAttribute("anforderer_k") != null) {
+					session.removeAttribute("anforderer_k");}
 				
 				if(versand.equals("post")) {
 					perPost = true;
