@@ -32,7 +32,9 @@ if (request.getSession(false) != null) {
 			<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
 			<% } %> --%>
 			<%-- Das erste Bild des Array für den Start anzeigen --%>
-			<%-- <%-- <img src="/Festiva/Bilder/"+<%bildpfad.bildpfad%> id="img"/> --%> --%>
+			<% String erstesElem = listBildpfade.get(0);  %>
+			<img src="/Festiva/Bilder/'+erstesElem+'.jpg" id="img"/>
+			<!-- <img src="/Festiva/Bilder/Kategorie_1_1478601263477 .jpg" id="img"/> -->
  			<div id="left_holder"><img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
 			<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
 			
@@ -58,7 +60,7 @@ function slide(x, pfade) {
 			bilder.src = "/Festiva/Bilder/" + pfade[0] + ".jpg";
 		} else if(i < 1) {
 			i = total; 
-			bilder.src = "/Festiva/Bilder/" + pfade[i] + ".jpg";
+			bilder.src = "/Festiva/Bilder/" + pfade[i-1] + ".jpg";
 		} else if (katId == i){
 			bilder.src = "/Festiva/Bilder/" + pfad + ".jpg";
 		}
