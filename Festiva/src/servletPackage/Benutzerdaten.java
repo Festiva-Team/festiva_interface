@@ -59,6 +59,7 @@ public class Benutzerdaten extends HttpServlet {
 					if(userGruppenID == 1) {
 						request.getRequestDispatcher("a_adminKonto.jsp").include(request, response);
 					} else {
+				//		String test = request.getAttribute("OriginURL").toString();
 						request.getRequestDispatcher("k_kundendaten.jsp").include(request, response);
 					}					
 			} 

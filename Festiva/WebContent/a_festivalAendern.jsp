@@ -34,7 +34,7 @@ else {
     	<jsp:param name="active" value="festivalAendern"/>
     </jsp:include>
 		<div id="main">
-			<form action="/Festiva/Festivalverwaltung?aktion=datenaendern&festivalid=<%=festival.id%>" method="POST" enctype="multipart/form-data">
+			
 			<h2>Festival ändern</h2>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 				<div id="spaltelinks">
@@ -45,6 +45,7 @@ else {
 						<p>Kein Bild vorhanden</p>
 						<% } %>
 				</div>
+				<form action="/Festiva/Festivalverwaltung?aktion=datenaendern&festivalid=<%=festival.id%>" method="POST" enctype="multipart/form-data">
 				 <div id="zeile">
 						<div id="spaltelinks">
 						<label for="bild">Neues Bild</label>
