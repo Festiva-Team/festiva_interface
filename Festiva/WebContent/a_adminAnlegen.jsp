@@ -54,7 +54,9 @@
 			</form>
 			<div id="leer"></div>
 		</div>
-		<footer></footer>
+		<jsp:include page="k_footer.jsp">
+			<jsp:param name="active" value="startseite"/>
+		</jsp:include>
 	</div>	
 </body>
 </html>

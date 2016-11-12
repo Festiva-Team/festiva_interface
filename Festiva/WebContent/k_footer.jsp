@@ -25,4 +25,8 @@ HttpSession session = request.getSession(false);
 </head>
 <body>
 </body>
+<footer>
+	<a href="impressum.jsp">Impressum</a>
+</footer>
 </html>
+

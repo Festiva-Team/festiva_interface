@@ -2,7 +2,15 @@
     pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.text.DecimalFormat" import="java.io.File" import="java.util.*" import="java.text.*"
     session="false"	%>
     
-<%  if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
+<%  
+/** 
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: a_artikelAendern.jsp
+	# JSP-Aktionen: (1) Anzeige der aktuellen Artikeldaten
+	# 				(2) Ändern oder Löschen der Daten
+*/
+
+if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 	response.sendRedirect("k_anmelden.jsp");} 
 else {
 	DecimalFormat df = new DecimalFormat("0.00");
@@ -68,7 +76,9 @@ else {
 				</div>		
 	</div>
 	<div id="leer"></div>
-	<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>
 </body>
 <script type="text/javascript">

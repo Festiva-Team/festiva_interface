@@ -3,9 +3,8 @@
 <%
 /** 
 	# Autor: Nicola Kloke
-	# JSP-Name: startseiteAdmin.jsp
-	# JSP-Aktionen: Die Startseite des Admins wird angezeigt.
-	# 				Von hier aus kann er die Verwaltung der Kunden, Kategorien und Festivals vornehmen.
+	# JSP-Name: a_startseiteAdmin.jsp
+	# JSP-Aktionen: Anzeige der Startseite des Admins
 */
 
 
@@ -30,9 +29,11 @@ response.sendRedirect("k_anmelden.jsp");}
 	<div id="main">
 		<h1>Adminbereich</h1>
 		<p><%= request.getSession().getAttribute("begrüßung") %></p>
-	<div id="leer"></div>
 	</div>
-	 <footer></footer>
+	<div id="leer"></div>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 	</div>	
 </body>
 </html>

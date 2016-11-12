@@ -3,9 +3,11 @@
     session="false"	%>
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: festivalverwaltung.jsp
-	# JSP-Aktionen: Der Admin kann Festival und die dazugehörigen Artikel suchen, anzeigen, anlegen, ändern und löschen.
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: a_festivalverwaltung.jsp
+	# JSP-Aktionen: (1) Anzeige aller Festivals
+					(2) Button zum Anlegen von neuen Festivals
+					(3) ID-Link führt zum Änderungsmodus
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}
@@ -66,7 +68,9 @@ else {
 				</div>
 	<div id="leer"></div>
    	</div>
-  		<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>
 </body>
 </html>

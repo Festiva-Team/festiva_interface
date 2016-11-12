@@ -4,9 +4,9 @@
     
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: kategorieAnlegen.jsp
-	# JSP-Aktionen: Der Admin kann eine neue Kategorie anlegen.
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: a_festivalAnlegen.jsp
+	# JSP-Aktionen: (1) Anlage eines neuen Festivals
 */
 
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
@@ -70,7 +70,9 @@ else {
 					
 	<div id="leer"></div>			
 	</div>
-	<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>	
 </body>
 </html>

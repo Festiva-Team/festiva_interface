@@ -6,8 +6,9 @@
     session="false"	%>
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: merchandiseShop.jsp
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: k_merchandiseShop.jsp
+	# JSP-Aktionen:                
 */
 if (request.getSession(false) != null) {
 	List<Integer> listArtikelID = null;
@@ -69,7 +70,9 @@ if (request.getSession(false) != null) {
 			</div>	
 		<div id="leer"></div>
 		</div>
-			<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 	</div>
 </body>
 <script type="text/javascript">

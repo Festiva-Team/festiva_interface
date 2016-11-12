@@ -2,7 +2,13 @@
     pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*" import="java.io.File"
     session="false"%>
     
-<%  SimpleDateFormat sd = new SimpleDateFormat(" EEEE, dd.MM.yyyy");
+<%  
+/** 
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: k_festivaldetails.jsp
+	# JSP-Aktionen:                
+*/
+	SimpleDateFormat sd = new SimpleDateFormat(" EEEE, dd.MM.yyyy");
 	List<Artikel> listArtikel = null;
 	List<Artikel> listArtikelMitMaxPreis = null;
 	List<Artikel> listArtikelUeberMaxPreis = null;
@@ -106,7 +112,9 @@
 				</div> 
 			<div id="leer"></div>
 		</div>
-	<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 	</div>	
 </body>
 <script type="text/javascript">

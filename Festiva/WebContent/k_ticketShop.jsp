@@ -6,8 +6,8 @@
     pageEncoding="ISO-8859-1"%>
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: shop.jsp
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: k_ticketShop.jsp
 	# JSP-Aktionen: Besucher: kann Festivals suchen und sich anzeigen lassen
 							  kann sich die Artikel zu einem Festival anzeigen lasen
 	      angemeldeter Kunde: kann Festivals suhen und sich anzeigen lassen
@@ -110,7 +110,9 @@ if (request.getSession(false) != null) {
 			</form>
 		<div id="leer"></div>
 		</div>
-			<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 	</div>
 </body>
 </html>

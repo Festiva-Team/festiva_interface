@@ -2,10 +2,17 @@
     pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*"
     session="false"	%>	
 
-<%  if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1 || request.getSession(false).getAttribute("benutzer") == null) {
-		response.sendRedirect("k_anmelden.jsp");}  
-	else {
-		Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer"); %>
+<%  /** 
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: a_adminKonto.jsp
+	# JSP-Aktionen: (1) Anzeige des Adminkontos
+	# 				(2) Möglichkeit zur Passwortänderung
+	*/
+
+if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1 || request.getSession(false).getAttribute("benutzer") == null) {
+	response.sendRedirect("k_anmelden.jsp");}  
+else {
+	Benutzer benutzer = (Benutzer)request.getSession(false).getAttribute("benutzer"); %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -48,7 +55,9 @@
 		</form>
 	<div id="leer"></div>
 	</div>
-	<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>	
 </body>
 </html>

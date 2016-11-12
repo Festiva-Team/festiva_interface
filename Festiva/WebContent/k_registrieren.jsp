@@ -4,9 +4,9 @@
 	%>
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: registrieren.jsp
-	# JSP-Aktionen: Hier kann ein Besucher, sich mit seiner Email und einem Passwort registrieren, um mit der nächsten Anmeldung einkaufen zu können. 	
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: k_registrieren.jsp
+	# JSP-Aktionen:                
 */
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -54,7 +54,9 @@
 			</form>
 			<div id="leer"></div>
 		</div>
-		<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 	</div>	
 </body>
 </html>

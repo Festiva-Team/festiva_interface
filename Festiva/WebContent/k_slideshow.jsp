@@ -3,9 +3,9 @@
     session="false"	%>
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: startseite.jsp
-	# JSP-Aktionen:
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: k_slideshow.jsp
+	# JSP-Aktionen:                
 */
 if (request.getSession(false) != null) {
 	List<String> listBildpfade = (List<String>)request.getSession(false).getAttribute("listBildpfade");
@@ -40,7 +40,9 @@ if (request.getSession(false) != null) {
 			
 			</div>
 			<div id="leer"></div>
-		<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 	</div>	
 </body>
 <script type="text/javascript">

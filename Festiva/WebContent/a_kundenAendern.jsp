@@ -3,9 +3,10 @@
     session="false"	%>
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: kundenAendern.jsp
-	# JSP-Aktionen: Der Admin kann die Kundendaten ändern.
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: a_kundenAendern.jsp
+	# JSP-Aktionen: (1) Anzeige der aktuellen Kundendaten
+					(2) Ändern, Löschen oder Sperren des Kundendaten
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1 || request.getSession(false).getAttribute("benutzer") == null) {
 	response.sendRedirect("k_anmelden.jsp");} 
@@ -90,7 +91,9 @@ else {
 				</div>	
 		<div id="leer"></div>
 		</div>
-		<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>	
 </body>
 <script type="text/javascript">

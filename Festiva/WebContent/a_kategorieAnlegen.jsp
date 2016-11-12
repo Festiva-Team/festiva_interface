@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%
+<%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: kategorieAnlegen.jsp
-	# JSP-Aktionen: Der Admin kann eine neue Kategorie anlegen.
-*/
+  	# Autor: Nicola Kloke, Alina Fankhänel
+  	# JSP-Name: a_kategorieAnlegen.jsp
+  	# JSP-Aktionen: (1) Anlage einer neuen Kategorie
+ */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}
 %>
@@ -48,7 +48,9 @@ response.sendRedirect("k_anmelden.jsp");}
 				</div>	
 	<div id="leer"></div>
 	</div>
-	<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>	
 </body>
 </html>

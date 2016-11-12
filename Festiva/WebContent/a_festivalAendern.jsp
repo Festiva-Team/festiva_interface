@@ -4,9 +4,11 @@
     
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: kategorieAendern.jsp
-	# JSP-Aktionen: Der Admin kann eine Kategorie ändern.
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: a_festivalAendern.jsp
+	# JSP-Aktionen: (1) Anzeige der aktuellen Festivaldaten
+	# 				(2) Ändern oder Löschen der Daten
+					(3) Button zum Anlegen neuer Artikel für das Festival
 */
 
 
@@ -116,7 +118,9 @@ else {
 				</div>		
 		<div id="leer"></div>
 		</div>
-		<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>	
 </body>
 <script type="text/javascript">

@@ -2,10 +2,11 @@
     pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*" import="java.io.File"
     session="false"	%>
  <%
-/** 
-	# Autor: Nicola Kloke
-	# JSP-Name: kategorieAendern.jsp
-	# JSP-Aktionen: Der Admin kann eine Kategorie ändern.
+ /** 
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: a_kategorieAendern.jsp
+	# JSP-Aktionen: (1) Anzeige der aktuellen Kategoriedaten
+					(4) Ändern oder Löschen der Daten
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 	response.sendRedirect("k_anmelden.jsp");}
@@ -75,7 +76,9 @@ else {
 				</div>	
 	<div id="leer"></div>
 	</div>
-	<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>	
 </body>
 <script>

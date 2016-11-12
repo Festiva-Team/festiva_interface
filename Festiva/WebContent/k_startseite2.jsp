@@ -2,8 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%
 /** 
-	# Autor: Nicola Kloke
-	# JSP-Name: startseite.jsp
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: startseite2.jsp
 	# JSP-Aktionen:
 */
 %>
@@ -46,7 +46,9 @@
 				</figure> 
 			</figure>
 			<div id="leer"></div>
-		<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 	</div>	
 </body>
 </html>

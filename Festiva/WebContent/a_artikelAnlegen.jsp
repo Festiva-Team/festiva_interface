@@ -2,7 +2,14 @@
     pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.text.DecimalFormat"
     session="false"	%>
     
-<%
+<%	
+/** 
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: a_artikelAnlegen.jsp
+	# JSP-Aktionen: (1) Anlage eines neuen Artikels mit Beschreibung und Preis für Zubehörartikel
+					(2) Anlage eines neuen Artikels mit Beschreibung, Preis und Bild für Festivalartikel
+*/
+
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 	response.sendRedirect("k_anmelden.jsp");}
 else {
@@ -50,7 +57,9 @@ else {
 				</div>		
 	<div id="leer"></div>
 	</div>
-	<footer></footer>
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>	
 </body>
 </html>

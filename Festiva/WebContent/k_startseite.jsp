@@ -2,6 +2,11 @@
     pageEncoding="UTF-8" import="standardPackage.*" import="java.util.*" import="java.text.*" 
     session="false"	%>
 <%
+/** 
+	# Autor: Nicola Kloke, Alina Fankhänel
+	# JSP-Name: k_startseite.jsp
+	# JSP-Aktionen: Anzeige der Startseite des Kunden
+*/
 if (request.getSession(false) != null) {
 	List<Kategorie> listKategorien = (List<Kategorie>)request.getSession(false).getAttribute("listKategorien");
 	%>
@@ -36,11 +41,11 @@ if (request.getSession(false) != null) {
 			<div id="right_holder"><img onClick="plusSlides(1)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
 		</div>
 		<br> 
+<jsp:include page="k_footer.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
 </div>
 </body>
-<jsp:include page="k_footer.jsp">
-	    	<jsp:param name="active" value="startseite"/>
-	    </jsp:include>
 <script>
 var timer = 0;
 var slideIndex = 0;
