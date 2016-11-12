@@ -137,7 +137,7 @@ public class KategorienAdministration {
 	public static List<Kategorie> selektiereAlleKategorienFuerSlideshow() throws DatenbankException
 	{
 		List<Kategorie> listKategorien = new ArrayList<Kategorie>();
-		String selectBefehl = "SELECT bildpfad " + 
+		String selectBefehl = "SELECT id, name, beschreibung, istgelöscht, bildpfad " + 
 							  "FROM festiva.kategorien WHERE id = 1 OR id = 2 OR id = 3 OR id = 4 " + 
 							  "ORDER BY id ASC";
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
