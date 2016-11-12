@@ -41,7 +41,7 @@ public class Logout extends HttpServlet {
     	response.setHeader("Pragma", "no-cache");
     	response.setDateHeader("Expires", 0);
 	    request.getSession().invalidate();
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("k_startseite.jsp");
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/Produktverwaltung?aktion=s_anzeigen");
 	    dispatcher.forward(request, response);     
     }
 

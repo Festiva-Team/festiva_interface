@@ -172,7 +172,11 @@ public class Warenkorbverwaltung extends HttpServlet {
 			
 		} else {
 			if((request.getParameter("aktion")).equals("anmelden")) {
-				antwort = "Sie müssen sich erst anmelden bevor Sie Artikel in Ihren Warenkorb legen können.";
+				antwort = "Sie müssen sich erst anmelden, bevor Sie Artikel in Ihren Warenkorb legen können.";
+				if(session.getAttribute("aufrufer") != null) {
+				String anforderer = session.getAttribute("aufrufer").toString();
+				session.removeAttribute("aufrufer");
+				session.setAttribute("anforderer", anforderer);}
 				session.setAttribute("antwort", antwort);
 				request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 			} else {

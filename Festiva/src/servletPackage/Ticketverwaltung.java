@@ -119,6 +119,7 @@ public class Ticketverwaltung extends HttpServlet {
 					}
 					session.setAttribute("festival", festival);
 					session.setAttribute("maxpreis", maxpreis);
+					session.setAttribute("aufrufer", request.getRequestURI() + "?" + request.getQueryString());
 					request.getRequestDispatcher("k_festivaldetails.jsp").include(request, response);
 					
 				}
