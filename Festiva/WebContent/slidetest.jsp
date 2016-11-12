@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*" 
+    session="false"	%>
+<%
+if (request.getSession(false) != null) {
+	List<Kategorie> listKategorien = (List<Kategorie>)request.getSession(false).getAttribute("listKategorien");
+	%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+	<title>Festiva</title>
+</head>
+<body>
+<div id="webseite">
+	    <jsp:include page="k_header.jsp">
+	    	<jsp:param name="active" value="startseite"/>
+	    </jsp:include>
+<div class="slideshow-container" id="container">
+<% for (Kategorie kategorie : listKategorien) { %>
+<div class="mySlides fade">
+<!--  <div class="numbertext"><%=kategorie.id%> / 4</div>-->
+  <a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorie=<%=kategorie.id%>"><img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" style="width:40%"></a>
+
+</div>
+<% } %>
+<div id="left_holder"><img onClick="plusSlides(-1)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
+<div id="right_holder"><img onClick="plusSlides(1)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
+</div>
+<br>
+
+<script>
+var timer = 0;
+var slideIndex = 0;
+carousel();
+
+function plusSlides(n) {
+    slideIndex = slideIndex + n;
+    clearTimeout(timer);
+    timer = 0;
+    slide(slideIndex);
+}
+
+function slide(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length} ;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x[slideIndex-1].style.display = "block";
+    timer = setTimeout("carousel()", 2000);
+}
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1}
+    x[slideIndex-1].style.display = "block";
+    timer = setTimeout("carousel()", 2000); 
+}
+</script>
+</body>
+</html> 
+<% request.getSession(false).removeAttribute("listKategorien"); } %>
