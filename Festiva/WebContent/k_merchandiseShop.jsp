@@ -77,32 +77,48 @@ if (request.getSession(false) != null) {
 	</div>
 </body>
 <script type="text/javascript">
-
-function einfuegen(id, elemente){
-	
+function einfuegen(id, elemente){	
 	if(elemente == null) {
 		document.location.href='/Festiva/Warenkorbverwaltung?aktion=anmelden';
 	} else {
-   
-			var vorhanden = false;
-			for (var i = 0; i < elemente.length; i++) {
-				if (elemente[i] == id) {
-					vorhanden = true;
-				}
+		var vorhanden = false;
+		for (var i = 0; i < elemente.length; i++) {
+			if (elemente[i] == id) {
+				vorhanden = true;
 			}
-			
-			var menge = document.getElementById('anzahl'+id).value;
-			
-			if(vorhanden == true) {
-			if(confirm("Dieser Artikel befindet sich bereits in Ihrem Warenkorb. Soll die ausgewählte Menge trotzdem hinzugefügt werden?") == true)
+		}
 		
-				document.location.href='/Festiva/Warenkorbverwaltung?aktion=aktualisieren&artikelid=' + id + '&menge=' + menge;
-			} else {
-			
-				document.location.href='/Festiva/Warenkorbverwaltung?aktion=hinzufuegen&artikelid=' + id + '&menge=' + menge;
-				
-			}	
+		var menge = document.getElementById('anzahl'+id).value;
+		
+		if(vorhanden == true) {
+		if(confirm("Dieser Artikel befindet sich bereits in Ihrem Warenkorb. Soll die ausgewählte Menge trotzdem hinzugefügt werden?") == true)
+	
+		//document.location.href='/Festiva/Warenkorbverwaltung?aktion=aktualisieren&artikelid=' + id + '&menge=' + menge;
+		  post('/Festiva/Warenkorbverwaltung', {aktion: 'aktualisieren', artikelid: id, menge: menge});	
+		} else {	
+			//document.location.href='/Festiva/Warenkorbverwaltung?aktion=hinzufuegen&artikelid=' + id + '&menge=' + menge;	
+			post('/Festiva/Warenkorbverwaltung', {aktion: 'hinzufuegen', artikelid: id, menge: menge});	
+		}	
 	}
+}
+function post(path, params, method) {
+    method = method || "post"; 
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+            form.appendChild(hiddenField);
+         }
+    }
+    document.body.appendChild(form);
+    
+    form.submit();
+   
 }
 </script>
 </html> 

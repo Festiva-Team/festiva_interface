@@ -150,8 +150,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 										else {
 											int festivalid = Integer.parseInt(request.getParameter("festivalid"));
 											float maxpreis = Float.parseFloat(request.getParameter("maxpreis"));
-											request.getRequestDispatcher("/Ticketverwaltung?aktion=f_anzeigen&festivalid=" + festivalid + "&maxpreis=" + maxpreis).include(request, response);		
-										}
+											
+											request.getRequestDispatcher("/Ticketverwaltung?aktion=f_anzeigen&festivalid=" + festivalid + "&maxpreis=" + maxpreis).include(request, response);	
+									}
 									} else {
 									
 				int elementID = Integer.parseInt(request.getParameter("elementid"));

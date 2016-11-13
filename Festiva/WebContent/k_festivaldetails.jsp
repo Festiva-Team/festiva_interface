@@ -153,6 +153,7 @@ function einfuegen(id, elemente, festivalid, maxpreis){
 			}	
 	}
 }
+
 function post(path, params, method) {
     method = method || "post"; 
     var form = document.createElement("form");
