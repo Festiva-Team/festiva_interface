@@ -5,8 +5,11 @@
  /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_kategorieAendern.jsp
-	# JSP-Aktionen: (1) Anzeige der aktuellen Kategoriedaten
-					(4) Ändern oder Löschen der Daten
+	# JSP-Aktionen: (1) Anzeige der aktuellen Kategoriendaten
+	#				(2) Möglichkeit zum Ändern der Daten
+	# 				(3) Möglichkeit zum Löschen der Kategorie, wenn ID > 5 (keine Stammkategorien)
+	#				(4) Weitergabe der Daten an das Servlet "Kategorienverwaltung.java" 
+	#				(5) Anzeige der Antwort aus dem Servlet
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 	response.sendRedirect("k_anmelden.jsp");}
@@ -25,55 +28,52 @@ else {
 </head>
 <body>
 <div id="webseite">
-    <jsp:include page="a_headerAdmin.jsp">
-    	<jsp:param name="active" value="kategorieAendern"/>
-    </jsp:include>
+<jsp:include page="a_headerAdmin.jsp">
+	<jsp:param name="active" value="kategorieAendern"/>
+</jsp:include>
 	<div id="main">
-		<form action="/Festiva/Kategorienverwaltung?aktion=datenaendern&kategorienid=<%=kategorie.id%>" method="POST" enctype="multipart/form-data">
-			<div id="zeile">
-			<h2>Kategorie ändern</h2>
-			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-				<div id="spaltelinks">
-					<label for="name">Kategorienname*</label>
-					<input type="text" id="name" name="name" maxlength="30" title="Bitte wählen Sie einen passenden Namen!" required="required" value="<%=kategorie.name%>">
-					<label for="beschreibung">Beschreibung*</label>
-					<textarea rows="5" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"><%=kategorie.beschreibung%></textarea>
-					<label for="bild">Neues Bild</label>
-					<input type="file" id="bild" name="bild" accept="image/*">
-					<output id="list"></output>
-					
-					<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { %>
-					<label for="geloescht">Ist Gelöscht</label>
-					<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value=
-	      					   "<%=kategorie.istGelöscht%>"
-	      					   <% if (kategorie.istGelöscht == true) {%>
-	      					   checked=<%="checked"%> title="Die Kategorie ist gelöscht."<%} else {%><%=""%>title="Die Kategorie ist nicht gelöscht."<%} %> ><br/>
-	      			<% } %>
-					<button type="submit">Änderungen speichern</button>
-				</div>
-				<div id="spalterechts">
-					<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) { %>
-					<figure class="bild1">
-					<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150 />
-					</figure>
-					<% } else { %>
-						<p>Kein Bild vorhanden</p>
-						<% } %>
-				</div> 	
-				</div>
-				</form>
-				<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { if(new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) {%>
+	<form action="/Festiva/Kategorienverwaltung?aktion=datenaendern&kategorienid=<%=kategorie.id%>" method="POST" enctype="multipart/form-data">
+		<div class="zeile">
+		<h2>Kategorie ändern</h2>
+		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			<div class="spaltelinks">
+				<label for="name">Kategorienname*</label>
+				<input type="text" id="name" name="name" maxlength="30" title="Bitte wählen Sie einen passenden Namen!" required="required" value="<%=kategorie.name%>">
+				<label for="beschreibung">Beschreibung*</label>
+				<textarea rows="5" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"><%=kategorie.beschreibung%></textarea>
+				<label for="bild">Neues Bild</label>
+				<input type="file" id="bild" name="bild" accept="image/*">
+				<output id="list"></output>	
+				<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { %>
+				<label for="geloescht">Ist Gelöscht</label>
+				<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=kategorie.istGelöscht%>"
+			    <% if (kategorie.istGelöscht == true) {%>
+			    checked=<%="checked"%> title="Die Kategorie ist gelöscht."<%} else {%><%=""%>title="Die Kategorie ist nicht gelöscht."<%} %> ><br/>
+      			<% } %>
+				<button type="submit">Änderungen speichern</button>
+			</div>
+			<div class="spalterechts">
+				<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) { %>
+				<figure class="bild1">
+				<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150 />
+				</figure>
+				<% } else { %>
+					<p>Kein Bild vorhanden</p>
+				<% } %>
+			</div> 	
+		</div>
+	</form>
+	<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { if(new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) {%>
 		<button type="submit" onClick="window.location.href='/Festiva/Kategorienverwaltung?aktion=b_loeschen&kategorienid=<%=kategorie.id%>'">Aktuelles Bild löschen</button>
-		<% } %>
-				
-					<button type="submit" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
-					<% } %>
-					<div id="spalterechts">
-					<% if (request.getSession().getAttribute("antwort") != null) 
-					{ %>
-					<p><%= request.getSession().getAttribute("antwort") %></p>
-					<% request.getSession().removeAttribute("antwort");}  %>
-				</div>	
+	<% } %>
+	<button type="submit" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
+	<% } %>
+	<div class="spalterechts">
+		<% if (request.getSession().getAttribute("antwort") != null) 
+		{ %>
+		<p><%= request.getSession().getAttribute("antwort") %></p>
+		<% request.getSession().removeAttribute("antwort");}  %>
+	</div>	
 	<div id="leer"></div>
 	</div>
 <jsp:include page="k_footer.jsp">

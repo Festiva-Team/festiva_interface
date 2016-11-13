@@ -6,7 +6,9 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_anmelden.jsp
-	# JSP-Aktionen: 
+	# JSP-Aktionen: 1) Erzeugung von Eingabefeldern zur Anmeldung eines Kunden
+					2) Weitergabe der Daten an das Servlet "Login.java" 
+					3) Anzeige der Antwort aus dem Servlet
 */
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

@@ -4,7 +4,9 @@
 /** 
  	# Autor: Nicola Kloke, Alina Fankh‰nel
  	# JSP-Name: a_kundenAnlegen.jsp
- 	# JSP-Aktionen: (1) Anlage eines neuen Kunden
+ 	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zum Anlegen von neuen Kunden
+	#				(2) Weitergabe der Daten an das Servlet "Registrierung.java" 
+	#				(3) Anzeige der Antwort aus dem Servlet
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}
@@ -25,33 +27,32 @@ response.sendRedirect("k_anmelden.jsp");}
     	<jsp:param name="active" value="kundenAnlegen"/>
     </jsp:include>
 	<div id="main">
-		<form action="/Festiva/Registrierung" method="post">
-			<div id="zeile">
-			<div id="spaltelinks">
-				<h2>Kunden anlegen</h2>
-				<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-				<label for="email">E-Mail*</label>
-				<input type="email" name="email" id="email" title="Bitte geben Sie eine g¸ltige E-Mail Adresse ein!" maxlength="30" required="required">
-				<label for="emailbest‰tigung">E-Mail best‰tigen*</label>
-				<input type="email" name="emailbest‰tigung" id="emailbest‰tigung" title="Bitte geben Sie eine g¸ltige E-Mail Adresse ein!" maxlength="30" required="required">
-				<label for="passwort">Passwort*</label>
-				<input type="password" name="passwort" id="passwort" title="Bitte beachten Sie bei der Wahl des Passworts den rechtsstehenden Hinweis!" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
-				<label for="passwortbest‰tigung">Passwort best‰tigen*</label>
-				<input type="password" name="passwortbest‰tigung" title="Bitte beachten Sie bei der Wahl des Passworts den rechtsstehenden Hinweis!" id="passwortbest‰tigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
-				<button type="submit" id="links">Anlegen</button>
-			</div>
-			<div id="spalterechts">
-			<p id="text"><b>Hinweis:</b> Das Passwort muss aus mindestens einem Klein- und Groﬂbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestl‰nge des Passworts betr‰gt 8 Zeichen.</p>	
-					<% if (request.getSession().getAttribute("antwort") != null) 
-					{ %>
-					<p id="text"><%= request.getSession().getAttribute("antwort") %></p>
-					<% request.getSession().removeAttribute("antwort");}  %>
-				</div>	
-			</div>
-			</form>
-			<div id="leer"></div>
+	<form action="/Festiva/Registrierung" method="post">
+		<div class="zeile">
+		<div class="spaltelinks">
+			<h2>Kunden anlegen</h2>
+			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			<label for="email">E-Mail*</label>
+			<input type="email" name="email" id="email" title="Bitte geben Sie eine g¸ltige E-Mail Adresse ein!" maxlength="30" required="required">
+			<label for="emailbest‰tigung">E-Mail best‰tigen*</label>
+			<input type="email" name="emailbest‰tigung" id="emailbest‰tigung" title="Bitte geben Sie eine g¸ltige E-Mail Adresse ein!" maxlength="30" required="required">
+			<label for="passwort">Passwort*</label>
+			<input type="password" name="passwort" id="passwort" title="Bitte beachten Sie bei der Wahl des Passworts den rechtsstehenden Hinweis!" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
+			<label for="passwortbest‰tigung">Passwort best‰tigen*</label>
+			<input type="password" name="passwortbest‰tigung" title="Bitte beachten Sie bei der Wahl des Passworts den rechtsstehenden Hinweis!" id="passwortbest‰tigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
+			<button type="submit" id="links">Anlegen</button>
 		</div>
-		<div id="leer"></div>
+		<div class="spalterechts">
+			<p id="text"><b>Hinweis:</b> Das Passwort muss aus mindestens einem Klein- und Groﬂbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestl‰nge des Passworts betr‰gt 8 Zeichen.</p>	
+			<% if (request.getSession().getAttribute("antwort") != null) 
+			{ %>
+			<p id="text"><%= request.getSession().getAttribute("antwort") %></p>
+			<% request.getSession().removeAttribute("antwort");}  %>
+		</div>	
+		</div>
+	</form>
+	</div>
+	<div id="leer"></div>
 <jsp:include page="k_footer.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>

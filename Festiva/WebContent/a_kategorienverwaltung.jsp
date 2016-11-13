@@ -26,37 +26,38 @@ else {
 </head>
 <body>
 <div id="webseite">
-	<jsp:include page="a_headerAdmin.jsp">
-   		<jsp:param name="active" value="kategorienverwaltung"/>
-  	</jsp:include>
+<jsp:include page="a_headerAdmin.jsp">
+  	<jsp:param name="active" value="kategorienverwaltung"/>
+</jsp:include>
   	<div id="main">
-	    	<h2>Kategorienverwaltung</h2>
-	    		<div id="spaltelinks">
-				<button type="button" id="anlegen" onClick="window.location.href='a_kategorieAnlegen.jsp'"> Neue Kategorie anlegen </button>
-				</div>
-				<div id="zeile">
-				<table>
-				<thead><tr><th>ID</th><th>Name</th><th>Beschreibung</th><th>Bild</th><th>Gelöscht</th></tr></thead>	
-					<%for (Kategorie kategorie : listKategorien) { %>
-				<tbody><tr>
-								
-								<th data-label="Kategorie: "><a href="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>"><%=kategorie.id%></a></td>
-								<td data-label="Name: "><%=kategorie.name%></td>
-								<td data-label="Beschreibung: "><%=kategorie.beschreibung%></td>
-								<%if (kategorie.bildpfad == null || (kategorie.bildpfad).equals("")) { %>
-								<td data-label="Bild: "><%="Nein"%></td>
-								<% } else { %>
-								<td data-label="Bild: "><%="Ja"%></td>
-								<% } %>
-								<%if (kategorie.istGelöscht == false) { %>
-								<td data-label="Gelöscht: "><%="nein"%></td>
-								<% } else { %>
-								<td data-label="gelöscht: "><%="ja"%></td>
-								<% } %>
-					</tr></tbody>	
-					<% } %>
-				</table>
-			</div>
+   	<h2>Kategorienverwaltung</h2>
+   		<div class="spaltelinks">
+			<button type="button" id="anlegen" onClick="window.location.href='a_kategorieAnlegen.jsp'"> Neue Kategorie anlegen </button>
+		</div>
+		<div class="zeile">
+		<table>
+			<thead><tr><th>ID</th><th>Name</th><th>Beschreibung</th><th>Bild</th><th>Gelöscht</th></tr></thead>	
+			<%for (Kategorie kategorie : listKategorien) { %>
+			<tbody>
+			<tr>		
+				<th data-label="Kategorie: "><a href="/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=<%=kategorie.id%>"><%=kategorie.id%></a></td>
+				<td data-label="Name: "><%=kategorie.name%></td>
+				<td data-label="Beschreibung: "><%=kategorie.beschreibung%></td>
+				<%if (kategorie.bildpfad == null || (kategorie.bildpfad).equals("")) { %>
+				<td data-label="Bild: "><%="Nein"%></td>
+				<% } else { %>
+				<td data-label="Bild: "><%="Ja"%></td>
+				<% } %>
+				<%if (kategorie.istGelöscht == false) { %>
+				<td data-label="Gelöscht: "><%="nein"%></td>
+				<% } else { %>
+				<td data-label="gelöscht: "><%="ja"%></td>
+				<% } %>
+			</tr>
+			</tbody>	
+			<% } %>
+		</table>
+	</div>
 	<div id="leer"></div>
 	</div>  	
 <jsp:include page="k_footer.jsp">

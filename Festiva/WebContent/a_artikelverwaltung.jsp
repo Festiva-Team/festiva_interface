@@ -5,9 +5,10 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_artikelverwaltung.jsp
-	# JSP-Aktionen: (1) Anzeige aller Artikel
-					(2) Button zum Anlegen von neuen Artikeln
-					(3) ID-Link führt zum Änderungsmodus
+	# JSP-Aktionen: (1) Abrufen einer Liste von allen Benutzern
+	#				(2) Tabellarische Darstellung der Benutzerdaten (Id, EMail, Name, Vorname, Gruppe, Gesperrt)
+	#				(3) Möglichkeit zur Administration (sperren, entsperren, befördern, degradieren) eines Benutzers bieten
+
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}
@@ -26,39 +27,41 @@ else {
 </head>
 <body>
 <div id="webseite">
-	<jsp:include page="a_headerAdmin.jsp">
-   		<jsp:param name="active" value="artikelverwaltung"/>
-	</jsp:include>
+<jsp:include page="a_headerAdmin.jsp">
+  	<jsp:param name="active" value="artikelverwaltung"/>
+</jsp:include>
  	<div id="main">
- 		<h2>Festivalübergreifende Artikelverwaltung</h2>
-			<div id="spaltelinks">
-					<button type="button" onClick="window.location.href='a_artikelAnlegen.jsp?'" id="anlegen">Neuen Artikel anlegen</button>
-					</div>					
-				<div id="zeile">
-					<div id="spaltelinks">
-					<table>
-					<thead>
-						<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Bild</th><th>Gelöscht</th></tr></thead>
-						<%for (Artikel artikel : listArtikel) { %>
-					<tbody>	<tr>		
-						<th data-label="Artikel: "><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></th>
-						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
-						<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-						<%if (artikel.bildpfad == null || (artikel.bildpfad).equals("")) { %>
-						<td data-label="Bild: "><%="nein"%></td>
-						<% } else { %>
-						<td data-label="Bild: "><%="ja"%></td>
-						<% } %>
-						<%if (artikel.istGelöscht == false) { %>
-						<td data-label="Gelöscht: "><%="nein"%></td>
-						<% } else { %>
-						<td data-label="Gelöscht: "><%="ja"%></td>
-						<% } %>
-					</tr></tbody>
-					<% } %>
-					</table>
-					</div>		
-				</div>	
+	<h2>Festivalübergreifende Artikelverwaltung</h2>
+	<div class="spaltelinks">
+		<button type="button" onClick="window.location.href='a_artikelAnlegen.jsp?'" id="anlegen">Neuen Artikel anlegen</button>
+	</div>					
+	<div class="zeile">
+	<div class="spaltelinks">
+		<table>
+		<thead>
+			<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Bild</th><th>Gelöscht</th></tr></thead>
+			<%for (Artikel artikel : listArtikel) { %>
+		<tbody>	
+		<tr>		
+			<th data-label="Artikel: "><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></th>
+			<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+			<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+			<%if (artikel.bildpfad == null || (artikel.bildpfad).equals("")) { %>
+			<td data-label="Bild: "><%="nein"%></td>
+			<% } else { %>
+			<td data-label="Bild: "><%="ja"%></td>
+			<% } %>
+			<%if (artikel.istGelöscht == false) { %>
+			<td data-label="Gelöscht: "><%="nein"%></td>
+			<% } else { %>
+			<td data-label="Gelöscht: "><%="ja"%></td>
+			<% } %>
+		</tr>
+		</tbody>
+		<% } %>
+		</table>
+	</div>		
+	</div>	
 	<div id="leer"></div>
    	</div>
 <jsp:include page="k_footer.jsp">

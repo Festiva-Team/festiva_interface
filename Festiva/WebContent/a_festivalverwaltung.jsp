@@ -31,41 +31,43 @@ else {
    		<jsp:param name="active" value="festivalverwaltung"/>
 	</jsp:include>
  	<div id="main">
-			<h2>Festivalverwaltung</h2>
-			<form action="/Festiva/Festivalverwaltung?aktion=anlegenanzeigen" method="post">
-			<div id="spaltelinks">
-				<button type="submit" id="anlegen">Neues Festival anlegen</button>
-			</div>
-			</form>
-			<div id="zeile">
-				<table>
-					<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>
-					<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
-						for (Festival festival : listFestivals) { %>
-					<tbody><tr>		
-								<th data-label="Festival: "><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
-								<td data-label="Name: "><%=festival.name%></td>
-								<td data-label="Startdatum: "><%=date.format(festival.startDatum)%></td>
-								<td data-label="Enddatum: "><%=date.format(festival.endDatum)%></td>
-								<td data-label="Ort: "><%=festival.ort%></td>
-								<%for(Kategorie kategorie : listKategorien){
-     							  if(kategorie.id == festival.kategorienID){ %>
-      							<td data-label="Kategorie: "><%=kategorie.name%></td>       
-   								<%  } } %>
-								<%if (festival.bildpfad == null || (festival.bildpfad).equals("")) { %>
-								<td data-label="Bild: "><%="Nein"%></td>
-								<% } else { %>
-								<td data-label="Bild: "><%="Ja"%></td>
-								<% } %>
-								<%if (festival.istGelöscht == false) { %>
-								<td data-label="Gelöscht: "><%="nein"%></td>
-								<% } else { %>
-								<td data-label="Gelöscht: "><%="ja"%></td>
-								<% } %>
-					</tr></tbody>
-					<% } %>
-				</table>	
-				</div>
+	<h2>Festivalverwaltung</h2>
+	<form action="/Festiva/Festivalverwaltung?aktion=anlegenanzeigen" method="post">
+	<div class="spaltelinks">
+		<button type="submit" id="anlegen">Neues Festival anlegen</button>
+	</div>
+	</form>
+	<div class="zeile">
+		<table>
+			<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>
+			<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
+			for (Festival festival : listFestivals) { %>
+			<tbody>
+			<tr>		
+				<th data-label="Festival: "><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
+				<td data-label="Name: "><%=festival.name%></td>
+				<td data-label="Startdatum: "><%=date.format(festival.startDatum)%></td>
+				<td data-label="Enddatum: "><%=date.format(festival.endDatum)%></td>
+				<td data-label="Ort: "><%=festival.ort%></td>
+				<%for(Kategorie kategorie : listKategorien){
+ 							  if(kategorie.id == festival.kategorienID){ %>
+  							<td data-label="Kategorie: "><%=kategorie.name%></td>       
+							<%  } } %>
+				<%if (festival.bildpfad == null || (festival.bildpfad).equals("")) { %>
+				<td data-label="Bild: "><%="Nein"%></td>
+				<% } else { %>
+				<td data-label="Bild: "><%="Ja"%></td>
+				<% } %>
+				<%if (festival.istGelöscht == false) { %>
+				<td data-label="Gelöscht: "><%="nein"%></td>
+				<% } else { %>
+				<td data-label="Gelöscht: "><%="ja"%></td>
+				<% } %>
+			</tr>
+			</tbody>
+			<% } %>
+		</table>	
+	</div>
 	<div id="leer"></div>
    	</div>
 <jsp:include page="k_footer.jsp">

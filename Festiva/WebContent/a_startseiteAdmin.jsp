@@ -22,10 +22,10 @@ response.sendRedirect("k_anmelden.jsp");}
 	<title>Festiva - Adminstartseite</title>
 </head>
 <body>
-	<div id="webseite">
-	<jsp:include page="a_headerAdmin.jsp">
-		<jsp:param name="active" value="startseiteAdmin"/>
-	</jsp:include>
+<div id="webseite">
+<jsp:include page="a_headerAdmin.jsp">
+	<jsp:param name="active" value="startseiteAdmin"/>
+</jsp:include>
 	<div id="main">
 		<h1>Adminbereich</h1>
 		<p><%= request.getSession().getAttribute("begrüßung") %></p>
@@ -34,6 +34,6 @@ response.sendRedirect("k_anmelden.jsp");}
 <jsp:include page="k_footer.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>
-	</div>	
+</div>	
 </body>
 </html>

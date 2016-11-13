@@ -161,7 +161,18 @@ figure.bild2 {
 	width: 50%;
 	float:left;	
 }
-
+.zeile{	
+	width: 100%;
+	float: left;
+}
+.spaltelinks{	
+	width: 50%;
+	float:left;
+}
+.spalterechts{	
+	width: 50%;
+	float:left;	
+}
 #straﬂe{
 
 	float: left;

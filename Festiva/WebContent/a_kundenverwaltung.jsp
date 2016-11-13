@@ -26,46 +26,47 @@ else {
 </head>
 <body>
 <div id="webseite">
-	<jsp:include page="a_headerAdmin.jsp">
-   		<jsp:param name="active" value="kundenverwaltung"/>
-  	</jsp:include>	
+<jsp:include page="a_headerAdmin.jsp">
+	<jsp:param name="active" value="kundenverwaltung"/>
+</jsp:include>	
     <div id="main">
-    		<h2>Kundenverwaltung</h2>
-			<div id="spaltelinks">
-				<button type="button" id="anlegen" onClick="window.location.href='a_kundenAnlegen.jsp'">Neuen Kunden anlegen </button>
-				</div>
-			<div id ="zeile">
-				<table>
-					<thead><tr><th>ID</th><th>Nachname</th><th>Vorname</th><th>E-Mail-Adresse</th><th>Gesperrt</th><th>Gelöscht</th></tr></thead>
-					<%for (Benutzer benutzer : listBenutzer) { %>
-					<tbody><tr>
-								
-								<th data-label="Kunde: "><a href="/Festiva/Kundenverwaltung?aktion=aendern&kundenid=<%=benutzer.id%>"><%=benutzer.id%></a></th>
-								<%if (benutzer.nachname == null) { %>
-								<td data-label="Nachname: "><%=""%></td>
-								<% } else { %>
-								<td data-label="Nachname: "><%=benutzer.nachname%></td>
-								<% } %>
-								<%if (benutzer.vorname == null) { %>
-								<td data-label="Vorname: "><%=""%></td>
-								<% } else { %>
-								<td data-label="Vorname: "><%=benutzer.vorname%></td>
-								<% } %>
-								<td data-label="E-Mail: "><%=benutzer.eMailAdresse%></td>
-								<%if (benutzer.istGesperrt == false) { %>
-								<td data-label="Gesperrt: "><%="nein"%></td>
-								<% } else { %>
-								<td data-label="Gesperrt: "><%="ja"%></td>
-								<% } %>
-								<%if (benutzer.istGelöscht == false) { %>
-								<td data-label="Gelöscht: "><%="nein"%></td>
-								<% } else { %>
-								<td data-label="Gelöscht: "><%="ja"%></td>
-								<% } %>
-					</tr></tbody>
-					<% } %>
-				</table>
-			</div>
+  	<h2>Kundenverwaltung</h2>
+	<div class="spaltelinks">
+		<button type="button" id="anlegen" onClick="window.location.href='a_kundenAnlegen.jsp'">Neuen Kunden anlegen </button>
+	</div>
+	<div class ="zeile">
+	<table>
+		<thead><tr><th>ID</th><th>Nachname</th><th>Vorname</th><th>E-Mail-Adresse</th><th>Gesperrt</th><th>Gelöscht</th></tr></thead>
+		<%for (Benutzer benutzer : listBenutzer) { %>
+		<tbody>
+		<tr>	
+			<th data-label="Kunde: "><a href="/Festiva/Kundenverwaltung?aktion=aendern&kundenid=<%=benutzer.id%>"><%=benutzer.id%></a></th>
+			<%if (benutzer.nachname == null) { %>
+			<td data-label="Nachname: "><%=""%></td>
+			<% } else { %>
+			<td data-label="Nachname: "><%=benutzer.nachname%></td>
+			<% } %>
+			<%if (benutzer.vorname == null) { %>
+			<td data-label="Vorname: "><%=""%></td>
+			<% } else { %>
+			<td data-label="Vorname: "><%=benutzer.vorname%></td>
+			<% } %>
+			<td data-label="E-Mail: "><%=benutzer.eMailAdresse%></td>
+			<%if (benutzer.istGesperrt == false) { %>
+			<td data-label="Gesperrt: "><%="nein"%></td>
+			<% } else { %>
+			<td data-label="Gesperrt: "><%="ja"%></td>
+			<% } %>
+			<%if (benutzer.istGelöscht == false) { %>
+			<td data-label="Gelöscht: "><%="nein"%></td>
+			<% } else { %>
+			<td data-label="Gelöscht: "><%="ja"%></td>
+			<% } %>
+		</tr>
+		</tbody>
+		<% } %>
+	</table>
+	</div>
 	<div id="leer"></div>
     </div>
 <jsp:include page="k_footer.jsp">

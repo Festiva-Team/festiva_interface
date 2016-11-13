@@ -4,7 +4,9 @@
 /** 
   	# Autor: Nicola Kloke, Alina Fankhänel
   	# JSP-Name: a_kategorieAnlegen.jsp
-  	# JSP-Aktionen: (1) Anlage einer neuen Kategorie
+  	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zum Anlegen von neuen Kategorien
+	#				(2) Weitergabe der Daten an das Servlet "Kategorienverwaltung.java" 
+	#				(3) Anzeige der Antwort aus dem Servlet
  */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}
@@ -21,31 +23,31 @@ response.sendRedirect("k_anmelden.jsp");}
 </head>
 <body>
 <div id="webseite">
-    <jsp:include page="a_headerAdmin.jsp">
-    	<jsp:param name="active" value="kategorieAnlegen"/>
-    </jsp:include>
+<jsp:include page="a_headerAdmin.jsp">
+	<jsp:param name="active" value="kategorieAnlegen"/>
+</jsp:include>
 	<div id="main">
-		<form action="/Festiva/Kategorienverwaltung?aktion=anlegen" method="POST" enctype="multipart/form-data">
-			<div id="zeile">
-				<div id="spaltelinks">
-					<h2>Kategorie anlegen</h2>		
-					<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-					<label for="name">Kategorienname*</label>
-					<input type="text" id="name" name="name" title="Bitte wählen Sie einen passenden Namen!" maxlength="30" required="required">
-					<label for="beschreibung">Beschreibung*</label>
-					<textarea rows="5" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"></textarea>
-					<label for="bild">Bild</label>
-					<input type="file" id = "bild" name = "bild" accept="image/*"><br>
-					<button type="submit">Anlegen</button>
-				</div>
-			</div>
-		</form>
-		<div id="spalterechts">
-					<% if (request.getSession().getAttribute("antwort") != null) 
-					{ %>
-					<p><%= request.getSession().getAttribute("antwort") %></p>
-					<% request.getSession().removeAttribute("antwort");}  %>
-				</div>	
+	<form action="/Festiva/Kategorienverwaltung?aktion=anlegen" method="POST" enctype="multipart/form-data">
+	<div class="zeile">
+		<div class="spaltelinks">
+			<h2>Kategorie anlegen</h2>		
+			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			<label for="name">Kategorienname*</label>
+			<input type="text" id="name" name="name" title="Bitte wählen Sie einen passenden Namen!" maxlength="30" required="required">
+			<label for="beschreibung">Beschreibung*</label>
+			<textarea rows="5" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"></textarea>
+			<label for="bild">Bild</label>
+			<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+			<button type="submit">Anlegen</button>
+		</div>
+	</div>
+	</form>
+	<div id="spalterechts">
+		<% if (request.getSession().getAttribute("antwort") != null) 
+		{ %>
+		<p><%= request.getSession().getAttribute("antwort") %></p>
+		<% request.getSession().removeAttribute("antwort");}  %>
+	</div>	
 	<div id="leer"></div>
 	</div>
 <jsp:include page="k_footer.jsp">
