@@ -63,7 +63,7 @@
 			<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th data-label="Gesamtsumme: "><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tr></tfoot>
 		</table>
 		<br/><br/>
-		<% id = 1; } %>
+		<% id = 1; gesamtsumme = 0;} %>
 	</div>
 	<div id="leer"></div>
 <jsp:include page="k_footer.jsp">
