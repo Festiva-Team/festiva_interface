@@ -78,7 +78,6 @@
 		</div>
 	</div>		 
 	<div class="zeile">
-	<div class="spaltelinks">
 	<h1>Bestellpositionen</h1>
 	<table class="tabelle">
 		<thead><tr><th>ID</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
@@ -113,8 +112,7 @@
 		   		<p id="text"><b>Hinweis:</b> Wenn Sie einen oder mehrere Zubehör-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</p>
 				<button type="submit" onclick="return confirm('Sind Sie sicher, dass alle Eingaben richtig sind und Sie die Bestellung endgültig abschließen möchten?')" <%if(kundendatenVollstaendig.equals(false) || warenkorb.listElemente.isEmpty() || (warenkorb.listElemente.size() == 1 && warenkorb.listElemente.get(0).artikel.id == 6) ) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>		
 			</form>
-		</div>		
-	</div>				 
+		</div>						 
 	<div id="leer"></div>
 	</div>
 <jsp:include page="k_footer.jsp">
