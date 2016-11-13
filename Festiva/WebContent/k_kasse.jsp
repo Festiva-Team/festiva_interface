@@ -111,7 +111,7 @@
 				<div class="zeile"><input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" >Per Mail</div>
 				<div class="zeile"><input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)">Per Post</div>
 		   		<p id="text"><b>Hinweis:</b> Wenn Sie einen oder mehrere Zubehör-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</p>
-				<button type="submit" onclick="return confirm('Sind Sie sicher, dass alle Eingaben richtig sind und Sie die Bestellung endgültig abschließen möchten?')" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>		
+				<button type="submit" onclick="return confirm('Sind Sie sicher, dass alle Eingaben richtig sind und Sie die Bestellung endgültig abschließen möchten?')" <%if(kundendatenVollstaendig.equals(false) || warenkorb.listElemente.isEmpty()) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>		
 			</form>
 		</div>		
 	</div>				 
