@@ -40,12 +40,12 @@ else {
 		<h2>Artikel anlegen</h2>
 		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 		<label for="beschreibung">Beschreibung*</label>
-		<input type="text" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required" maxlength="100">
+		<input type="text" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required" maxlength="100">
 		<label for="preis">Preis in Euro*</label>
 		<input type="number" step="0.01" min="0" name="preis" placeholder="0,00" title="Bitte geben Sie einen Preis ein!" required="required" maxlength="7"><br>
 		<% if(festivalid == 0) { %>
 		<label for="bild">Bild</label>
-		<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+		<input type="file" name = "bild" accept="image/*"><br>
 		<% } %>
 		<button type="submit" id="links">Anlegen</button>
 	</div>

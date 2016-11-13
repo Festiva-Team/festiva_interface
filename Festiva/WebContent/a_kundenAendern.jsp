@@ -82,7 +82,7 @@ else {
 		</div>
 	</form>
 	</div>
-	<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>	
+	<button type="submit" class="loeschen" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>	
 	<div class="spalterechts">
 		<% if (request.getSession().getAttribute("antwort") != null) 
 		{ %>

@@ -39,12 +39,12 @@ else {
 	<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post" enctype="multipart/form-data">		
 		<div class="spaltelinks">
 			<label for="beschreibung">Beschreibung*</label>
-			<input type="text" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" maxlength="100" required="required" value="<%=artikel.beschreibung%>">
+			<input type="text" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" maxlength="100" required="required" value="<%=artikel.beschreibung%>">
 			<label for="preis">Preis in Euro*</label>
-			<input type="number" step="0.01" min="0" id="preis" name="preis" placeholder="0,00" title="Bitte geben Sie einen Preis ein!" maxlength="7" required="required" value="<%=artikel.preis%>"><br>				
+			<input type="number" step="0.01" min="0" name="preis" placeholder="0,00" title="Bitte geben Sie einen Preis ein!" maxlength="7" required="required" value="<%=artikel.preis%>"><br>				
 			<% if(artikel.festivalID == 0 && artikel.id != 6) { %>
 			<label for="bild">Bild</label>
-			<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+			<input type="file" name = "bild" accept="image/*"><br>
 			<% } if(artikel.id != 6) { %>
 			<label for="geloescht">Ist Gelöscht</label>
 			<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=artikel.istGelöscht%>"
@@ -67,7 +67,7 @@ else {
 			<% } if(artikel.festivalID == 0 && artikel.id != 6 && new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 				<button type="submit" onClick="window.location.href='/Festiva/Artikelverwaltung?aktion=b_loeschen&artikelid=<%=artikel.id%>'">Aktuelles Bild löschen</button>
 			<% } if (artikel.id != 6) { %>
-				<button type="submit" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
+				<button type="submit" class="loeschen" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
 		<div class="spalterechts">
 			<% } %>
 			<% if (request.getSession().getAttribute("antwort") != null) { %>

@@ -33,11 +33,11 @@ response.sendRedirect("k_anmelden.jsp");}
 			<h2>Kategorie anlegen</h2>		
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<label for="name">Kategorienname*</label>
-			<input type="text" id="name" name="name" title="Bitte wählen Sie einen passenden Namen!" maxlength="30" required="required">
+			<input type="text" name="name" title="Bitte wählen Sie einen passenden Namen!" maxlength="30" required="required">
 			<label for="beschreibung">Beschreibung*</label>
-			<textarea rows="5" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"></textarea>
+			<textarea rows="5" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"></textarea>
 			<label for="bild">Bild</label>
-			<input type="file" id = "bild" name = "bild" accept="image/*"><br>
+			<input type="file" name = "bild" accept="image/*"><br>
 			<button type="submit">Anlegen</button>
 		</div>
 	</div>

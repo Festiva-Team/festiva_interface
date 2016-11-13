@@ -28,8 +28,8 @@
   	 	</jsp:include>
 	<div id="main">
 	<form action="/Festiva/Registrierung" method="post">
-		<div id="zeile">
-		<div id="spaltelinks">
+		<div class="zeile">
+		<div class="spaltelinks">
 			<h2>Registrierung</h2>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<label for="email">E-Mail*</label>
@@ -42,10 +42,10 @@
 			<input type="password" name="passwortbestätigung" id="passwortbestätigung" title="Bitte beachten Sie bei der Wahl Ihres Passworts den rechtsstehenden Hinweis!" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
 			<button type="submit">Registrieren</button>
 		</div>
-		<div id="spalterechts">
+		<div class="spalterechts">
 			<p>Hinweis: Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
 		</div>	
-		<div id="spalterechts">
+		<div class="spalterechts">
 			<% if (request.getSession().getAttribute("antwort") != null) 
 			{ %>
 			<p><%= request.getSession().getAttribute("antwort") %></p>

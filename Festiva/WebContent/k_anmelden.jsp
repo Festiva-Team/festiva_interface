@@ -23,36 +23,35 @@
 </head>
 <body>
 <div id="webseite">
-    <jsp:include page="k_header.jsp">
-    	<jsp:param name="active" value="anmelden"/>
-    </jsp:include>
-		<div id="main">
-			<form action="/Festiva/Login" method="POST">
-				<div id="zeile">
-				<div id="spaltelinks">
-					<h2>Anmelden</h2>
-					<label for="email">E-Mail</label>
-					<input type="email" name="email" id="email" title="Bitte geben Sie Ihre E-Mail-Adresse ein!" maxlength="30" required="required" autofocus>
-					<label for="passwort">Passwort</label>
-					<input type="password" name="passwort" id="passwort" title="Bitte geben Sie Ihr Passwort ein!" maxlength="40" required="required">
-					<button type="submit">Anmelden</button>	
-				</div>
-				<div id="spalterechts">
-					<% if (request.getSession().getAttribute("antwort") != null) 
-					{ %>
-					<p><%= request.getSession().getAttribute("antwort") %></p>
-					<%if((request.getSession().getAttribute("antwort")).equals("Sie müssen sich erst anmelden, bevor Sie Artikel in Ihren Warenkorb legen können.")) { %>
-					<p>Sie sind noch nicht registriert? Dann klicken Sie bitte <a href="k_registrieren.jsp"> hier</a> !</p>
-					<% } request.getSession().removeAttribute("antwort");}  %>
-				</div>
-				</div>
-				
-				<div id="leer"></div>
-			</form>
-		</div>
+<jsp:include page="k_header.jsp">
+	<jsp:param name="active" value="anmelden"/>
+</jsp:include>
+	<div id="main">
+		<form action="/Festiva/Login" method="POST">
+			<div class="zeile">
+			<div class="spaltelinks">
+				<h2>Anmelden</h2>
+				<label for="email">E-Mail</label>
+				<input type="email" name="email" id="email" title="Bitte geben Sie Ihre E-Mail-Adresse ein!" maxlength="30" required="required" autofocus>
+				<label for="passwort">Passwort</label>
+				<input type="password" name="passwort" id="passwort" title="Bitte geben Sie Ihr Passwort ein!" maxlength="40" required="required">
+				<button type="submit">Anmelden</button>	
+			</div>
+			<div class="spalterechts">
+				<% if (request.getSession().getAttribute("antwort") != null) 
+				{ %>
+				<p><%= request.getSession().getAttribute("antwort") %></p>
+				<%if((request.getSession().getAttribute("antwort")).equals("Sie müssen sich erst anmelden, bevor Sie Artikel in Ihren Warenkorb legen können.")) { %>
+				<p>Sie sind noch nicht registriert? Dann klicken Sie bitte <a href="k_registrieren.jsp"> hier</a> !</p>
+				<% } request.getSession().removeAttribute("antwort");}  %>
+			</div>
+			</div>		
+			<div id="leer"></div>
+		</form>
+	</div>
 <jsp:include page="k_footer.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>
-	</div>	
+</div>	
 </body>
 </html>

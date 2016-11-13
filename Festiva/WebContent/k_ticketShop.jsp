@@ -8,12 +8,9 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_ticketShop.jsp
-	# JSP-Aktionen: Besucher: kann Festivals suchen und sich anzeigen lassen
-							  kann sich die Artikel zu einem Festival anzeigen lasen
-	      angemeldeter Kunde: kann Festivals suhen und sich anzeigen lassen
-	      					  kann sich die Artikel zu einem Festval anzeigen lassen und in den Warenkorb legen oder aus dem Warenkorb löschen.
-	      					  kann die Artikelanzahl ändern
-	      					  kann einen Artikel kaufen
+	# JSP-Aktionen: (1) Anzeige aller Festivals
+	# 				(2) Möglichkeit zur Beschränkung der Anzeige durch Suche nach Name, Ort, Kategorie, Von- und Bis-Datum und Preis
+	#				(3) Weiterleitung zum Servlet "Ticketverwaltung" bei Klick auf den Festivalnamen zur Anzeige der Festivaldetails und der zugehörigen Artikel		
 */
 if (request.getSession(false) != null) {
 	SimpleDateFormat datum = new SimpleDateFormat("dd.MM.yyyy");
@@ -32,88 +29,85 @@ if (request.getSession(false) != null) {
 	<link rel="stylesheet" type="text/css" href="CSS/design.css">
 </head>
 <body>
-	<div id="webseite">
-		<jsp:include page="k_header.jsp">
-    		<jsp:param name="active" value="shop"/>
-    	</jsp:include>
-		<div id="main">
-			<form action="/Festiva/Ticketverwaltung?aktion=t_anzeigen" method="post">
-				<div id="zeile1">
-				<h2>Ticket Shop</h2>
-					<div id="spaltelinks">					
-						<label for="name">Name</label>
-						<input type="search" id="name" maxlength="30" title="Hier können Sie den Namen des gesuchten Festivals angeben." name="name" <% if(suchKriterien.name != null) { %> value="<%=suchKriterien.name%>" <% } %>>
-						<label for="kategorie">Kategorie</label>
-						<select id="kategorie" name="kategorie" title="Hier können Sie nach den verfügbaren Kategorien selektieren.">
-						<option value=0></option>
-						<%for (Kategorie kategorie : listKategorien) { 
-							if(suchKriterien.kategorienID != 0 && kategorie.id == suchKriterien.kategorienID) { %>
-							<option selected="selected" value="<%=kategorie.id%>"><%=kategorie.name%></option>
-							<% } else { %>
-						<option value="<%=kategorie.id%>"><%=kategorie.name%></option>
-						<% } } %>
-						</select>	
-						<label for="name">Ort</label>
-						<input type="search" id="ort" maxlength="30" name="ort" title="Hier können Sie den Ort des gesuchten Festivals angeben." <% if(suchKriterien.ort != null) { %> value="<%=suchKriterien.ort%>" <% } %>>
-						
-						</div>
-					<div id="spalterechts">						
-						<label for="startdatum">Im Zeitraum von</label>
-						<input type="text" id="startdatum" maxlength="30" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" placeholder="TT.MM.JJJJ" name="startdatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.startDatum != null) { %> value="<%=datum.format(suchKriterien.startDatum)%>" <% } %>>
-													
-						<label for="enddatum">bis</label>
-						<input type="text" id="enddatum" maxlength="30" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" placeholder="TT.MM.JJJJ" name="enddatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.endDatum != null) { %> value="<%=datum.format(suchKriterien.endDatum)%>" <% } %>>
-						
-						
-						<label for="preis">Maximaler Preis</label>
-						<input type="number" step="0.01" min="0" title="Hier können Sie festlegen, wie viel Geld Sie maximal ausgeben möchten." maxlength="8" placeholder="0,00" name="maxpreis" <% if(suchKriterien.bisPreis != 0) { %> value="<%=suchKriterien.bisPreis%>" <% } %>>
-						
-						<button type="submit">Suchen</button>
-					</div>
-				</div>		
-				<table>
-					<thead>
-					<tr><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kateorie</th><th>Preis</th></tr></thead>
-					<tbody>
-					<% 	if(listFestivals != null && !listFestivals.isEmpty()) {
-						SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
-						for (FestivalSuchobjekt festival : listFestivals)
-						{%>
-							<tr>
-							<td><a href="/Festiva/Ticketverwaltung?aktion=f_anzeigen&festivalid=<%=festival.id%>&maxpreis=<%=suchKriterien.bisPreis%>"><%=festival.name%></a></td>
-								<% if (festival.startDatum.compareTo(festival.endDatum) == 0)
-								{%>
-								<td><%=sd.format(festival.startDatum)%></td>
-								<%}
-								else
-								{%>
-								<td data-label="Zeit: "><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
-								<%} %>
-								<td data-label="Ort: "><%=festival.ort%></td>
-								<%for(Kategorie kategorie : listKategorien){
-     							  if(kategorie.id == festival.kategorienID){ %>
-      							<td data-label="Kategorie: "><%=kategorie.name%></td>       
-   								<%  } } %>
-								<% if (festival.vonPreis == 0)
-								{%>
-								<td data-label="Artikel: ">keine Tickets verfügbar</td>
-								<%}
-								else
-								{%>
-								<td data-label="Artikel: "> ab <%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
-								<%} %>
-							</tr><%
-							} }%>
-					</tbody>
-				</table>
-				</table>
-			</form>
-		<div id="leer"></div>
-		</div>
+<div id="webseite">
+<jsp:include page="k_header.jsp">
+  	<jsp:param name="active" value="shop"/>
+</jsp:include>
+	<div id="main">
+	<form action="/Festiva/Ticketverwaltung?aktion=t_anzeigen" method="post">
+		<div class="zeile">
+		<h1>Ticket Shop</h1>
+			<div class="spaltelinks">					
+				<label for="name">Name</label>
+				<input type="search" id="name" maxlength="30" title="Hier können Sie den Namen des gesuchten Festivals angeben." name="name" <% if(suchKriterien.name != null) { %> value="<%=suchKriterien.name%>" <% } %>>
+				<label for="kategorie">Kategorie</label>
+				<select id="kategorie" name="kategorie" title="Hier können Sie nach den verfügbaren Kategorien selektieren.">
+				<option value=0></option>
+				<%for (Kategorie kategorie : listKategorien) { 
+					if(suchKriterien.kategorienID != 0 && kategorie.id == suchKriterien.kategorienID) { %>
+					<option selected="selected" value="<%=kategorie.id%>"><%=kategorie.name%></option>
+					<% } else { %>
+				<option value="<%=kategorie.id%>"><%=kategorie.name%></option>
+				<% } } %>
+				</select>	
+				<label for="name">Ort</label>
+				<input type="search" id="ort" maxlength="30" name="ort" title="Hier können Sie den Ort des gesuchten Festivals angeben." <% if(suchKriterien.ort != null) { %> value="<%=suchKriterien.ort%>" <% } %>>
+			</div>
+			<div class="spalterechts">						
+				<label for="startdatum">Im Zeitraum von</label>
+				<input type="text" id="startdatum" maxlength="30" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" placeholder="TT.MM.JJJJ" name="startdatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.startDatum != null) { %> value="<%=datum.format(suchKriterien.startDatum)%>" <% } %>>
+											
+				<label for="enddatum">bis</label>
+				<input type="text" id="enddatum" maxlength="30" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" placeholder="TT.MM.JJJJ" name="enddatum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" <% if(suchKriterien.endDatum != null) { %> value="<%=datum.format(suchKriterien.endDatum)%>" <% } %>>
+					
+				<label for="preis">Maximaler Preis</label>
+				<input type="number" step="0.01" min="0" title="Hier können Sie festlegen, wie viel Geld Sie maximal ausgeben möchten." maxlength="8" placeholder="0,00" name="maxpreis" <% if(suchKriterien.bisPreis != 0) { %> value="<%=suchKriterien.bisPreis%>" <% } %>>
+				
+				<button type="submit">Suchen</button>
+			</div>
+		</div>		
+		<table class="tabelle">
+			<thead>
+			<tr><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kateorie</th><th>Preis</th></tr></thead>
+			<tbody>
+			<% 	if(listFestivals != null && !listFestivals.isEmpty()) {
+				SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
+				for (FestivalSuchobjekt festival : listFestivals)
+				{%>
+				<tr>
+				<td><a href="/Festiva/Ticketverwaltung?aktion=f_anzeigen&festivalid=<%=festival.id%>&maxpreis=<%=suchKriterien.bisPreis%>"><%=festival.name%></a></td>
+				<% if (festival.startDatum.compareTo(festival.endDatum) == 0)
+				{%>
+				<td><%=sd.format(festival.startDatum)%></td>
+				<%}
+				else
+				{%>
+				<td data-label="Zeit: "><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
+				<%} %>
+				<td data-label="Ort: "><%=festival.ort%></td>
+				<%for(Kategorie kategorie : listKategorien){
+ 							  if(kategorie.id == festival.kategorienID){ %>
+  							<td data-label="Kategorie: "><%=kategorie.name%></td>       
+							<%  } } %>
+				<% if (festival.vonPreis == 0)
+				{%>
+				<td data-label="Artikel: ">keine Tickets verfügbar</td>
+				<%}
+				else
+				{%>
+				<td data-label="Artikel: "> ab <%=String.format("%.2f",festival.vonPreis)%> &#8364;</td>
+				<%} %>
+				</tr>
+				<%} }%>
+			</tbody>
+		</table>
+	</form>
+	<div id="leer"></div>
+	</div>
 <jsp:include page="k_footer.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>
-	</div>
+</div>
 </body>
 </html>
 <% request.getSession().removeAttribute("listKategorien"); request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("suchKriterien");} %>

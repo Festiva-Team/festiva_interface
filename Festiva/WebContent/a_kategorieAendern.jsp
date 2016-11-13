@@ -38,11 +38,11 @@ else {
 		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div class="spaltelinks">
 				<label for="name">Kategorienname*</label>
-				<input type="text" id="name" name="name" maxlength="30" title="Bitte wählen Sie einen passenden Namen!" required="required" value="<%=kategorie.name%>">
+				<input type="text" name="name" maxlength="30" title="Bitte wählen Sie einen passenden Namen!" required="required" value="<%=kategorie.name%>">
 				<label for="beschreibung">Beschreibung*</label>
-				<textarea rows="5" id="beschreibung" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"><%=kategorie.beschreibung%></textarea>
+				<textarea rows="5" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required"><%=kategorie.beschreibung%></textarea>
 				<label for="bild">Neues Bild</label>
-				<input type="file" id="bild" name="bild" accept="image/*">
+				<input type="file" name="bild" accept="image/*">
 				<output id="list"></output>	
 				<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { %>
 				<label for="geloescht">Ist Gelöscht</label>
@@ -66,7 +66,7 @@ else {
 	<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { if(new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) {%>
 		<button type="submit" onClick="window.location.href='/Festiva/Kategorienverwaltung?aktion=b_loeschen&kategorienid=<%=kategorie.id%>'">Aktuelles Bild löschen</button>
 	<% } %>
-	<button type="submit" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
+	<button type="submit" class="loeschen" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
 	<% } %>
 	<div class="spalterechts">
 		<% if (request.getSession().getAttribute("antwort") != null) 

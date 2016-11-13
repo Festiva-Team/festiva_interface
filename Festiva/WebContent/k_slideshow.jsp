@@ -21,25 +21,28 @@ if (request.getSession(false) != null) {
 </head>
 <body>
 <div id="webseite">
-	    <jsp:include page="k_header.jsp">
-	    	<jsp:param name="active" value="startseite"/>
-	    </jsp:include>
-			<div id="container">
-			<%-- <% for (String bildpfad : listBildpfade){
-			int katId = Integer.parseInt(bildpfad.substring(10,11));%>
-			<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=katId%>"><img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/></a>
- 			<div id="left_holder"><img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
-			<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
-			<% } %> --%>
-			<%-- Das erste Bild des Array für den Start anzeigen --%>
-			<% String erstesElem = listBildpfade.get(0);  %>
-			<img src="/Festiva/Bilder/'+erstesElem+'.jpg" id="img"/>
-			<!-- <img src="/Festiva/Bilder/Kategorie_1_1478601263477 .jpg" id="img"/> -->
- 			<div id="left_holder"><img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
-			<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
-			
-			</div>
-			<div id="leer"></div>
+<jsp:include page="k_header.jsp">
+	<jsp:param name="active" value="startseite"/>
+</jsp:include>
+	<div id="container">
+		<%-- <% for (String bildpfad : listBildpfade){
+		int katId = Integer.parseInt(bildpfad.substring(10,11));%>
+		<a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorienid=<%=katId%>"><img src="/Festiva/Bilder/Kategorie_1_1478601263477.jpg" id="img"/></a>
+			<div id="left_holder"><img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/></div>
+		<div id="right_holder"><img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/></div>
+		<% } %> --%>
+		<%-- Das erste Bild des Array für den Start anzeigen --%>
+		<% String erstesElem = listBildpfade.get(0);  %>
+		<img src="/Festiva/Bilder/'+erstesElem+'.jpg" id="img"/>
+		<!-- <img src="/Festiva/Bilder/Kategorie_1_1478601263477 .jpg" id="img"/> -->
+		<div id="left_holder">
+			<img onClick="slide(-1, <%=listBildpfade%>)" class="left" src="/Festiva/Bilder/pfeil_links.jpg"/>
+		</div>
+		<div id="right_holder">
+			<img onClick="slide(1, <%=listBildpfade%>)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/>
+		</div>
+	</div>
+	<div id="leer"></div>
 <jsp:include page="k_footer.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>

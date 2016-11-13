@@ -40,10 +40,10 @@ else {
 	<div id="main">	
 	<h2>Festival ändern</h2>
 	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-		<div class="spaltelinks">
+		<div class="bild">
 			<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
-				<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150/>
-				<button type="submit" onClick="window.location.href='/Festiva/Festivalverwaltung?aktion=b_loeschen&festivalid=<%=festival.id%>'">Aktuelles Bild löschen</button>
+				<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" id="imgAdministration" name="bild" width=150 />
+				<button type="submit" id="bild" onClick="window.location.href='/Festiva/Festivalverwaltung?aktion=b_loeschen&festivalid=<%=festival.id%>'">Aktuelles Bild löschen</button>
 			<% } else { %>
 				<p>Kein Bild vorhanden</p>
 			<% } %>
@@ -52,9 +52,9 @@ else {
 		<div class="zeile">
 			<div class="spaltelinks">
 				<label for="bild">Neues Bild</label>
-				<input type="file" id="bild" name="bild" accept="image/*">
+				<input type="file" name="bild" accept="image/*">
 				<label for="name">Festivalname*</label>
-				<input type="text" id="name" name="name" title="Bitte wählen Sie einen passenden Namen!" maxlength="30" required="required" value="<%=festival.name%>">	
+				<input type="text" name="name" title="Bitte wählen Sie einen passenden Namen!" maxlength="30" required="required" value="<%=festival.name%>">	
 				<label for="kategorie">Kategorie*</label>	
 				<select id="kategorie" name="kategorie" title="Bitte ordnen Sie das Festival einer Kategorie zu!"> 
 				<%for (Kategorie kategorie : listKategorien) { 
@@ -64,17 +64,17 @@ else {
 				<option value="<%=kategorie.id%>"><%=kategorie.name%></option>
 				<% } } %>
 				</select><label for="ort">Ort*</label>
-				<input type="text" id="ort" name="ort" maxlength="30" title="Bitte geben Sie den Ort, an dem das Festival stattfindet, an!" required="required" value="<%=festival.ort%>">				
+				<input type="text" name="ort" maxlength="30" title="Bitte geben Sie den Ort, an dem das Festival stattfindet, an!" required="required" value="<%=festival.ort%>">				
 				<label for="startdatum">Startdatum*</label>
-				<input type="text" id="startdatum" name="startdatum" maxlength="30" placeholder="TT.MM.JJJJ" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" required="required" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" value="<%=date.format(festival.startDatum)%>">
+				<input type="text" name="startdatum" maxlength="30" placeholder="TT.MM.JJJJ" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" required="required" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" value="<%=date.format(festival.startDatum)%>">
 				<label for="enddatum">Enddatum*</label>
-				<input type="text" id="enddatum" name="enddatum" maxlength="30" placeholder="TT.MM.JJJJ" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" required="required" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" value="<%=date.format(festival.endDatum)%>">
+				<input type="text" name="enddatum" maxlength="30" placeholder="TT.MM.JJJJ" title="Bitte geben Sie das Datum im Format TT.MM.JJJJ ein!" required="required" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" value="<%=date.format(festival.endDatum)%>">
 			</div>
 			<div class="spalterechts">
 				<label for="kurzbeschreibung">Kurzbeschreibung*</label>
-				<textarea rows="4" id="kurzbeschreibung" name="kurzbeschreibung" title="Bitte geben Sie eine Kurzbeschreibung ein!" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
+				<textarea rows="4" name="kurzbeschreibung" title="Bitte geben Sie eine Kurzbeschreibung ein!" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
 				<label for="langbeschreibung">Langbeschreibung*</label>
-				<textarea rows="6" id="langbeschreibung" name="langbeschreibung" title="Bitte geben Sie eine Langbeschreibung ein!" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
+				<textarea rows="6" name="langbeschreibung" title="Bitte geben Sie eine Langbeschreibung ein!" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
 				<label for="geloescht">Ist Gelöscht</label>
 				<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=festival.istGelöscht%>"
  					<% if (festival.istGelöscht == true) {%>
@@ -109,7 +109,7 @@ else {
 				</div>		
 			</div>					
 		</form>	 
-			<button type="submit" onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>
+			<button type="submit" class="loeschen"  onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>
 		<div class="spalterechts">
 			<% if (request.getSession().getAttribute("antwort") != null) 
 			{ %>
