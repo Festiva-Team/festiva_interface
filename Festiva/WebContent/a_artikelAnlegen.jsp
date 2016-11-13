@@ -36,26 +36,28 @@ else {
 </jsp:include>
 	<div id="main">
 	<form action="/Festiva/Artikelverwaltung?aktion=anlegen&festivalid=<%=festivalid%>" method="post" enctype="multipart/form-data">		
-	<div class="spaltelinks">
-		<h2>Artikel anlegen</h2>
-		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-		<label for="beschreibung">Beschreibung*</label>
-		<input type="text" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required" maxlength="100">
-		<label for="preis">Preis in Euro*</label>
-		<input type="number" step="0.01" min="0" name="preis" placeholder="0,00" title="Bitte geben Sie einen Preis ein!" required="required" maxlength="7"><br>
-		<% if(festivalid == 0) { %>
-		<label for="bild">Bild</label>
-		<input type="file" name = "bild" accept="image/*"><br>
-		<% } %>
-		<button type="submit" id="links">Anlegen</button>
+	<div class="zeile">
+	<h1>Artikel anlegen</h1>
+	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+		<div class="spaltelinks">
+			<label for="beschreibung">Beschreibung*</label>
+			<input type="text" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required" maxlength="100">
+			<label for="preis">Preis in Euro*</label>
+			<input type="number" step="0.01" min="0" name="preis" placeholder="0,00" title="Bitte geben Sie einen Preis ein!" required="required" maxlength="7"><br>
+			<% if(festivalid == 0) { %>
+			<label for="bild">Bild</label>
+			<input type="file" name = "bild" accept="image/*"><br>
+			<% } %>
+			<button type="submit" id="links">Anlegen</button>
+		</div>
+		<div class="spalterechts">
+			<% if (request.getSession().getAttribute("antwort") != null) 
+			{ %>
+			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+			<% request.getSession().removeAttribute("antwort");}  %>
+		</div>
 	</div>
-	</form>	
-	<div class="spalterechts">
-		<% if (request.getSession().getAttribute("antwort") != null) 
-		{ %>
-		<p><%= request.getSession().getAttribute("antwort") %></p>
-		<% request.getSession().removeAttribute("antwort");}  %>
-	</div>		
+	</form>		
 	<div id="leer"></div>
 	</div>
 <jsp:include page="k_footer.jsp">

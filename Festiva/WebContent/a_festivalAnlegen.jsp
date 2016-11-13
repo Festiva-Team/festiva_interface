@@ -33,7 +33,7 @@ else {
     </jsp:include>
 	<div id="main">
 	<form action="/Festiva/Festivalverwaltung?aktion=anlegen" method="POST" enctype="multipart/form-data">
-	<h2>Festival anlegen</h2>
+	<h1>Festival anlegen</h1>
 	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 	<div class="zeile">
 	<div class="spaltelinks">
@@ -63,10 +63,10 @@ else {
 	</div>
 	</div>	
 	</form>	
-	<div class="spalterechts">
+	<div class="zeile">
 		<% if (request.getSession().getAttribute("antwort") != null) 
 		{ %>
-		<p><%= request.getSession().getAttribute("antwort") %></p>
+		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
 		<% request.getSession().removeAttribute("antwort");}  %>
 	</div>						
 	<div id="leer"></div>			

@@ -29,9 +29,9 @@ response.sendRedirect("k_anmelden.jsp");}
 	<div id="main">
 	<form action="/Festiva/Registrierung" method="post">
 		<div class="zeile">
-		<div class="spaltelinks">
-			<h2>Kunden anlegen</h2>
+			<h1>Kunden anlegen</h1>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+		<div class="spaltelinks">
 			<label for="email">E-Mail*</label>
 			<input type="email" name="email" id="email" title="Bitte geben Sie eine gültige E-Mail Adresse ein!" maxlength="30" required="required">
 			<label for="emailbestätigung">E-Mail bestätigen*</label>
@@ -44,11 +44,13 @@ response.sendRedirect("k_anmelden.jsp");}
 		</div>
 		<div class="spalterechts">
 			<p id="text"><b>Hinweis:</b> Das Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>	
-			<% if (request.getSession().getAttribute("antwort") != null) 
-			{ %>
-			<p id="text"><%= request.getSession().getAttribute("antwort") %></p>
-			<% request.getSession().removeAttribute("antwort");}  %>
 		</div>	
+		</div>
+		<div class="zeile">
+					<% if (request.getSession().getAttribute("antwort") != null) 
+			{ %>
+			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+			<% request.getSession().removeAttribute("antwort");}  %>
 		</div>
 	</form>
 	</div>

@@ -32,7 +32,7 @@ else {
 </jsp:include>
 	<div id="main">
 	<div class="zeile">
-	<h2>Kunden ändern</h2>
+	<h1>Kunden ändern</h1>
 	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 	<form action="/Festiva/Kundenverwaltung?aktion=datenaendern&kundenid=<%=benutzer.id%>" method="post">
 		<div class="spaltelinks">
@@ -82,12 +82,13 @@ else {
 		</div>
 	</form>
 	</div>
-	<button type="submit" class="loeschen" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>	
-	<div class="spalterechts">
+	<div class="zeile">
 		<% if (request.getSession().getAttribute("antwort") != null) 
 		{ %>
-		<p><%= request.getSession().getAttribute("antwort") %></p>
+		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
 		<% request.getSession().removeAttribute("antwort");}  %>
+		<button type="submit" class="loeschen" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>	
+	
 	</div>	
 	<div id="leer"></div>
 	</div>

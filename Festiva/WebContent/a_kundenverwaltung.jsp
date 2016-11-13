@@ -30,12 +30,12 @@ else {
 	<jsp:param name="active" value="kundenverwaltung"/>
 </jsp:include>	
     <div id="main">
-  	<h2>Kundenverwaltung</h2>
+  	<h1>Kundenverwaltung</h1>
 	<div class="spaltelinks">
 		<button type="button" id="anlegen" onClick="window.location.href='a_kundenAnlegen.jsp'">Neuen Kunden anlegen </button>
 	</div>
 	<div class ="zeile">
-	<table>
+	<table class="tabelle">
 		<thead><tr><th>ID</th><th>Nachname</th><th>Vorname</th><th>E-Mail-Adresse</th><th>Gesperrt</th><th>Gelöscht</th></tr></thead>
 		<%for (Benutzer benutzer : listBenutzer) { %>
 		<tbody>

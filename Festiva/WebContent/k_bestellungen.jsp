@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_bestellungen.jsp
-	# JSP-Aktionen: (1) Anzeige aller vergangenen Bestellungen des Kunden               
+	# JSP-Aktionen:                
 */
 	if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
 	response.sendRedirect("k_anmelden.jsp");}
@@ -30,46 +30,49 @@
 </head>
 <body>
 <div id="webseite">
-<jsp:include page="k_header.jsp">
-	<jsp:param name="active" value="warenkorb"/>
-</jsp:include>
-   	<div id="main">
-		<h2>Meine vergangenen Bestellungen</h2>
-		<br/><br/>
-		<% for (Bestellung bestellung : listBestellungen) {%>
-		<h4>Ihre Bestellung vom <%=date.format(bestellung.datum)%> Uhr:</h4>
-		<table class= "tabelle">
-			<thead><tr><th>Position</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
-			 <%for (Bestellposition bestellposition : bestellung.listPositionen) { %>
-			<tbody>
-			<tr>
-				<td data-label="ID: "><%=id%></td>
-				<% for(Artikel artikel : listArtikel) {
-				   if (bestellposition.artikelID == artikel.id) {
-					   if(artikel.festivalID == 0) { %>
-			    <td data-label="Festival: "><%=""%></td>   
-				<%} else {
-				    for(Festival festival : listFestivals) {
-					   if (festival.id == artikel.festivalID) { %>
-				<td data-label="Festival: "><%=festival.name%></td>
-					<% }}}}} %>
-				<td data-label="Artikel: "><%=bestellposition.beschreibung%></td>
-				<td data-label="Preis: "><%=String.format("%.2f",bestellposition.preis)%> &#8364;</td>
-				<td data-label="Anzahl: "><%=bestellposition.menge%></td>
-				<td data-label="Gesamtpreis: "><%=String.format("%.2f",(bestellposition.menge * bestellposition.preis))%> &#8364;</td>
-			</tr>
-			</tbody>
-			<% id++; gesamtsumme = gesamtsumme + (bestellposition.menge * bestellposition.preis); } %>
-			<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th data-label="Gesamtsumme: "><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tr></tfoot>
-		</table>
-		<br/><br/>
-		<% id = 1; } %>
-	</div>
-	<div id="leer"></div>
+		<jsp:include page="k_header.jsp">
+    		<jsp:param name="active" value="warenkorb"/>
+    	</jsp:include>
+    	<div id="main">
+    		<form id="table">
+				<h2>Meine vergangenen Bestellungen</h2>
+				<br/><br/>
+				<% for (Bestellung bestellung : listBestellungen) {%>
+
+				<h4>Ihre Bestellung vom <%=date.format(bestellung.datum)%> Uhr:</h4>
+				
+				<table class= "artikel">
+					<thead><tr><th>Position</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
+					 <%for (Bestellposition bestellposition : bestellung.listPositionen) { %>
+					<tbody><tr>
+								<td data-label="ID: "><%=id%></td>
+								<% for(Artikel artikel : listArtikel) {
+								   if (bestellposition.artikelID == artikel.id) {
+									   if(artikel.festivalID == 0) { %>
+							    <td data-label="Festival: "><%=""%></td>   
+								<%	   } else {
+									   for(Festival festival : listFestivals) {
+										   if (festival.id == artikel.festivalID) { %>
+										   <td data-label="Festival: "><%=festival.name%></td>
+										<% }}}}} %>
+								<td data-label="Artikel: "><%=bestellposition.beschreibung%></td>
+								<td data-label="Preis: "><%=String.format("%.2f",bestellposition.preis)%> &#8364;</td>
+								<td data-label="Anzahl: "><%=bestellposition.menge%></td>
+								<td data-label="Gesamtpreis: "><%=String.format("%.2f",(bestellposition.menge * bestellposition.preis))%> &#8364;</td>
+					</tr></tbody>
+					<% id++; gesamtsumme = gesamtsumme + (bestellposition.menge * bestellposition.preis); } %>
+					<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th data-label="Gesamtsumme: "><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tfoot>
+					</tr>
+				</table>
+				<br/><br/>
+				<% id = 1; } %>
+			</form>	
+		</div>
+		<div id="leer"></div>
 <jsp:include page="k_footer.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>
-</div>
+	</div>
 </body>
 </html>
 <% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("listArtikel"); request.getSession().removeAttribute("listBestellungen"); } %>

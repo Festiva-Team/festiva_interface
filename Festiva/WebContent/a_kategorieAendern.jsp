@@ -34,7 +34,7 @@ else {
 	<div id="main">
 	<form action="/Festiva/Kategorienverwaltung?aktion=datenaendern&kategorienid=<%=kategorie.id%>" method="POST" enctype="multipart/form-data">
 		<div class="zeile">
-		<h2>Kategorie ändern</h2>
+		<h1>Kategorie ändern</h1>
 		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 			<div class="spaltelinks">
 				<label for="name">Kategorienname*</label>
@@ -68,10 +68,10 @@ else {
 	<% } %>
 	<button type="submit" class="loeschen" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
 	<% } %>
-	<div class="spalterechts">
+	<div class="zeile">
 		<% if (request.getSession().getAttribute("antwort") != null) 
 		{ %>
-		<p><%= request.getSession().getAttribute("antwort") %></p>
+		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
 		<% request.getSession().removeAttribute("antwort");}  %>
 	</div>	
 	<div id="leer"></div>

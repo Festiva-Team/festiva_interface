@@ -27,18 +27,18 @@ else {
 </head>
 <body>
 <div id="webseite">
-	<jsp:include page="a_headerAdmin.jsp">
-   		<jsp:param name="active" value="festivalverwaltung"/>
-	</jsp:include>
+<jsp:include page="a_headerAdmin.jsp">
+  	<jsp:param name="active" value="festivalverwaltung"/>
+</jsp:include>
  	<div id="main">
-	<h2>Festivalverwaltung</h2>
+	<h1>Festivalverwaltung</h1>
 	<form action="/Festiva/Festivalverwaltung?aktion=anlegenanzeigen" method="post">
 	<div class="spaltelinks">
 		<button type="submit" id="anlegen">Neues Festival anlegen</button>
 	</div>
 	</form>
 	<div class="zeile">
-		<table>
+		<table class="tabelle">
 			<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 			<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
 			for (Festival festival : listFestivals) { %>

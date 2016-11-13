@@ -34,7 +34,7 @@ else {
 	<jsp:param name="active" value="artikelAendern"/>
 </jsp:include>
 	<div id="main">		
-	<h2>Artikel ändern</h2>
+	<h1>Artikel ändern</h1>
 	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 	<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post" enctype="multipart/form-data">		
 		<div class="spaltelinks">
@@ -57,24 +57,23 @@ else {
 		<%if(artikel.festivalID == 0 && artikel.id != 6) { %>
 		<div class="spalterechts">
 			<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
-			<figure class="bild1">
 			<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
-			</figure>
 			<% } else { %>
 			<p>Kein Bild vorhanden</p>
 			<% } %>
 		</div>
 			<% } if(artikel.festivalID == 0 && artikel.id != 6 && new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 				<button type="submit" onClick="window.location.href='/Festiva/Artikelverwaltung?aktion=b_loeschen&artikelid=<%=artikel.id%>'">Aktuelles Bild löschen</button>
-			<% } if (artikel.id != 6) { %>
-				<button type="submit" class="loeschen" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
-		<div class="spalterechts">
-			<% } %>
+			<% } %> 
+		<div class="zeile">
 			<% if (request.getSession().getAttribute("antwort") != null) { %>
-				<p><%= request.getSession().getAttribute("antwort") %></p>
+				<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
 				<% request.getSession().removeAttribute("antwort");
-				}  %>
-		</div>	
+				} 
+				if (artikel.id != 6) { %>
+				<button type="submit" class="loeschen" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
+			<% } %>
+		</div>
 	<div id="leer"></div>	
 	</div>
 <jsp:include page="k_footer.jsp">

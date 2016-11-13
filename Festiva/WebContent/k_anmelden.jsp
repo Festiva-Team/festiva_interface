@@ -29,20 +29,20 @@
 	<div id="main">
 		<form action="/Festiva/Login" method="POST">
 			<div class="zeile">
+			<h1>Anmelden</h1>
 			<div class="spaltelinks">
-				<h2>Anmelden</h2>
 				<label for="email">E-Mail</label>
 				<input type="email" name="email" id="email" title="Bitte geben Sie Ihre E-Mail-Adresse ein!" maxlength="30" required="required" autofocus>
 				<label for="passwort">Passwort</label>
 				<input type="password" name="passwort" id="passwort" title="Bitte geben Sie Ihr Passwort ein!" maxlength="40" required="required">
 				<button type="submit">Anmelden</button>	
 			</div>
-			<div class="spalterechts">
+			<div class="zeile">
 				<% if (request.getSession().getAttribute("antwort") != null) 
 				{ %>
-				<p><%= request.getSession().getAttribute("antwort") %></p>
+				<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
 				<%if((request.getSession().getAttribute("antwort")).equals("Sie müssen sich erst anmelden, bevor Sie Artikel in Ihren Warenkorb legen können.")) { %>
-				<p>Sie sind noch nicht registriert? Dann klicken Sie bitte <a href="k_registrieren.jsp"> hier</a> !</p>
+				<p id="antwort">Sie sind noch nicht registriert? Dann klicken Sie bitte <a href="k_registrieren.jsp"> hier</a> !</p>
 				<% } request.getSession().removeAttribute("antwort");}  %>
 			</div>
 			</div>		

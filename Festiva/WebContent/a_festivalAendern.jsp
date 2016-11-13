@@ -38,7 +38,7 @@ else {
    	<jsp:param name="active" value="festivalAendern"/>
    </jsp:include>
 	<div id="main">	
-	<h2>Festival ändern</h2>
+	<h1>Festival ändern</h1>
 	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 		<div class="bild">
 			<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
@@ -84,23 +84,23 @@ else {
 		</div>
 			<div class="zeile">
 				<div class="spaltelinks">
-				<h2>Artikel</h2>
+				<h1>Artikel</h1>
 				<div class="spaltelinks">
 					<button type="button" id="anlegen" onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
 				</div>
-				<table>
+				<table class="tabelle">
 					<thead>
 						<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Gelöscht</th></tr></thead>
 					<%for (Artikel artikel : listArtikel) { %>
 					<tbody>	
 					<tr>		
-						<th data-label="Artikel"><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></th>
-						<td data-label="Beschreibung"><%=artikel.beschreibung%></td>
-						<td data-label="Preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<th data-label="Artikel: "><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></th>
+						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+						<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 						<%if (artikel.istGelöscht == false) { %>
-						<td data-label="Gelöscht"><%="nein"%></td>
+						<td data-label="Gelöscht: "><%="nein"%></td>
 						<% } else { %>
-						<td data-label="Gelöscht"><%="ja"%></td>
+						<td data-label="Gelöscht: "><%="ja"%></td>
 						<% } %>
 					</tr>
 					</tbody>
@@ -110,10 +110,10 @@ else {
 			</div>					
 		</form>	 
 			<button type="submit" class="loeschen"  onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>
-		<div class="spalterechts">
+		<div class="zeile">
 			<% if (request.getSession().getAttribute("antwort") != null) 
 			{ %>
-			<p><%= request.getSession().getAttribute("antwort") %></p>
+			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
 			<% request.getSession().removeAttribute("antwort");}  %>
 		</div>		
 	<div id="leer"></div>

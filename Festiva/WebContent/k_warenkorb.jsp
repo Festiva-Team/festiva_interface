@@ -65,17 +65,19 @@
 				<% } } %>
 				</select></td>
 				<td data-label="Gesamtpreis: " id="preis"><%=String.format("%.2f",(warenkorbelement.menge * warenkorbelement.artikel.preis))%> &#8364;</td>
-				<td><button type="submit" id="löschen" onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=loeschen&elementid=<%=warenkorbelement.id%>'">Position löschen</button>
+				<td><button type="submit" id="buttontabelle" onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=loeschen&elementid=<%=warenkorbelement.id%>'">Position löschen</button>
 				</td>
 			</tr>
 			</tbody>
 			<% id++; gesamtsumme = gesamtsumme + (warenkorbelement.menge * warenkorbelement.artikel.preis); } %>
 			<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th data-label="Gesamtsumme: "id="preis"><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tr></tfoot>
 		</table>
-		<button type="button" <%if(keineElemente == true) { %> disabled="disabled" <% } %> onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=k_anzeigen'">Zur Kasse</button>
+		<div class="zeile">
 		<%if(keineElemente == true) { %>
-	 	<p> Sie können erst zur Kasse, wenn Sie Artikel in Ihrem Warenkorb haben. </p>
+	 	<p id="antwort"> Sie können erst zur Kasse, wenn Sie Artikel in Ihrem Warenkorb haben. </p>
 		<% } %>	
+		</div>
+		<button type="button" <%if(keineElemente == true) { %> disabled="disabled" <% } %> onClick="window.location.href='/Festiva/Warenkorbverwaltung?aktion=k_anzeigen'">Zur Kasse</button>
 	</div>
 	<div id="leer"></div>
 <jsp:include page="k_footer.jsp">

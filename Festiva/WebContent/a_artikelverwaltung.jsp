@@ -31,13 +31,13 @@ else {
   	<jsp:param name="active" value="artikelverwaltung"/>
 </jsp:include>
  	<div id="main">
-	<h2>Festivalübergreifende Artikelverwaltung</h2>
+	<h1>Festivalübergreifende Artikelverwaltung</h1>
 	<div class="spaltelinks">
 		<button type="button" onClick="window.location.href='a_artikelAnlegen.jsp?'" id="anlegen">Neuen Artikel anlegen</button>
 	</div>					
 	<div class="zeile">
 	<div class="spaltelinks">
-		<table>
+		<table class="tabelle">
 		<thead>
 			<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 			<%for (Artikel artikel : listArtikel) { %>

@@ -1,41 +1,46 @@
 @CHARSET "ISO-8859-1";
-/************Seiteneinteilung****************************/
-h2{
-	
+/**********Schriftarten**********/
+h2{	
 	text-align: left;
 	margin-left: 3.5em;
 }
-body {
-	background-color:#990000;
-	text-align:center;
+h4{
+	text-align: left;
+	margin-left: 5em;
+	margin-top:-2em;
 }
+h5 {
+	font-weight: bold;
+}
+/************Seiteneinteilung****************************/
 #webseite{
 	width:80%;
 	margin:0 auto;
 	height: auto;
 	background: white;
 }
+body {
+	background-color:#990000;
+	text-align:center;
+}
 header{
 	width: 100%;
 }
 #main{	
 	width:100%;
-	height:auto;
+	min-height: 390px;
 	background:white;
 }	
-
 footer{	
 	float: left;
 	width:100%;
 	height: 1.25em;
 	background: black;
 }
-h4{
-	text-align: left;
-	margin-left: 2em;
-	margin-top:-2em;
+#leer{	
+	clear:both;
 }
-/************Navigationsleiste*****************************/
+/************Navigationsleiste*************/
 /*Strip the ul of padding and list styling*/
 nav {
 	position: relative;
@@ -80,7 +85,6 @@ li:hover a {
 	color: white;
 	background: #990000;
 }
-
 /*Style for dropdown links*/
 li:hover ul a {
 	background: white;
@@ -88,35 +92,29 @@ li:hover ul a {
 	border-radius: 10px;
 	padding: 0.3em;
 }
-
 /*Hover state for dropdown links*/
 li:hover ul a:hover {
 	background: grey;
 	color: #fff;
 }
-
 /*Hide dropdown links until they are needed*/
 li ul {
 	display: none;
 }
-
 /*Make dropdown links vertical*/
 li ul li {
 	display: block;
 	float: none;
 }
-
 /*Prevent text wrapping*/
 li ul li a {
 	width: auto;
 	padding: 0;
 }
-
 /*Display the dropdown on hover*/
 ul li a:hover + .hidden, .hidden:hover {
 	display: block;
 }
-
 /*Style 'show menu' label button and hide it by default*/
 .show-menu {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -126,22 +124,52 @@ ul li a:hover + .hidden, .hidden:hover {
 	padding:.2em 0;
 	display: none;
 }
-
 /*Hide checkbox*/
 #show-menu{
     display: none;
     -webkit-appearance: none;
 }
-
 /*Show menu when invisible checkbox is checked*/
 #show-menu:checked ~ #menu{
     display: block;
 }
 
-
-
-
-/*******************Seitenaufteilung*****************+*/	
+/*******************Slideshow*****************+*/	
+#container {
+	height: 300px;
+	width: 80%;
+	margin-top: 95px;
+	position: relative;
+	border: 2px solid black;
+	left: 10%;
+	right: 10%;
+}
+#left_holder {
+	width: 60px;
+	position: absolute;
+	left: 0px;
+	top: 40%;
+}
+#right_holder {
+	width: 60px;
+	position: absolute;
+	right: 0px;
+	top: 40%;
+}
+.left {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 40%;
+	left: 0px;
+}
+.right {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 40%;
+	right: 0px;
+}
 figure{ 
 	display: block; 
 	position: relative; 
@@ -225,26 +253,7 @@ figure:hover:before {
 .cap-bot:hover figcaption { 
 	bottom: 0; 
 }
-figure.bild1 {
-  display: inline-block;
-  width: 49%;
-}
-figure.bild2 {
-  display: inline-block;
-  width: 49%;
-}
-#zeile{	
-	width: 100%;
-	float: left;
-}
-#spaltelinks{	
-	width: 50%;
-	float:left;
-}
-#spalterechts{	
-	width: 50%;
-	float:left;	
-}
+/*********Seiteneinteilung***********/
 .zeile{	
 	width: 100%;
 	float: left;
@@ -262,18 +271,13 @@ figure.bild2 {
 	margin-bottom: 1em;
 	margin-left: 16%;
 }
+/* 
 #bild{
 	margin-left:1em;
 }
+ */
 
-#straße{
-
-	float: left;
-	width: 80%;
-}
-#leer{	
-	clear:both;
-}
+/**********Button*********/
 .loeschen{
 	margin: 0.5em;
 	background-color: #990000;
@@ -288,16 +292,20 @@ figure.bild2 {
     width: 11em;
     border-radius: 3px;
 }
-/******Slideshow***********/
-#container {
-	height: 300px;
-	width: 80%;
-	margin-top: 95px;
-	position: relative;
-	border: 2px solid black;
-	left: 10%;
-	right: 10%;
+button
+{	clear: right;
+	float: right;
+	padding: .2em .8em;
+	margin: .5em 2.5em .5em 0;
 }
+
+#anlegen
+{	margin-left:5em;
+	float: left;
+}
+/******Slideshow***********/
+
+
 #img {
 	height: 300px;
 	width: 300px;
@@ -305,32 +313,7 @@ figure.bild2 {
 #imgAdministration{
 	bottom: 19%;
 }
-#left_holder {
-	width: 60px;
-	position: absolute;
-	left: 0px;
-	top: 40%;
-}
-#right_holder {
-	width: 60px;
-	position: absolute;
-	right: 0px;
-	top: 40%;
-}
-.left {
-	height: 50px;
-	width: 50px;
-	position: absolute;
-	top: 40%;
-	left: 0px;
-}
-.right {
-	height: 50px;
-	width: 50px;
-	position: absolute;
-	top: 40%;
-	right: 0px;
-}
+
 /*******************Formulardaten***********************/
 label.h2 {
 	text-align: left;
@@ -338,9 +321,6 @@ label.h2 {
 	font-size: 120%;
 	width: 90%;
 	margin-left: 2em;
-}
-h5 {
-	font-weight: bold;
 }
 label.kasse {
 	text-align: left;
@@ -371,12 +351,7 @@ label,textarea, input, radio, select
 {	display: block;
 	float: left;
 }
-button
-{	clear: right;
-	float: right;
-	padding: .2em .8em;
-	margin: .5em 2.5em .5em 0;
-}
+
 #check{
 	float: none;
 	text-align: left;
@@ -393,22 +368,12 @@ input[type='submit']{
     -moz-border-radius: 5px;
     border: none; 
 }
-#anlegen
-{	margin-left:1em;
-	float: left;
-}
 fieldset
 {	width: 70%;
 	border-color: #990000;
 	margin-left:5em;
 }
-**************
-.vorschau {
-	height: 10px;
-	border: 1px solid #000;
-	margin: 10px 5px 0 0;
-}
-
+/**************Sonstiges***************/
 output {
 	display: block;
 }
@@ -421,64 +386,74 @@ output {
 }
 #antwort{
 	color: #990000;
-	text-align: left;
-	margin: 0 5em 0em 5em;
-	font-weight: bold;
-	
+	text-align: center;
+	font-weight: bold;	
 }
-**********
-/**************Tabelle**************************/
+#preis{
+	text-align: right;
+}
+/**************Tabellen**************************/
 table { 
  	border-collapse: collapse;
  }
- .tabelle
+.tabelle
  {	margin-left: 5em;
  }
 td,
 th {text-align: left;
 	padding: .5em;
 }
- 
 th:last-child,
 td:last-child {
 	padding-right: .5em;
 }
-#preis{
-	text-align: right;
-}
- thead th {
+thead th {
  	border-bottom: 2px solid #990000;
- }
- 
- tbody th {
+}
+tbody th {
  	font-weight: normal;
  	text-align: left;
- }
-  th a {
+}
+th a {
  	padding: 15px 5px 15px 40px;
- }
+}
  
 tfoot th {
  	border-top: 2px solid #990000;
- }
-/** **************** CSS-Regeln für Ausgabegeräte kleiner 600px *******************/
+}
+/**************************************************** CSS-Regeln für Ausgabegeräte kleiner 600px *******************/
 @media (max-width: 600px) {   
-    
- /* Allgemein */
-  
-body{    
- }
-#webseite {
-		width :100%;
- }
+/*********Schriftarten*************/ 
 h1{
 	width: 100%;
 	font-weight: bold;
-	font-size: 90%;
+	font-size: 150%;
 	margin-bottom:1em;
 	text-align: center;
+}   
+h2{	
+	font-size: 130%;
+	text-align: center;
+	margin: 0;
+	padding: 1em;
 }
-  /***********Navigationsleiste************/
+h4{
+	text-align: left;
+	margin-left: 0;
+	margin-top:-2em;
+	padding: .2em;
+}
+h5{
+	font-size: 80%;	
+}
+
+
+/*********Seiteneinteilung*********/
+#webseite {
+		width :100%;
+}
+
+/***********Navigationsleiste************/
 nav{
 	height:1.5em;
 }
@@ -507,20 +482,7 @@ li:hover ul a {
 }
 
 /****************Seitenaufteilung**********/
-#zeile
-{
-	width:100%;
-}
-#spaltelinks
-{	clear:both;
-	width: 100%;
-	float:left;
-}
-#spalterechts
-{	clear: both;
-	width: 100%;
-	float:left;
-}
+
 .zeile{	
 	width: 100%;
 }
@@ -549,6 +511,8 @@ li:hover ul a {
 	width: 100%;
 	float:left;
 }
+
+/********Formulardaten*********/
 label
 {	width:90%;
 	text-align: left;
@@ -564,48 +528,49 @@ select, option{
 	width: 90%;
 	float: none;
 	text-align: left;
-	width: 60%;
-	margin: 0;
-	padding: 0;
+	margin-right: 0.5em;
+	padding: .2em;
+}
+fieldset{
+	margin: .5em;
+	width: 85%;
+}	
+/****************Button**************/
+.loeschen{
+	width: 95%;
+	margin: 0.5em;
+	background-color: #990000;
+    border: none;
+    color: white;
+    padding: .4em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
 }
 button{
 	width: 60%;
 	padding: 0; 
-	margin:0;
-	float: none;
-	margin-bottom: .2em;
-}
-img{
-	width: 100%;
-	height: auto;
-}
-fieldset
-{
 	margin: .5em;
-	width: 85%;
-}	
-figure.bild1
+}
+#buttontabelle
 {
-	width: 80%;
+	float: none;
 }
 /** *****************Tabelle******************/
 
 thead {
 	display: none;
 }
-tr:first-child {
-	
-}
 tr {
 	border-bottom: 2px solid #990000;
-	padding: 0 .2em 1em 1em;
-	
+	padding: 0 .2em 1em 1em;	
 }
 th::before {
 	content: attr(data-label);
 }
-td::before
-{	
+td::before{	
 	content: attr(data-label);
 	font-style: italic;
 	font-size: 110%;
@@ -636,25 +601,8 @@ td{
 tfoot th {
  	border: none;
  }
-#preis{
-	text-align: left;
-}
-#text{
-	display:none;
-}
-#antwort{
-	color: #99000;
-	text-align: left;
-	margin: 0 .5em .2em .5em;	
-	font-weight: bold;
-	padding: .2em;
-}
-h2{	
-	font-size: 120%;	
-}
-h5{
-	font-size: 80%;	
-}
+
+
 /******Slideshow***********/
 #container {
 	height: 300px;
@@ -669,11 +617,7 @@ h5{
 	height: 200px;
 	width: 200px;
 }
-#imgAdministration{
-	bottom: 0;
-	width: 70%;
-	margin-bottom: 0.2em;
-}
+
 #left_holder {
 	width: 60px;
 	position: absolute;
@@ -686,20 +630,7 @@ h5{
 	right: 0px;
 	top: 30%;
 }
-.loeschen{
-	width: 95%;
-	margin: 0.5em;
-	background-color: #990000;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: .5em 2.5em .5em 0;
-    cursor: pointer;
-}
+
 .left {
 	height: 50px;
 	width: 50px;
@@ -713,5 +644,28 @@ h5{
 	position: absolute;
 	top: 40%;
 	right: 0px;
+}
+/*************Sonstiges***************/
+img{
+	width: 100%;
+	height: auto;
+}
+#imgAdministration{
+	bottom: 0;
+	width: 70%;
+	margin-bottom: 0.2em;
+}
+#preis{
+	text-align: left;
+}
+#langtext{
+	display:none;
+}
+#antwort{
+	color: #99000;
+	text-align: left;
+	margin: 0 .5em .2em .5em;	
+	font-weight: bold;
+	padding: .2em;
 }
 }

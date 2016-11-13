@@ -1,0 +1,239 @@
+@CHARSET "ISO-8859-1";
+/**************************************************** CSS-Regeln für Ausgabegeräte kleiner 600px *******************/
+@media (max-width: 600px) {   
+/*********Schriftarten*************/ 
+h1{
+	width: 100%;
+	font-weight: bold;
+	font-size: 90%;
+	margin-bottom:1em;
+	text-align: center;
+}   
+h2{	
+	font-size: 120%;	
+}
+h5{
+	font-size: 80%;	
+}
+/*********Seiteneinteilung*********/
+#webseite {
+		width :100%;
+}
+
+/***********Navigationsleiste************/
+nav{
+	height:1.5em;
+}
+/*Make dropdown links appear inline*/
+ul {
+	margin: 0;
+	position: static;
+	display: none;
+}
+/*Make all menu links full width*/
+ul li, li a {
+	text-align: left;
+	width: 98.3%;
+	border-radius: 0;
+}
+li:hover ul a {
+	border-radius: 0;
+	padding: 0.3em;
+	width: 100%;
+	font-weight: normal;
+}
+/*Display 'show menu' link*/
+.show-menu {
+	display:block;
+	content: "Menü";
+}
+
+/****************Seitenaufteilung**********/
+
+.zeile{	
+	width: 100%;
+}
+.spaltelinks{	
+	clear: both;
+	width: 100%;
+	float:left;
+}
+.spalterechts{	
+	clear: both;
+	width: 100%;
+	float:left;	
+}
+.bild{
+	float: left;
+	margin-bottom: 1em;
+	margin-left: 0;
+}
+#spalteBild
+{	clear:both;
+	width: 100%;
+	float:left;
+}
+#spalteText
+{	clear: both;
+	width: 100%;
+	float:left;
+}
+
+/********Formulardaten*********/
+label
+{	width:90%;
+	text-align: left;
+	margin: 0;
+	margin-left: 0.4em;
+}
+input,textarea{
+	width: 90%;
+	margin-right: 0.5em;
+	padding: .2em;
+}
+select, option{
+	width: 90%;
+	float: none;
+	text-align: left;
+	width: 60%;
+	margin: 0;
+	padding: 0;
+}
+fieldset{
+	margin: .5em;
+	width: 85%;
+}	
+/****************Button**************/
+.loeschen{
+	width: 95%;
+	margin: 0.5em;
+	background-color: #990000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: .5em 2.5em .5em 0;
+    cursor: pointer;
+}
+button{
+	width: 60%;
+	padding: 0; 
+	margin:0;
+	float: none;
+	margin-bottom: .2em;
+}
+
+/** *****************Tabelle******************/
+
+thead {
+	display: none;
+}
+tr {
+	border-bottom: 2px solid #990000;
+	padding: 0 .2em 1em 1em;	
+}
+th::before {
+	content: attr(data-label);
+}
+td::before{	
+	content: attr(data-label);
+	font-style: italic;
+	font-size: 110%;
+}
+.tabelle
+ {	margin-left: 0;
+ }
+table,
+tbody,
+tr {
+	display: block;
+}
+tbody th {
+	display: block;
+	font-weight: bold;
+	font-size: 120%;
+	padding: .2em;
+}
+th a {
+	font-weight: normal;
+}
+td{
+	display: block;
+	min-width: 30%;
+	padding: .1em;
+	text-align: left;
+}
+tfoot th {
+ 	border: none;
+ }
+
+
+/******Slideshow***********/
+#container {
+	height: 300px;
+	width: 100%;
+	margin-top: 95px;
+	position: relative;
+	border: none;
+	left: 0;
+	right: 0;
+}
+#img {
+	height: 200px;
+	width: 200px;
+}
+
+#left_holder {
+	width: 60px;
+	position: absolute;
+	left: 0px;
+	top: 30%;
+}
+#right_holder {
+	width: 60px;
+	position: absolute;
+	right: 0px;
+	top: 30%;
+}
+
+.left {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 40%;
+	left: 0px;
+}
+.right {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 40%;
+	right: 0px;
+}
+/*************Sonstiges***************/
+img{
+	width: 100%;
+	height: auto;
+}
+#imgAdministration{
+	bottom: 0;
+	width: 70%;
+	margin-bottom: 0.2em;
+}
+#preis{
+	text-align: left;
+}
+#text{
+	display:none;
+}
+#antwort{
+	color: #99000;
+	text-align: left;
+	margin: 0 .5em .2em .5em;	
+	font-weight: bold;
+	padding: .2em;
+}
+}

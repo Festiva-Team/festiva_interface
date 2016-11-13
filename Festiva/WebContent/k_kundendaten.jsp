@@ -31,7 +31,7 @@
 </jsp:include>
 	<div id="main">
 		<form action="/Festiva/Benutzerdaten?aktion=aendern" method="post">
-		<h2>Meine persönlichen Daten</h2>
+		<h1>Meine persönlichen Daten</h1>
 		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 		<h5>Achtung: Wenn Sie eine Bestellung durchführen möchten, müssen Sie alle Ihre Daten (außer der BIC) angeben!</h5>
 			<div class="zeile">
@@ -76,7 +76,7 @@
 		
 		<form action="/Festiva/Benutzerdaten?aktion=p_aendern" method="POST">
 			<div class="zeile">
-				<h2>Mein Passwort</h2>
+				<h1>Mein Passwort</h1>
 				<div class="spaltelinks">
 					<label for="passwortalt">Altes Passwort*</label>
 					<input type="password" name="passwortalt" id="passwortalt" title="Bitte geben Sie Ihr altes Passwort ein!" maxlength="40" required="required">
@@ -94,7 +94,7 @@
 					<% } request.getSession().removeAttribute("antwort"); 
 					     request.getSession().removeAttribute("benutzer");%>
 				</div>	
-				<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Mein Benutzerkonto löschen</button>
+				<button type="submit" class="loeschen" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Mein Benutzerkonto löschen</button>
 			</div>
 		</form>
 	<div id="leer"></div>
