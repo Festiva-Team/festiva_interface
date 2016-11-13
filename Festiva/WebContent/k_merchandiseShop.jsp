@@ -8,8 +8,11 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_merchandiseShop.jsp
-	# JSP-Aktionen:                
-*/
+	# JSP-Aktionen: (1) Anzeige aller Zubehörartikel
+	 				(2) Möglichkeit max. 10 Einheiten eines Artikel in den Warenkorb zu legen 
+					(2a) Aufruf des Servlet "Warenkorbverwaltung.java"
+	 				(3) Weiterleitung zur Anmeldung, falls Besucher noch nicht angemeldet ist
+*/ 
 if (request.getSession(false) != null) {
 	List<Integer> listArtikelID = null;
 	List<Artikel> listArtikel = null;
@@ -32,42 +35,40 @@ if (request.getSession(false) != null) {
 	<link rel="stylesheet" type="text/css" href="CSS/design.css">
 </head>
 <body>
-	<div id="webseite">
-		<jsp:include page="k_header.jsp">
-    		<jsp:param name="active" value="merchandiseShop"/>
-    	</jsp:include>
-		<div id="main">
-				<h2>Festival Zubehör</h2>
-					<div>
-					<% if (request.getSession().getAttribute("antwort") != null) 		
-					{ %> 
-					<p><%= request.getSession().getAttribute("antwort") %></p>	
-					<% request.getSession().removeAttribute("antwort");}  %>
-				</div> 
-			<div id="zeile">
-				<table>
-								
-					<%if(listArtikel != null && !listArtikel.isEmpty()) {
-										
-						for (Artikel artikel : listArtikel)
-						{%>
-						<tbody>	<tr>
+<div id="webseite">
+<jsp:include page="k_header.jsp">
+	<jsp:param name="active" value="merchandiseShop"/>
+</jsp:include>
+	<div id="main">
+	<h1>Festival Zubehör</h1>
+	<div>
+		<% if (request.getSession().getAttribute("antwort") != null) 		
+		{ %> 
+		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>	
+		<% request.getSession().removeAttribute("antwort");}  %>
+	</div> 
+		<div id="zeile">
+			<table class="tabelle">			
+				<%if(listArtikel != null && !listArtikel.isEmpty()) {									
+					for (Artikel artikel : listArtikel)
+					{%>
+					<tbody>	
+					<tr>
 						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
-						<td><figure class="bild1">
-						<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 />
-						</figure></td>
+						<td><img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 /></td>
 						<% } else { %>
-								<td data-label="">Kein Bild verfügbar</td>
-								<% }	%>
-								<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
-								<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-								<td data-label="" width="20%">
-								<select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
-								<td><button type="submit" id="Artikel in Warenkorb" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td>
-							</tr></tbody>
-						<% } }%>
-				</table>
-			</div>	
+						<td data-label="">Kein Bild verfügbar</td>
+						<% }	%>
+						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+						<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<td data-label="" width="20%">
+						<select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+						<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td>
+					</tr>
+					</tbody>
+					<% } }%>
+			</table>
+		</div>	
 		<div id="leer"></div>
 		</div>
 <jsp:include page="k_footer.jsp">

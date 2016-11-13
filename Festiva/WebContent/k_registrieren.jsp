@@ -48,7 +48,7 @@
 		<div class="spalterechts">
 			<% if (request.getSession().getAttribute("antwort") != null) 
 			{ %>
-			<p><%= request.getSession().getAttribute("antwort") %></p>
+			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
 			<% request.getSession().removeAttribute("antwort");}  %>
 		</div>		
 		</div>

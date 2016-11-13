@@ -79,7 +79,7 @@
 	</div>		 
 	<div class="zeile">
 	<div class="spaltelinks">
-	<h2>Bestellpositionen</h2>
+	<h1>Bestellpositionen</h1>
 	<table class="tabelle">
 		<thead><tr><th>ID</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
 		  <%for (Warenkorbelement warenkorbelement : warenkorb.listElemente) { %>
@@ -105,13 +105,13 @@
 	</table>	
 	</div>
 	<!--  			<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post"> -->
-		<div class="spaltelinks">
-			<h2>Versand</h2>
+		<div class="zeile">
+			<h1>Versand</h1>
 			<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
 				<div class="zeile"><input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" >Per Mail</div>
 				<div class="zeile"><input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)">Per Post</div>
 		   		<p id="text"><b>Hinweis:</b> Wenn Sie einen oder mehrere Zubehör-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</p>
-				<button type="submit" onclick="return confirm('Sind Sie sicher, dass alle Eingaben richtig sind und Sie die Bestellung endgültig abschließen möchten?')" <%if(kundendatenVollstaendig.equals(false)) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>		
+				<button type="submit" onclick="return confirm('Sind Sie sicher, dass alle Eingaben richtig sind und Sie die Bestellung endgültig abschließen möchten?')" <%if(kundendatenVollstaendig.equals(false) || warenkorb.listElemente.isEmpty() || (warenkorb.listElemente.size() == 1 && warenkorb.listElemente.get(0).artikel.id == 6) ) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>		
 			</form>
 		</div>		
 	</div>				 
@@ -123,24 +123,44 @@
 </div>
 </body>
 <script type="text/javascript">
-<!--
 var arrObjRadio = new Array();
 function versenden(objRadio){
 // Falls der Radiobutton gesetzt ist und ein neuer Radiobutton gewählt wurde
 if((objRadio.checked == true) && (objRadio != arrObjRadio[objRadio.name])){
 // Aktuelles Objekt merken
 arrObjRadio[objRadio.name] = objRadio;
-
 // Änderungen durchführen
 switch(objRadio.value){
-  case "post"  : document.location.href='/Festiva/Warenkorbverwaltung?aktion=p_versand';
+  case "post"  : 
+	            //document.location.href='/Festiva/Warenkorbverwaltung?aktion=p_versand';
+	            post('/Festiva/Warenkorbverwaltung', {aktion: 'p_versand'});
                        break;
-  case "mail" : document.location.href='/Festiva/Warenkorbverwaltung?aktion=m_versand';
+  case "mail" : 
+	  			//document.location.href='/Festiva/Warenkorbverwaltung?aktion=m_versand';
+  				post('/Festiva/Warenkorbverwaltung', {aktion: 'm_versand'});	
                        break;
 }
 }
 }
-//-->
+function post(path, params, method) {
+    method = method || "post"; 
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+            form.appendChild(hiddenField);
+         }
+    }
+    document.body.appendChild(form);
+    
+    form.submit();
+   
+}
 </script>
 </html>
 <% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb"); request.getSession().removeAttribute("benutzer"); request.getSession().removeAttribute("perPost"); request.getSession().removeAttribute("kundendatenVollstaendig");}%>
