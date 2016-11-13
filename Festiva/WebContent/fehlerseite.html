@@ -1,69 +1,18 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <script type="text/javascript" language="JavaScript">
-        var offsetx=20
-        var offsety=0
-        function InfoBoxAusblenden() {
-             document.getElementById('InfoBox').style.visibility = "hidden";
-        }
-        function InfoBoxAnzeigen(e,Inhalte,offsetX,offsetY) {
-            if (offsetX) {offsetx=offsetX;} else {offsetx=20;}
-            if (offsetY) {offsety=offsetY;} else {offsety=0;}
-            var PositionX = 0;
-            var PositionY = 0;
-            if (!e) var e = window.event;
-            if (e.pageX || e.pageY) {
-                PositionX = e.pageX;
-                PositionY = e.pageY;
-            }
-            else if (e.clientX || e.clientY) {
-                PositionX = e.clientX + document.body.scrollLeft;
-                PositionY = e.clientY + document.body.scrollTop;
-            }
-            document.getElementById("BoxInhalte").innerHTML = Inhalte;
-            document.getElementById('InfoBox').style.left = (PositionX+offsetx)+"px";
-            document.getElementById('InfoBox').style.top = (PositionY+offsety)+"px";
-            document.getElementById('InfoBox').style.visibility = "visible";
-        }
-    </script>
-    <style type="text/css">
-        #InfoBox {
-            visibility:hidden;
-            position:absolute;
-            top:10px;
-            left:10px;
-            border-radius: 10px;
-            z-index:1;
-            /* diese Angaben können Sie anpassen */
-            width:200px;
-            background-color:#FDFEFF;
-            border:1px solid #808080;
-        }
-        
-        /* weitere Box in der Info-Box für padding */
-        #BoxInnen {
-            padding:15px;
-        }
-        /* Formatierung Texte in der Info-Box */
-        #BoxInhalte {
-            font-family:Verdana,Arial,Helvetica,sans-serif;
-            font-size:11px;
-            color:#5F5F5F;
-            line-height:130%;
-        }
-    </style>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
+<style>
+figure { display: block; position: relative; float: left; overflow: hidden; margin: 0 20px 20px 0; } figcaption { position: absolute; background: black; background: rgba(0,0,0,0.75); color: white; padding: 10px 20px; opacity: 0; -webkit-transition: all 0.6s ease; -moz-transition: all 0.6s ease; -o-transition: all 0.6s ease; } figure:hover figcaption { opacity: 1; } figure:before { content: ""; position: absolute; font-weight: 800; background: black; background: rgba(255,255,255,0.75); text-shadow: 0 0 5px white; color: black; width: 24px; height: 24px; -webkit-border-radius: 12px; -moz-border-radius: 12px; border-radius: 12px; text-align: center; font-size: 14px; line-height: 24px; -moz-transition: all 0.6s ease; opacity: 0.75; } figure:hover:before { opacity: 0; } .cap-left:before { bottom: 10px; left: 10px; } .cap-left figcaption { bottom: 0; left: -30%; } .cap-left:hover figcaption { left: 0; } .cap-right:before { bottom: 10px; right: 10px; } .cap-right figcaption { bottom: 0; right: -30%; } .cap-right:hover figcaption { right: 0; } .cap-top:before { top: 10px; left: 10px; } .cap-top figcaption { left: 0; top: -30%; } .cap-top:hover figcaption { top: 0; } .cap-bot:before { bottom: 10px; left: 10px; } .cap-bot figcaption { left: 0; bottom: -30%;} .cap-bot:hover figcaption { bottom: 0; }
+</style>
 </head>
 <body>
-    <!-- Anfang DIV für die InfoBox -->
-    <div id="InfoBox" style="z-index:1; visibility:hidden;"></div>
-     <div id="BoxInnen"><span id="BoxInhalte"></span></div>
-    <!-- Ende DIV für die InfoBox -->
-		<label for="name">Festivalname*</label>
-						<input type="text" id="name" name="name" maxlength="30" required="required">	
-    <p>    E-Mail: </p><td><input class="ipt" onMouseOver="InfoBoxAnzeigen(event, 'Hier steht Text', 20, -30)" onMouseOut="InfoBoxAusblenden()" id="iptLoginEmail" type="text" name="loginEmail"/>        
+<h1>jetzt HTML lernen mit CSS</h1>
+<figure class="cap-bot">
+	<img src="/Festiva/Bilder/Rock.jpg" alt="">
+	<figcaption>
+		yay!!!
+	</figcaption>
+</figure>
 </body>
-</html>>
+</html>
+
