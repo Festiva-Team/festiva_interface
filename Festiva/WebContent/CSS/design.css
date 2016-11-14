@@ -139,13 +139,15 @@ ul li a:hover + .hidden, .hidden:hover {
 
 /*******************Slideshow*****************+*/	
 #container {
-	float: left;
-	height: 300px;
-	width: 80%;
-	position: relative;
-	border: 2px solid black;
-	left: 10%;
-	right: 10%;
+    float: left;
+    height: 300px;
+    width: 80%;
+    position: relative;
+    border: 2px solid black;
+    left: 10%;
+    right: 10%;
+    top: 4em;
+    margin-bottom: 4em;
 }
 #left_holder {
 	width: 60px;
@@ -425,7 +427,7 @@ tfoot th {
  	border-top: 2px solid #990000;
 }
 /**************************************************** CSS-Regeln für Ausgabegeräte kleiner 600px *******************/
-@media (max-width: 600px) {   
+@media (max-width: 650px) {   
 /*********Schriftarten*************/ 
 h1{
 	width: 100%;
@@ -457,7 +459,7 @@ h5{
 }
 #main{	
 	width:100%;
-	min-height: 500px;
+	min-height: 450px;
 	background:white;
 }
 footer{	
