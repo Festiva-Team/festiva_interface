@@ -36,6 +36,12 @@ else {
 	<div id="main">		
 	<h1>Artikel ändern</h1>
 	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+	<div class="zeile">
+		<% if (request.getSession().getAttribute("antwort") != null) { %>
+			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+			<% request.getSession().removeAttribute("antwort");
+			} %>
+	</div>
 	<form action="/Festiva/Artikelverwaltung?aktion=datenaendern&artikelid=<%=artikel.id%>" method="post" enctype="multipart/form-data">		
 		<div class="spaltelinks">
 			<label for="beschreibung">Beschreibung*</label>
@@ -65,15 +71,11 @@ else {
 			<% } if(artikel.festivalID == 0 && artikel.id != 6 && new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 				<button type="submit" onClick="window.location.href='/Festiva/Artikelverwaltung?aktion=b_loeschen&artikelid=<%=artikel.id%>'">Aktuelles Bild löschen</button>
 			<% } %> 
-		<div class="zeile">
-			<% if (request.getSession().getAttribute("antwort") != null) { %>
-				<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
-				<% request.getSession().removeAttribute("antwort");
-				} 
-				if (artikel.id != 6) { %>
-				<button type="submit" class="loeschen" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
-			<% } %>
-		</div>
+	<div class="zeile">
+		<% if (artikel.id != 6) { %>
+			<button type="submit" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
+		<% } %>
+	</div>
 	<div id="leer"></div>	
 	</div>
 <jsp:include page="k_footer.jsp">

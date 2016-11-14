@@ -49,6 +49,12 @@
    	<div id="main">
    		<div class="zeile">
    		<h1><%=festival.name%></h1>
+   			<div class="zeile">
+				<% if (request.getSession().getAttribute("antwort") != null) 		
+				{ %> 
+				<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>	
+				<% request.getSession().removeAttribute("antwort");}  %>
+			</div> 
 			<div class="spaltelinks">
 				<%if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
 				<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=300/>
@@ -65,12 +71,6 @@
 			</div>
 		</div>
 		<p id="langtext"><%=festival.langbeschreibung%></p>
-		<div class="zeile">
-			<% if (request.getSession().getAttribute("antwort") != null) 		
-			{ %> 
-			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>	
-			<% request.getSession().removeAttribute("antwort");}  %>
-		</div> 
 		<% if (listArtikel != null && !(listArtikel.isEmpty())) { %>
 		<h2>Verfügbare Tickets</h2>
 		<table class= "tabelle">

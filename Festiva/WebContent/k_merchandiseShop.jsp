@@ -42,13 +42,13 @@ if (request.getSession(false) != null) {
 </jsp:include>
 	<div id="main">
 	<h1>Festival Zubehör</h1>
-	<div>
+	<div class="zeile">
 		<% if (request.getSession().getAttribute("antwort") != null) 		
 		{ %> 
 		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>	
 		<% request.getSession().removeAttribute("antwort");}  %>
 	</div> 
-		<div id="zeile">
+		<div class="zeile">
 			<table class="tabelle">			
 				<%if(listArtikel != null && !listArtikel.isEmpty()) {									
 					for (Artikel artikel : listArtikel)

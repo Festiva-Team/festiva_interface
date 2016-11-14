@@ -34,6 +34,11 @@ else {
 	<div class="zeile">
 	<h1>Kunden ändern</h1>
 	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+		<% if (request.getSession().getAttribute("antwort") != null) 
+		{ %>
+		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+		<% request.getSession().removeAttribute("antwort");}  %>
+	</div>
 	<form action="/Festiva/Kundenverwaltung?aktion=datenaendern&kundenid=<%=benutzer.id%>" method="post">
 		<div class="spaltelinks">
 			<label for="vorname">Vorname</label>
@@ -81,17 +86,11 @@ else {
 			<button type="submit">Passwort ändern</button>
 		</div>
 	</form>
-	</div>
-	<div class="zeile">
-		<% if (request.getSession().getAttribute("antwort") != null) 
-		{ %>
-		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
-		<% request.getSession().removeAttribute("antwort");}  %>
-		<button type="submit" class="loeschen" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>	
-	
 	</div>	
-	<div id="leer"></div>
+	<div class="zeile">
+		<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>		
 	</div>
+	<div id="leer"></div>
 <jsp:include page="k_footer.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>

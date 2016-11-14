@@ -37,8 +37,12 @@ else {
 	<div id="main">
 	<form action="/Festiva/Artikelverwaltung?aktion=anlegen&festivalid=<%=festivalid%>" method="post" enctype="multipart/form-data">		
 	<div class="zeile">
-	<h1>Artikel anlegen</h1>
-	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+		<h1>Artikel anlegen</h1>
+		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+		<% if (request.getSession().getAttribute("antwort") != null) 
+		{ %>
+		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+		<% request.getSession().removeAttribute("antwort");}  %>
 		<div class="spaltelinks">
 			<label for="beschreibung">Beschreibung*</label>
 			<input type="text" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" required="required" maxlength="100">
@@ -49,12 +53,6 @@ else {
 			<input type="file" name = "bild" accept="image/*"><br>
 			<% } %>
 			<button type="submit" id="links">Anlegen</button>
-		</div>
-		<div class="spalterechts">
-			<% if (request.getSession().getAttribute("antwort") != null) 
-			{ %>
-			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
-			<% request.getSession().removeAttribute("antwort");}  %>
 		</div>
 	</div>
 	</form>		

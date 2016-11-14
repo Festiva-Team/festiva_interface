@@ -38,8 +38,14 @@ else {
    	<jsp:param name="active" value="festivalAendern"/>
    </jsp:include>
 	<div id="main">	
-	<h1>Festival ändern</h1>
-	<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+	<div class="zeile">
+		<h1>Festival ändern</h1>
+		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+		<% if (request.getSession().getAttribute("antwort") != null) 
+		{ %>
+		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+		<% request.getSession().removeAttribute("antwort");}  %>
+	</div>	
 		<div class="bild">
 			<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
 				<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" id="imgAdministration" name="bild" width=150 />
@@ -109,13 +115,7 @@ else {
 				</div>		
 			</div>					
 		</form>	 
-			<button type="submit" class="loeschen"  onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>
-		<div class="zeile">
-			<% if (request.getSession().getAttribute("antwort") != null) 
-			{ %>
-			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
-			<% request.getSession().removeAttribute("antwort");}  %>
-		</div>		
+			<button type="submit"  onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>	
 	<div id="leer"></div>
 	</div>
 <jsp:include page="k_footer.jsp">
