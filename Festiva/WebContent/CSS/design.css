@@ -1,5 +1,7 @@
 @CHARSET "ISO-8859-1";
 /**********Schriftarten**********/
+h1{position: relative;
+}
 h2{	
 	text-align: left;
 	margin-left: 4em;
@@ -137,9 +139,9 @@ ul li a:hover + .hidden, .hidden:hover {
 
 /*******************Slideshow*****************+*/	
 #container {
+	float: left;
 	height: 300px;
 	width: 80%;
-	margin-top: 80px;
 	position: relative;
 	border: 2px solid black;
 	left: 10%;
@@ -175,7 +177,7 @@ figure{
 	display: block; 
 	position: relative; 
 	overflow: hidden; 
-	margin: 0 20px 20px 0; 
+	margin: 0 0 20px 0; 
 }
 figcaption { 
 	position: absolute; 
@@ -453,6 +455,11 @@ h5{
 #webseite {
 		width :100%;
 }
+#main{	
+	width:100%;
+	min-height: 500px;
+	background:white;
+}
 footer{	
 	float: left;
 	width:100%;
@@ -613,7 +620,6 @@ tfoot th {
 #container {
 	height: 300px;
 	width: 100%;
-	margin-top: 95px;
 	position: relative;
 	border: none;
 	left: 0;

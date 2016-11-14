@@ -23,6 +23,7 @@ if (request.getSession(false) != null) {
 <jsp:include page="k_header.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>
+	<div id="main">
     <div class="zeile">
 	    <% if (request.getSession().getAttribute("begrüßung") != null) 
 		{ %>
@@ -50,6 +51,8 @@ if (request.getSession(false) != null) {
 		<div id="right_holder">
 			<img onClick="plusSlides(1)" class="right" src="/Festiva/Bilder/pfeil_rechts.jpg"/>
 		</div>
+	</div>
+	<div id="leer"></div>
 	</div>
 	<br> 
 <jsp:include page="k_footer.jsp">
