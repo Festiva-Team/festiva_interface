@@ -31,10 +31,15 @@
 </jsp:include>
 	<div id="main">
 		<form action="/Festiva/Benutzerdaten?aktion=aendern" method="post">
-		<h1>Meine persönlichen Daten</h1>
-		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
-		<h5>Achtung: Wenn Sie eine Bestellung durchführen möchten, müssen Sie alle Ihre Daten (außer der BIC) angeben!</h5>
-			<div class="zeile">
+		<div class="zeile">
+			<h1>Meine persönlichen Daten</h1>
+			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			<h5>Achtung: Wenn Sie eine Bestellung durchführen möchten, müssen Sie alle Ihre Daten (außer der BIC) angeben!</h5>
+			<% if (request.getSession().getAttribute("antwort") != null) 
+			{ %>
+			<p id="antwort"><b><%= request.getSession().getAttribute("antwort") %></b></p>
+			<% } request.getSession().removeAttribute("antwort"); 
+			     request.getSession().removeAttribute("benutzer");%>
 				<div class="spaltelinks">				
 					<label for="vorname">Vorname</label>
 					<input type="text" id="vorname" name="vorname" title="Hier können Sie Ihren Vornamen eingeben." maxlength="30" value="<%=benutzer.vorname%>">
@@ -88,11 +93,6 @@
 				</div>
 				<div class="spalterechts">
 					<p id="text"><b>Hinweis:</b> Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
-					<% if (request.getSession().getAttribute("antwort") != null) 
-					{ %>
-					<p id="antwort"><b><%= request.getSession().getAttribute("antwort") %></b></p>
-					<% } request.getSession().removeAttribute("antwort"); 
-					     request.getSession().removeAttribute("benutzer");%>
 				</div>	
 				<button type="submit" class="loeschen" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Mein Benutzerkonto löschen</button>
 			</div>

@@ -32,7 +32,13 @@ else {
 	<jsp:param name="active" value="adminKonto"/>
 </jsp:include>
 	<div id="main">
-	<h1>Mein Konto</h1>
+	<div class="zeile">
+		<h1>Mein Konto</h1>
+		<% if (request.getSession().getAttribute("antwort") != null) 
+		{ %>
+		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+		<% } request.getSession().removeAttribute("antwort"); %>
+	</div>
 	<form action="/Festiva/Benutzerdaten?aktion=p_aendern" method="post">
 	<div class="spaltelinks">
 		<label for="email">E-Mail</label>
@@ -48,12 +54,6 @@ else {
 	<div class="spalterechts">
 		<p id="text"><b>Hinweis:</b> Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
 	</div>	
-	<div class="zeile">
-		<% if (request.getSession().getAttribute("antwort") != null) 
-		{ %>
-		<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
-		<% } request.getSession().removeAttribute("antwort"); %>
-	</div>
 	</form>
 	<div id="leer"></div>
 	</div>

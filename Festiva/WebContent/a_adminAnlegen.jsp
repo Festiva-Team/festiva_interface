@@ -29,8 +29,12 @@
 	<div id="main">
 	<form action="/Festiva/Registrierung?aktion=a_anlegen" method="post">
 		<div class="zeile">
-		<h1>Neuen Administrator anlegen</h1>
-		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			<h1>Neuen Administrator anlegen</h1>
+			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			<% if (request.getSession().getAttribute("antwort") != null) 
+			{ %>
+			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+			<% request.getSession().removeAttribute("antwort");}  %>	
 		<div class="spaltelinks">
 			<label for="email">E-Mail*</label>
 			<input type="email" name="email" id="email" title="Bitte geben Sie eine gültige E-Mail Adresse ein!" maxlength="30" required="required">
@@ -44,12 +48,6 @@
 		</div>
 		<div class="spalterechts">
 			<p id="text"><b>Hinweis:</b> Das Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
-		</div>	
-		<div class="zeile">
-			<% if (request.getSession().getAttribute("antwort") != null) 
-			{ %>
-			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
-			<% request.getSession().removeAttribute("antwort");}  %>
 		</div>				
 		</div>
 	</form>

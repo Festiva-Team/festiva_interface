@@ -31,6 +31,10 @@
 		<div class="zeile">
 			<h1>Registrierung</h1>
 			<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
+			<% if (request.getSession().getAttribute("antwort") != null) 
+			{ %>
+			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
+			<% request.getSession().removeAttribute("antwort");}  %>
 		<div class="spaltelinks">
 			<label for="email">E-Mail*</label>
 			<input type="email" name="email" id="email" maxlength="30" title="Bitte geben Sie eine gültige E-Mail Adresse ein!" required="required" autofocus>
@@ -44,10 +48,6 @@
 		</div>
 		<div class="spalterechts">
 			<p id="text"><b>Hinweis:</b> Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
-			<% if (request.getSession().getAttribute("antwort") != null) 
-			{ %>
-			<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
-			<% request.getSession().removeAttribute("antwort");}  %>
 		</div>		
 		</div>
 	</form>
