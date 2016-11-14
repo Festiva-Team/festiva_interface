@@ -37,7 +37,7 @@
 		<h1>Meine vergangenen Bestellungen</h1>
 		<br/><br/>
 		<% for (Bestellung bestellung : listBestellungen) {%>
-		<h4>Ihre Bestellung vom <%=date.format(bestellung.datum)%> Uhr:</h4>
+		<h4 id="h4Bestellung">Ihre Bestellung vom <%=date.format(bestellung.datum)%> Uhr:</h4>
 		<table class= "tabelle">
 			<thead><tr><th>Position</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
 			 <%for (Bestellposition bestellposition : bestellung.listPositionen) { %>
@@ -62,7 +62,7 @@
 			<% id++; gesamtsumme = gesamtsumme + (bestellposition.menge * bestellposition.preis); } %>
 			<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th data-label="Gesamtsumme: "><%=String.format("%.2f", gesamtsumme)%> &#8364;</th></tr></tfoot>
 		</table>
-		<br/><br/>
+		<br/><br/><br/><br/>
 		<% id = 1; gesamtsumme = 0;} %>
 	</div>
 	<div id="leer"></div>

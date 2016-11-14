@@ -12,6 +12,9 @@ h4{
 	margin-left: 5em;
 	margin-top:-2em;
 }
+#h4Bestellung{
+	font-style: italic;
+}
 h5 {
 	font-weight: bold;
 }
@@ -332,6 +335,8 @@ label.kasse {
 	width: 20%;
 	font-weight: bold;
 	padding-right: 1em;
+	clear: both;
+	float: left;
 }
 label {
 	text-align: right;
@@ -339,6 +344,12 @@ label {
 	float: left;
 	width: 30%;
 	padding-right:.5em;
+}
+p.kasse {
+	text-align: left;
+	clear: both;
+	margin: 0;
+	margin-left: 1em;
 }
 input,textarea, select{
 	float: right;
@@ -352,7 +363,7 @@ input,textarea, select{
 	border: 1px solid #990000;
 	border-radius: 10px;
 }
-label,textarea, input, radio, select
+label,textarea, input, radio, select, label.kasse
 {	display: block;
 	float: left;
 }
@@ -386,9 +397,6 @@ output {
 	text-align: left;
 	margin: 0 5em .2em 5em;	
 }
-#kasse{
-	text-align: left;
-}
 #antwort{
 	color: #990000;
 	text-align: center;
@@ -403,6 +411,7 @@ table {
  }
 .tabelle
  {	margin-left: 5em;
+ 	margin-right: 5em;
  }
 td,
 th {text-align: left;

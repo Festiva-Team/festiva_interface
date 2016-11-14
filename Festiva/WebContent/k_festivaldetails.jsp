@@ -51,7 +51,7 @@
    		<h1><%=festival.name%></h1>
 			<div class="spaltelinks">
 				<%if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
-				<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150/>
+				<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=300/>
 				<% } else { %>
 				<p>Kein Bild vorhanden</p>
 		  		<% } %>

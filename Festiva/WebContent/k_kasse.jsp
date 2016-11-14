@@ -59,21 +59,21 @@
 		</div>
 		<div class="spaltelinks">		
 		<fieldset>
-			<label class="h2">Lieferdaten</label>
-			<label class="kasse">Name:</label><p id="kasse"><%=benutzer.vorname%> <%=benutzer.nachname%></p>
-			<label class="kasse">Adresse:</label><p id="kasse"><%=benutzer.strasse%> <%=benutzer.hausnummer%></p>
-		    <label class="kasse"></label><p id="kasse"><%=benutzer.plz%> <%=benutzer.ort%> </p>
+			<h2>Lieferdaten</h2>
+			<label class="kasse">Name</label><p class="kasse"><%=benutzer.vorname%> <%=benutzer.nachname%></p>
+			<label class="kasse">Adresse</label><p class="kasse"><%=benutzer.strasse%> <%=benutzer.hausnummer%></p>
+		    <label class="kasse"></label><p class="kasse"><%=benutzer.plz%> <%=benutzer.ort%> </p>
 		</fieldset>
 		</div>
 		<div class="spalterechts">
 		<fieldset>
-		  	<label class ="h2">Zahlungsdaten</label>
-		    <label class="kasse">IBAN:</label> <p id="kasse"><%=benutzer.iban%></p>
-		    <label class="kasse">BIC:</label><p id="kasse"><%=benutzer.bic%></p><br>
+		  	<h2>Zahlungsdaten</h2>
+		    <label class="kasse">IBAN</label> <p class="kasse"><%=benutzer.iban%></p>
+		    <label class="kasse">BIC</label> <p class="kasse"><%=benutzer.bic%></p>
 		    <% if(benutzer.einzugsermächtigungErteilt == true) {%>
-		    <p id="kasse">Die Einzugsermächtigung wurde erteilt.</p>
+		    <p class="kasse"><b>Die Einzugsermächtigung wurde erteilt.</b></p>
 		    <% } else { %>
-		    <p id="kasse">Die Einzugsermächtigung wurde noch nicht erteilt.</p>
+		    <p class="kasse"><b>Die Einzugsermächtigung wurde noch nicht erteilt.</b></p>
 		    <% } %>
 		</fieldset>
 		</div>
