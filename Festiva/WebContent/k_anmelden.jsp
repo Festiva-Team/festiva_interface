@@ -37,7 +37,7 @@
 				<input type="password" name="passwort" id="passwort" title="Bitte geben Sie Ihr Passwort ein!" maxlength="40" required="required">
 				<button type="submit">Anmelden</button>	
 			</div>
-			<div class="zeile">
+			<div class="spalterechts">
 				<% if (request.getSession().getAttribute("antwort") != null) 
 				{ %>
 				<p id="antwort"><%= request.getSession().getAttribute("antwort") %></p>
