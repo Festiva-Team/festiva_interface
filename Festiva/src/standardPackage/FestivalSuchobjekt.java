@@ -16,6 +16,7 @@ public class FestivalSuchobjekt {
 	public Date endDatum;
 	public float vonPreis;
 	public float bisPreis;
+	public String bildpfad;
 	public int kategorienID;
 	
 	/**
@@ -29,10 +30,11 @@ public class FestivalSuchobjekt {
 	 * @param p_endDatum Enddatum des Festivals
 	 * @param p_vonPreis günstigstes Ticket des Festivals
 	 * @param p_bisPreis teuerstes Ticket des Festivals
+	 * @param p_bildpfad Pfad zum Bild des Festivals
 	 * @param p_kategorienID eindeutige ID der Kategorie, der das Festival zugeordnet wurde
 	 */
 	public FestivalSuchobjekt(int p_id, String p_name, String p_ort, String p_kurzbeschreibung, Date p_startDatum, Date p_endDatum, 
-			        		  float p_vonPreis, float p_bisPreis, int p_kategorienID) {
+			        		  float p_vonPreis, float p_bisPreis, String p_bildpfad, int p_kategorienID) {
 		
 		this.id = p_id;
 		this.name = p_name;
@@ -42,6 +44,7 @@ public class FestivalSuchobjekt {
 		this.endDatum = p_endDatum;
 		this.vonPreis = p_vonPreis;
 		this.bisPreis = p_bisPreis;
+		this.bildpfad = p_bildpfad;
 		this.kategorienID = p_kategorienID;
 	}
 	

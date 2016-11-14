@@ -90,7 +90,7 @@ function slide(n) {
         x[i].style.display = "none";
     }
     x[slideIndex-1].style.display = "block";
-    timer = setTimeout("carousel()", 4000);
+    timer = setTimeout("carousel()", 3000);
 }
 
 function carousel() {
@@ -102,7 +102,7 @@ function carousel() {
     slideIndex++;
     if (slideIndex > x.length) {slideIndex = 1}
     x[slideIndex-1].style.display = "block";
-    timer = setTimeout("carousel()", 4000); 
+    timer = setTimeout("carousel()", 3000); 
 }
 </script>
 </html> 

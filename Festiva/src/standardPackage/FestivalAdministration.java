@@ -158,7 +158,7 @@ public class FestivalAdministration {
 	public static List<FestivalSuchobjekt> selektiereFestivalsVonKategorie(int p_kategorienID) throws DatenbankException
 	{
 		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
-		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
+		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.bildpfad, f.kategorien_id, " +
 							  "(select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"vonPreis\" , " +
 							  "(select max(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"bisPreis\" " +
 							  "from festivals f left join artikel ao on ao.festivals_id = f.id " +
@@ -178,13 +178,14 @@ public class FestivalAdministration {
 				String name = ergebnismenge.getString("name");
 				String ort = ergebnismenge.getString("ort");
 				String kurzbeschreibung = ergebnismenge.getString("kurzbeschreibung");
+				String bildpfad = ergebnismenge.getString("bildpfad");
 				Date startDatum = ergebnismenge.getDate("startdatum");
 				Date endDatum = ergebnismenge.getDate("enddatum");
 				int kategorienID = ergebnismenge.getInt("kategorien_id");
 				float vonPreis = ergebnismenge.getFloat("vonPreis");
 				float bisPreis = ergebnismenge.getFloat("bisPreis");
 				
-				listFestivals.add(new FestivalSuchobjekt(id, name, ort, kurzbeschreibung, startDatum, endDatum, vonPreis, bisPreis, kategorienID));
+				listFestivals.add(new FestivalSuchobjekt(id, name, ort, kurzbeschreibung, startDatum, endDatum, vonPreis, bisPreis, bildpfad, kategorienID));
 		
 			}
 		}
@@ -215,7 +216,7 @@ public class FestivalAdministration {
 		boolean where = false;
 		List<FestivalSuchobjekt> listFestivals = new ArrayList<FestivalSuchobjekt>();
 		
-		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.kategorien_id, " +
+		String selectBefehl = "select f.id, f.name, f.ort, f.kurzbeschreibung, f.startDatum, f.endDatum, f.bildpfad, f.kategorien_id, " +
 							  "(select min(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"vonPreis\" , " +
 							  "(select max(ai.preis) from artikel ai where ai.festivals_id = ao.festivals_id) \"bisPreis\" " +
 							  "from festivals f left join artikel ao on ao.festivals_id = f.id ";
@@ -325,13 +326,14 @@ public class FestivalAdministration {
 				String name = ergebnismenge.getString("name");
 				String ort = ergebnismenge.getString("ort");
 				String kurzbeschreibung = ergebnismenge.getString("kurzbeschreibung");
+				String bildpfad = ergebnismenge.getString("bildpfad");
 				Date startDatum = ergebnismenge.getDate("startdatum");
 				Date endDatum = ergebnismenge.getDate("enddatum");
 				int kategorienID = ergebnismenge.getInt("kategorien_id");
 				float vonPreis = ergebnismenge.getFloat("vonPreis");
 				float bisPreis = ergebnismenge.getFloat("bisPreis");
 				
-				listFestivals.add(new FestivalSuchobjekt(id, name, ort, kurzbeschreibung, startDatum, endDatum, vonPreis, bisPreis, kategorienID));
+				listFestivals.add(new FestivalSuchobjekt(id, name, ort, kurzbeschreibung, startDatum, endDatum, vonPreis, bisPreis, bildpfad, kategorienID));
 			}
 		}
 		catch(SQLException e)

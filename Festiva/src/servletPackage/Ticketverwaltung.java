@@ -88,7 +88,7 @@ public class Ticketverwaltung extends HttpServlet {
 					session.setAttribute("listFestivals", listFestivals);	
 				}
 				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleAktivenKategorien();
-				FestivalSuchobjekt suchKriterien = new FestivalSuchobjekt(-1, name, ort, "", start, end, 0, maxPreis, kategorienID);
+				FestivalSuchobjekt suchKriterien = new FestivalSuchobjekt(-1, name, ort, "", start, end, 0, maxPreis, "",kategorienID);
 				session.setAttribute("suchKriterien", suchKriterien);
 				session.setAttribute("listKategorien", listKategorien);
 				request.getRequestDispatcher("k_ticketShop.jsp").include(request, response);

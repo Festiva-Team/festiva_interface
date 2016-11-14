@@ -1,6 +1,7 @@
 <%@ page import = "standardPackage.*" %>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.text.*" %>
+<%@ page import="java.io.File" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -68,13 +69,19 @@ if (request.getSession(false) != null) {
 		</div>		
 		<table class="tabelle">
 			<thead>
-			<tr><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kateorie</th><th>Preis</th></tr></thead>
+			<tr><th></th><th>Festival</th><th>Datum</th><th>Ort</th><th id="kategorie">Kategorie</th><th>Preis</th></tr></thead>
 			<tbody>
 			<% 	if(listFestivals != null && !listFestivals.isEmpty()) {
 				SimpleDateFormat sd = new SimpleDateFormat(" E, dd.MM.yy");
 				for (FestivalSuchobjekt festival : listFestivals)
 				{%>
 				<tr>
+				 <% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
+					<td><a href="/Festiva/Ticketverwaltung?aktion=f_anzeigen&festivalid=<%=festival.id%>&maxpreis=<%=suchKriterien.bisPreis%>"><img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" name="bild" width=150 /></a></td>
+					<% } else { %>
+					<td data-label="">Kein Bild verfügbar</td>
+					<% }	%>
+				
 				<td><a href="/Festiva/Ticketverwaltung?aktion=f_anzeigen&festivalid=<%=festival.id%>&maxpreis=<%=suchKriterien.bisPreis%>"><%=festival.name%></a></td>
 				<% if (festival.startDatum.compareTo(festival.endDatum) == 0)
 				{%>
