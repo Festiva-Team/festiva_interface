@@ -43,20 +43,23 @@ public class Registrierung extends HttpServlet {
 		String emailBestätigung = request.getParameter("emailbestätigung");		
 		String passwort = request.getParameter("passwort");
 		String passwortBestätigung = request.getParameter("passwortbestätigung");
+		boolean zuRegistrieren = false;
 		
 		String antwort = "";
 		try{
 		
 		if (BenutzerAdministration.selektiereBenutzer(email) != null) {
 			antwort = "Zu der eingegebenen E-Mail-Adresse existiert bereits ein Benutzerkonto. Verwenden Sie bitte eine andere E-Mail-Adresse.";
-			
+			zuRegistrieren = true;
 		} else {
 		
 		if(!email.equals(emailBestätigung)) {
 			antwort = "Die beiden eingegebenen E-Mail-Adressen stimmen nicht überein. Registrierung wurde nicht durchgeführt.";
+			zuRegistrieren = true;
 		} else {
 			if(!passwort.equals(passwortBestätigung)) {
 				antwort = "Die beiden eingegebenen Passwörter stimmen nicht überein. Registrierung wurde nicht durchgeführt.";
+				zuRegistrieren = true;
 			} else {
 				passwort = passwort + "76ZuOp(6?ssXY0";
 				Benutzer benutzer = null;
@@ -77,7 +80,11 @@ public class Registrierung extends HttpServlet {
 		request.getSession(false).setAttribute("antwort", antwort);
 		
 		if(request.getSession(false).getAttribute("gruppenid") == null) {
-			request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
+			if(zuRegistrieren) {
+				request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
+			} else {
+			request.getRequestDispatcher("k_anmelden.jsp").include(request, response);}
+		
 		} else {
 			int gruppenid = Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString());
 			if(gruppenid == 1) {
