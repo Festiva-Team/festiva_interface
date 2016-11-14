@@ -76,7 +76,15 @@
 		    <% } %>
 		</fieldset>
 		</div>
-	</div>		 
+	</div>	
+	<div class="zeile">
+			<h1>Versand</h1>
+			<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
+				<div class="zeile"><input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" >Per Mail</div>
+				<div class="zeile"><input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)">Per Post</div>
+		   		<p id="text"><b>Hinweis:</b> Wenn Sie einen oder mehrere Zubehör-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</p>
+				
+		</div>	 
 	<div class="zeile">
 	<h1>Bestellpositionen</h1>
 	<table class="tabelle">
@@ -103,16 +111,10 @@
 		</tr></tfoot>
 	</table>	
 	</div>
-	<!--  			<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post"> -->
-		<div class="zeile">
-			<h1>Versand</h1>
-			<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post">
-				<div class="zeile"><input type="radio" id="versand" name="versand" value="mail" required="required" <% if(perPost.equals(false) && disabled.equals(false)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)" >Per Mail</div>
-				<div class="zeile"><input type="radio" id="versand" name="versand" value="post" required="required" <% if(perPost.equals(true) || disabled.equals(true)) { %> checked="checked" <% }%> <% if(disabled.equals(true)) { %> readonly <% }%> onclick="versenden(this)">Per Post</div>
-		   		<p id="text"><b>Hinweis:</b> Wenn Sie einen oder mehrere Zubehör-Artikel kaufen möchten, können Sie keinen Mail-Versand auswählen.</p>
-				<button type="submit" onclick="return confirm('Sind Sie sicher, dass alle Eingaben richtig sind und Sie die Bestellung endgültig abschließen möchten?')" <%if(kundendatenVollstaendig.equals(false) || warenkorb.listElemente.isEmpty() || (warenkorb.listElemente.size() == 1 && warenkorb.listElemente.get(0).artikel.id == 6) ) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>		
+	<button type="submit" onclick="return confirm('Sind Sie sicher, dass alle Eingaben richtig sind und Sie die Bestellung endgültig abschließen möchten?')" <%if(kundendatenVollstaendig.equals(false) || warenkorb.listElemente.isEmpty() || (warenkorb.listElemente.size() == 1 && warenkorb.listElemente.get(0).artikel.id == 6) ) { %> disabled="disabled" <% } %>>Verbindlich bestellen</button>		
 			</form>
-		</div>						 
+	<!--  			<form action="/Festiva/Bestellverwaltung?aktion=anlegen" method="post"> -->
+								 
 	<div id="leer"></div>
 	</div>
 <jsp:include page="k_footer.jsp">
