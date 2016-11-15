@@ -18,6 +18,12 @@ h4{
 h5 {
 	font-weight: bold;
 }
+#footertext{
+	color: white;
+}
+#footer{
+	margin: 0.5em;
+}
 /************Seiteneinteilung****************************/
 #webseite{
 	width:80%;
@@ -392,9 +398,6 @@ output {
 	text-align: right;
 }
 /**************Tabellen**************************/
-table { 
- 	border-collapse: collapse;
- }
 .tabelle
  {	margin-left: 5em;
  	margin-right: 5em;
@@ -456,12 +459,6 @@ h5{
 	width:100%;
 	min-height: 450px;
 	background:white;
-}
-footer{	
-	float: left;
-	width:100%;
-	height: 3em;
-	background: black;
 }
 /***********Navigationsleiste************/
 nav{
@@ -658,7 +655,7 @@ img{
 	margin-bottom: 0.2em;
 }
 #preis{
-	text-align: left;
+	text-align: right;
 }
 #langtext{
 	display:none;
@@ -673,5 +670,9 @@ img{
 	margin: 0 .5em .2em .5em;	
 	font-weight: bold;
 	padding: .2em;
+}
+#footertext{
+	display:none;
+	color: white;
 }
 }

@@ -102,7 +102,7 @@ else {
 					<tr>		
 						<th data-label="Artikel: "><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></th>
 						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
-						<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<td data-label="Preis: " id="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 						<%if (artikel.istGelöscht == false) { %>
 						<td data-label="Gelöscht: "><%="nein"%></td>
 						<% } else { %>
