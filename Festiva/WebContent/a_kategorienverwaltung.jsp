@@ -32,10 +32,10 @@ else {
 </jsp:include>
   	<div id="main">
    	<h1>Kategorienverwaltung</h1>
-   		<div class="spaltelinks">
-			<button type="button" id="anlegen" onClick="window.location.href='a_kategorieAnlegen.jsp'"> Neue Kategorie anlegen </button>
+		<button type="button" class="anlegen" onClick="window.location.href='a_kategorieAnlegen.jsp'"> Neue Kategorie anlegen </button>
+		<div class="zeile">
+			<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">
 		</div>
-		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">
 		<div class="zeile">
 		<table id="myTable" class="tabelle">
 			<thead><tr><th>ID</th><th>Name</th><th>Beschreibung</th><th>Bild</th><th>Gelöscht</th></tr></thead>	

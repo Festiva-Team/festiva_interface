@@ -34,13 +34,13 @@ else {
  	<div id="main">
 	<h1>Festivalverwaltung</h1>
 	<form action="/Festiva/Festivalverwaltung?aktion=anlegenanzeigen" method="post">
-	<div class="spaltelinks">
-		<button type="submit" id="anlegen">Neues Festival anlegen</button>
-	</div>
+		<button type="submit" class="anlegen">Neues Festival anlegen</button>
 	</form>
-	<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">
 	<div class="zeile">
-		<table id="myTable" class="tabelle">
+		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">
+	</div>
+	<div class="zeile">
+	<table id="myTable" class="tabelle">
 			<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 			<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
 			for (Festival festival : listFestivals) { %>

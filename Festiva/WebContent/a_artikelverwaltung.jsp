@@ -33,12 +33,10 @@ else {
 </jsp:include>
  	<div id="main">
 	<h1>Festivalübergreifende Artikelverwaltung</h1>
-	<div class="spaltelinks">
-		<button type="button" onClick="window.location.href='a_artikelAnlegen.jsp?'" id="anlegen">Neuen Artikel anlegen</button>
-	</div>
+		<button type="button" onClick="window.location.href='a_artikelAnlegen.jsp?'" class="anlegen">Neuen Artikel anlegen</button>
+	<div class="zeile">
 		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">					
 	<div class="zeile">
-	<div class="spaltelinks">
 		<table id="myTable" class="tabelle">
 		<thead>
 			<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Bild</th><th>Gelöscht</th></tr></thead>

@@ -32,12 +32,12 @@ else {
 </jsp:include>	
     <div id="main">
   	<h1>Kundenverwaltung</h1>
-	<div class="spaltelinks">
-		<button type="button" id="anlegen" onClick="window.location.href='a_kundenAnlegen.jsp'">Neuen Kunden anlegen </button>
-	</div>
+		<button type="button" class="anlegen" onClick="window.location.href='a_kundenAnlegen.jsp'">Neuen Kunden anlegen </button>
+	<div class="zeile">	
 		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">
+	</div>
 	<div class ="zeile">
-	<table id="myTable" class="tabelle">
+			<table id="myTable" class="tabelle">
 		<thead><tr><th>ID</th><th>Nachname</th><th>Vorname</th><th>E-Mail-Adresse</th><th>Gesperrt</th><th>Gelöscht</th></tr></thead>
 		<%for (Benutzer benutzer : listBenutzer) { %>
 		<tbody>
