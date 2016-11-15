@@ -34,7 +34,7 @@ else {
   	<h1>Kundenverwaltung</h1>
 		<button type="button" class="anlegen" onClick="window.location.href='a_kundenAnlegen.jsp'">Neuen Kunden anlegen </button>
 	<div class="zeile">	
-		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">
+		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Nachnamen..." title="Geben Sie einen Nachnamen ein!">
 	</div>
 	<div class ="zeile">
 			<table id="myTable" class="tabelle">
