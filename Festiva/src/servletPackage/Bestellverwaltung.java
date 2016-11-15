@@ -53,17 +53,17 @@ public class Bestellverwaltung extends HttpServlet {
 					perPost = true;
 				}
 				
-				Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
+				Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, true);
 				Bestellung bestellung = new Bestellung(warenkorb, perPost);
-				BestellungsAdministration.erstelleBestellung(bestellung);
-				WarenkorbAdministration.loescheWarenkorbinhalt(warenkorb.id);
+				BestellungsManager.erstelleBestellung(bestellung);
+				WarenkorbManager.loescheWarenkorbinhalt(warenkorb.id);
 				request.getRequestDispatcher("/Bestellverwaltung?aktion=anzeigen").include(request, response);
 			} else {
 				if ((request.getParameter("aktion")).equals("anzeigen")) {
 					int userid = Integer.parseInt(session.getAttribute("userid").toString());
-					List<Bestellung> listBestellungen = BestellungsAdministration.selektiereBestellungenVonKunden(userid);
-					List<Artikel> listArtikel = ArtikelAdministration.selektiereAlleArtikel();
-					List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+					List<Bestellung> listBestellungen = BestellungsManager.selektiereBestellungenVonKunden(userid);
+					List<Artikel> listArtikel = ArtikelManager.selektiereAlleArtikel();
+					List<Festival> listFestivals = FestivalManager.selektiereAlleFestivals();
 					session.setAttribute("listArtikel", listArtikel);
 					session.setAttribute("listFestivals", listFestivals);
 					session.setAttribute("listBestellungen", listBestellungen);

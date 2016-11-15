@@ -35,13 +35,14 @@ if (request.getSession(false) != null) {
 	<link rel="stylesheet" type="text/css" href="CSS/design.css">
 </head>
 <body>
-<script type="text/javascript" src="post.js"></script>
+<script type="text/javascript" src="uebergreifendeFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="k_header.jsp">
 	<jsp:param name="active" value="merchandiseShop"/>
 </jsp:include>
 	<div id="main">
 	<h1>Festival Zubehör</h1>
+	<input type="text" id="myInput" onkeyup="sucheNachZubehoer()" placeholder="Suche nach Artikel..." title="Geben Sie einen Namen ein!">
 	<div class="zeile">
 		<% if (request.getSession().getAttribute("antwort") != null) 		
 		{ %> 
@@ -49,7 +50,8 @@ if (request.getSession(false) != null) {
 		<% request.getSession().removeAttribute("antwort");}  %>
 	</div> 
 		<div class="zeile">
-			<table class="tabelle">			
+			<table id="myTable" class="tabelle">	
+					
 				<%if(listArtikel != null && !listArtikel.isEmpty()) {									
 					for (Artikel artikel : listArtikel)
 					{%>

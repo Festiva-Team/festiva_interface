@@ -44,20 +44,20 @@ public class Produktverwaltung extends HttpServlet {
 			
 			if(session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 				int userid = Integer.parseInt(session.getAttribute("userid").toString());
-				Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, false);
+				Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, false);
 				List<Integer> listArtikelID = new ArrayList<Integer>();
 				for(Warenkorbelement warenkorbelement : warenkorb.listElemente) {
 					listArtikelID.add(warenkorbelement.artikel.id);					
 				}
 				session.setAttribute("listArtikelID", listArtikelID);
 			}
-			List<Artikel> listArtikel = ArtikelAdministration.selektiereUnabhaengigeArtikel();
+			List<Artikel> listArtikel = ArtikelManager.selektiereUnabhaengigeArtikel();
 			session.setAttribute("listArtikel", listArtikel);
 			session.setAttribute("aufrufer", request.getRequestURI() + "?" + request.getQueryString());
 			request.getRequestDispatcher("k_merchandiseShop.jsp").include(request, response);		
 		} else {
 			if((request.getParameter("aktion")).equals("s_anzeigen")) {
-				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorienFuerSlideshow();
+				List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorienFuerSlideshow();
 				if(session != null){
 				session.setAttribute("listKategorien", listKategorien);
 				} else {

@@ -4,13 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Klasse zur Administration von Benutzern
+ * Hilfsklasse zum Managen von Benutzern
  * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Benutzern (Kunden und/oder Administratoren) aus der Datenbank
  * 
  * @author Alina Fankhänel
  *
  */
-public class BenutzerAdministration {
+public class BenutzerManager {
 
 	/**
 	 * Erstellt für das übergebene Benutzer-Objekt den Datensatz in der Datenbank.

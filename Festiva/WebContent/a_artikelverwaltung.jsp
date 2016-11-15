@@ -26,6 +26,7 @@ else {
 <title>Festiva - Artikelverwaltung</title>
 </head>
 <body>
+<script type="text/javascript" src="uebergreifendeFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="a_headerAdmin.jsp">
   	<jsp:param name="active" value="artikelverwaltung"/>
@@ -34,10 +35,11 @@ else {
 	<h1>Festivalübergreifende Artikelverwaltung</h1>
 	<div class="spaltelinks">
 		<button type="button" onClick="window.location.href='a_artikelAnlegen.jsp?'" id="anlegen">Neuen Artikel anlegen</button>
-	</div>					
+	</div>
+		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">					
 	<div class="zeile">
 	<div class="spaltelinks">
-		<table class="tabelle">
+		<table id="myTable" class="tabelle">
 		<thead>
 			<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 			<%for (Artikel artikel : listArtikel) { %>

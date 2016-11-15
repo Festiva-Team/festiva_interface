@@ -4,13 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Klasse zur Administration von Artikeln
+ * Hilfsklasse zum Managen von Artikeln
  * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Artikeln aus der Datenbank
  * 
  * @author Alina Fankhänel
  *
  */
-public class ArtikelAdministration {
+public class ArtikelManager {
 	 
 	
 	/**

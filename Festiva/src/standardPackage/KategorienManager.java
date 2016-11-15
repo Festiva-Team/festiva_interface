@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Klasse zur Administration von Kategorien
+ * Hilfsklasse zum Managen von Kategorien
  * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Kategorien aus der Datenbank
  * 
  * @author Alina Fankhänel
  *
  */
-public class KategorienAdministration {
+public class KategorienManager {
 
 	/**
 	 * Erstellt für das übergebene Kategorie-Objekt den Datensatz in der Datenbank.

@@ -26,6 +26,7 @@ else {
 <title>Festiva - Festivalverwaltung</title>
 </head>
 <body>
+<script type="text/javascript" src="uebergreifendeFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="a_headerAdmin.jsp">
   	<jsp:param name="active" value="festivalverwaltung"/>
@@ -37,8 +38,9 @@ else {
 		<button type="submit" id="anlegen">Neues Festival anlegen</button>
 	</div>
 	</form>
+	<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">
 	<div class="zeile">
-		<table class="tabelle">
+		<table id="myTable" class="tabelle">
 			<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 			<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
 			for (Festival festival : listFestivals) { %>

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 /**
- * Klasse zur Administration von Bestellungen
+ * Hilfsklasse zum Managen von Bestellungen
  * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Bestellungen mit den zugehörigen Bestellpositionen aus der Datenbank
  * 
  * @author Alina Fankhänel
  *
  */
-public class BestellungsAdministration {
+public class BestellungsManager {
 
 /**
  * Erstellt für das übergebene Bestellungs-Objekt die Einträge in der Datenbank

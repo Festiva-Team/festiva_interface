@@ -57,7 +57,7 @@ public class Kategorienverwaltung extends HttpServlet {
 				} else { 
 				
 				Kategorie kategorie = new Kategorie(-1, name, beschreibung, "", false);
-				KategorienAdministration.erstelleKategorie(kategorie);
+				KategorienManager.erstelleKategorie(kategorie);
 				
 			    Part filePart = request.getPart("bild");
 			    
@@ -70,7 +70,7 @@ public class Kategorienverwaltung extends HttpServlet {
 				        Files.copy(input, file.toPath());
 				    }
 				    
-					KategorienAdministration.aktualisiereKategorie(kategorie);
+					KategorienManager.aktualisiereKategorie(kategorie);
 				}		    
 				
 				antwort = "Die Kategorie '" + kategorie.name + "' wurde erfolgreich mit der ID " + kategorie.id + " angelegt.";
@@ -79,13 +79,13 @@ public class Kategorienverwaltung extends HttpServlet {
 			    request.getRequestDispatcher("a_kategorieAnlegen.jsp").include(request, response);
 			} else {
 				if ((request.getParameter("aktion")).equals("anzeigen")) {
-					List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
+					List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorien();
 					session.setAttribute("listKategorien", listKategorien);
 					request.getRequestDispatcher("a_kategorienverwaltung.jsp").include(request, response);
 				}
 				else {
 					int kategorienid = Integer.parseInt((request.getParameter("kategorienid")).toString());
-					Kategorie kategorie = KategorienAdministration.selektiereKategorie(kategorienid);
+					Kategorie kategorie = KategorienManager.selektiereKategorie(kategorienid);
 					
 					if ((request.getParameter("aktion")).equals("aendern")) {
 						
@@ -126,14 +126,14 @@ public class Kategorienverwaltung extends HttpServlet {
 						
 						    kategorie.name = name;
 						    kategorie.beschreibung = beschreibung;
-						    KategorienAdministration.aktualisiereKategorie(kategorie);
+						    KategorienManager.aktualisiereKategorie(kategorie);
 							antwort = "Die Kategorie wurde erfolgreich geändert.";
 							session.setAttribute("antwort", antwort);
 							}
 							
 						} else {
 							if((request.getParameter("aktion")).equals("loeschen")) {			
-								List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivalObjekteVonKategorie(kategorie.id);
+								List<Festival> listFestivals = FestivalManager.selektiereAlleFestivalObjekteVonKategorie(kategorie.id);
 								boolean loeschenMoeglich = true;
 								for(Festival festival : listFestivals) {
 									if(festival.istGelöscht == false) {
@@ -142,7 +142,7 @@ public class Kategorienverwaltung extends HttpServlet {
 								}
 								if(loeschenMoeglich) {
 									kategorie.istGelöscht = true;
-									KategorienAdministration.löscheKategorie(kategorie);
+									KategorienManager.löscheKategorie(kategorie);
 									antwort = "Die Kategorie wurde erfolgreich gelöscht.";
 								} else{
 									antwort = "Die Kategorie konnte nicht gelöscht werden, da sie Festivals beinhaltet, die noch nicht gelöscht wurden.";
@@ -155,7 +155,7 @@ public class Kategorienverwaltung extends HttpServlet {
 								    
 								    if (file.exists()) file.delete();
 								    kategorie.bildpfad = "";
-								    KategorienAdministration.aktualisiereKategorie(kategorie);
+								    KategorienManager.aktualisiereKategorie(kategorie);
 								    antwort = "Das Bild wurde erfolgreich gelöscht.";
 								    session.setAttribute("antwort", antwort);
 								}

@@ -41,7 +41,7 @@
 <title>Festivaldetails</title>
 </head>
 <body>
-<script type="text/javascript" src="post.js"></script>
+<script type="text/javascript" src="uebergreifendeFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="k_header.jsp">
 	<jsp:param name="active" value="shop"/>

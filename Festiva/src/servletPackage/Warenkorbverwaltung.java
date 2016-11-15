@@ -43,8 +43,8 @@ public class Warenkorbverwaltung extends HttpServlet {
 			
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
-			Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, false);
-			List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+			Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, false);
+			List<Festival> listFestivals = FestivalManager.selektiereAlleFestivals();
 			session.setAttribute("listFestivals", listFestivals);
 			session.setAttribute("warenkorb", warenkorb);
 			request.getRequestDispatcher("k_warenkorb.jsp").include(request, response);
@@ -53,7 +53,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 						int userid = Integer.parseInt(session.getAttribute("userid").toString());
 						boolean perPost = false;
 						boolean postEnthalten = false;
-						Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
+						Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, true);
 						for(Warenkorbelement warenkorbelement : warenkorb.listElemente) {
 							if (warenkorbelement.artikel.festivalID == 0) {
 								perPost = true;
@@ -63,14 +63,14 @@ public class Warenkorbverwaltung extends HttpServlet {
 							}
 						}
 						if(perPost == true && postEnthalten == false) {
-							Artikel artikel = ArtikelAdministration.selektiereArtikel(6);
+							Artikel artikel = ArtikelManager.selektiereArtikel(6);
 							Warenkorbelement warenkorbelement = new Warenkorbelement(-1, 1, artikel);
-							WarenkorbAdministration.fügeWarenkorbelementEin(warenkorbelement, userid);
-							warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
+							WarenkorbManager.fügeWarenkorbelementEin(warenkorbelement, userid);
+							warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, true);
 						}
 						
-						Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
-						List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
+						Benutzer benutzer = BenutzerManager.selektiereBenutzerMitID(userid);
+						List<Festival> listFestivals = FestivalManager.selektiereAlleFestivals();
 						boolean kundendatenVollstaendig = ueberpruefeKundendaten(benutzer);
 						
 						
@@ -84,26 +84,26 @@ public class Warenkorbverwaltung extends HttpServlet {
 						if ((request.getParameter("aktion")).equals("p_versand")) {
 							int userid = Integer.parseInt(session.getAttribute("userid").toString());
 							boolean postEnthalten = false;
-							Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, true);
+							Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, true);
 							for(Warenkorbelement warenkorbelement : warenkorb.listElemente) {
 								if(warenkorbelement.artikel.id == 6) {
 									postEnthalten = true;
 								}
 							}
 							if(postEnthalten == false) {
-							Artikel artikel = ArtikelAdministration.selektiereArtikel(6);
+							Artikel artikel = ArtikelManager.selektiereArtikel(6);
 							Warenkorbelement warenkorbelement = new Warenkorbelement(-1, 1, artikel);
-							WarenkorbAdministration.fügeWarenkorbelementEin(warenkorbelement, userid);}
+							WarenkorbManager.fügeWarenkorbelementEin(warenkorbelement, userid);}
 							boolean perPost = true;
 							session.setAttribute("perPost", perPost);
 							request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
 						} else {
 							if ((request.getParameter("aktion")).equals("m_versand")) {	
 								int userid = Integer.parseInt(session.getAttribute("userid").toString());
-								int warenkorbid = WarenkorbAdministration.selektiereWarenkorbID(userid);
-								Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(6, warenkorbid);
+								int warenkorbid = WarenkorbManager.selektiereWarenkorbID(userid);
+								Warenkorbelement warenkorbelement = WarenkorbManager.selektiereWarenkorbelementMitArtikelID(6, warenkorbid);
 								if(warenkorbelement != null) {
-								WarenkorbAdministration.loescheWarenkorbelement(warenkorbelement.id);}
+								WarenkorbManager.loescheWarenkorbelement(warenkorbelement.id);}
 								boolean perPost = false;
 								session.setAttribute("perPost", perPost);
 								request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
@@ -113,9 +113,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 									int userid = Integer.parseInt(session.getAttribute("userid").toString());
 									int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 									int menge = Integer.parseInt(request.getParameter("menge"));
-									Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelid);
+									Artikel artikel = ArtikelManager.selektiereArtikel(artikelid);
 									Warenkorbelement warenkorbelement = new Warenkorbelement(-1, menge, artikel);
-									WarenkorbAdministration.fügeWarenkorbelementEin(warenkorbelement, userid);
+									WarenkorbManager.fügeWarenkorbelementEin(warenkorbelement, userid);
 									antwort = "Der Artikel '" + artikel.beschreibung + "' wurde dem Warenkorb mit der Menge " + menge + " hinzugefügt.";
 									session.setAttribute("antwort", antwort);
 									if(artikel.festivalID == 0) {
@@ -130,9 +130,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 										int userid = Integer.parseInt(session.getAttribute("userid").toString());
 										int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 										int menge = Integer.parseInt(request.getParameter("menge"));
-										Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelid);	
-										int warenkorbid = WarenkorbAdministration.selektiereWarenkorbID(userid);
-										Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelementMitArtikelID(artikelid, warenkorbid);
+										Artikel artikel = ArtikelManager.selektiereArtikel(artikelid);	
+										int warenkorbid = WarenkorbManager.selektiereWarenkorbID(userid);
+										Warenkorbelement warenkorbelement = WarenkorbManager.selektiereWarenkorbelementMitArtikelID(artikelid, warenkorbid);
 										warenkorbelement.menge = warenkorbelement.menge + menge;
 										if(warenkorbelement.menge > 10) {
 											if((warenkorbelement.menge - menge) == 10) {
@@ -141,7 +141,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 										antwort = "Sie können nur noch " + (10 - (warenkorbelement.menge - menge)) + " Einheit(en) dieses Artikels in den Warenkorb legen, da dann die maximale Anzahl von 10 erreicht ist.";
 										} } 
 											else {
-										WarenkorbAdministration.aktualisiereWarenkorbelement(warenkorbelement);
+										WarenkorbManager.aktualisiereWarenkorbelement(warenkorbelement);
 
 										antwort = "Die Anzahl des Artikels '" + artikel.beschreibung + "' wurde in Ihrem Warenkorb um " + menge + " erhöht.";}
 										session.setAttribute("antwort", antwort);
@@ -158,13 +158,13 @@ public class Warenkorbverwaltung extends HttpServlet {
 				int elementID = Integer.parseInt(request.getParameter("elementid"));
 				if ((request.getParameter("aktion")).equals("aendern")) {
 					int mengeNeu = Integer.parseInt(request.getParameter("menge"));
-					Warenkorbelement warenkorbelement = WarenkorbAdministration.selektiereWarenkorbelement(elementID);
+					Warenkorbelement warenkorbelement = WarenkorbManager.selektiereWarenkorbelement(elementID);
 					warenkorbelement.menge = mengeNeu;
-					WarenkorbAdministration.aktualisiereWarenkorbelement(warenkorbelement);
+					WarenkorbManager.aktualisiereWarenkorbelement(warenkorbelement);
 					
 				} else {
 					if ((request.getParameter("aktion")).equals("loeschen")) {
-						WarenkorbAdministration.loescheWarenkorbelement(elementID);
+						WarenkorbManager.loescheWarenkorbelement(elementID);
 						
 					} 
 				}

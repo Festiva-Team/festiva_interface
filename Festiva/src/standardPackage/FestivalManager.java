@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Klasse zur Administration von Festivals
+ * Hilfsklasse zum Managen von Festivals
  * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Festivals aus der Datenbank
  * 
  * @author Alina Fankhänel
  *
  */
-public class FestivalAdministration {
+public class FestivalManager {
 	
 	/**
 	 * Erstellt für das übergebene Festival-Objekt den Datensatz in der Datenbank.

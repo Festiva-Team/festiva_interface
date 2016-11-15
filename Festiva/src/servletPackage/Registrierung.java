@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import standardPackage.Benutzer;
-import standardPackage.BenutzerAdministration;
+import standardPackage.BenutzerManager;
 import standardPackage.DatenbankException;
-import standardPackage.WarenkorbAdministration;
+import standardPackage.WarenkorbManager;
 
 /**
 *
@@ -48,7 +48,7 @@ public class Registrierung extends HttpServlet {
 		String antwort = "";
 		try{
 		
-		if (BenutzerAdministration.selektiereBenutzer(email) != null) {
+		if (BenutzerManager.selektiereBenutzer(email) != null) {
 			antwort = "Zu der eingegebenen E-Mail-Adresse existiert bereits ein Benutzerkonto. Verwenden Sie bitte eine andere E-Mail-Adresse.";
 			zuRegistrieren = true;
 		} else {
@@ -65,12 +65,12 @@ public class Registrierung extends HttpServlet {
 				Benutzer benutzer = null;
 				if(request.getParameter("aktion") != null && request.getParameter("aktion").equals("a_anlegen") && request.getSession(false).getAttribute("gruppenid") != null && Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) == 1) {
 					benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 1);
-					BenutzerAdministration.erstelleKunden(benutzer);
+					BenutzerManager.erstelleKunden(benutzer);
 					antwort = "Der Administrator wurde erfolgreich angelegt.";
 				} else {
 				    benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 2);
-				    BenutzerAdministration.erstelleKunden(benutzer);
-					WarenkorbAdministration.erstelleLeerenWarenkorb(benutzer.id);
+				    BenutzerManager.erstelleKunden(benutzer);
+					WarenkorbManager.erstelleLeerenWarenkorb(benutzer.id);
 					antwort = "Die Registrierung wurde erfolgreich durchgeführt.";
 					}
 				

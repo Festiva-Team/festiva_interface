@@ -44,14 +44,14 @@ public class Kundenverwaltung extends HttpServlet {
 			String antwort = "";
 			
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
-				List<Benutzer> listBenutzer = BenutzerAdministration.selektiereAlleKunden();
+				List<Benutzer> listBenutzer = BenutzerManager.selektiereAlleKunden();
 				session.setAttribute("listBenutzer", listBenutzer);
 				request.getRequestDispatcher("a_kundenverwaltung.jsp").include(request, response);
 				
 			} else {
 				
 				int kundenid = Integer.parseInt(request.getParameter("kundenid").toString());
-				Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(kundenid);
+				Benutzer benutzer = BenutzerManager.selektiereBenutzerMitID(kundenid);
 				
 				if ((request.getParameter("aktion")).equals("pw_aendern")) {
 					
@@ -65,9 +65,9 @@ public class Kundenverwaltung extends HttpServlet {
 							benutzer.passwortHash = passwortNeu;
 							//vielleicht muss dieser teil wieder raus
 							benutzer.istGesperrt = false;
-							BenutzerAdministration.aktualisierePasswortZaehlerBeiKunde(benutzer.id, 0);
+							BenutzerManager.aktualisierePasswortZaehlerBeiKunde(benutzer.id, 0);
 							// 
-							BenutzerAdministration.aktualisiereBenutzer(benutzer);
+							BenutzerManager.aktualisiereBenutzer(benutzer);
 							antwort = "Das Passwort wurde erfolgreich geändert.";
 								}
 						session.setAttribute("antwort", antwort);
@@ -75,7 +75,7 @@ public class Kundenverwaltung extends HttpServlet {
 			
 					if(request.getParameter("aktion").equals("loeschen")) {	
 						benutzer.istGelöscht = true;
-						BenutzerAdministration.löscheBenutzer(benutzer);
+						BenutzerManager.löscheBenutzer(benutzer);
 						antwort = "Der Benutzer wurde erfolgreich gelöscht.";
 						session.setAttribute("antwort", antwort);
 					} else {
@@ -83,7 +83,7 @@ public class Kundenverwaltung extends HttpServlet {
 						if(request.getParameter("aktion").equals("datenaendern")) {
 							
 							String eMail = request.getParameter("email");
-							if ((!(benutzer.eMailAdresse).equals(eMail)) && BenutzerAdministration.selektiereBenutzer(eMail) != null) {
+							if ((!(benutzer.eMailAdresse).equals(eMail)) && BenutzerManager.selektiereBenutzer(eMail) != null) {
 								antwort = "Zu der eingegebenen E-Mail-Adresse existiert bereits ein anderes Benutzerkonto. Verwenden Sie bitte eine andere E-Mail-Adresse.";
 							} else {
 							
@@ -124,7 +124,7 @@ public class Kundenverwaltung extends HttpServlet {
 							
 												
 							benutzer = new Benutzer(kundenid, vorname, nachname, eMail, passwort, strasse, hausnummer, plz, ort, istGesperrt, iban, bic, einzugsermächtigungErteilt, istGelöscht, 2);
-							BenutzerAdministration.aktualisiereBenutzer(benutzer);	
+							BenutzerManager.aktualisiereBenutzer(benutzer);	
 							
 							antwort = "Die Änderungen an den persönlichen Daten wurden gespeichert!";
 						}

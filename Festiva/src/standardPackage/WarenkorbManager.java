@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Klasse zur Administration von Warenkörben
+ * Hilfsklasse zum Managen von Warenkörben
  * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Warenkörben mit den zugehörigen Warenkorbelementen aus der Datenbank
  * 
  * @author Alina Fankhänel
  *
  */
-public class WarenkorbAdministration {
+public class WarenkorbManager {
 	
 	/**
 	 * Erstellt für das übergebene Warenkorb-Objekt die Einträge in der Datenbank
@@ -80,7 +80,7 @@ public class WarenkorbAdministration {
 						int elementID = ergebnismengeElemente.getInt("id");
 						int menge = ergebnismengeElemente.getInt("menge");
 
-						Artikel artikel = ArtikelAdministration.selektiereArtikel(ergebnismengeElemente.getInt("artikel_id"));
+						Artikel artikel = ArtikelManager.selektiereArtikel(ergebnismengeElemente.getInt("artikel_id"));
 						
 						if(p_inKasse == false && artikel.id == 6) {
 							loescheWarenkorbelement(elementID);
@@ -222,7 +222,7 @@ public class WarenkorbAdministration {
 				int menge = ergebnismenge.getInt("menge");
 				int artikelID = ergebnismenge.getInt("artikel_id");
 				
-				Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelID);
+				Artikel artikel = ArtikelManager.selektiereArtikel(artikelID);
 								
 				warenkorbelement = new Warenkorbelement(p_id, menge, artikel);
 			}
@@ -278,7 +278,7 @@ public class WarenkorbAdministration {
 				int menge = ergebnismenge.getInt("menge");
 				int id = ergebnismenge.getInt("id");
 				
-				Artikel artikel = ArtikelAdministration.selektiereArtikel(p_artikelID);
+				Artikel artikel = ArtikelManager.selektiereArtikel(p_artikelID);
 								
 				warenkorbelement = new Warenkorbelement(id, menge, artikel);
 			}

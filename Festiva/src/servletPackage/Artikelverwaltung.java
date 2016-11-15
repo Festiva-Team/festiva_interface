@@ -60,7 +60,7 @@ public class Artikelverwaltung extends HttpServlet {
 				float preis = Float.parseFloat(request.getParameter("preis"));
 				
 				Artikel artikel = new Artikel(-1, beschreibung, preis, false, "", festivalid);
-				ArtikelAdministration.erstelleArtikel(artikel);
+				ArtikelManager.erstelleArtikel(artikel);
 				
 			    Part filePart = request.getPart("bild");
 			    
@@ -73,7 +73,7 @@ public class Artikelverwaltung extends HttpServlet {
 				        Files.copy(input, file.toPath());
 				    }
 				    
-					ArtikelAdministration.aktualisiereArtikel(artikel);
+					ArtikelManager.aktualisiereArtikel(artikel);
 				}
 
 				antwort = "Der Artikel '" + artikel.beschreibung + "' wurde erfolgreich mit der ID " + artikel.id + " angelegt.";
@@ -83,12 +83,12 @@ public class Artikelverwaltung extends HttpServlet {
 			} else {
 				
 				if((request.getParameter("aktion")).equals("anzeigen")) {
-					List<Artikel> listArtikel = ArtikelAdministration.selektiereAlleUnabhaengigenArtikel();
+					List<Artikel> listArtikel = ArtikelManager.selektiereAlleUnabhaengigenArtikel();
 					session.setAttribute("listArtikel", listArtikel);
 					request.getRequestDispatcher("a_artikelverwaltung.jsp").include(request, response);
 				} else {
 				int artikelid = Integer.parseInt(request.getParameter("artikelid").toString());
-				Artikel artikel = ArtikelAdministration.selektiereArtikel(artikelid);
+				Artikel artikel = ArtikelManager.selektiereArtikel(artikelid);
 			if ((request.getParameter("aktion")).equals("aendern")) {			
 			} else {
 				if ((request.getParameter("aktion")).equals("datenaendern")) {
@@ -124,7 +124,7 @@ public class Artikelverwaltung extends HttpServlet {
 					float preis = Float.parseFloat(request.getParameter("preis"));
 					artikel.beschreibung = beschreibung;
 					artikel.preis = preis;
-					ArtikelAdministration.aktualisiereArtikel(artikel);
+					ArtikelManager.aktualisiereArtikel(artikel);
 					antwort = "Der Artikel wurde erfolgreich geändert.";
 					}
 					session.setAttribute("antwort", antwort);
@@ -132,7 +132,7 @@ public class Artikelverwaltung extends HttpServlet {
 					if((request.getParameter("aktion")).equals("loeschen")) {
 						if(artikel.id != 6) {
 							artikel.istGelöscht = true;
-							ArtikelAdministration.löscheArtikel(artikel);
+							ArtikelManager.löscheArtikel(artikel);
 							antwort = "Der Artikel wurde erfolgreich gelöscht.";}
 						else {
 							antwort = "Dieser Artikel darf nicht gelöscht werden.";
@@ -144,7 +144,7 @@ public class Artikelverwaltung extends HttpServlet {
 						    
 						    if (file.exists()) file.delete();
 						    artikel.bildpfad = "";
-						    ArtikelAdministration.aktualisiereArtikel(artikel);
+						    ArtikelManager.aktualisiereArtikel(artikel);
 						    antwort = "Das Bild wurde erfolgreich gelöscht.";
 						    session.setAttribute("antwort", antwort);
 						}

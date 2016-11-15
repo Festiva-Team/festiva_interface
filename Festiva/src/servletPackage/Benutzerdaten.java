@@ -46,7 +46,7 @@ public class Benutzerdaten extends HttpServlet {
 			
 			int userGruppenID = Integer.parseInt(session.getAttribute("gruppenid").toString());			
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
-			Benutzer benutzer = BenutzerAdministration.selektiereBenutzerMitID(userid);
+			Benutzer benutzer = BenutzerManager.selektiereBenutzerMitID(userid);
 					
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
 				
@@ -111,7 +111,7 @@ public class Benutzerdaten extends HttpServlet {
 					
 					if((request.getParameter("aktion")).equals("loeschen")) {
 							benutzer.istGelöscht = true;
-							BenutzerAdministration.löscheBenutzer(benutzer);
+							BenutzerManager.löscheBenutzer(benutzer);
 							request.getRequestDispatcher("/Logout").include(request, response); 
 						}
 					
@@ -153,7 +153,7 @@ public class Benutzerdaten extends HttpServlet {
 					return "Das neue Passwort und die Wiederholung des Passworts stimmen nicht überein. Keine Passwortänderung durchgeführt.";
 				} else {
 					p_benutzer.passwortHash = p_pwNeu;
-					BenutzerAdministration.aktualisiereBenutzer(p_benutzer);
+					BenutzerManager.aktualisiereBenutzer(p_benutzer);
 					return "Ihr Passwort wurde erfolgreich geändert.";
 				}
 		}		
@@ -178,7 +178,7 @@ public class Benutzerdaten extends HttpServlet {
 	 */
 	private String aendereDaten(String p_vorname, String p_nachname, String p_strasse, String p_hausnummer, int p_plz, String p_ort, String p_iban, String p_bic, boolean p_einzugsermächtigungErteilt, String p_Email, Benutzer p_benutzer) throws DatenbankException {
 		
-		if ((!(p_benutzer.eMailAdresse).equals(p_Email)) && BenutzerAdministration.selektiereBenutzer(p_Email) != null) {
+		if ((!(p_benutzer.eMailAdresse).equals(p_Email)) && BenutzerManager.selektiereBenutzer(p_Email) != null) {
 			return "Zu der eingegebenen E-Mail-Adresse existiert bereits ein anderes Benutzerkonto. Verwenden Sie bitte eine andere E-Mail-Adresse.";
 		} else {
 		
@@ -188,7 +188,7 @@ public class Benutzerdaten extends HttpServlet {
 		int id = p_benutzer.id;
 									
 		p_benutzer = new Benutzer(id, p_vorname, p_nachname, p_Email, passwort, p_strasse, p_hausnummer, p_plz, p_ort, istGesperrt, p_iban, p_bic, p_einzugsermächtigungErteilt, istGelöscht, 2);
-		BenutzerAdministration.aktualisiereBenutzer(p_benutzer);	
+		BenutzerManager.aktualisiereBenutzer(p_benutzer);	
 		
 		return "Die Änderungen an Ihren persönlichen Daten wurden gespeichert!";
 		}

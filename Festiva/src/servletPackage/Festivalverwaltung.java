@@ -53,16 +53,16 @@ public class Festivalverwaltung extends HttpServlet {
 			SimpleDateFormat datum = new SimpleDateFormat( "dd.MM.yyyy" );
 			
 			if ((request.getParameter("aktion")).equals("anzeigen")) {
-				List<Festival> listFestivals = FestivalAdministration.selektiereAlleFestivals();
-				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
+				List<Festival> listFestivals = FestivalManager.selektiereAlleFestivals();
+				List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorien();
 				session.setAttribute("listKategorien", listKategorien);
 				session.setAttribute("listFestivals", listFestivals);
 				request.getRequestDispatcher("a_festivalverwaltung.jsp").include(request, response);
 			} else { 
-				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleKategorien();
+				List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorien();
 				session.setAttribute("listKategorien", listKategorien);
 				if((request.getParameter("aktion")).equals("anlegenanzeigen")) {
-					listKategorien = KategorienAdministration.selektiereAlleAktivenKategorien();
+					listKategorien = KategorienManager.selektiereAlleAktivenKategorien();
 					session.setAttribute("listKategorien", listKategorien);
 				request.getRequestDispatcher("a_festivalAnlegen.jsp").include(request, response);
 			} else {
@@ -91,7 +91,7 @@ public class Festivalverwaltung extends HttpServlet {
 					} else {
 						
 					Festival festival = new Festival(-1, name, ort, kurzbeschreibung, langbeschreibung, startdatum, enddatum, "", false, kategorie);
-					FestivalAdministration.erstelleFestival(festival);
+					FestivalManager.erstelleFestival(festival);
 					
 					Part filePart = request.getPart("bild");
 					
@@ -104,7 +104,7 @@ public class Festivalverwaltung extends HttpServlet {
 					        Files.copy(input, file.toPath());
 					    }
 					    
-						FestivalAdministration.aktualisiereFestival(festival);
+						FestivalManager.aktualisiereFestival(festival);
 					}
 					antwort = "Das Festival '" + festival.name + "' wurde erfolgreich mit der ID " + festival.id + " angelegt.";
 					
@@ -115,8 +115,8 @@ public class Festivalverwaltung extends HttpServlet {
 				} else {
 					
 					int festivalid = Integer.parseInt(request.getParameter("festivalid").toString());
-					Festival festival = FestivalAdministration.selektiereFestival(festivalid);
-					List<Artikel> listArtikel = ArtikelAdministration.selektiereAlleArtikelVonFestival(festivalid);
+					Festival festival = FestivalManager.selektiereFestival(festivalid);
+					List<Artikel> listArtikel = ArtikelManager.selektiereAlleArtikelVonFestival(festivalid);
 					session.setAttribute("listArtikel", listArtikel);
 					
 					if ((request.getParameter("aktion")).equals("aendern")) {
@@ -177,17 +177,17 @@ public class Festivalverwaltung extends HttpServlet {
 						    festival.kurzbeschreibung = kurzbeschreibung;
 						    festival.langbeschreibung = langbeschreibung;
 						    festival.kategorienID = kategorie;
-						    FestivalAdministration.aktualisiereFestival(festival);
+						    FestivalManager.aktualisiereFestival(festival);
 							antwort = "Das Festival wurde erfolgreich geändert.";
 							session.setAttribute("antwort", antwort);
 							}
 						} else {
 							if((request.getParameter("aktion")).equals("loeschen")) {
 								festival.istGelöscht = true;
-								FestivalAdministration.löscheFestival(festival);
+								FestivalManager.löscheFestival(festival);
 								for (Artikel artikel : listArtikel) {
 									artikel.istGelöscht = true;
-									ArtikelAdministration.löscheArtikel(artikel);
+									ArtikelManager.löscheArtikel(artikel);
 								}
 								
 								antwort = "Das Festival und alle dazugehörigen Artikel wurden erfolgreich gelöscht.";
@@ -198,7 +198,7 @@ public class Festivalverwaltung extends HttpServlet {
 								    
 								    if (file.exists()) file.delete();
 								    festival.bildpfad = "";
-								    FestivalAdministration.aktualisiereFestival(festival);
+								    FestivalManager.aktualisiereFestival(festival);
 								    antwort = "Das Bild wurde erfolgreich gelöscht.";
 								    session.setAttribute("antwort", antwort);
 								}

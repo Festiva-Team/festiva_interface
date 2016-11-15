@@ -84,10 +84,10 @@ public class Ticketverwaltung extends HttpServlet {
 						antwort = "Das eingegebene Enddatum liegt vor dem Startdatum. Bitte korrigieren Sie Ihre Eingabe.";
 						session.setAttribute("antwort", antwort);
 				} else {				
-					List<FestivalSuchobjekt> listFestivals = FestivalAdministration.selektiereFestivalsInSuche(kategorienID, ort, name, startDatum, endDatum, maxPreis);
+					List<FestivalSuchobjekt> listFestivals = FestivalManager.selektiereFestivalsInSuche(kategorienID, ort, name, startDatum, endDatum, maxPreis);
 					session.setAttribute("listFestivals", listFestivals);	
 				}
-				List<Kategorie> listKategorien = KategorienAdministration.selektiereAlleAktivenKategorien();
+				List<Kategorie> listKategorien = KategorienManager.selektiereAlleAktivenKategorien();
 				FestivalSuchobjekt suchKriterien = new FestivalSuchobjekt(-1, name, ort, "", start, end, 0, maxPreis, "",kategorienID);
 				session.setAttribute("suchKriterien", suchKriterien);
 				session.setAttribute("listKategorien", listKategorien);
@@ -99,21 +99,21 @@ public class Ticketverwaltung extends HttpServlet {
 					
 					if(session.getAttribute("begr¸ﬂung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 						int userid = Integer.parseInt(session.getAttribute("userid").toString());
-						Warenkorb warenkorb = WarenkorbAdministration.selektiereWarenkorbVonKunden(userid, false);
+						Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, false);
 						List<Integer> listArtikelID = new ArrayList<Integer>();
 						for(Warenkorbelement warenkorbelement : warenkorb.listElemente) {
 							listArtikelID.add(warenkorbelement.artikel.id);					
 						}
 						session.setAttribute("listArtikelID", listArtikelID);
 					}
-					Festival festival = FestivalAdministration.selektiereFestival(festivalid);
+					Festival festival = FestivalManager.selektiereFestival(festivalid);
 					
 					if(maxpreis == 0.0) {
-						List<Artikel> listArtikel = ArtikelAdministration.selektiereArtikelVonFestival(festivalid);
+						List<Artikel> listArtikel = ArtikelManager.selektiereArtikelVonFestival(festivalid);
 						session.setAttribute("listArtikel", listArtikel);
 					} else {
-						List<Artikel> listArtikelMitMaxPreis = ArtikelAdministration.selektiereArtikelVonFestivalMitMaxPreis(festivalid, maxpreis);
-						List<Artikel> listArtikelUeberMaxPreis = ArtikelAdministration.selektiereArtikelVonFestival‹berMaxPreis(festivalid, maxpreis);
+						List<Artikel> listArtikelMitMaxPreis = ArtikelManager.selektiereArtikelVonFestivalMitMaxPreis(festivalid, maxpreis);
+						List<Artikel> listArtikelUeberMaxPreis = ArtikelManager.selektiereArtikelVonFestival‹berMaxPreis(festivalid, maxpreis);
 						session.setAttribute("listArtikelMitMaxPreis", listArtikelMitMaxPreis);
 						session.setAttribute("listArtikelUeberMaxPreis", listArtikelUeberMaxPreis);
 					}
