@@ -40,7 +40,7 @@ header{
 }
 #main{	
 	width:100%;
-	min-height: 400px;
+	min-height: 375px;
 	background:white;
 }	
 footer{	
@@ -147,7 +147,7 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 
 /*******************Slideshow*****************+*/	
-#container {
+#container{ 
     float: left;
     height: 300px;
     width: 80%;
@@ -155,8 +155,8 @@ ul li a:hover + .hidden, .hidden:hover {
     border: 2px solid black;
     left: 10%;
     right: 10%;
-    top: 4em;
-    margin-bottom: 4em;
+    top: 2em;
+    margin-bottom:2em;
 }
 #left_holder {
 	width: 60px;

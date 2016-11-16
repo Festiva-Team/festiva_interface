@@ -26,7 +26,7 @@ HttpSession session = request.getSession(false);
 <body>
 </body>
 <footer>
-	<div id="footer"><b id="footertext">&copy; 2016 Festiva - Developed by Alina Fankhänel, Timo Schlüter & Nicola Kloke &nbsp&nbsp&nbsp&nbsp&nbsp </b>      <a href="impressum.jsp" style="color: white">Impressum</a></div> 
+	<div id="footer"><b id="footertext">&copy; 2016 Festiva - Developed by Alina Fankhänel, Nicola Kloke & Timo Schlüter &nbsp&nbsp&nbsp&nbsp&nbsp </b>      <a href="impressum.jsp" style="color: white">Impressum</a></div> 
 </footer>
 </html>
 
