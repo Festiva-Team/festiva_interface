@@ -62,12 +62,9 @@ if (request.getSession(false) != null) {
 						<% } else { %>
 						<td data-label="">Kein Bild verfügbar</td>
 						<% }	%>
-						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+						<td data-label="Beschreibung: "><a href="/Festiva/Artikelverwaltung?aktion=a_anzeigen&artikelid=<%=artikel.id%>"><%=artikel.beschreibung%></a></td>
 						<td data-label="Preis: " id="preis" width="10%"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-						<td data-label="" width="20%">
-						<select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
-						<td id=buttontabelle><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td>
-					</tr>
+						</tr>
 					</tbody>
 					<% } }%>
 			</table>
