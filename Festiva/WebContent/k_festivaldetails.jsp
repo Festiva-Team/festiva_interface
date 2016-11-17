@@ -74,10 +74,11 @@
 		<% if (listArtikel != null && !(listArtikel.isEmpty())) { %>
 		<h2>Verfügbare Tickets</h2>
 		<table class= "tabelle">
-			<thead><tr><th>Beschreibung</th><th>Preis</th><th></th><th></th></tr></thead>
+			<thead><tr><th>Beschreibung</th><th>Details</th><th>Preis</th><th></th><th></th></tr></thead>
 			<%for (Artikel artikel : listArtikel) { %>
 			<tbody>	<tr>		
 			<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+			<td data-label="Details: "><%=artikel.details%></td>
 			<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 			<td data-label="" width="15%"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 			<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
@@ -88,11 +89,12 @@
 			if(listArtikelMitMaxPreis != null && !(listArtikelMitMaxPreis.isEmpty())) {%>
 		 <h2>Diese Tickets passen zu Ihrem eingegebenen Maximalpreis von <%=String.format("%.2f",maxPreis)%> &#8364; :</h2>
 		 <table class= "tabelle">
-			<thead><tr><th>Beschreibung</th><th>Preis</th><th></th><th></th></tr></thead>
+			<thead><tr><th>Beschreibung</th><th>Details</th><th>Preis</th><th></th><th></th></tr></thead>
 			<%for (Artikel artikel : listArtikelMitMaxPreis) { %>
 			<tbody>	
 			<tr>		
-				<th data-label="Beschreibung: "><%=artikel.beschreibung%></th>
+				<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+				<td data-label="Details: "><%=artikel.details%></td>
 				<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 				<td data-label="" width="25%"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 				<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
@@ -105,11 +107,12 @@
 		<%if(listArtikelUeberMaxPreis != null && !(listArtikelUeberMaxPreis.isEmpty())) { %>
 		<h2>Falls Sie doch etwas mehr Geld ausgeben möchten, könnten Sie auch die folgenden Tickets interessieren:</h2>
 	 	<table class= "tabelle">
-			<thead><tr><th>Beschreibung</th><th>Preis</th><th></th><th></th></tr></thead>
+			<thead><tr><th>Beschreibung</th><th>Details</th><th>Preis</th><th></th><th></th></tr></thead>
 			<%for (Artikel artikel : listArtikelUeberMaxPreis) { %>
 			<tbody>	
 			<tr>		
 				<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+				<td data-label="Details: "><%=artikel.details%></td>
 				<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 				<td data-label="" width="25%"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 				<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
