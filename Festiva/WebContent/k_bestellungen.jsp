@@ -37,7 +37,7 @@
 		<h1>Meine vergangenen Bestellungen</h1>
 		<br/><br/>
 		<% for (Bestellung bestellung : listBestellungen) {%>
-		<h4 id="h4Bestellung">Ihre Bestellung vom <%=date.format(bestellung.datum)%> Uhr:</h4>
+		<h4 id="h4Bestellung">Ihre Bestellung Nr. <%=(800000000 + bestellung.id)%> vom <%=date.format(bestellung.datum)%> Uhr:</h4>
 		<table class= "tabelle">
 			<thead><tr><th>Position</th><th>Festival</th><th>Artikelbeschreibung</th><th>Preis</th><th>Anzahl</th><th>Gesamtpreis</th></tr></thead>
 			 <%for (Bestellposition bestellposition : bestellung.listPositionen) { %>
