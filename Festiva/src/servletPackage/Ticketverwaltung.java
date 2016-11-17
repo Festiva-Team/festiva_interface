@@ -37,9 +37,10 @@ public class Ticketverwaltung extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		//response.setHeader("Cache-Control", "no-store, must-revalidate, max-age=600");
 		response.setHeader("Pragma", "no-cache");
-		response.setDateHeader("Expires", 0);
+		response.setHeader("Cache-Control", "max-age=600");
+		response.setDateHeader("Expires", 600);
 		try{
 			if ((request.getParameter("aktion")).equals("t_anzeigen")) {
 				SimpleDateFormat datum1 = new SimpleDateFormat( "dd.MM.yyyy" );

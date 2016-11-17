@@ -58,11 +58,11 @@ if (request.getSession(false) != null) {
 					<tbody>	
 					<tr>
 						<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
-						<td><img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 /></td>
+						<td><a href="/Festiva/Produktverwaltung?aktion=a_anzeigen&artikelid=<%=artikel.id%>"><img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=150 /></td>
 						<% } else { %>
 						<td data-label="">Kein Bild verfügbar</td>
 						<% }	%>
-						<td data-label="Beschreibung: "><a href="/Festiva/Artikelverwaltung?aktion=a_anzeigen&artikelid=<%=artikel.id%>"><%=artikel.beschreibung%></a></td>
+						<td data-label="Beschreibung: "><a href="/Festiva/Produktverwaltung?aktion=a_anzeigen&artikelid=<%=artikel.id%>"><%=artikel.beschreibung%></a></td>
 						<td data-label="Preis: " id="preis" width="10%"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 						</tr>
 					</tbody>
@@ -76,32 +76,5 @@ if (request.getSession(false) != null) {
 </jsp:include>
 	</div>
 </body>
-<script type="text/javascript">
-function einfuegen(id, elemente){	
-	if(elemente == null) {
-		document.location.href='/Festiva/Warenkorbverwaltung?aktion=anmelden';
-	} else {
-		var vorhanden = false;
-		for (var i = 0; i < elemente.length; i++) {
-			if (elemente[i] == id) {
-				vorhanden = true;
-			}
-		}
-		
-		var menge = document.getElementById('anzahl'+id).value;
-		
-		if(vorhanden == true) {
-		if(confirm("Dieser Artikel befindet sich bereits in Ihrem Warenkorb. Soll die ausgewählte Menge trotzdem hinzugefügt werden?") == true)
-	
-		//document.location.href='/Festiva/Warenkorbverwaltung?aktion=aktualisieren&artikelid=' + id + '&menge=' + menge;
-		  post('/Festiva/Warenkorbverwaltung', {aktion: 'aktualisieren', artikelid: id, menge: menge});	
-		} else {	
-			//document.location.href='/Festiva/Warenkorbverwaltung?aktion=hinzufuegen&artikelid=' + id + '&menge=' + menge;	
-			post('/Festiva/Warenkorbverwaltung', {aktion: 'hinzufuegen', artikelid: id, menge: menge});	
-		}	
-	}
-}
-
-</script>
 </html> 
 <% request.getSession().removeAttribute("listArtikel"); request.getSession().removeAttribute("listArtikelID"); } %>

@@ -53,13 +53,14 @@ public class Artikelverwaltung extends HttpServlet {
 				
 				int festivalid = Integer.parseInt(request.getParameter("festivalid"));
 				String beschreibung = request.getParameter("beschreibung");
+				String details = request.getParameter("details");
 				
-				if(beschreibung.equals("") || request.getParameter("preis").equals("")) {
+				if(beschreibung.equals("") || request.getParameter("preis").equals("") || details.equals("")) {
 					antwort = "Sie können den Artikel erst anlegen, wenn Sie alle Pflichtfelder gefüllt haben.";
 				} else {
 				float preis = Float.parseFloat(request.getParameter("preis"));
 				
-				Artikel artikel = new Artikel(-1, beschreibung, preis, false, "", festivalid);
+				Artikel artikel = new Artikel(-1, beschreibung, details, preis, false, "", festivalid);
 				ArtikelManager.erstelleArtikel(artikel);
 				
 			    Part filePart = request.getPart("bild");
@@ -94,9 +95,10 @@ public class Artikelverwaltung extends HttpServlet {
 				if ((request.getParameter("aktion")).equals("datenaendern")) {
 					
 					String beschreibung = request.getParameter("beschreibung");
+					String details = request.getParameter("details");
 					
 					
-					if(beschreibung.equals("") || request.getParameter("preis").equals("")) {
+					if(beschreibung.equals("") || request.getParameter("preis").equals("") || details.equals("")) {
 						antwort = "Sie können den Artikel erst ändern, wenn Sie alle Pflichtfelder gefüllt haben.";
 					} else {
 						
@@ -123,6 +125,7 @@ public class Artikelverwaltung extends HttpServlet {
 						
 					float preis = Float.parseFloat(request.getParameter("preis"));
 					artikel.beschreibung = beschreibung;
+					artikel.details = details;
 					artikel.preis = preis;
 					ArtikelManager.aktualisiereArtikel(artikel);
 					antwort = "Der Artikel wurde erfolgreich geändert.";

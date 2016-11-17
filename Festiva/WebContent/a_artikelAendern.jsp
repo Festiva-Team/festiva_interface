@@ -46,6 +46,8 @@ else {
 		<div class="spaltelinks">
 			<label for="beschreibung">Beschreibung*</label>
 			<input type="text" name="beschreibung" title="Bitte geben Sie eine Beschreibung ein!" maxlength="100" required="required" value="<%=artikel.beschreibung%>">
+			<label for="details">Details*</label>
+			<textarea rows="4" cols="25" name="details" title="Bitte geben Sie Artikeldetails ein!" required="required"><%=artikel.details%></textarea>
 			<label for="preis">Preis in Euro*</label>
 			<input type="number" step="0.01" min="0" name="preis" placeholder="0,00" title="Bitte geben Sie einen Preis ein!" maxlength="7" required="required" value="<%=artikel.preis%>"><br>				
 			<% if(artikel.festivalID == 0 && artikel.id != 6) { %>

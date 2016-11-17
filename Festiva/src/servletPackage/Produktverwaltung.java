@@ -53,8 +53,7 @@ public class Produktverwaltung extends HttpServlet {
 			}
 			List<Artikel> listArtikel = ArtikelManager.selektiereUnabhaengigeArtikel();
 			session.setAttribute("listArtikel", listArtikel);
-			session.setAttribute("aufrufer", request.getRequestURI() + "?" + request.getQueryString());
-			request.getRequestDispatcher("k_merchandiseShop.jsp").include(request, response);		
+			request.getRequestDispatcher("k_zubehoerShop.jsp").include(request, response);		
 		} else {
 			if((request.getParameter("aktion")).equals("s_anzeigen")) {
 				List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorienFuerSlideshow();
@@ -65,23 +64,26 @@ public class Produktverwaltung extends HttpServlet {
 				}
 				request.getRequestDispatcher("k_startseite.jsp").include(request, response);	
 			} else {
-//				if((request.getParameter("aktion")).equals("f_k_anzeigen")) {
-//					int kategorienid = 0;
-//					
-//					if(!request.getParameter("kategorienid").equals("")) {
-//						try{
-//							kategorienid = Integer.parseInt(request.getParameter("kategorienid"));
-//						} catch (Exception e) {
-//							e.printStackTrace();
-//							kategorienid = 0;
-//						} }
-//					List<FestivalSuchobjekt> listFestivalSuchobjekte = FestivalAdministration.selektiereFestivalsInSuche(kategorienid, null, null, null, null, (float)0.0);
-//					session.setAttribute("listFestivalSuchobjekte", listFestivalSuchobjekte);
-//					request.getRequestDispatcher("").include(request, response);	
-//					
-//				}
+				if((request.getParameter("aktion")).equals("a_anzeigen")) {
+					int artikelid = Integer.parseInt(request.getParameter("artikelid"));
+				
+					if(session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
+						int userid = Integer.parseInt(session.getAttribute("userid").toString());
+						Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, false);
+						List<Integer> listArtikelID = new ArrayList<Integer>();
+						for(Warenkorbelement warenkorbelement : warenkorb.listElemente) {
+							listArtikelID.add(warenkorbelement.artikel.id);	
+						}
+						session.setAttribute("listArtikelID", listArtikelID);
+					}
+					Artikel artikel = ArtikelManager.selektiereArtikel(artikelid);
+					session.setAttribute("artikel", artikel);
+					session.setAttribute("aufrufer", request.getRequestURI() + "?" + request.getQueryString());
+					request.getRequestDispatcher("k_artikeldetails.jsp").include(request, response);
+					}
+				}
 			}
-		}
+		
 		} catch (DatenbankException e) {
 			e.printStackTrace();
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Die angeforderte Seite ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!");

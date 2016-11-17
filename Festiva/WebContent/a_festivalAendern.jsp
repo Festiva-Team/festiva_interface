@@ -96,12 +96,13 @@ else {
 				</div>
 				<table class="tabelle">
 					<thead>
-						<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Gelöscht</th></tr></thead>
+						<tr><th>ID</th><th>Beschreibung</th><th>Details</th><th>Preis</th><th>Gelöscht</th></tr></thead>
 					<%for (Artikel artikel : listArtikel) { %>
 					<tbody>	
 					<tr>		
 						<th data-label="Artikel: "><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></th>
 						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+						<td data-label="Details: "><%=artikel.details%></td>
 						<td data-label="Preis: " id="preis" width="10%"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 						<%if (artikel.istGelöscht == false) { %>
 						<td data-label="Gelöscht: "><%="nein"%></td>

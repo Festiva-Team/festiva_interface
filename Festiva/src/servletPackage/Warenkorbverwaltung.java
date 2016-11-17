@@ -34,9 +34,12 @@ public class Warenkorbverwaltung extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		String antwort = "";
-		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+//		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+//		response.setHeader("Pragma", "no-cache");
+//		response.setDateHeader("Expires", 0);
 		response.setHeader("Pragma", "no-cache");
-		response.setDateHeader("Expires", 0);
+		response.setHeader("Cache-Control", "max-age=600");
+		response.setDateHeader("Expires", 600);
 		
 		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
@@ -119,7 +122,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 									antwort = "Der Artikel '" + artikel.beschreibung + "' wurde dem Warenkorb mit der Menge " + menge + " hinzugefügt.";
 									session.setAttribute("antwort", antwort);
 									if(artikel.festivalID == 0) {
-									request.getRequestDispatcher("/Produktverwaltung?aktion=z_anzeigen").include(request, response); }
+									request.getRequestDispatcher("/Produktverwaltung?aktion=a_anzeigen&artikelid=" + artikelid).include(request, response); }
 									else {
 										int festivalid = Integer.parseInt(request.getParameter("festivalid"));
 										float maxpreis = Float.parseFloat(request.getParameter("maxpreis"));
@@ -146,7 +149,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 										antwort = "Die Anzahl des Artikels '" + artikel.beschreibung + "' wurde in Ihrem Warenkorb um " + menge + " erhöht.";}
 										session.setAttribute("antwort", antwort);
 										if(artikel.festivalID == 0) {
-										request.getRequestDispatcher("/Produktverwaltung?aktion=z_anzeigen").include(request, response); }
+											request.getRequestDispatcher("/Produktverwaltung?aktion=a_anzeigen&artikelid=" + artikelid).include(request, response); }
 										else {
 											int festivalid = Integer.parseInt(request.getParameter("festivalid"));
 											float maxpreis = Float.parseFloat(request.getParameter("maxpreis"));

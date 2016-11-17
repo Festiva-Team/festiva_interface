@@ -24,16 +24,16 @@ public class ArtikelManager {
 		String insertBefehl = "";
 		if(p_artikel.festivalID != 0) {
 		insertBefehl = "INSERT INTO festiva.artikel " +
-							   "(beschreibung, preis, festivals_id ) " +
-							   "VALUES ('%s', '%s', '%d')";
+							   "(beschreibung, details, preis, festivals_id ) " +
+							   "VALUES ('%s', '%s', '%s', '%d')";
 		
-		insertBefehl = String.format(insertBefehl, p_artikel.beschreibung, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.festivalID);}
+		insertBefehl = String.format(insertBefehl, p_artikel.beschreibung, p_artikel.details, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.festivalID);}
 		else {
 		insertBefehl = "INSERT INTO festiva.artikel " +
-					   "(beschreibung, preis, bildpfad) " +
-					   "VALUES ('%s', '%s', '%s')";
+					   "(beschreibung, details, preis, bildpfad) " +
+					   "VALUES ('%s', '%s', '%s', '%s')";
 
-		insertBefehl = String.format(insertBefehl, p_artikel.beschreibung, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.bildpfad);
+		insertBefehl = String.format(insertBefehl, p_artikel.beschreibung, p_artikel.details, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.bildpfad);
 		}
 		p_artikel.id = Datenbankverbindung.erstelleDatenbankVerbindung().fügeInDatenbankEin(insertBefehl);
 	}
@@ -49,14 +49,14 @@ public class ArtikelManager {
 		String updateBefehl = "";
 		if(p_artikel.festivalID != 0) {
 		   updateBefehl = "UPDATE festiva.artikel " +
-							  "SET beschreibung = '%s', preis = '%s', festivals_id = '%d' " +
+							  "SET beschreibung = '%s', details = '%s', preis = '%s', festivals_id = '%d' " +
 							  "WHERE id = '%d'";
-		updateBefehl = String.format(updateBefehl, p_artikel.beschreibung, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.festivalID, p_artikel.id);}
+		updateBefehl = String.format(updateBefehl, p_artikel.beschreibung, p_artikel.details, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.festivalID, p_artikel.id);}
 		else {
 			updateBefehl = "UPDATE festiva.artikel " +
-					  "SET beschreibung = '%s', preis = '%s', bildpfad = '%s' " +
+					  "SET beschreibung = '%s', details= '%s', preis = '%s', bildpfad = '%s' " +
 					  "WHERE id = '%d'";
-			updateBefehl = String.format(updateBefehl, p_artikel.beschreibung, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.bildpfad, p_artikel.id);
+			updateBefehl = String.format(updateBefehl, p_artikel.beschreibung, p_artikel.details, String.format("%.2f",p_artikel.preis).replace(',', '.'), p_artikel.bildpfad, p_artikel.id);
 		}
 		Datenbankverbindung.erstelleDatenbankVerbindung().aktualisiereInDatenbank(updateBefehl);
 	}
@@ -83,7 +83,7 @@ public class ArtikelManager {
 	public static Artikel selektiereArtikel(int p_artikelID) throws DatenbankException
 	{
 		Artikel artikel = null;
-		String selectBefehl = "SELECT beschreibung, preis, istgelöscht, bildpfad, festivals_id " + 
+		String selectBefehl = "SELECT beschreibung, details, preis, istgelöscht, bildpfad, festivals_id " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE id = " + p_artikelID;
 		ResultSet ergebnismenge = Datenbankverbindung.erstelleDatenbankVerbindung().selektiereVonDatenbank(selectBefehl);
@@ -96,12 +96,13 @@ public class ArtikelManager {
 			if(ergebnismenge.next())
 			{
 				String beschreibung = ergebnismenge.getString("beschreibung");
+				String details = ergebnismenge.getString("details");
 				float preis = ergebnismenge.getFloat("preis");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
 				String bildpfad = ergebnismenge.getString("bildpfad");
 				int festivalID = ergebnismenge.getInt("festivals_id");
 				
-				artikel = new Artikel(p_artikelID, beschreibung, preis, istGelöscht, bildpfad, festivalID);
+				artikel = new Artikel(p_artikelID, beschreibung, details, preis, istGelöscht, bildpfad, festivalID);
 			}
 		}
 		catch(SQLException e)
@@ -123,7 +124,7 @@ public class ArtikelManager {
 	public static List<Artikel> selektiereArtikelVonFestivalMitMaxPreis(int p_festivalID, float p_maxPreis) throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
-		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
+		String selectBefehl = "SELECT id, beschreibung, preis, details, istgelöscht " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE festivals_id = '%d' AND istgelöscht = 0 AND preis <= '%f' ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl, p_festivalID, p_maxPreis);
@@ -139,10 +140,11 @@ public class ArtikelManager {
 			{
 				int id = ergebnismenge.getInt("id");				
 				String beschreibung = ergebnismenge.getString("beschreibung");
+				String details = ergebnismenge.getString("details");
 				float preis = ergebnismenge.getFloat("preis");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
 				
-				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, "", p_festivalID));
+				listArtikel.add(new Artikel(id, beschreibung, details, preis, istGelöscht, "", p_festivalID));
 			}
 		}
 		catch(SQLException e)
@@ -166,7 +168,7 @@ public class ArtikelManager {
 	public static List<Artikel> selektiereArtikelVonFestivalÜberMaxPreis(int p_festivalID, float p_maxPreis) throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
-		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
+		String selectBefehl = "SELECT id, beschreibung, details, preis, istgelöscht " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE festivals_id = '%d' AND istgelöscht = 0 AND preis > '%f' ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl, p_festivalID, p_maxPreis);
@@ -182,10 +184,11 @@ public class ArtikelManager {
 			{
 				int id = ergebnismenge.getInt("id");				
 				String beschreibung = ergebnismenge.getString("beschreibung");
+				String details = ergebnismenge.getString("details");
 				float preis = ergebnismenge.getFloat("preis");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
 				
-				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, "", p_festivalID));
+				listArtikel.add(new Artikel(id, beschreibung, details, preis, istGelöscht, "", p_festivalID));
 			}
 		}
 		catch(SQLException e)
@@ -208,7 +211,7 @@ public class ArtikelManager {
 	public static List<Artikel> selektiereArtikelVonFestival(int p_festivalID) throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
-		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
+		String selectBefehl = "SELECT id, beschreibung, details, preis, istgelöscht " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE festivals_id = '%d' AND istgelöscht = 0 ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl, p_festivalID);
@@ -224,10 +227,11 @@ public class ArtikelManager {
 			{
 				int id = ergebnismenge.getInt("id");				
 				String beschreibung = ergebnismenge.getString("beschreibung");
+				String details = ergebnismenge.getString("details");
 				float preis = ergebnismenge.getFloat("preis");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
 				
-				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, "", p_festivalID));
+				listArtikel.add(new Artikel(id, beschreibung, details, preis, istGelöscht, "", p_festivalID));
 			}
 		}
 		catch(SQLException e)
@@ -250,7 +254,7 @@ public class ArtikelManager {
 	public static List<Artikel> selektiereAlleArtikelVonFestival(int p_festivalID) throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
-		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht " + 
+		String selectBefehl = "SELECT id, beschreibung, details, preis, istgelöscht " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE festivals_id = '%d' ORDER BY id ASC";
 		selectBefehl  = String.format(selectBefehl, p_festivalID);
@@ -266,10 +270,11 @@ public class ArtikelManager {
 			{
 				int id = ergebnismenge.getInt("id");				
 				String beschreibung = ergebnismenge.getString("beschreibung");
+				String details = ergebnismenge.getString("details");
 				float preis = ergebnismenge.getFloat("preis");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
 				
-				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, "", p_festivalID));
+				listArtikel.add(new Artikel(id, beschreibung, details, preis, istGelöscht, "", p_festivalID));
 			}
 		}
 		catch(SQLException e)
@@ -291,7 +296,7 @@ public class ArtikelManager {
 	public static List<Artikel> selektiereUnabhaengigeArtikel() throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
-		String selectBefehl = "SELECT id, beschreibung, preis, bildpfad, istgelöscht " + 
+		String selectBefehl = "SELECT id, beschreibung, preis, details, bildpfad, istgelöscht " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE festivals_id is null AND istgelöscht = 0 AND id != 6 ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl);
@@ -307,11 +312,12 @@ public class ArtikelManager {
 			{
 				int id = ergebnismenge.getInt("id");				
 				String beschreibung = ergebnismenge.getString("beschreibung");
+				String details = ergebnismenge.getString("details");
 				float preis = ergebnismenge.getFloat("preis");
 				String bildpfad = ergebnismenge.getString("bildpfad");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
 				
-				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, bildpfad, -1));
+				listArtikel.add(new Artikel(id, beschreibung, details, preis, istGelöscht, bildpfad, -1));
 			}
 		}
 		catch(SQLException e)
@@ -333,7 +339,7 @@ public class ArtikelManager {
 	public static List<Artikel> selektiereAlleUnabhaengigenArtikel() throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
-		String selectBefehl = "SELECT id, beschreibung, preis, bildpfad, istgelöscht " + 
+		String selectBefehl = "SELECT id, beschreibung, details, preis, bildpfad, istgelöscht " + 
 							  "FROM festiva.artikel " + 
 							  "WHERE festivals_id is null ORDER BY id ASC";
 		selectBefehl  = String.format(selectBefehl);
@@ -348,11 +354,12 @@ public class ArtikelManager {
 			{
 				int id = ergebnismenge.getInt("id");				
 				String beschreibung = ergebnismenge.getString("beschreibung");
+				String details = ergebnismenge.getString("details");
 				float preis = ergebnismenge.getFloat("preis");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
 				String bildpfad = ergebnismenge.getString("bildpfad");
 				
-				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, bildpfad, -1));
+				listArtikel.add(new Artikel(id, beschreibung, details, preis, istGelöscht, bildpfad, -1));
 			}
 		}
 		catch(SQLException e)
@@ -374,7 +381,7 @@ public class ArtikelManager {
 	public static List<Artikel> selektiereAlleArtikel() throws DatenbankException
 	{
 		List<Artikel> listArtikel = new ArrayList<Artikel>();
-		String selectBefehl = "SELECT id, beschreibung, preis, istgelöscht, bildpfad, festivals_id " + 
+		String selectBefehl = "SELECT id, beschreibung, details, preis, istgelöscht, bildpfad, festivals_id " + 
 							  "FROM festiva.artikel " + 
 							  "ORDER BY beschreibung ASC";
 		selectBefehl  = String.format(selectBefehl);
@@ -389,12 +396,13 @@ public class ArtikelManager {
 			{
 				int id = ergebnismenge.getInt("id");				
 				String beschreibung = ergebnismenge.getString("beschreibung");
+				String details = ergebnismenge.getString("details");
 				float preis = ergebnismenge.getFloat("preis");
 				boolean istGelöscht = ergebnismenge.getBoolean("istgelöscht");
 				String bildpfad = ergebnismenge.getString("bildpfad");
 				int festivalid = ergebnismenge.getInt("festivals_id");
 				
-				listArtikel.add(new Artikel(id, beschreibung, preis, istGelöscht, bildpfad, festivalid));
+				listArtikel.add(new Artikel(id, beschreibung, details, preis, istGelöscht, bildpfad, festivalid));
 			}
 		}
 		catch(SQLException e)

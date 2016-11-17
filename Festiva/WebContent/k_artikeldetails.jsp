@@ -11,12 +11,8 @@
 	#				(2a) Aufruf des Servlet "Warenkorbverwaltung.java"
 	# 				(3) Weiterleitung zur Anmeldung, falls Besucher noch nicht angemeldet ist
 */
-List<Artikel> listArtikel = null;
 List<Integer> listArtikelID = null;
 
-if (request.getSession(false) != null) {
-	listArtikel = (List<Artikel>)request.getSession(false).getAttribute("listArtikel");
-}
 if(request.getSession(false).getAttribute("listArtikelID") != null) {
 	listArtikelID = (List<Integer>)request.getSession(false).getAttribute("listArtikelID");
 	}
@@ -47,19 +43,20 @@ Artikel artikel = (Artikel)request.getSession(false).getAttribute("artikel");
 				<% request.getSession().removeAttribute("antwort");}  %>
 			</div> 
 			<div class="spaltelinks">
-				<%-- <%if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
+				 <%if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 				<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=300/>
 				<% } else { %> --%>
 				<p>Kein Bild vorhanden</p>
-		  		<%-- <% } %> --%>
+		  		 <% } %> 
 			</div>
 			<div class="spalterechts">
 				<table class= "artikel">
-					 <tr><td><b>Name:</b></td><%--<td><%=artikel.name%></td>--%></tr> 
-					<tr><td><b>Beschreibung:</b></td><%--<td><%=artikel.beschreibung%></td>--%></tr>
-				</table>
-				<select width="25%" id="anzahl <%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select>
-				<button type="submit" id="buttontabelle" onclick="einfuegen()">In den Warenkorb</button></td>
+					 <tr><td><b>Beschreibung:</b></td><td><%=artikel.beschreibung%></td></tr> 
+			     	<tr><td><b>Details:</b></td><td><%=artikel.details%></td></tr> 	
+				
+				<tr><td><select width="25%" id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td></tr>
+				<tr><td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td></tr>
+			</table>
 			</div>
 		</div>				
 	<div id="leer"></div>
@@ -70,34 +67,30 @@ Artikel artikel = (Artikel)request.getSession(false).getAttribute("artikel");
 	</div>	
 </body>
 <script type="text/javascript">
-function einfuegen(id, elemente, festivalid, maxpreis){
-	
+function einfuegen(id, elemente){	
 	if(elemente == null) {
 		document.location.href='/Festiva/Warenkorbverwaltung?aktion=anmelden';
 	} else {
-   
-			var vorhanden = false;
-			for (var i = 0; i < elemente.length; i++) {
-				if (elemente[i] == id) {
-					vorhanden = true;
-				}
+		var vorhanden = false;
+		for (var i = 0; i < elemente.length; i++) {
+			if (elemente[i] == id) {
+				vorhanden = true;
 			}
-			
-			var menge = document.getElementById('anzahl'+id).value;
-			
-			if(vorhanden == true) {
-			if(confirm("Dieser Artikel befindet sich bereits in Ihrem Warenkorb. Soll die ausgewählte Menge trotzdem hinzugefügt werden?") == true)
+		}
 		
-				post('/Festiva/Warenkorbverwaltung', {aktion: 'aktualisieren', artikelid: id, menge: menge, festivalid: festivalid, maxpreis: maxpreis});	
-				//document.location.href='/Festiva/Warenkorbverwaltung?aktion=aktualisieren&artikelid=' + id + '&menge=' + menge + "&festivalid=" + festivalid + "&maxpreis=" + maxpreis;
-			} else {
-			
-				post('/Festiva/Warenkorbverwaltung', {aktion: 'hinzufuegen', artikelid: id, menge: menge, festivalid: festivalid, maxpreis: maxpreis});
-				//document.location.href='/Festiva/Warenkorbverwaltung?aktion=hinzufuegen&artikelid=' + id + '&menge=' + menge + "&festivalid=" + festivalid + "&maxpreis=" + maxpreis;
-				
-			}	
+		var menge = document.getElementById('anzahl'+id).value;
+		
+		if(vorhanden == true) {
+		if(confirm("Dieser Artikel befindet sich bereits in Ihrem Warenkorb. Soll die ausgewählte Menge trotzdem hinzugefügt werden?") == true)
+	
+		//document.location.href='/Festiva/Warenkorbverwaltung?aktion=aktualisieren&artikelid=' + id + '&menge=' + menge;
+		  post('/Festiva/Warenkorbverwaltung', {aktion: 'aktualisieren', artikelid: id, menge: menge});	
+		} else {	
+			//document.location.href='/Festiva/Warenkorbverwaltung?aktion=hinzufuegen&artikelid=' + id + '&menge=' + menge;	
+			post('/Festiva/Warenkorbverwaltung', {aktion: 'hinzufuegen', artikelid: id, menge: menge});	
+		}	
 	}
 }
 </script>
 </html>
-<% request.getSession().removeAttribute("listArtikel"); %>
+<% request.getSession().removeAttribute("artikel"); %>
