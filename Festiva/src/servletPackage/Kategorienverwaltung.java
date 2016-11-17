@@ -52,7 +52,7 @@ public class Kategorienverwaltung extends HttpServlet {
 				String name = request.getParameter("name");
 				String beschreibung = request.getParameter("beschreibung");
 				
-				if(name.equals("") || beschreibung.equals("")) {
+				if(name.trim().length() == 0 || beschreibung.trim().length() == 0) {
 					antwort = "Ihre Kategorie kann erst angelegt werden, wenn Sie die Pflichtfelder gefüllt haben.";
 				} else { 
 				
@@ -97,7 +97,7 @@ public class Kategorienverwaltung extends HttpServlet {
 							String name = request.getParameter("name");
 							String beschreibung = request.getParameter("beschreibung");
 							
-							if(name.equals("") || beschreibung.equals("") || name == null || beschreibung == null) {
+							if(name == null || beschreibung == null || name.trim().length() == 0 || beschreibung.trim().length() == 0) {
 								antwort = "Die Felder Name und Beschreibung müssen gefüllt sein.";
 								session.setAttribute("antwort", antwort);
 							} else { 

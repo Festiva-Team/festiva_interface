@@ -45,7 +45,7 @@ Artikel artikel = (Artikel)request.getSession(false).getAttribute("artikel");
 			<div class="spaltelinks">
 				 <%if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg").exists()) { %>
 				<img src="/Festiva/Bilder/<%=artikel.bildpfad%>.jpg" name="bild" width=300/>
-				<% } else { %> --%>
+				<% } else { %>
 				<p>Kein Bild vorhanden</p>
 		  		 <% } %> 
 			</div>

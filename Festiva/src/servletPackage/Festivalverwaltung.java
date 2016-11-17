@@ -86,7 +86,7 @@ public class Festivalverwaltung extends HttpServlet {
 					kategorie = Integer.parseInt(request.getParameter("kategorie").toString());
 					String langbeschreibung = request.getParameter("langbeschreibung");
 					
-					if(name.equals("") || ort.equals("") || startdatum == null || enddatum == null || kurzbeschreibung.equals("") || kategorie == 0 || langbeschreibung.equals("")) {
+					if(name.trim().length() == 0 || ort.trim().length() == 0 || startdatum == null || enddatum == null || kurzbeschreibung.trim().length() == 0 || kategorie == 0 || langbeschreibung.trim().length() == 0) {
 						antwort = "Ihr Festival kann erst angelegt werden, wenn Sie die Pflichtfelder gefüllt haben.";
 					} else {
 						
@@ -142,7 +142,7 @@ public class Festivalverwaltung extends HttpServlet {
 							kategorie = Integer.parseInt(request.getParameter("kategorie").toString());
 							String langbeschreibung = request.getParameter("langbeschreibung");
 							
-							if(name.equals("") || ort.equals("") || startdatum == null || enddatum == null || kurzbeschreibung.equals("") || kategorie == 0 || langbeschreibung.equals("")) {
+							if(name.trim().length() == 0 || ort.trim().length() == 0 || startdatum == null || enddatum == null || kurzbeschreibung.trim().length() == 0 || kategorie == 0 || langbeschreibung.trim().length() == 0) {
 								antwort = "Sie können das Festival erst ändern, wenn Sie alle Pflichtfelder gefüllt haben.";
 								session.setAttribute("antwort", antwort);
 							} else { 

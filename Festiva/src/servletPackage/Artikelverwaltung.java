@@ -55,7 +55,7 @@ public class Artikelverwaltung extends HttpServlet {
 				String beschreibung = request.getParameter("beschreibung");
 				String details = request.getParameter("details");
 				
-				if(beschreibung.equals("") || request.getParameter("preis").equals("") || details.equals("")) {
+				if(beschreibung.trim().length() == 0 || request.getParameter("preis").trim().length() == 0 || details.trim().length() == 0) {
 					antwort = "Sie können den Artikel erst anlegen, wenn Sie alle Pflichtfelder gefüllt haben.";
 				} else {
 				float preis = Float.parseFloat(request.getParameter("preis"));
@@ -98,7 +98,7 @@ public class Artikelverwaltung extends HttpServlet {
 					String details = request.getParameter("details");
 					
 					
-					if(beschreibung.equals("") || request.getParameter("preis").equals("") || details.equals("")) {
+					if(beschreibung.trim().length() == 0 || request.getParameter("preis").trim().length() == 0 || details.trim().length() == 0)  {
 						antwort = "Sie können den Artikel erst ändern, wenn Sie alle Pflichtfelder gefüllt haben.";
 					} else {
 						
