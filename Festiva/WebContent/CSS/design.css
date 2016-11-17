@@ -303,6 +303,9 @@ button.anlegen{
 	float: left;
 	margin-left: 5em;
 }
+#buttontabelle{
+	width: 10em;
+}
 /******Slideshow***********/
 
 
@@ -386,7 +389,7 @@ output {
 }
 #text, #langtext{
 	text-align: left;
-	margin: 0 5em .5em 5em;	
+	margin: 0 2em .5em 5em;	
 }
 #antwort{
 	margin-top: 0;
@@ -402,9 +405,15 @@ output {
  {	margin-left: 5em;
  	margin-right: 5em;
  }
+.festival{
+	margin-left: 0;
+	margin-right: 2em;
+}
 td,
 th {text-align: left;
-	padding: .5em;
+    padding: .5em;
+    min-width: 4em;
+    vertical-align: top;
 }
 th:last-child,
 td:last-child {
@@ -578,6 +587,7 @@ td::before{
  {	margin-left: 0;
  	margin-right:0;
  }
+
 table,
 tbody,
 tr {
