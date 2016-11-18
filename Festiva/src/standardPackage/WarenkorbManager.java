@@ -61,10 +61,14 @@ public class WarenkorbManager {
 				List<Warenkorbelement> listElemente = new ArrayList<Warenkorbelement>();
 				
 				// Selektiere von der Tabelle "warenkorbelemente"
-				String selectBefehl = "SELECT id, menge, artikel_id " +
-							   		  "FROM festiva.warenkorbelemente " +
-							   		  "WHERE warenkörbe_id = '%d' " +
-							   		  "ORDER BY id ASC";
+//				String selectBefehl = "SELECT id, menge, artikel_id " +
+//							   		  "FROM festiva.warenkorbelemente " +
+//							   		  "WHERE warenkörbe_id = '%d' " +
+//							   		  "ORDER BY id ASC";
+				String selectBefehl = "SELECT w.id, w.menge, w.artikel_id " +
+				   		  "FROM festiva.warenkorbelemente w LEFT JOIN festiva.artikel a ON a.id = w.artikel_id " +
+				   		  "WHERE warenkörbe_id = '%d' " +
+				   		  "ORDER BY a.festivals_id DESC, w.id ASC";
 				selectBefehl = String.format(selectBefehl, warenkorbID);
 				
 				

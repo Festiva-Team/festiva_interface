@@ -61,14 +61,14 @@ public class Registrierung extends HttpServlet {
 				antwort = "Die beiden eingegebenen Passwörter stimmen nicht überein. Registrierung wurde nicht durchgeführt.";
 				zuRegistrieren = true;
 			} else {
-				passwort = passwort + "76ZuOp(6?ssXY0";
+				String passwortA = passwort + "76ZuOp(6?ssXY0";
 				Benutzer benutzer = null;
 				if(request.getParameter("aktion") != null && request.getParameter("aktion").equals("a_anlegen") && request.getSession(false).getAttribute("gruppenid") != null && Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) == 1) {
-					benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 1);
+					benutzer = new Benutzer(-1, "", "", email, generiereHash(passwortA), "", "", 0, "", false, "", "", false, false, 1);
 					BenutzerManager.erstelleKunden(benutzer);
 					antwort = "Der Administrator wurde erfolgreich angelegt.";
 				} else {
-				    benutzer = new Benutzer(-1, "", "", email, generiereHash(passwort), "", "", 0, "", false, "", "", false, false, 2);
+				    benutzer = new Benutzer(-1, "", "", email, generiereHash(passwortA), "", "", 0, "", false, "", "", false, false, 2);
 				    BenutzerManager.erstelleKunden(benutzer);
 					WarenkorbManager.erstelleLeerenWarenkorb(benutzer.id);
 					antwort = "Die Registrierung wurde erfolgreich durchgeführt.";
@@ -83,7 +83,11 @@ public class Registrierung extends HttpServlet {
 			if(zuRegistrieren) {
 				request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
 			} else {
-			request.getRequestDispatcher("k_anmelden.jsp").include(request, response);}
+			//request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
+				antwort = "";
+				request.getSession(false).setAttribute("antwort", antwort);
+			request.getRequestDispatcher("/Login?email=" + email + "&passwort=" + passwort).include(request, response);
+			}
 		
 		} else {
 			int gruppenid = Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString());

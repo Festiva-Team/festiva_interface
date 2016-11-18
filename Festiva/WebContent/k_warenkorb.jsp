@@ -49,12 +49,15 @@
 				<td data-label="ID: "><%=id%></td>
 				<% if (warenkorbelement.artikel.festivalID == 0) { %>
 				<td data-label="Festival: "><%=""%></td>
+				<td data-label="Beschreibung: "><a href="/Festiva/Produktverwaltung?aktion=a_anzeigen&artikelid=<%=warenkorbelement.artikel.id%>"><%=warenkorbelement.artikel.beschreibung%></a></td>
 				<% }  else { %>
 				<% for (Festival festival : listFestivals) { 
 					if (festival.id == warenkorbelement.artikel.festivalID) { %>
-				<td data-label="Festival: "><%=festival.name%></td>
+			<%-- 	<td data-label="Festival: "><%=festival.name%></td> --%>
+				<td><%=festival.name%></td> 
+				<td data-label="Artikel: "><a href="/Festiva/Ticketverwaltung?aktion=f_anzeigen&festivalid=<%=festival.id%>&maxpreis=0.0"><%=warenkorbelement.artikel.beschreibung%></a></td>
 				<% } } } %>
-				<td data-label="Artikel: "><%=warenkorbelement.artikel.beschreibung%></td>
+				
 				<td data-label="Preis: " id="preis" width="8%"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
 				<td data-label="" width="15%"> <select onchange="myFunction(this, <%=warenkorbelement.id%>);" id="menge<%=id%>" name="menge<%=id%>">
 				<%for (int i=1; i<= 10; i++) { 
