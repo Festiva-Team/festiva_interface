@@ -35,7 +35,7 @@ Artikel artikel = (Artikel)request.getSession(false).getAttribute("artikel");
 </jsp:include>
    	<div id="main">
    		<div class="zeile">
-   		<h1><%-- <%=artikel.name%>" --%></h1>
+   		<h1><%=artikel.beschreibung%></h1>
    			<div class="zeile">
 				<% if (request.getSession().getAttribute("antwort") != null) 		
 				{ %> 
@@ -51,11 +51,10 @@ Artikel artikel = (Artikel)request.getSession(false).getAttribute("artikel");
 			</div>
 			<div class="spalterechts">
 				<table class= "artikel">
-					 <tr><td><b>Beschreibung:</b></td><td><%=artikel.beschreibung%></td></tr> 
 			     	<tr><td><b>Details:</b></td><td><%=artikel.details%></td></tr> 	
 				
-				<tr><td><select width="25%" id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td></tr>
-				<tr><td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td></tr>
+				<tr><td><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td></tr>
+				<tr><td><button type="submit" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td></tr>
 			</table>
 			</div>
 		</div>				

@@ -384,6 +384,9 @@ fieldset
 	margin-left:5em;
 }
 /**************Sonstiges***************/
+a{
+	color: black;
+}
 output {
 	display: block;
 }
@@ -397,7 +400,7 @@ output {
 	text-align: center;
 	font-weight: bold;	
 }
-#preis{
+.preis{
 	text-align: right;
 }
 /**************Tabellen**************************/
@@ -409,15 +412,20 @@ output {
 	margin-left: 0;
 	margin-right: 2em;
 }
+.festival td,
+th {text-align: left;
+    padding: .5em .2em;
+    min-width: 5em;
+    vertical-align: top;
+}
 td,
 th {text-align: left;
-    padding: .5em;
-    min-width: 4em;
-    vertical-align: top;
+    padding: .5em .2em;
+    min-width: 5em;
 }
 th:last-child,
 td:last-child {
-	padding-right: .5em;
+	padding-right: .2em;
 }
 thead th {
  	border-bottom: 2px solid #990000;

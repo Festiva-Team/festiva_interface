@@ -77,10 +77,10 @@
 			<thead><tr><th>Beschreibung</th><th>Details</th><th>Preis</th><th></th><th></th></tr></thead>
 			<%for (Artikel artikel : listArtikel) { %>
 			<tbody>	<tr>		
-			<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
-			<td data-label="Details: "><%=artikel.details%></td>
+			<td data-label="Beschreibung: " ><%=artikel.beschreibung%></td>
+			<td data-label="Details: " ><%=artikel.details%></td>
 			<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-			<td data-label="" width="15%"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+			<td data-label="" class="anzahl" id="preis"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 			<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 			</tr></tbody>
 			<% } %>
@@ -95,8 +95,8 @@
 			<tr>		
 				<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
 				<td data-label="Details: "><%=artikel.details%></td>
-				<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-				<td data-label="" width="25%"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+				<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+				<td data-label="" class="anzahl"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 				<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 			</tr>
 			</tbody>
@@ -113,8 +113,8 @@
 			<tr>		
 				<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
 				<td data-label="Details: "><%=artikel.details%></td>
-				<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-				<td data-label="" width="25%"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+				<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+				<td data-label=""><select class="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 				<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 			</tr>
 			</tbody>

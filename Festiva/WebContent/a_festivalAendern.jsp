@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="standardPackage.*" import="java.util.*" import="java.text.*" import="java.io.File"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="standardPackage.*" import="java.util.*" import="java.text.*" import="java.io.File"
     session="false"	%>
     
 <%
 /** 
-	# Autor: Nicola Kloke, Alina Fankhänel
+	# Autor: Nicola Kloke, Alina FankhÃ¤nel
 	# JSP-Name: a_festivalAendern.jsp
 	# JSP-Aktionen: (1) Anzeige der aktuellen Festivaldaten
-	#				(2a) Möglichkeit zum Ändern der Daten oder Löschen des Festivals
-	#				(2b) Möglichkeit zum Anlegen neuer Artikel zu dem Festival
+	#				(2a) MÃ¶glichkeit zum Ã„ndern der Daten oder LÃ¶schen des Festivals
+	#				(2b) MÃ¶glichkeit zum Anlegen neuer Artikel zu dem Festival
 	#				(3a) Weitergabe der Daten an das Servlet "Festivalverwaltung.java" 
 	#				(3b) Weiterleitung zum Servet "Artikelverwaltung.java"
 	#				(4) Anzeige der Antwort aus dem Servlet
@@ -39,7 +39,7 @@ else {
    </jsp:include>
 	<div id="main">	
 	<div class="zeile">
-		<h1>Festival ändern</h1>
+		<h1>Festival Ã¤ndern</h1>
 		<h5>Pflichtfelder sind mit * gekennzeichnet.</h5>
 		<% if (request.getSession().getAttribute("antwort") != null) 
 		{ %>
@@ -49,7 +49,7 @@ else {
 		<div class="bild">
 			<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg").exists()) { %>
 				<img src="/Festiva/Bilder/<%=festival.bildpfad%>.jpg" id="imgAdministration" name="bild" width=150 />
-				<button type="submit" id="bild" onClick="window.location.href='/Festiva/Festivalverwaltung?aktion=b_loeschen&festivalid=<%=festival.id%>'">Aktuelles Bild löschen</button>
+				<button type="submit" id="bild" onClick="window.location.href='/Festiva/Festivalverwaltung?aktion=b_loeschen&festivalid=<%=festival.id%>'">Aktuelles Bild lÃ¶schen</button>
 			<% } else { %>
 				<p>Kein Bild vorhanden</p>
 			<% } %>
@@ -60,7 +60,7 @@ else {
 				<label for="bild">Neues Bild</label>
 				<input type="file" name="bild" accept="image/*">
 				<label for="name">Festivalname*</label>
-				<input type="text" name="name" title="Bitte wählen Sie einen passenden Namen!" maxlength="30" required="required" value="<%=festival.name%>">	
+				<input type="text" name="name" title="Bitte wÃ¤hlen Sie einen passenden Namen!" maxlength="30" required="required" value="<%=festival.name%>">	
 				<label for="kategorie">Kategorie*</label>	
 				<select id="kategorie" name="kategorie" title="Bitte ordnen Sie das Festival einer Kategorie zu!"> 
 				<%for (Kategorie kategorie : listKategorien) { 
@@ -81,33 +81,33 @@ else {
 				<textarea rows="4" name="kurzbeschreibung" title="Bitte geben Sie eine Kurzbeschreibung ein!" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
 				<label for="langbeschreibung">Langbeschreibung*</label>
 				<textarea rows="6" name="langbeschreibung" title="Bitte geben Sie eine Langbeschreibung ein!" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
-				<label for="geloescht">Ist Gelöscht</label>
-				<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=festival.istGelöscht%>"
- 					<% if (festival.istGelöscht == true) {%>
- 					checked=<%="checked"%>title="Das Festival ist gelöscht."<%} else {%><%=""%>title="Das Festival ist nicht gelöscht."<%} %> >
-				<button type="submit">Änderungen speichern</button>
+				<label for="geloescht">Ist GelÃ¶scht</label>
+				<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=festival.istGelÃ¶scht%>"
+ 					<% if (festival.istGelÃ¶scht == true) {%>
+ 					checked=<%="checked"%>title="Das Festival ist gelÃ¶scht."<%} else {%><%=""%>title="Das Festival ist nicht gelÃ¶scht."<%} %> >
+				<button type="submit">Ã„nderungen speichern</button>
 			</div>
 		</div>
 			<div class="zeile">
 				<div class="spaltelinks">
 				<h1>Artikel</h1>
 				<div class="spaltelinks">
-					<button type="button" id="anlegen" <% if (festival.istGelöscht == true) {%> disabled="disabled" <% } %> onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
+					<button type="button" id="anlegen" <% if (festival.istGelÃ¶scht == true) {%> disabled="disabled" <% } %> onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
 				</div>
 				<table class="tabelle">
 					<thead>
-						<tr><th>ID</th><th>Beschreibung</th><th>Details</th><th>Preis</th><th>Gelöscht</th></tr></thead>
+						<tr><th>ID</th><th>Beschreibung</th><th>Details</th><th>Preis</th><th>GelÃ¶scht</th></tr></thead>
 					<%for (Artikel artikel : listArtikel) { %>
 					<tbody>	
 					<tr>		
 						<th data-label="Artikel: "><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></th>
 						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
 						<td data-label="Details: "><%=artikel.details%></td>
-						<td data-label="Preis: " id="preis" width="10%"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-						<%if (artikel.istGelöscht == false) { %>
-						<td data-label="Gelöscht: "><%="nein"%></td>
+						<td data-label="Preis: " class="preis" width="10%"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<%if (artikel.istGelÃ¶scht == false) { %>
+						<td data-label="GelÃ¶scht: "><%="nein"%></td>
 						<% } else { %>
-						<td data-label="Gelöscht: "><%="ja"%></td>
+						<td data-label="GelÃ¶scht: "><%="ja"%></td>
 						<% } %>
 					</tr>
 					</tbody>
@@ -116,7 +116,7 @@ else {
 				</div>		
 			</div>					
 		</form>	 
-			<button type="submit"  onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>	
+			<button type="submit"  onclick="del(<%=festival.id%>)" <% if (festival.istGelÃ¶scht == true) { %> disabled="disabled" <% } %>>Festival lÃ¶schen</button>	
 	<div id="leer"></div>
 	</div>
 <jsp:include page="k_footer.jsp">
@@ -127,7 +127,7 @@ else {
 <script type="text/javascript">
 
 function del(id){
-	   if(confirm("Achtung! Wenn Sie das Festival löschen, werden automatisch alle dazugehörigen Artikel gelöscht. Möchten Sie fortfahren?") == true) {
+	   if(confirm("Achtung! Wenn Sie das Festival lÃ¶schen, werden automatisch alle dazugehÃ¶rigen Artikel gelÃ¶scht. MÃ¶chten Sie fortfahren?") == true) {
 		   document.location.href='/Festiva/Festivalverwaltung?aktion=loeschen&festivalid=' + id;
        } else {
     	   document.location.href='/Festiva/Festivalverwaltung?aktion=aendern&festivalid=' + id;
