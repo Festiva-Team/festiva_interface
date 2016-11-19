@@ -106,7 +106,7 @@
 		
 		<%if(listArtikelUeberMaxPreis != null && !(listArtikelUeberMaxPreis.isEmpty())) { %>
 		<h2>Falls Sie doch etwas mehr Geld ausgeben möchten, könnten Sie auch die folgenden Tickets interessieren:</h2>
-	 	<table class= "tabelle">
+	 	<table class="artikel">
 			<thead><tr><th>Beschreibung</th><th>Details</th><th>Preis</th><th></th><th></th></tr></thead>
 			<%for (Artikel artikel : listArtikelUeberMaxPreis) { %>
 			<tbody>	

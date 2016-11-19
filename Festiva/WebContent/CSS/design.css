@@ -423,7 +423,7 @@ th {text-align: left;
     margin-left: 5em;
     margin-right: 5em;
 }
-.artikel td{
+.artikel td, .artikeldetails td{
 	min-width: 0;
 	vertical-align: top;
 }
