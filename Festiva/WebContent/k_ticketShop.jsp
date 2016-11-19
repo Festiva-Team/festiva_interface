@@ -42,7 +42,7 @@ if (request.getSession(false) != null) {
 		<h1>Ticket Shop</h1>
 			<div class="spaltelinks">					
 				<label for="name">Name</label>
-				<input type="search" id="name" maxlength="30" title="Hier können Sie den Namen des gesuchten Festivals angeben." name="name" <% if(suchKriterien.name != null) { %> value="<%=suchKriterien.name%>" <% } %>>
+				<input type="text" id="name" maxlength="30" title="Hier können Sie den Namen des gesuchten Festivals angeben." name="name" <% if(suchKriterien.name != null) { %> value="<%=suchKriterien.name%>" <% } %>>
 				<label for="kategorie">Kategorie</label>
 				<select id="kategorie" name="kategorie" title="Hier können Sie nach den verfügbaren Kategorien selektieren.">
 				<option value=0></option>
@@ -54,7 +54,7 @@ if (request.getSession(false) != null) {
 				<% } } %>
 				</select>	
 				<label for="name">Ort</label>
-				<input type="search" id="ort" maxlength="30" name="ort" title="Hier können Sie den Ort des gesuchten Festivals angeben." <% if(suchKriterien.ort != null) { %> value="<%=suchKriterien.ort%>" <% } %>>
+				<input type="text" id="ort" maxlength="30" name="ort" title="Hier können Sie den Ort des gesuchten Festivals angeben." <% if(suchKriterien.ort != null) { %> value="<%=suchKriterien.ort%>" <% } %>>
 			</div>
 			<div class="spalterechts">						
 				<label for="startdatum">Im Zeitraum von</label>
@@ -92,7 +92,7 @@ if (request.getSession(false) != null) {
 				<%}
 				else
 				{%>
-				<td data-label="Zeit: "><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
+				<td data-label=""><%=sd.format(festival.startDatum)%> - <%=sd.format(festival.endDatum)%></td>
 				<%} %>
 				<td data-label="Ort: "><%=festival.ort%></td>
 				<%for(Kategorie kategorie : listKategorien){

@@ -357,6 +357,7 @@ input,textarea, select{
 	background-color: #FAEBD7;
 	border: 1px solid #990000;
 	border-radius: 10px;
+	font-family: Arial,sans-serif;
 }
 label,textarea, input, radio, select, label.kasse
 {	display: block;
@@ -418,12 +419,17 @@ th {text-align: left;
     min-width: 5em;
     vertical-align: top;
 }
-.artikel{
-	margin-left: 5em;
- 	margin-right: 5em;
+.artikel {
+    margin-left: 5em;
+    margin-right: 5em;
 }
 .artikel td{
+	min-width: 0;
 	vertical-align: top;
+}
+.artikeldetails {
+    margin-left: 0;
+    margin-right: 1em;
 }
 td.beschreibung {
 	min-width: 10em;
@@ -462,8 +468,8 @@ h1{
 	text-align: center;
 }   
 h2{	
-	font-size: 130%;
-	text-align: center;
+	font-size: 100%;
+	text-align: left;
 	margin: 0;
 	padding: 1em;
 }
@@ -556,14 +562,23 @@ label
 input,textarea{
 	width: 90%;
 	margin-right: 0.5em;
+	padding: .5em;
+}
+#kategorie{
+	width: 93%;
+	margin: 0;
+	margin-left: .5em;
+	margin-right: .5em;
 	padding: .2em;
 }
 select, option{
-	width: 90%;
-	float: none;
-	text-align: left;
-	margin-right: 0.5em;
-	padding: .2em;
+    width: 5em;
+    float: none;
+    text-align: left;
+    margin: 0;
+    margin-left: .2em;
+    margin-right: 0.5em;
+    padding: .2em;
 }
 fieldset{
 	margin: .5em;
@@ -577,7 +592,6 @@ fieldset{
 /****************Button**************/
 button{
 	width: 60%;
-	padding: 0; 
 	margin: .5em;
 }
 button.anlegen{
@@ -607,6 +621,7 @@ th::before {
 td::before{	
 	content: attr(data-label);
 	font-style: italic;
+	font-weight: bold;
 	font-size: 110%;
 }
 .tabelle
@@ -631,11 +646,11 @@ tbody th {
 th a {
 	font-weight: normal;
 }
-td{
-	display: block;
-	min-width: 30%;
-	padding: .1em;
-	text-align: left;
+td, th {
+    display: block;
+    min-width: 30%;
+    padding: .1em;
+    text-align: left;
 }
 tfoot th {
  	border: none;

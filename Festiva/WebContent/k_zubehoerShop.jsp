@@ -7,7 +7,7 @@
 <%
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
-	# JSP-Name: k_merchandiseShop.jsp
+	# JSP-Name: k_zubehoerShop.jsp
 	# JSP-Aktionen: (1) Anzeige aller Zubehörartikel
 	 				(2) Möglichkeit max. 10 Einheiten eines Artikel in den Warenkorb zu legen 
 					(2a) Aufruf des Servlet "Warenkorbverwaltung.java"
@@ -63,7 +63,7 @@ if (request.getSession(false) != null) {
 						<td data-label="">Kein Bild verfügbar</td>
 						<% }	%>
 						<td data-label="Beschreibung: "><a href="/Festiva/Produktverwaltung?aktion=a_anzeigen&artikelid=<%=artikel.id%>"><%=artikel.beschreibung%></a></td>
-						<td data-label="Preis: " id="preis" width="10%"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 						</tr>
 					</tbody>
 					<% } }%>

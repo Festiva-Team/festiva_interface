@@ -89,12 +89,10 @@ else {
 			</div>
 		</div>
 			<div class="zeile">
-				<div class="spaltelinks">
 				<h1>Artikel</h1>
 				<div class="spaltelinks">
 					<button type="button" class="anlegen" <% if (festival.istGelöscht == true) {%> disabled="disabled" <% } %> onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
 				</div>
-			</div>
 			<div class ="zeile">
 				<table class="artikel">
 					<thead>
