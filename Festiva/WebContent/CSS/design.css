@@ -385,7 +385,7 @@ fieldset
 }
 /**************Sonstiges***************/
 a{
-	color: black;
+	color: #990000;
 }
 output {
 	display: block;
@@ -417,6 +417,16 @@ th {text-align: left;
     padding: .5em .2em;
     min-width: 5em;
     vertical-align: top;
+}
+.artikel{
+	margin-left: 5em;
+ 	margin-right: 5em;
+}
+.artikel td{
+	vertical-align: top;
+}
+td.beschreibung {
+	min-width: 10em;
 }
 td,
 th {text-align: left;
@@ -570,6 +580,11 @@ button{
 	padding: 0; 
 	margin: .5em;
 }
+button.anlegen{
+	clear: both;
+	float: left;
+	margin-left: .5em;
+}
 #buttontabelle
 {
 	float: none;
@@ -583,6 +598,9 @@ tr {
 	border-bottom: 2px solid #990000;
 	padding: 0 .2em 1em 1em;	
 }
+tr.tabellenzeile{
+	border: none;
+}
 th::before {
 	content: attr(data-label);
 }
@@ -595,7 +613,10 @@ td::before{
  {	margin-left: 0;
  	margin-right:0;
  }
-
+.artikel
+ {	margin-left: 0;
+ 	margin-right:0;
+ }
 table,
 tbody,
 tr {
@@ -672,9 +693,6 @@ img{
 	width: 70%;
 	margin-bottom: 0.2em;
 }
-#preis{
-	text-align: right;
-}
 #langtext{
 	display:none;
 }
@@ -688,6 +706,9 @@ img{
 	margin: 0 .5em .2em .5em;	
 	font-weight: bold;
 	padding: .2em;
+}
+.preis{
+	text-align: left;
 }
 #footertext{
 	display:none;

@@ -46,7 +46,7 @@ response.sendRedirect("k_anmelden.jsp");}
 			<input type="password" name="passwort" id="passwort" title="Bitte beachten Sie bei der Wahl des Passworts den rechtsstehenden Hinweis!" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
 			<label for="passwortbestätigung">Passwort bestätigen*</label>
 			<input type="password" name="passwortbestätigung" title="Bitte beachten Sie bei der Wahl des Passworts den rechtsstehenden Hinweis!" id="passwortbestätigung" maxlength="40" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required"/>
-			<button type="submit" id="links">Anlegen</button>
+			<button type="submit">Anlegen</button>
 		</div>
 		<div class="spalterechts">
 			<p id="text"><b>Hinweis:</b> Das Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>	
