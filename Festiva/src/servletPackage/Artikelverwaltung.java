@@ -49,7 +49,8 @@ public class Artikelverwaltung extends HttpServlet {
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 1) {
 			
 			String antwort = "";
-			if((request.getParameter("aktion")).equals("anlegen")) {
+			if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anlegen")) {
+				
 				
 				int festivalid = Integer.parseInt(request.getParameter("festivalid"));
 				String beschreibung = request.getParameter("beschreibung");
@@ -83,16 +84,16 @@ public class Artikelverwaltung extends HttpServlet {
 			    request.getRequestDispatcher("a_artikelAnlegen.jsp").include(request, response);
 			} else {
 				
-				if((request.getParameter("aktion")).equals("anzeigen")) {
+				if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anzeigen")) {
 					List<Artikel> listArtikel = ArtikelManager.selektiereAlleUnabhaengigenArtikel();
 					session.setAttribute("listArtikel", listArtikel);
 					request.getRequestDispatcher("a_artikelverwaltung.jsp").include(request, response);
 				} else {
 				int artikelid = Integer.parseInt(request.getParameter("artikelid").toString());
 				Artikel artikel = ArtikelManager.selektiereArtikel(artikelid);
-			if ((request.getParameter("aktion")).equals("aendern")) {			
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aendern")) {			
 			} else {
-				if ((request.getParameter("aktion")).equals("datenaendern")) {
+				if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("datenaendern")) {
 					
 					String beschreibung = request.getParameter("beschreibung");
 					String details = request.getParameter("details");
@@ -132,7 +133,7 @@ public class Artikelverwaltung extends HttpServlet {
 					}
 					session.setAttribute("antwort", antwort);
 				} else {
-					if((request.getParameter("aktion")).equals("loeschen")) {
+					if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("loeschen")) {
 						if(artikel.id != 6) {
 							artikel.istGelöscht = true;
 							ArtikelManager.löscheArtikel(artikel);
@@ -142,7 +143,7 @@ public class Artikelverwaltung extends HttpServlet {
 						}
 						session.setAttribute("antwort", antwort);
 					} else {
-						if((request.getParameter("aktion")).equals("b_loeschen")) {
+						if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("b_loeschen")) {
 							File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + artikel.bildpfad + ".jpg");
 						    
 						    if (file.exists()) file.delete();

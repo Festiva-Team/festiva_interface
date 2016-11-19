@@ -52,7 +52,7 @@ public class Festivalverwaltung extends HttpServlet {
 			String antwort = "";
 			SimpleDateFormat datum = new SimpleDateFormat( "dd.MM.yyyy" );
 			
-			if ((request.getParameter("aktion")).equals("anzeigen")) {
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anzeigen")) {
 				List<Festival> listFestivals = FestivalManager.selektiereAlleFestivals();
 				List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorien();
 				session.setAttribute("listKategorien", listKategorien);
@@ -61,13 +61,13 @@ public class Festivalverwaltung extends HttpServlet {
 			} else { 
 				List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorien();
 				session.setAttribute("listKategorien", listKategorien);
-				if((request.getParameter("aktion")).equals("anlegenanzeigen")) {
+				if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anlegenanzeigen")) {
 					listKategorien = KategorienManager.selektiereAlleAktivenKategorien();
 					session.setAttribute("listKategorien", listKategorien);
 				request.getRequestDispatcher("a_festivalAnlegen.jsp").include(request, response);
 			} else {
 				
-				if((request.getParameter("aktion")).equals("anlegen")) {
+				if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anlegen")) {
 															
 					String name = request.getParameter("name");
 					String ort = request.getParameter("ort");
@@ -119,11 +119,11 @@ public class Festivalverwaltung extends HttpServlet {
 					List<Artikel> listArtikel = ArtikelManager.selektiereAlleArtikelVonFestival(festivalid);
 					session.setAttribute("listArtikel", listArtikel);
 					
-					if ((request.getParameter("aktion")).equals("aendern")) {
+					if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aendern")) {
 
 					} else {
 						
-						if ((request.getParameter("aktion")).equals("datenaendern")) {
+						if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("datenaendern")) {
 							
 							String name = request.getParameter("name");
 							String ort = request.getParameter("ort");
@@ -182,7 +182,7 @@ public class Festivalverwaltung extends HttpServlet {
 							session.setAttribute("antwort", antwort);
 							}
 						} else {
-							if((request.getParameter("aktion")).equals("loeschen")) {
+							if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("loeschen")) {
 								festival.istGelöscht = true;
 								FestivalManager.löscheFestival(festival);
 								for (Artikel artikel : listArtikel) {
@@ -193,7 +193,7 @@ public class Festivalverwaltung extends HttpServlet {
 								antwort = "Das Festival und alle dazugehörigen Artikel wurden erfolgreich gelöscht.";
 								session.setAttribute("antwort", antwort);
 							} 	else {
-								if((request.getParameter("aktion")).equals("b_loeschen")) {
+								if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("b_loeschen")) {
 									File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg");
 								    
 								    if (file.exists()) file.delete();

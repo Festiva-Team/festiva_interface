@@ -48,7 +48,7 @@ public class Benutzerdaten extends HttpServlet {
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
 			Benutzer benutzer = BenutzerManager.selektiereBenutzerMitID(userid);
 					
-			if ((request.getParameter("aktion")).equals("anzeigen")) {
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anzeigen")) {
 				
 				session.setAttribute("benutzer", benutzer);
 				
@@ -59,7 +59,7 @@ public class Benutzerdaten extends HttpServlet {
 					}					
 			} 
 			
-			if ((request.getParameter("aktion")).equals("aendern")) {
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aendern")) {
 					
 					String eMail = request.getParameter("email");
 					String vorname = request.getParameter("vorname");
@@ -96,7 +96,7 @@ public class Benutzerdaten extends HttpServlet {
 					request.getRequestDispatcher("/Benutzerdaten?aktion=anzeigen").include(request, response); }
 			
 					
-					if ((request.getParameter("aktion")).equals("p_aendern")) {
+					if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("p_aendern")) {
 						
 						String passwortAlt = request.getParameter("passwortalt");
 						passwortAlt = Registrierung.generiereHash((passwortAlt + "76ZuOp(6?ssXY0"));
@@ -109,7 +109,7 @@ public class Benutzerdaten extends HttpServlet {
 						request.getRequestDispatcher("/Benutzerdaten?aktion=anzeigen").include(request, response); }
 					
 					
-					if((request.getParameter("aktion")).equals("loeschen")) {
+					if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("loeschen")) {
 							benutzer.istGelöscht = true;
 							BenutzerManager.löscheBenutzer(benutzer);
 							request.getRequestDispatcher("/Logout").include(request, response); 

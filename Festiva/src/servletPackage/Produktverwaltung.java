@@ -40,7 +40,7 @@ public class Produktverwaltung extends HttpServlet {
 		response.setDateHeader("Expires", 0);
 		try{
 
-		if ((request.getParameter("aktion")).equals("z_anzeigen")) {
+		if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("z_anzeigen")) {
 			
 			if(session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 				int userid = Integer.parseInt(session.getAttribute("userid").toString());
@@ -55,7 +55,7 @@ public class Produktverwaltung extends HttpServlet {
 			session.setAttribute("listArtikel", listArtikel);
 			request.getRequestDispatcher("k_zubehoerShop.jsp").include(request, response);		
 		} else {
-			if((request.getParameter("aktion")).equals("s_anzeigen")) {
+			if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("s_anzeigen")) {
 				List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorienFuerSlideshow();
 				if(session != null){
 				session.setAttribute("listKategorien", listKategorien);
@@ -64,7 +64,7 @@ public class Produktverwaltung extends HttpServlet {
 				}
 				request.getRequestDispatcher("k_startseite.jsp").include(request, response);	
 			} else {
-				if((request.getParameter("aktion")).equals("a_anzeigen")) {
+				if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("a_anzeigen")) {
 					int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 				
 					if(session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {

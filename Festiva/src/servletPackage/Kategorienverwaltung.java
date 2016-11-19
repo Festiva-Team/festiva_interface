@@ -48,7 +48,7 @@ public class Kategorienverwaltung extends HttpServlet {
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 1) {
 			String antwort = "";
 			
-			if ((request.getParameter("aktion")).equals("anlegen")) {
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anlegen")) {
 				String name = request.getParameter("name");
 				String beschreibung = request.getParameter("beschreibung");
 				
@@ -78,7 +78,7 @@ public class Kategorienverwaltung extends HttpServlet {
 				session.setAttribute("antwort", antwort);
 			    request.getRequestDispatcher("a_kategorieAnlegen.jsp").include(request, response);
 			} else {
-				if ((request.getParameter("aktion")).equals("anzeigen")) {
+				if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anzeigen")) {
 					List<Kategorie> listKategorien = KategorienManager.selektiereAlleKategorien();
 					session.setAttribute("listKategorien", listKategorien);
 					request.getRequestDispatcher("a_kategorienverwaltung.jsp").include(request, response);
@@ -87,12 +87,12 @@ public class Kategorienverwaltung extends HttpServlet {
 					int kategorienid = Integer.parseInt((request.getParameter("kategorienid")).toString());
 					Kategorie kategorie = KategorienManager.selektiereKategorie(kategorienid);
 					
-					if ((request.getParameter("aktion")).equals("aendern")) {
+					if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aendern")) {
 						
 						
 					}
 					else {
-						if ((request.getParameter("aktion")).equals("datenaendern")) {
+						if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("datenaendern")) {
 							
 							String name = request.getParameter("name");
 							String beschreibung = request.getParameter("beschreibung");
@@ -132,7 +132,7 @@ public class Kategorienverwaltung extends HttpServlet {
 							}
 							
 						} else {
-							if((request.getParameter("aktion")).equals("loeschen")) {			
+							if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("loeschen")) {			
 								List<Festival> listFestivals = FestivalManager.selektiereAlleFestivalObjekteVonKategorie(kategorie.id);
 								boolean loeschenMoeglich = true;
 								for(Festival festival : listFestivals) {
@@ -150,7 +150,7 @@ public class Kategorienverwaltung extends HttpServlet {
 							
 								session.setAttribute("antwort", antwort);
 							} else {
-								if((request.getParameter("aktion")).equals("b_loeschen")) {
+								if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("b_loeschen")) {
 									File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg");
 								    
 								    if (file.exists()) file.delete();

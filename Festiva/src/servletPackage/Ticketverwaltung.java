@@ -42,7 +42,7 @@ public class Ticketverwaltung extends HttpServlet {
 		response.setHeader("Cache-Control", "max-age=600");
 		response.setDateHeader("Expires", 600);
 		try{
-			if ((request.getParameter("aktion")).equals("t_anzeigen")) {
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("t_anzeigen")) {
 				SimpleDateFormat datum1 = new SimpleDateFormat( "dd.MM.yyyy" );
 				SimpleDateFormat datum2 = new SimpleDateFormat( "yyyy-MM-dd" );
 				
@@ -94,7 +94,7 @@ public class Ticketverwaltung extends HttpServlet {
 				session.setAttribute("listKategorien", listKategorien);
 				request.getRequestDispatcher("k_ticketShop.jsp").include(request, response);
 			} else {
-				if((request.getParameter("aktion")).equals("f_anzeigen")) {
+				if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("f_anzeigen")) {
 					int festivalid = Integer.parseInt(request.getParameter("festivalid"));
 					float maxpreis = Float.parseFloat(request.getParameter("maxpreis"));
 					

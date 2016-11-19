@@ -43,7 +43,7 @@ public class Kundenverwaltung extends HttpServlet {
 			
 			String antwort = "";
 			
-			if ((request.getParameter("aktion")).equals("anzeigen")) {
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anzeigen")) {
 				List<Benutzer> listBenutzer = BenutzerManager.selektiereAlleKunden();
 				session.setAttribute("listBenutzer", listBenutzer);
 				request.getRequestDispatcher("a_kundenverwaltung.jsp").include(request, response);
@@ -53,7 +53,7 @@ public class Kundenverwaltung extends HttpServlet {
 				int kundenid = Integer.parseInt(request.getParameter("kundenid").toString());
 				Benutzer benutzer = BenutzerManager.selektiereBenutzerMitID(kundenid);
 				
-				if ((request.getParameter("aktion")).equals("pw_aendern")) {
+				if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("pw_aendern")) {
 					
 					String passwortNeu = request.getParameter("passwortneu");
 					String passwortBestätigung = request.getParameter("passwortbestätigung");
@@ -73,14 +73,14 @@ public class Kundenverwaltung extends HttpServlet {
 						session.setAttribute("antwort", antwort);
 					} else {
 			
-					if(request.getParameter("aktion").equals("loeschen")) {	
+					if( request.getParameter("aktion") != null && request.getParameter("aktion").equals("loeschen")) {	
 						benutzer.istGelöscht = true;
 						BenutzerManager.löscheBenutzer(benutzer);
 						antwort = "Der Benutzer wurde erfolgreich gelöscht.";
 						session.setAttribute("antwort", antwort);
 					} else {
 						
-						if(request.getParameter("aktion").equals("datenaendern")) {
+						if( request.getParameter("aktion") != null && request.getParameter("aktion").equals("datenaendern")) {
 							
 							String eMail = request.getParameter("email");
 							if ((!(benutzer.eMailAdresse).equals(eMail)) && BenutzerManager.selektiereBenutzer(eMail) != null) {

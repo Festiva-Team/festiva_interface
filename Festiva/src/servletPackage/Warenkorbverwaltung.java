@@ -44,7 +44,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 			
-			if ((request.getParameter("aktion")).equals("anzeigen")) {
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anzeigen")) {
 			int userid = Integer.parseInt(session.getAttribute("userid").toString());
 			Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, false);
 			List<Festival> listFestivals = FestivalManager.selektiereAlleFestivals();
@@ -52,7 +52,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 			session.setAttribute("warenkorb", warenkorb);
 			request.getRequestDispatcher("k_warenkorb.jsp").include(request, response);
 			} else { 
-					if ((request.getParameter("aktion")).equals("k_anzeigen")) {
+					if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("k_anzeigen")) {
 						int userid = Integer.parseInt(session.getAttribute("userid").toString());
 						boolean perPost = false;
 						boolean postEnthalten = false;
@@ -84,7 +84,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 						session.setAttribute("benutzer", benutzer);
 						request.getRequestDispatcher("k_kasse.jsp").include(request, response);
 					} else {
-						if ((request.getParameter("aktion")).equals("p_versand")) {
+						if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("p_versand")) {
 							int userid = Integer.parseInt(session.getAttribute("userid").toString());
 							boolean postEnthalten = false;
 							Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, true);
@@ -101,7 +101,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 							session.setAttribute("perPost", perPost);
 							request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
 						} else {
-							if ((request.getParameter("aktion")).equals("m_versand")) {	
+							if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("m_versand")) {	
 								int userid = Integer.parseInt(session.getAttribute("userid").toString());
 								int warenkorbid = WarenkorbManager.selektiereWarenkorbID(userid);
 								Warenkorbelement warenkorbelement = WarenkorbManager.selektiereWarenkorbelementMitArtikelID(6, warenkorbid);
@@ -112,7 +112,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 								request.getRequestDispatcher("/Warenkorbverwaltung?aktion=k_anzeigen").include(request, response);
 								
 							} else {
-								if((request.getParameter("aktion")).equals("hinzufuegen")) {
+								if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("hinzufuegen")) {
 									int userid = Integer.parseInt(session.getAttribute("userid").toString());
 									int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 									int menge = Integer.parseInt(request.getParameter("menge"));
@@ -129,7 +129,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 									request.getRequestDispatcher("/Ticketverwaltung?aktion=f_anzeigen&festivalid=" + festivalid + "&maxpreis=" + maxpreis).include(request, response);	
 									}
 								} else { 
-									if((request.getParameter("aktion")).equals("aktualisieren")) {
+									if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aktualisieren")) {
 										int userid = Integer.parseInt(session.getAttribute("userid").toString());
 										int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 										int menge = Integer.parseInt(request.getParameter("menge"));
@@ -159,14 +159,14 @@ public class Warenkorbverwaltung extends HttpServlet {
 									} else {
 									
 				int elementID = Integer.parseInt(request.getParameter("elementid"));
-				if ((request.getParameter("aktion")).equals("aendern")) {
+				if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aendern")) {
 					int mengeNeu = Integer.parseInt(request.getParameter("menge"));
 					Warenkorbelement warenkorbelement = WarenkorbManager.selektiereWarenkorbelement(elementID);
 					warenkorbelement.menge = mengeNeu;
 					WarenkorbManager.aktualisiereWarenkorbelement(warenkorbelement);
 					
 				} else {
-					if ((request.getParameter("aktion")).equals("loeschen")) {
+					if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("loeschen")) {
 						WarenkorbManager.loescheWarenkorbelement(elementID);
 						
 					} 
@@ -178,7 +178,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 			}
 			
 		} else {
-			if((request.getParameter("aktion")).equals("anmelden")) {
+			if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anmelden")) {
 				antwort = "Sie müssen sich erst anmelden, bevor Sie Artikel in Ihren Warenkorb legen können.";
 				if(session.getAttribute("aufrufer") != null) {
 				String anforderer = session.getAttribute("aufrufer").toString();

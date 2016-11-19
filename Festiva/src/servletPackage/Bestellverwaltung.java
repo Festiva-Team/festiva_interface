@@ -40,7 +40,7 @@ public class Bestellverwaltung extends HttpServlet {
 		
 		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
-			if ((request.getParameter("aktion")).equals("anlegen")) {
+			if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anlegen")) {
 				int userid = Integer.parseInt(session.getAttribute("userid").toString());
 				String versand = request.getParameter("versand");
 				boolean perPost = false;
@@ -59,7 +59,7 @@ public class Bestellverwaltung extends HttpServlet {
 				WarenkorbManager.loescheWarenkorbinhalt(warenkorb.id);
 				request.getRequestDispatcher("/Bestellverwaltung?aktion=anzeigen").include(request, response);
 			} else {
-				if ((request.getParameter("aktion")).equals("anzeigen")) {
+				if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anzeigen")) {
 					int userid = Integer.parseInt(session.getAttribute("userid").toString());
 					List<Bestellung> listBestellungen = BestellungsManager.selektiereBestellungenVonKunden(userid);
 					List<Artikel> listArtikel = ArtikelManager.selektiereAlleArtikel();
