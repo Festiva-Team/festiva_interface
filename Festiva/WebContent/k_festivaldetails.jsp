@@ -64,8 +64,8 @@
 			</div>
 			<div class="spalterechts">
 				<table class= "festival">
-					<tr><td><b>Zeitraum:</b></td><td> <%=sd.format(festival.startDatum)%>  -  <%=sd.format(festival.endDatum)%></td></tr>
-					<tr><td><b>Ort:</b></td><td><%=festival.ort%></td></tr>
+					<tr class="tabellenzeile"><td><b>Zeitraum:</b></td><td> <%=sd.format(festival.startDatum)%>  -  <%=sd.format(festival.endDatum)%></td></tr>
+					<tr class="tabellenzeile"><td><b>Ort:</b></td><td><%=festival.ort%></td></tr>
 					<tr><td><b>Beschreibung:</b></td><td><%=festival.kurzbeschreibung%></td></tr>
 				</table>
 			</div>
@@ -79,8 +79,8 @@
 			<tbody>	<tr>		
 			<td data-label="Beschreibung: " ><%=artikel.beschreibung%></td>
 			<td data-label="Details: " ><%=artikel.details%></td>
-			<td data-label="Preis: "><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
-			<td data-label="" class="anzahl" id="preis"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
+			<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+			<td data-label="" class="anzahl"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
 			<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 			</tr></tbody>
 			<% } %>

@@ -92,18 +92,20 @@ else {
 				<div class="spaltelinks">
 				<h1>Artikel</h1>
 				<div class="spaltelinks">
-					<button type="button" id="anlegen" <% if (festival.istGelöscht == true) {%> disabled="disabled" <% } %> onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
+					<button type="button" class="anlegen" <% if (festival.istGelöscht == true) {%> disabled="disabled" <% } %> onClick="window.location.href='a_artikelAnlegen.jsp?festivalid=<%=festival.id%>'">Neuen Artikel anlegen</button>
 				</div>
-				<table class="tabelle">
+			</div>
+			<div class ="zeile">
+				<table class="artikel">
 					<thead>
 						<tr><th>ID</th><th>Beschreibung</th><th>Details</th><th>Preis</th><th>Gelöscht</th></tr></thead>
 					<%for (Artikel artikel : listArtikel) { %>
 					<tbody>	
 					<tr>		
 						<th data-label="Artikel: "><a href="/Festiva/Artikelverwaltung?aktion=aendern&artikelid=<%=artikel.id%>"><%=artikel.id%></a></th>
-						<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
+						<td data-label="Beschreibung: " class="beschreibung"><%=artikel.beschreibung%></td>
 						<td data-label="Details: "><%=artikel.details%></td>
-						<td data-label="Preis: " class="preis" width="10%"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
+						<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 						<%if (artikel.istGelöscht == false) { %>
 						<td data-label="Gelöscht: "><%="nein"%></td>
 						<% } else { %>

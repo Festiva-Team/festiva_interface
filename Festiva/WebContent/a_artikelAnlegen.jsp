@@ -54,7 +54,7 @@ else {
 			<label for="bild">Bild</label>
 			<input type="file" name = "bild" accept="image/*"><br>
 			<% } %>
-			<button type="submit" id="links">Anlegen</button>
+			<button type="submit">Anlegen</button>
 		</div>
 	</div>
 	</form>		
