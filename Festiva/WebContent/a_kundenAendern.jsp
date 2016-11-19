@@ -53,14 +53,14 @@ else {
 			<input type="text" id="hausnummer" name="hausnummer" title="Hier können Sie die Hausnummer des Kunden hinterlegen." minlength="1" maxlength="5" value="<%=benutzer.hausnummer%>">
 			<label for="plz">PLZ</label>
 			<%if(benutzer.plz == 0) { %>
-			<input type="text" id="plz" name="plz" minlength="5" title="Hier können Sie die Postleitzahl des Kunden hinterlegen." maxlength="5" value="">
+			<input type="text" id="plz" name="plz" pattern="[0-9]{5}" minlength="5" title="Hier können Sie die Postleitzahl des Kunden hinterlegen." maxlength="5" value="">
 			<% } else { %>
-			<input type="text" id="plz" name="plz" minlength="5" title="Hier können Sie die Postleitzahl des Kunden hinterlegen." maxlength="5" value="<%=benutzer.plz%>">
+			<input type="text" id="plz" name="plz" pattern="[0-9]{5}" minlength="5" title="Hier können Sie die Postleitzahl des Kunden hinterlegen." maxlength="5" value="<%=benutzer.plz%>">
 			<% } %>
 			<label for="ort">Ort</label>
 			<input type="text" id="ort" name="ort" maxlength="30" title="Hier können Sie den Wohnort des Kunden hinterlegen." value="<%=benutzer.ort%>">
 			<label for="iban">IBAN</label>
-			<input type="text" id="iban" name="iban" minlength="22" maxlength="22" title="Hier können Sie die IBAN des Kunden hinterlegen." value="<%=benutzer.iban%>">
+			<input type="text" id="iban" name="iban" minlength="22" maxlength="22" pattern="DE[0-9]{20}" title="Hier können Sie die IBAN des Kunden hinterlegen." value="<%=benutzer.iban%>">
 			<label for="bic">BIC</label>
 			<input type="text" id="bic" name="bic" minlength="9" maxlength="11" title="Hier können Sie die BIC des Kunden hinterlegen." value="<%=benutzer.bic%>">
 	    	<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value="<%=benutzer.einzugsermächtigungErteilt%>"
