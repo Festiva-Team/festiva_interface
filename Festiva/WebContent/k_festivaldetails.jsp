@@ -72,8 +72,8 @@
 		</div>
 		<p id="langtext"><%=festival.langbeschreibung%></p>
 		<% if (listArtikel != null && !(listArtikel.isEmpty())) { %>
-		<h2>Verfügbare Tickets</h2>
-		<table class= "tabelle">
+		<h1>Verfügbare Tickets</h1>
+		<table class= "artikel">
 			<thead><tr><th>Beschreibung</th><th>Details</th><th>Preis</th><th></th><th></th></tr></thead>
 			<%for (Artikel artikel : listArtikel) { %>
 			<tbody>	<tr>		
@@ -88,7 +88,7 @@
 		 <% } else {
 			if(listArtikelMitMaxPreis != null && !(listArtikelMitMaxPreis.isEmpty())) {%>
 		 <h2>Diese Tickets passen zu Ihrem eingegebenen Maximalpreis von <%=String.format("%.2f",maxPreis)%> &#8364; :</h2>
-		 <table class= "tabelle">
+		 <table class= "artikel">
 			<thead><tr><th>Beschreibung</th><th>Details</th><th>Preis</th><th></th><th></th></tr></thead>
 			<%for (Artikel artikel : listArtikelMitMaxPreis) { %>
 			<tbody>	

@@ -304,7 +304,8 @@ button.anlegen{
 	margin-left: 5em;
 }
 #buttontabelle{
-	width: 10em;
+	margin: 0;
+	width: 12em;
 }
 /******Slideshow***********/
 
@@ -363,7 +364,9 @@ label,textarea, input, radio, select, label.kasse
 {	display: block;
 	float: left;
 }
-
+.anzahl{
+	width: 5em;
+}
 #check{
 	float: none;
 	text-align: left;
@@ -430,6 +433,7 @@ th {text-align: left;
 .artikeldetails {
     margin-left: 0;
     margin-right: 1em;
+    vertical-align: top;
 }
 td.beschreibung {
 	min-width: 10em;
@@ -610,7 +614,7 @@ thead {
 }
 tr {
 	border-bottom: 2px solid #990000;
-	padding: 0 .2em 1em 1em;	
+	padding: 0 .2em .2em .5em;	
 }
 tr.tabellenzeile{
 	border: none;

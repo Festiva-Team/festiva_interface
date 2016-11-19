@@ -54,7 +54,7 @@ Artikel artikel = (Artikel)request.getSession(false).getAttribute("artikel");
 				<tbody>
 			    <tr class="tabellenzeile"><td><b>Details:</b></td><td><%=artikel.details%></td></tr> 
 			    <tr class="tabellenzeile"><td><b>Preis: </b></td><td><%=String.format("%.2f",artikel.preis)%> &#8364;</td></tr>
-				<tr class="tabellenzeile"><td></td><td><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td></tr>
+				<tr class="tabellenzeile"><td><b>Anzahl: </b></td><td><select class="anzahl" id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td></tr>
 				<tr><td></td><td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>)">In den Warenkorb</button></td></tr>
 				</tbody>
 			</table>
