@@ -65,13 +65,13 @@ else {
 			<input type="text" id="bic" name="bic" minlength="9" maxlength="11" title="Hier können Sie die BIC des Kunden hinterlegen." value="<%=benutzer.bic%>">
 	    	<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value="<%=benutzer.einzugsermächtigungErteilt%>"
 	 			<% if (benutzer.einzugsermächtigungErteilt == true) {%>
-	 			checked=<%="checked"%>title="Der Kunde hat die Einzugsermächtigung erteilt."<%} else {%><%=""%>title="Der Kunde hat die Einzugsermächtigung nicht erteilt."<%} %> > Einzugsermächtigung erteilt<br/>
+	 			checked=<%="checked"%>title="Der Kunde hat die Einzugsermächtigung erteilt."<%} else {%><%=""%>title="Der Kunde hat die Einzugsermächtigung nicht erteilt."<%} %> ><p id="checkbox"> Einzugsermächtigung erteilt</p>
 			<input type="checkbox" id="gesperrt" name="gesperrt" value= "<%=benutzer.istGesperrt%>"
 	    		<% if (benutzer.istGesperrt == true) {%>
-	    		checked=<%="checked"%>title="Der Kunde ist gesperrt."<%} else {%><%=""%>title="Der Kunde ist nicht gesperrt."<%} %> >Ist Gesperrt<br/>
+	    		checked=<%="checked"%>title="Der Kunde ist gesperrt."<%} else {%><%=""%>title="Der Kunde ist nicht gesperrt."<%} %> ><p id="checkbox">Ist Gesperrt</p>
 	    	<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=benutzer.istGelöscht%>"
 			    <% if (benutzer.istGelöscht == true) {%>
-			    checked=<%="checked"%>title="Der Kunde ist gelöscht."<%} else {%><%=""%>title="Der Kunde ist nicht gelöscht."<%} %> >Ist Gelöscht<br/>
+			    checked=<%="checked"%>title="Der Kunde ist gelöscht."<%} else {%><%=""%>title="Der Kunde ist nicht gelöscht."<%} %> ><p id="checkbox">Ist Gelöscht</p>
 			<button type="submit">Änderungen speichern</button>
 		</div>
 	</form>	

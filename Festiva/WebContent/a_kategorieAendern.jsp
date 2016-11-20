@@ -49,10 +49,9 @@ else {
 			<input type="file" name="bild" accept="image/*">
 			<output id="list"></output>	
 			<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { %>
-			<label for="geloescht">Ist Gelöscht</label>
 			<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=kategorie.istGelöscht%>"
 		    <% if (kategorie.istGelöscht == true) {%>
-		    checked=<%="checked"%> title="Die Kategorie ist gelöscht."<%} else {%><%=""%>title="Die Kategorie ist nicht gelöscht."<%} %> ><br/>
+		    checked=<%="checked"%> title="Die Kategorie ist gelöscht."<%} else {%><%=""%>title="Die Kategorie ist nicht gelöscht."<%} %> ><p id="checkbox">Ist Gelöscht</p>
      			<% } %>
 			<button type="submit">Änderungen speichern</button>
 		</div>

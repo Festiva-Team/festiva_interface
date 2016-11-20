@@ -54,10 +54,9 @@ else {
 			<label for="bild">Bild</label>
 			<input type="file" name = "bild" accept="image/*"><br>
 			<% } if(artikel.id != 6) { %>
-			<label for="geloescht">Ist Gelöscht</label>
 			<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=artikel.istGelöscht%>"
 		  	<% if (artikel.istGelöscht == true) {%>
-		    checked=<%="checked"%> title="Der Artikel ist gelöscht." <%} else {%><%=""%>title="Der Artikel ist nicht gelöscht."<%} %> >
+		    checked=<%="checked"%> title="Der Artikel ist gelöscht." <%} else {%><%=""%>title="Der Artikel ist nicht gelöscht."<%} %> ><p id="checkbox">Ist Gelöscht</p>
 		    <% } %>
 			<button type="submit" id="links">Änderungen speichern</button>
 		</div>

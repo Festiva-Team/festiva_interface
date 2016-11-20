@@ -360,9 +360,10 @@ label,textarea, input, radio, select, label.kasse
 	margin: .5em 2.5em .5em 5em;
 }
 input[type="checkbox"], input[type="radio"]{
-    float: right;
-	text-align: left;
+	width: 1em;
+	float: right;
 	padding: 0;
+	margin: 0 10em 0 5em;
 	border: none;
 }
 fieldset
@@ -373,6 +374,10 @@ fieldset
 /**************Sonstiges***************/
 a{
 	color: #990000;
+}
+#checkbox{	
+	margin: 0;
+	text-align: right;
 }
 output {
 	display: block;
@@ -562,6 +567,12 @@ input,textarea{
 	width: 90%;
 	margin-right: 0.5em;
 	padding: .5em;
+}
+input[type="checkbox"], input[type="radio"]{
+	float: right;
+	padding: 0;
+	margin: 0 2em 0 2em;
+	border: none;
 }
 #kategorie{
 	width: 93%;

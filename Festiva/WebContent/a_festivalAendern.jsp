@@ -81,10 +81,9 @@ else {
 				<textarea rows="4" name="kurzbeschreibung" title="Bitte geben Sie eine Kurzbeschreibung ein!" required="required" cols="25"><%=festival.kurzbeschreibung%></textarea>
 				<label for="langbeschreibung">Langbeschreibung*</label>
 				<textarea rows="6" name="langbeschreibung" title="Bitte geben Sie eine Langbeschreibung ein!" required="required" cols="25"><%=festival.langbeschreibung%></textarea>
-				<label for="geloescht">Ist Gelöscht</label>
 				<input type="checkbox" disabled="disabled" id="geloescht" name="geloescht" value="<%=festival.istGelöscht%>"
  					<% if (festival.istGelöscht == true) {%>
- 					checked=<%="checked"%>title="Das Festival ist gelöscht."<%} else {%><%=""%>title="Das Festival ist nicht gelöscht."<%} %> >
+ 					checked=<%="checked"%>title="Das Festival ist gelöscht."<%} else {%><%=""%>title="Das Festival ist nicht gelöscht."<%} %> ><p id="checkbox">Ist Gelöscht</p>
 				<button type="submit">Änderungen speichern</button>
 			</div>
 		</div>
