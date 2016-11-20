@@ -50,7 +50,7 @@ if (request.getSession(false) != null) {
 		<% request.getSession().removeAttribute("antwort");}  %>
 	</div> 
 		<div class="zeile">
-			<table id="myTable" class="tabelle">	
+			<table id="myTable" class="tabelle" cellpadding="0"cellspacing="0" >	
 					
 				<%if(listArtikel != null && !listArtikel.isEmpty()) {									
 					for (Artikel artikel : listArtikel)

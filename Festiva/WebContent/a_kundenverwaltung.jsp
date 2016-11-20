@@ -37,7 +37,7 @@ else {
 		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Nachnamen..." title="Geben Sie einen Nachnamen ein!">
 	</div>
 	<div class ="zeile">
-			<table id="myTable" class="tabelle">
+			<table id="myTable" class="tabelle" cellpadding="0"cellspacing="0" >
 		<thead><tr><th>ID</th><th>Nachname</th><th>Vorname</th><th>E-Mail-Adresse</th><th>Gesperrt</th><th>Gelöscht</th></tr></thead>
 		<%for (Benutzer benutzer : listBenutzer) { %>
 		<tbody>

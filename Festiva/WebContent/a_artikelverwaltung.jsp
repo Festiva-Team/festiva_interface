@@ -37,7 +37,7 @@ else {
 	<div class="zeile">
 		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Beschreibung..." title="Geben Sie eine Beschreibung ein!">					
 	<div class="zeile">
-		<table id="myTable" class="tabelle">
+		<table id="myTable" class="tabelle" cellpadding="0"cellspacing="0" >
 		<thead>
 			<tr><th>ID</th><th>Beschreibung</th><th>Preis</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 			<%for (Artikel artikel : listArtikel) { %>

@@ -40,13 +40,12 @@ else {
 		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">
 	</div>
 	<div class="zeile">
-	<table id="myTable" class="tabelle">
+	<table id="myTable" class="tabelle" cellpadding="0"cellspacing="0"  border="0">
 			<thead><tr><th>ID</th><th>Name</th><th>Startdatum</th><th>Enddatum</th><th>Ort</th><th>Kategorie</th><th>Bild</th><th>Gelöscht</th></tr></thead>
 			<%  SimpleDateFormat date = new SimpleDateFormat(" E, dd.MM.yy");
 			for (Festival festival : listFestivals) { %>
 			<tbody>
-			<tr>		
-				<th data-label="Festival: "><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
+			<tr><th data-label="Festival: "><a href="/Festiva/Festivalverwaltung?aktion=aendern&festivalid=<%=festival.id%>"><%=festival.id%></a></td>
 				<td data-label="Name: "><%=festival.name%></td>
 				<td data-label="Startdatum: "><%=date.format(festival.startDatum)%></td>
 				<td data-label="Enddatum: "><%=date.format(festival.endDatum)%></td>
