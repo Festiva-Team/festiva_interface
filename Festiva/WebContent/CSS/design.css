@@ -387,6 +387,13 @@ output {
 	text-align: center;
 	font-weight: bold;	
 }
+#antwortkasse{
+	margin-top: 0;
+	margin: 0 5em;
+	color: #990000;
+	text-align: left;
+	font-weight: bold;	
+}
 .preis{
 	text-align: right;
 }
@@ -708,6 +715,13 @@ img{
 	margin: .5em;	
 }
 #antwort{
+	color: #99000;
+	text-align: left;
+	margin: 0 .5em .2em .5em;	
+	font-weight: bold;
+	padding: .2em;
+}
+#antwortkasse{
 	color: #99000;
 	text-align: left;
 	margin: 0 .5em .2em .5em;	

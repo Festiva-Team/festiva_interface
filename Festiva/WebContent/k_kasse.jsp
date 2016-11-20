@@ -51,12 +51,13 @@
 		<h1>Kasse</h1>
 		<div class="zeile">	
 			<%if(kundendatenVollstaendig.equals(false)) { %>
-			<p id="text"> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt und uns die Einzugsermächtigung erteilt haben. Hier können Sie Ihre Kundendaten anpassen: </p>
+			<p id="antwortkasse"> Sie können Ihre Bestellung erst abschließen, wenn Sie alle Ihre persönlichen Daten (außer der BIC) hinterlegt und uns die Einzugsermächtigung erteilt haben. Hier können Sie Ihre Kundendaten anpassen:
+			<button type="button" id="Kundendaten aendern" onClick="window.location.href='/Festiva/Benutzerdaten?aktion=anzeigen'">Meine Daten</button></p>
 			<% } else { %>
 			<p id="text"> Bitte kontrollieren Sie Ihre Angaben auf dieser Seite bevor Sie die Bestellung abschließen. Sie möchten Ihre Kundendaten anpassen? Dann klicken Sie bitte hier: 					 
-			<% } %>
 			<button type="button" id="Kundendaten aendern" onClick="window.location.href='/Festiva/Benutzerdaten?aktion=anzeigen'">Meine Daten</button></p>
-		</div>
+			<% } %>
+			</div>
 		<div class="spaltelinks">		
 		<fieldset>
 			<h2>Lieferdaten</h2>
