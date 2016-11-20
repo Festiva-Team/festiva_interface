@@ -34,12 +34,12 @@ public class Warenkorbverwaltung extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		String antwort = "";
-//		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-//		response.setHeader("Pragma", "no-cache");
-//		response.setDateHeader("Expires", 0);
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
-		response.setHeader("Cache-Control", "max-age=600");
-		response.setDateHeader("Expires", 600);
+		response.setDateHeader("Expires", 0);
+//		response.setHeader("Pragma", "no-cache");
+//		response.setHeader("Cache-Control", "max-age=600");
+//		response.setDateHeader("Expires", 600);
 		
 		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
@@ -113,6 +113,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 								
 							} else {
 								if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("hinzufuegen")) {
+									response.setHeader("Pragma", "no-cache");
+									response.setHeader("Cache-Control", "max-age=600");
+									response.setDateHeader("Expires", 600);
 									int userid = Integer.parseInt(session.getAttribute("userid").toString());
 									int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 									int menge = Integer.parseInt(request.getParameter("menge"));
@@ -130,6 +133,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 									}
 								} else { 
 									if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aktualisieren")) {
+										response.setHeader("Pragma", "no-cache");
+										response.setHeader("Cache-Control", "max-age=600");
+										response.setDateHeader("Expires", 600);
 										int userid = Integer.parseInt(session.getAttribute("userid").toString());
 										int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 										int menge = Integer.parseInt(request.getParameter("menge"));
@@ -158,7 +164,9 @@ public class Warenkorbverwaltung extends HttpServlet {
 									}
 									} else {
 									
-				int elementID = Integer.parseInt(request.getParameter("elementid"));
+				int elementID = 0;
+						if(request.getParameter("elementid") != null) {
+						elementID = Integer.parseInt(request.getParameter("elementid"));}
 				if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aendern")) {
 					int mengeNeu = Integer.parseInt(request.getParameter("menge"));
 					Warenkorbelement warenkorbelement = WarenkorbManager.selektiereWarenkorbelement(elementID);

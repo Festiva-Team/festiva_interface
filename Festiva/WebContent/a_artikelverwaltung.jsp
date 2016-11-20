@@ -35,7 +35,7 @@ else {
 	<h1>Festivalübergreifende Artikelverwaltung</h1>
 		<button type="button" onClick="window.location.href='a_artikelAnlegen.jsp?'" class="anlegen">Neuen Artikel anlegen</button>
 	<div class="zeile">
-		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Namen..." title="Geben Sie einen Namen ein!">					
+		<input type="text" id="myInput" onkeyup="sucheNachNamen()" placeholder="Suche nach Beschreibung..." title="Geben Sie eine Beschreibung ein!">					
 	<div class="zeile">
 		<table id="myTable" class="tabelle">
 		<thead>

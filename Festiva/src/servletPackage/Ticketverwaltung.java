@@ -36,7 +36,7 @@ public class Ticketverwaltung extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(true);
 		//response.setHeader("Cache-Control", "no-store, must-revalidate, max-age=600");
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("Cache-Control", "max-age=600");
