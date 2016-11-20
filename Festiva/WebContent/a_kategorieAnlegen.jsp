@@ -47,6 +47,7 @@ response.sendRedirect("k_anmelden.jsp");}
 		</div>
 	</form>
 	</div>
+	<div id="leer"></div>
 <jsp:include page="k_footer.jsp">
 	<jsp:param name="active" value="startseite"/>
 </jsp:include>
