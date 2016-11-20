@@ -62,7 +62,7 @@
 			<h2>Lieferdaten</h2>
 			<label class="kasse">Name</label><p class="kasse"><%=benutzer.vorname%> <%=benutzer.nachname%></p>
 			<label class="kasse">Adresse</label><p class="kasse"><%=benutzer.strasse%> <%=benutzer.hausnummer%></p>
-		    <label class="kasse"></label><p class="kasse"><%=benutzer.plz%> <%=benutzer.ort%> </p>
+		    <label class="kasse"></label><p class="kasse"><% if (benutzer.plz == 0) { } else { %> <%=benutzer.plz%> <% } %> <%=benutzer.ort%>  </p>
 		</fieldset>
 		</div>
 		<div class="spalterechts">

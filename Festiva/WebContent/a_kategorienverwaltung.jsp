@@ -51,9 +51,9 @@ else {
 				<td data-label="Bild: "><%="Ja"%></td>
 				<% } %>
 				<%if (kategorie.istGelöscht == false) { %>
-				<td data-label="Gelöscht: "><%="nein"%></td>
+				<td data-label="Gelöscht: "><%="Nein"%></td>
 				<% } else { %>
-				<td data-label="gelöscht: "><%="ja"%></td>
+				<td data-label="gelöscht: "><%="Ja"%></td>
 				<% } %>
 			</tr>
 			</tbody>	

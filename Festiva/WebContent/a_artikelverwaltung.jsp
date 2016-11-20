@@ -47,14 +47,14 @@ else {
 			<td data-label="Beschreibung: "><%=artikel.beschreibung%></td>
 			<td data-label="Preis: " id="preis" width="10%"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 			<%if (artikel.bildpfad == null || (artikel.bildpfad).equals("")) { %>
-			<td data-label="Bild: "><%="nein"%></td>
+			<td data-label="Bild: "><%="Nein"%></td>
 			<% } else { %>
-			<td data-label="Bild: "><%="ja"%></td>
+			<td data-label="Bild: "><%="Ja"%></td>
 			<% } %>
 			<%if (artikel.istGelöscht == false) { %>
-			<td data-label="Gelöscht: "><%="nein"%></td>
+			<td data-label="Gelöscht: "><%="Nein"%></td>
 			<% } else { %>
-			<td data-label="Gelöscht: "><%="ja"%></td>
+			<td data-label="Gelöscht: "><%="Ja"%></td>
 			<% } %>
 		</tr>
 		</tbody>

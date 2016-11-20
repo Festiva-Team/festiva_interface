@@ -55,14 +55,14 @@ else {
 			<% } %>
 			<td data-label="E-Mail: "><%=benutzer.eMailAdresse%></td>
 			<%if (benutzer.istGesperrt == false) { %>
-			<td data-label="Gesperrt: "><%="nein"%></td>
+			<td data-label="Gesperrt: "><%="Nein"%></td>
 			<% } else { %>
-			<td data-label="Gesperrt: "><%="ja"%></td>
+			<td data-label="Gesperrt: "><%="Ja"%></td>
 			<% } %>
 			<%if (benutzer.istGelöscht == false) { %>
-			<td data-label="Gelöscht: "><%="nein"%></td>
+			<td data-label="Gelöscht: "><%="Nein"%></td>
 			<% } else { %>
-			<td data-label="Gelöscht: "><%="ja"%></td>
+			<td data-label="Gelöscht: "><%="Ja"%></td>
 			<% } %>
 		</tr>
 		</tbody>

@@ -59,7 +59,7 @@ else {
 		<div class="spalterechts">
 			<% if( new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) { %>
 			<figure class="bild1">
-			<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=150 />
+			<img src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" name="bild" width=250 />
 			</figure>
 			<% } else { %>
 				<p>Kein Bild vorhanden</p>
@@ -80,37 +80,7 @@ else {
 </div>	
 </body>
 <script>
-/* 	function dateiauswahl(evt) {
-			var dateien = evt.target.files; // FileList object
-			// Auslesen der gespeicherten Dateien durch Schleife
-			for (var i = 0, f; f = dateien[i]; i++) {
-				// nur Bild-Dateien
-				if (!f.type.match('image.*')) {
-					continue;
-				}
-				var reader = new FileReader();
-				reader.onload = (function (theFile) {
-					return function (e) {
-						// erzeuge Thumbnails.
-						var vorschau = document.createElement('img');
-						vorschau.className = 'vorschau';
-						vorschau.src = e.target.result;
-						vorschau.title = theFile.name;
-						document.getElementById('list')
-							.insertBefore(vorschau, null);
-					};
-				})(f);
-				// Bilder als Data URL auslesen.
-				reader.readAsDataURL(f);
-				vorschau.width = 50;
-				dateien.appendChild(img);
-			}
-		}
-	
-	
-		// Auf neue Auswahl reagieren und gegebenenfalls Funktion dateiauswahl neu ausführen.
-	document.getElementById('bild')
-		.addEventListener('change', dateiauswahl, false); */
+
 
 function del(id){
 	   if(confirm("Möchten Sie die Kategorie wirklich löschen?") == true) {

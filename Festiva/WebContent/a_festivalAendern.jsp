@@ -105,9 +105,9 @@ else {
 						<td data-label="Details: "><%=artikel.details%></td>
 						<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 						<%if (artikel.istGelöscht == false) { %>
-						<td data-label="Gelöscht: "><%="nein"%></td>
+						<td data-label="Gelöscht: "><%="Nein"%></td>
 						<% } else { %>
-						<td data-label="Gelöscht: "><%="ja"%></td>
+						<td data-label="Gelöscht: "><%="Ja"%></td>
 						<% } %>
 					</tr>
 					</tbody>

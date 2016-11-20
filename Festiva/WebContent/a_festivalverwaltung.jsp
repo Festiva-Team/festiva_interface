@@ -60,9 +60,9 @@ else {
 				<td data-label="Bild: "><%="Ja"%></td>
 				<% } %>
 				<%if (festival.istGelöscht == false) { %>
-				<td data-label="Gelöscht: "><%="nein"%></td>
+				<td data-label="Gelöscht: "><%="Nein"%></td>
 				<% } else { %>
-				<td data-label="Gelöscht: "><%="ja"%></td>
+				<td data-label="Gelöscht: "><%="Ja"%></td>
 				<% } %>
 			</tr>
 			</tbody>
