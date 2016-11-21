@@ -84,8 +84,8 @@ public class Registrierung extends HttpServlet {
 				request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
 			} else {
 			//request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
-				antwort = "";
-				request.getSession(false).setAttribute("antwort", antwort);
+//				antwort = "";
+//				request.getSession(false).setAttribute("antwort", antwort);
 			request.getRequestDispatcher("/Login?email=" + email + "&passwort=" + passwort).include(request, response);
 			}
 		

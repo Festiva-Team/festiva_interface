@@ -359,11 +359,18 @@ label,textarea, input, radio, select, label.kasse
 	padding: .3em .8em;
 	margin: .5em 2.5em .5em 5em;
 }
-input[type="checkbox"], input[type="radio"]{
+input[type="checkbox"]{
 	width: 1em;
 	float: right;
 	padding: 0;
-	margin: 0 10em 0 5em;
+	margin: 0 10em 0 2em;
+	border: none;
+}
+input[type="radio"]{
+	width: 1em;
+	float: right;
+	padding: 0;
+	margin: 0 45% 0 2em;
 	border: none;
 }
 fieldset
@@ -568,10 +575,16 @@ input,textarea{
 	margin-right: 0.5em;
 	padding: .5em;
 }
-input[type="checkbox"], input[type="radio"]{
+input[type="checkbox"]{
 	float: right;
 	padding: 0;
 	margin: 0 2em 0 2em;
+	border: none;
+}
+input[type="radio"]{
+	float: right;
+	padding: 0;
+	margin: 0 5em 0 2em;
 	border: none;
 }
 #kategorie{

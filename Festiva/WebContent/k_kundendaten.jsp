@@ -66,11 +66,10 @@
 					<% } %>
 					<label for="ort">Ort</label>
 					<input type="text" id="ort" name="ort" maxlength="30" title="Hier können Sie Ihren Wohnort eingeben." value="<%=benutzer.ort%>">
-					<label for="einzugsermächtigungErteilt">Einzugsermächtigung erteilt</label>
       				<input type="checkbox" id="einzugsermächtigungErteilt" name="einzugsermächtigungErteilt" value=
       					   "<%=benutzer.einzugsermächtigungErteilt%>"
       					   <% if (benutzer.einzugsermächtigungErteilt == true) {%>
-      					   checked=<%="checked"%>title="Sie haben uns die Einzugsermächtigung erteilt."<%} else {%><%=""%>title="Sie haben uns die Einzugsermächtigung noch nicht erteilt."<%} %> >
+      					   checked=<%="checked"%>title="Sie haben uns die Einzugsermächtigung erteilt."<%} else {%><%=""%>title="Sie haben uns die Einzugsermächtigung noch nicht erteilt."<%} %> ><p id="checkbox">Einzugsermächtigung erteilt</p>
 					<button type="submit">Änderungen speichern</button>
 				</div>
 			</div>
