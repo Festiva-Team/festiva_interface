@@ -6,9 +6,9 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_registrieren.jsp
-	# JSP-Aktionen: 1) Erzeugung von Eingabefeldern zur Registrierung von neuen Kunden
-					2) Weitergabe der Daten an das Servlet "Registrierung.java" 
-					3) Anzeige der Antwort aus dem Servlet
+	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zur Registrierung für neuen Kunden
+    #				(2) Validieren der Eingabedaten durch Input-Typen und Pattern
+	#				(3) Button zum Senden der Daten
 */
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

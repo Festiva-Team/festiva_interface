@@ -7,8 +7,6 @@
 	# JSP-Name: a_kundenAendern.jsp
 	# JSP-Aktionen: (1) Anzeige der aktuellen Kundendaten
 	#				(2) Möglichkeit zum Ändern der Daten oder Löschen des Kunden
-	#				(3) Weitergabe der Daten an das Servlet "Kundenverwaltung.java" 
-	#				(4) Anzeige der Antwort aus dem Servlet
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1 || request.getSession(false).getAttribute("benutzer") == null) {
 	response.sendRedirect("k_anmelden.jsp");} 

@@ -10,7 +10,6 @@
 					(2) Darstellung der Gesamtsumme
 					(3) Möglichkeit Positionen zu löschen und die Anzahl zu ändern
 					(4) Möglichkeit zur Kasse zu gehen
-					(4a) Weiterleitung an das Servlet "Warenkorbverwaltung.java" zur Anzeige der Kasse
 */
 	if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
 		response.sendRedirect("k_anmelden.jsp");} 

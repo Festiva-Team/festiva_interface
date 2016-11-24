@@ -9,9 +9,10 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_ticketShop.jsp
-	# JSP-Aktionen: (1) Anzeige aller Festivals
-	# 				(2) Möglichkeit zur Beschränkung der Anzeige durch Suche nach Name, Ort, Kategorie, Von- und Bis-Datum und Preis
-	#				(3) Weiterleitung zum Servlet "Ticketverwaltung" bei Klick auf den Festivalnamen zur Anzeige der Festivaldetails und der zugehörigen Artikel		
+	# JSP-Aktionen: (1) Möglichkeit zur Beschränkung der Anzeige durch Suche nach Name, Ort, Kategorie, Von- und Bis-Datum und Preis
+    #				(2) Abrufen einer Liste der Festivals, die den Suchkriterien entsprechen
+	#				(3) Tabellarische Darstellung der Festivaldaten (Bild, Name, Datum, Ort, Kategorie, (von) Preis)
+	#				(4) Möglichkeit zur Betrachtung der Festivalsdetails über Namen-Link oder Bild-Link
 */
 if (request.getSession(false) != null) {
 	SimpleDateFormat datum = new SimpleDateFormat("dd.MM.yyyy");

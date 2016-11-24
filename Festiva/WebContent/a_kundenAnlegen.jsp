@@ -5,8 +5,8 @@
  	# Autor: Nicola Kloke, Alina Fankhänel
  	# JSP-Name: a_kundenAnlegen.jsp
  	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zum Anlegen von neuen Kunden
-	#				(2) Weitergabe der Daten an das Servlet "Registrierung.java" 
-	#				(3) Anzeige der Antwort aus dem Servlet
+ 	#				(2) Validieren der Eingabedaten durch Input-Typen und Pattern
+	#				(3) Button zum Senden der Daten
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}

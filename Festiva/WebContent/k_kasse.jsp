@@ -7,12 +7,11 @@
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_kasse.jsp
 	# JSP-Aktionen: (1) Anzeige der Liefer- und Zahlungsdaten des angemeldeten Kunden 
-					(1a) Möglichkeit zum Ändern der Daten, Weiterleitung an "Benutzerdaten.java"
+					(1a) Möglichkeit zum Ändern der Daten über Button
 					(2) Darstellung aller Artikel des Warenkorbs und der Gesamtsumme
 					(3) Möglichkeit zum Ändern der Versandart, Defaultwert: Mail
 					(3a) Ausnahme: Mailversand ist nicht möglich, wenn sich Zubehörartikel im Warenkorb befinden
-					(4) Nach Sicherheitsabfrage Möglichkeit zum Abschicken der Bestellung          
-					(5) Nach Abschicken der Bestellung Weiterleitung zum Servlet "Bestellverwaltung.java" zur Anzeige der vergangenen Bestellungen
+					(4) Möglichkeit zum Abschicken der Bestellung
 */
 	if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
 		response.sendRedirect("k_anmelden.jsp");}

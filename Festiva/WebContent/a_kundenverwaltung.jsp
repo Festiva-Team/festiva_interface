@@ -5,9 +5,11 @@
  /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_kundenverwaltung.jsp
-	# JSP-Aktionen: (1) Anzeige aller Kunden
-					(2) Button zum Anlegen von neuen Kunden
-					(3) ID-Link führt zum Änderungsmodus
+	# JSP-Aktionen: (1) Button zum Anlegen von neuen Kunden
+	#				(2) Suchfeld zur Kundensuche über Nachname
+	#				(3) Abrufen einer Liste von allen Kunden
+	#				(4) Tabellarische Darstellung der Kundendaten (Id, Nachname, Vorname, E-Mail, Gesperrt, Gelöscht)
+	#				(5) Möglichkeit zur Administration (ändern, sperren, löschen) eines Kunden über ID-Link
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}

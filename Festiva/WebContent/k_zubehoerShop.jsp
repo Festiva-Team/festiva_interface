@@ -8,10 +8,10 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_zubehoerShop.jsp
-	# JSP-Aktionen: (1) Anzeige aller Zubehörartikel
-	 				(2) Möglichkeit max. 10 Einheiten eines Artikel in den Warenkorb zu legen 
-					(2a) Aufruf des Servlet "Warenkorbverwaltung.java"
-	 				(3) Weiterleitung zur Anmeldung, falls Besucher noch nicht angemeldet ist
+	# JSP-Aktionen: (1) Suchfeld zur Artikelsuche über Name
+	#				(3) Abrufen einer Liste von allen Artikeln, die den Suchkriterium entsprechen
+	#				(4) Tabellarische Darstellung der Artikeldaten (Bild, Name, Preis)
+	#				(4) Möglichkeit zur Betrachtung der Artikeldetails über Namen-Link oder Bild-Link
 */ 
 if (request.getSession(false) != null) {
 	List<Integer> listArtikelID = null;

@@ -8,8 +8,7 @@
 	# JSP-Name: a_artikelAnlegen.jsp
 	# JSP-Aktionen: (1a) Erzeugung von Eingabefeldern zum Anlegen von neuen Artikeln für ein Festival
 	#				(1b) Erzeugung von Eingabefeldern zum Anlegen von neuen Artikeln inkl. Bild für einen Zubehörartikel
-	#				(2) Weitergabe der Daten an das Servlet "Artikelverwaltung.java" 
-	#				(3) Anzeige der Antwort aus dem Servlet
+	#				(2) Button zum Senden der Daten  
 */
 
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {

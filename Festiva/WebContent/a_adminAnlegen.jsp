@@ -7,8 +7,8 @@
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_adminAnlegen.jsp
 	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zum Anlegen eines neuen Admins
-	#				(2) Weitergabe der Daten an das Servlet "Registrierung.java" 
-	#				(3) Anzeige der Antwort aus dem Servlet               
+    #				(2) Validieren der Eingabedaten durch Input-Typen und Pattern
+	#				(3) Button zum Senden der Daten           
 	*/
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

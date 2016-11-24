@@ -5,8 +5,7 @@
   	# Autor: Nicola Kloke, Alina Fankhänel
   	# JSP-Name: a_kategorieAnlegen.jsp
   	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zum Anlegen von neuen Kategorien
-	#				(2) Weitergabe der Daten an das Servlet "Kategorienverwaltung.java" 
-	#				(3) Anzeige der Antwort aus dem Servlet
+	#				(2) Button zum Senden der Daten
  */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}

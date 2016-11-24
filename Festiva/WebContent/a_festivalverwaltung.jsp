@@ -5,9 +5,11 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_festivalverwaltung.jsp
-	# JSP-Aktionen: (1) Anzeige aller Festivals
-					(2) Button zum Anlegen von neuen Festivals
-					(3) ID-Link führt zum Änderungsmodus
+	# JSP-Aktionen: (1) Button zum Anlegen von neuen Festivals
+	#				(2) Suchfeld zur Festivalsuche über Namen
+	#				(3) Abrufen einer Liste von allen Festivals
+	#				(4) Tabellarische Darstellung der Festivaldaten (Id, Name, Startdatum, Enddatum, Ort, Kategorie, Bild, Gelöscht)
+	#				(5) Möglichkeit zur Administration (ändern, Bild löschen, Festival löschen) eines Festivals über ID-Link
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}

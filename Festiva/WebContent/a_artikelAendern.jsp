@@ -8,8 +8,6 @@
 	# JSP-Name: a_artikelAendern.jsp
 	# JSP-Aktionen: (1) Anzeige der aktuellen Artikeldaten
 	#				(2) Möglichkeit zum Ändern der Daten oder Löschen des Artikels
-	#				(3) Weitergabe der Daten an das Servlet "Artikelverwaltung.java" 
-	#				(4) Anzeige der Antwort aus dem Servlet
 */
 
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {

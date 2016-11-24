@@ -6,10 +6,7 @@
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_kundendaten.jsp
 	# JSP-Aktionen: (1) Anzeige der aktuellen Kundendaten
-					(2) Möglichkeit zum Ändern der Daten und des Passworts
-					(3) Möglichkeit zum Löschen des Kontos
-					(4) Weitergabe der Daten an das Servlet "Benutzerdaten.java" 
-					(5) Anzeige der Antwort aus dem Servlet
+	#				(2) Möglichkeit zum Ändern der Daten oder Löschen des Benutzerkontos
 */
 	if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
 	response.sendRedirect("k_anmelden.jsp");

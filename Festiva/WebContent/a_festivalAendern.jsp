@@ -7,11 +7,11 @@
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_festivalAendern.jsp
 	# JSP-Aktionen: (1) Anzeige der aktuellen Festivaldaten
-	#				(2a) Möglichkeit zum Ändern der Daten oder Löschen des Festivals
-	#				(2b) Möglichkeit zum Anlegen neuer Artikel zu dem Festival
-	#				(3a) Weitergabe der Daten an das Servlet "Festivalverwaltung.java" 
-	#				(3b) Weiterleitung zum Servet "Artikelverwaltung.java"
-	#				(4) Anzeige der Antwort aus dem Servlet
+	#				(2) Möglichkeit zum Ändern der Daten oder Löschen des Festivals mit allen Artikeln
+	#				(3) Button zum Anlegen neuer Artikel zu dem Festival
+	#				(4) Abrufen einer Liste von allen Artikeln zu dem Festival
+	#				(5) Tabellarische Darstellung der Artikeldaten (Id, Beschreibung, Details, Preis, Gelöscht)
+	#				(6) Möglichkeit zur Administration (ändern, Bild löschen, Artikel löschen) eines Artikels über ID-Link
 */
 
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {

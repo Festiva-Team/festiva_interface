@@ -6,9 +6,8 @@
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_adminKonto.jsp
 	# JSP-Aktionen: (1) Anzeige der aktuellen Email
-	#				(2) Möglichkeit zum Ändern des Passworts
-	#				(3) Weitergabe der Daten an das Servlet "Benutzerdaten.java" 
-	#				(4) Anzeige der Antwort aus dem Servlet
+	#				(2) Felder zum Ändern des Passworts
+	#				(3) Button zum Senden der geänderten Daten
 	*/
 
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1 || request.getSession(false).getAttribute("benutzer") == null) {

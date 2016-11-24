@@ -6,10 +6,7 @@
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_kategorieAendern.jsp
 	# JSP-Aktionen: (1) Anzeige der aktuellen Kategoriendaten
-	#				(2) Möglichkeit zum Ändern der Daten
-	# 				(3) Möglichkeit zum Löschen der Kategorie, wenn ID > 5 (keine Stammkategorien)
-	#				(4) Weitergabe der Daten an das Servlet "Kategorienverwaltung.java" 
-	#				(5) Anzeige der Antwort aus dem Servlet
+	#				(2) Möglichkeit zum Ändern der Daten oder Löschen der Kategorie, wenn ID > 5 (keine Stammkategorie)
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 	response.sendRedirect("k_anmelden.jsp");}

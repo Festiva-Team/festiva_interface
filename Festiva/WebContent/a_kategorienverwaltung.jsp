@@ -5,9 +5,11 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_kategorienverwaltung.jsp
-	# JSP-Aktionen: (1) Anzeige aller Kategorien
-					(2) Button zum Anlegen von neuen Kategorien
-					(3) ID-Link führt zum Änderungsmodus
+	# JSP-Aktionen: (1) Button zum Anlegen von neuen Kategorien
+	#				(2) Suchfeld zur Kategoriensuche über Name
+	#				(3) Abrufen einer Liste von allen Kategorien
+	#				(4) Tabellarische Darstellung der Kategoriendaten (Id, Name, Beschreibung, Bild, Gelöscht)
+	#				(5) Möglichkeit zur Administration (ändern, Bild löschen, Kategorie löschen) einer Kategorie über ID-Link
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1) {
 response.sendRedirect("k_anmelden.jsp");}

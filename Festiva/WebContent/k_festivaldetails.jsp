@@ -7,10 +7,9 @@
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_festivaldetails.jsp
 	# JSP-Aktionen: (1) Anzeige der Festivaldetails, des im Ticketshop ausgewählten Festivals
-	#				(2) Anzeige aller zugehörigen Artikel (bzw. Beschränkungen je nach Suchkriterien)
-	# 				(3) Möglichkeit max. 10 Einheiten eines Artikel in den Warenkorb zu legen 
-	#				(3a) Aufruf des Servlet "Warenkorbverwaltung.java"
-	# 				(4) Weiterleitung zur Anmeldung, falls Besucher noch nicht angemeldet ist
+	#				(2) Anzeige aller zugehörigen Artikel (bzw. Artikel die den Beschränkungen aus der Suche entsprechen)
+	#				(4) Tabellarische Darstellung der Artikeldaten (Bild, Name, Preis)
+	#				(4) Möglichkeit zur Betrachtung der Artikeldetails über Namen-Link oder Bild-Link
 */
 	SimpleDateFormat sd = new SimpleDateFormat(" EEEE, dd.MM.yyyy");
 	List<Artikel> listArtikel = null;
