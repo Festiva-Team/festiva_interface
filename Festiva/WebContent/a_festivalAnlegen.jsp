@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_festivalAnlegen.jsp
-	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zum Anlegen von neuen Festivals
+	#               (1) Erzeugung von Eingabefeldern zum Anlegen von neuen Festivals
 	#				(2) Button zum Senden der Daten
 */
 

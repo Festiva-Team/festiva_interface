@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_artikelAnlegen.jsp
-	# JSP-Aktionen: (1a) Erzeugung von Eingabefeldern zum Anlegen von neuen Artikeln für ein Festival
+	#               (1a) Erzeugung von Eingabefeldern zum Anlegen von neuen Artikeln für ein Festival
 	#				(1b) Erzeugung von Eingabefeldern zum Anlegen von neuen Artikeln inkl. Bild für einen Zubehörartikel
 	#				(2) Button zum Senden der Daten  
 */

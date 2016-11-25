@@ -4,7 +4,7 @@
 /** 
 	# Autor: Nicola Kloke
 	# JSP-Name: a_startseiteAdmin.jsp
-	# JSP-Aktionen: Anzeige der Startseite des Admins
+	#              (1) Anzeige der Startseite des Admins
 */
 
 

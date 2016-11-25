@@ -5,7 +5,7 @@
 <%  /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_adminKonto.jsp
-	# JSP-Aktionen: (1) Anzeige der aktuellen Email
+	#               (1) Anzeige der aktuellen Email
 	#				(2) Felder zum Ändern des Passworts
 	#				(3) Button zum Senden der geänderten Daten
 	*/

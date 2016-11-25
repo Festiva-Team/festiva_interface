@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_warenkorb.jsp
-	# JSP-Aktionen: (1) Darstellung aller Artikel im Warenkorb
+	#               (1) Darstellung aller Artikel im Warenkorb
 					(2) Darstellung der Gesamtsumme
 					(3) Möglichkeit Positionen zu löschen und die Anzahl zu ändern
 					(4) Möglichkeit zur Kasse zu gehen

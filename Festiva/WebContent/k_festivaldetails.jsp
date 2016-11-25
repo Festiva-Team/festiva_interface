@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_festivaldetails.jsp
-	# JSP-Aktionen: (1) Anzeige der Festivaldetails, des im Ticketshop ausgewählten Festivals
+	#               (1) Anzeige der Festivaldetails, des im Ticketshop ausgewählten Festivals
 	#				(2) Anzeige aller zugehörigen Artikel (bzw. Artikel die den Beschränkungen aus der Suche entsprechen)
 	#				(4) Tabellarische Darstellung der Artikeldaten (Bild, Name, Preis)
 	#				(4) Möglichkeit zur Betrachtung der Artikeldetails über Namen-Link oder Bild-Link

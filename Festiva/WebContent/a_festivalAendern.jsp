@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_festivalAendern.jsp
-	# JSP-Aktionen: (1) Anzeige der aktuellen Festivaldaten
+	#               (1) Anzeige der aktuellen Festivaldaten
 	#				(2) Möglichkeit zum Ändern der Daten oder Löschen des Festivals mit allen Artikeln
 	#				(3) Button zum Anlegen neuer Artikel zu dem Festival
 	#				(4) Abrufen einer Liste von allen Artikeln zu dem Festival

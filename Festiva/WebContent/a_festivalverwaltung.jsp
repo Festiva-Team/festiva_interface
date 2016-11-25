@@ -5,7 +5,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_festivalverwaltung.jsp
-	# JSP-Aktionen: (1) Button zum Anlegen von neuen Festivals
+	#               (1) Button zum Anlegen von neuen Festivals
 	#				(2) Suchfeld zur Festivalsuche über Namen
 	#				(3) Abrufen einer Liste von allen Festivals
 	#				(4) Tabellarische Darstellung der Festivaldaten (Id, Name, Startdatum, Enddatum, Ort, Kategorie, Bild, Gelöscht)

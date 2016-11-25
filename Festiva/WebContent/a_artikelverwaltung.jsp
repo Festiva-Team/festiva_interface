@@ -5,7 +5,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_artikelverwaltung.jsp
-	# JSP-Aktionen: (1) Button zum Anlegen von neuen Artikeln
+	#               (1) Button zum Anlegen von neuen Artikeln
 	#				(2) Suchfeld zur Artikelsuche über Beschreibung
 	#				(3) Abrufen einer Liste von allen Artikeln
 	#				(4) Tabellarische Darstellung der Artikeldaten (Id, Beschreibung, Preis, Gelöscht)

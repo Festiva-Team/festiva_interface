@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_artikeldetails.jsp
-	# JSP-Aktionen: (1) Anzeige der Artikeldetails, des im Zubehörshop ausgewählten Zubehörs
+	#               (1) Anzeige der Artikeldetails, des im Zubehörshop ausgewählten Zubehörs
 	# 				(2) Möglichkeit max. 10 Einheiten eines Artikel in den Warenkorb zu legen 
 */
 List<Integer> listArtikelID = null;

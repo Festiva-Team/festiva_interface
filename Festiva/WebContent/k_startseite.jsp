@@ -5,7 +5,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_startseite.jsp
-	# JSP-Aktionen: Anzeige der Startseite des Kunden
+	#               (1) Anzeige der Startseite des Kunden
 */
 if (request.getSession(false) != null) {
 	List<Kategorie> listKategorien = (List<Kategorie>)request.getSession(false).getAttribute("listKategorien");

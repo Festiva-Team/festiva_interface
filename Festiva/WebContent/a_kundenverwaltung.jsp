@@ -5,7 +5,7 @@
  /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_kundenverwaltung.jsp
-	# JSP-Aktionen: (1) Button zum Anlegen von neuen Kunden
+	#               (1) Button zum Anlegen von neuen Kunden
 	#				(2) Suchfeld zur Kundensuche über Nachname
 	#				(3) Abrufen einer Liste von allen Kunden
 	#				(4) Tabellarische Darstellung der Kundendaten (Id, Nachname, Vorname, E-Mail, Gesperrt, Gelöscht)

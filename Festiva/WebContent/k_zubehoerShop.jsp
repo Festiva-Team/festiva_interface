@@ -8,7 +8,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_zubehoerShop.jsp
-	# JSP-Aktionen: (1) Suchfeld zur Artikelsuche über Name
+	#               (1) Suchfeld zur Artikelsuche über Name
 	#				(3) Abrufen einer Liste von allen Artikeln, die den Suchkriterium entsprechen
 	#				(4) Tabellarische Darstellung der Artikeldaten (Bild, Name, Preis)
 	#				(4) Möglichkeit zur Betrachtung der Artikeldetails über Namen-Link oder Bild-Link

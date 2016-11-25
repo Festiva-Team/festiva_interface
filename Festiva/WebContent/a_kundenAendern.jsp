@@ -5,7 +5,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_kundenAendern.jsp
-	# JSP-Aktionen: (1) Anzeige der aktuellen Kundendaten
+	#               (1) Anzeige der aktuellen Kundendaten
 	#				(2) Möglichkeit zum Ändern der Daten oder Löschen des Kunden
 */
 if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 1 || request.getSession(false).getAttribute("benutzer") == null) {

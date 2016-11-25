@@ -4,7 +4,7 @@
 /** 
 	# Autor: Nicola Kloke
 	# JSP-Name: header.jsp
-	# JSP-Aktionen: Definiert den Header und die Navigation für einen Besucher und einen Kunden.
+	#               (1) Definiert den Header und die Navigation für einen Besucher und einen Kunden.
 */
 
 

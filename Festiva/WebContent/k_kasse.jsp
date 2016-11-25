@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_kasse.jsp
-	# JSP-Aktionen: (1) Anzeige der Liefer- und Zahlungsdaten des angemeldeten Kunden 
+	#               (1) Anzeige der Liefer- und Zahlungsdaten des angemeldeten Kunden 
 					(1a) Möglichkeit zum Ändern der Daten über Button
 					(2) Darstellung aller Artikel des Warenkorbs und der Gesamtsumme
 					(3) Möglichkeit zum Ändern der Versandart, Defaultwert: Mail

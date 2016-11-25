@@ -5,7 +5,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_kundendaten.jsp
-	# JSP-Aktionen: (1) Anzeige der aktuellen Kundendaten
+	#               (1) Anzeige der aktuellen Kundendaten
 	#				(2) Möglichkeit zum Ändern der Daten oder Löschen des Benutzerkontos
 */
 	if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
@@ -57,9 +57,9 @@
 					
 					<label for="plz">PLZ</label>
 					<%if(benutzer.plz == 0) { %>
-					<input type="text" id="plz" name="plz" pattern="[0-9]{5}" title="Hier können Sie Ihre Postleitzahl eingeben." value="">
+					<input type="text" id="plz" name="plz" minlength="5" maxlength="5" pattern="[0-9]{5}" title="Hier können Sie Ihre Postleitzahl eingeben." value="">
 					<% } else { %>
-					<input type="text" id="plz" name="plz" pattern="[0-9]{5}" title="Hier können Sie Ihre Postleitzahl eingeben." value="<%=benutzer.plz%>">
+					<input type="text" id="plz" name="plz" pattern="[0-9]{5}" minlength="5" maxlength="5" title="Hier können Sie Ihre Postleitzahl eingeben." value="<%=benutzer.plz%>">
 					<% } %>
 					<label for="ort">Ort</label>
 					<input type="text" id="ort" name="ort" maxlength="30" title="Hier können Sie Ihren Wohnort eingeben." value="<%=benutzer.ort%>">

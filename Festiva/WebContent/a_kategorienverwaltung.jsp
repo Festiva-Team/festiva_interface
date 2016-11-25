@@ -5,7 +5,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_kategorienverwaltung.jsp
-	# JSP-Aktionen: (1) Button zum Anlegen von neuen Kategorien
+	#               (1) Button zum Anlegen von neuen Kategorien
 	#				(2) Suchfeld zur Kategoriensuche über Name
 	#				(3) Abrufen einer Liste von allen Kategorien
 	#				(4) Tabellarische Darstellung der Kategoriendaten (Id, Name, Beschreibung, Bild, Gelöscht)

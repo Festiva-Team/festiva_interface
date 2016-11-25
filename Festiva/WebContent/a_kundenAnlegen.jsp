@@ -4,7 +4,7 @@
 /** 
  	# Autor: Nicola Kloke, Alina Fankhänel
  	# JSP-Name: a_kundenAnlegen.jsp
- 	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zum Anlegen von neuen Kunden
+ 	#               (1) Erzeugung von Eingabefeldern zum Anlegen von neuen Kunden
  	#				(2) Validieren der Eingabedaten durch Input-Typen und Pattern
 	#				(3) Button zum Senden der Daten
 */

@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_bestellungen.jsp
-	# JSP-Aktionen: (1) Anzeige aller vergangenen Bestellungen des Kunden               
+	#               (1) Anzeige aller vergangenen Bestellungen des Kunden               
 */
 	if (request.getSession(false) == null || request.getSession(false).getAttribute("gruppenid") == null || Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString()) != 2) {
 	response.sendRedirect("k_anmelden.jsp");}

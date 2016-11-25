@@ -4,7 +4,7 @@
 /** 
 	# Autor: Nicola Kloke
 	# JSP-Name: footer.jsp
-	# JSP-Aktionen: Definiert den Footer für einen Besucher und einen Kunden.
+	#             (1) Definiert den Footer für einen Besucher und einen Kunden.
 */
 
 

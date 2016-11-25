@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_artikelAendern.jsp
-	# JSP-Aktionen: (1) Anzeige der aktuellen Artikeldaten
+	#               (1) Anzeige der aktuellen Artikeldaten
 	#				(2) Möglichkeit zum Ändern der Daten oder Löschen des Artikels
 */
 

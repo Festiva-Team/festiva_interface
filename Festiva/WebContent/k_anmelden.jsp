@@ -6,7 +6,7 @@
 /** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: k_anmelden.jsp
-	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern für die Anmeldung eines Kunden
+	#               (1) Erzeugung von Eingabefeldern für die Anmeldung eines Kunden
 	#				(2) Validieren der Eingabedaten durch Input-Typen
 ^	#				(3) Button zum Senden der Daten
 */

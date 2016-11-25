@@ -6,7 +6,7 @@
 	/** 
 	# Autor: Nicola Kloke, Alina Fankhänel
 	# JSP-Name: a_adminAnlegen.jsp
-	# JSP-Aktionen: (1) Erzeugung von Eingabefeldern zum Anlegen eines neuen Admins
+	#               (1) Erzeugung von Eingabefeldern zum Anlegen eines neuen Admins
     #				(2) Validieren der Eingabedaten durch Input-Typen und Pattern
 	#				(3) Button zum Senden der Daten           
 	*/
