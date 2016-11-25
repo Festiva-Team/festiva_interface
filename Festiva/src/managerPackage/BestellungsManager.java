@@ -1,9 +1,10 @@
-package standardPackage;
+package managerPackage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import standardPackage.*;
 /**
  * Hilfsklasse zum Managen von Bestellungen
  * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Bestellungen mit den zugehörigen Bestellpositionen aus der Datenbank

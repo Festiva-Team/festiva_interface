@@ -1,4 +1,4 @@
-package standardPackage;
+package managerPackage;
 
 public class DatenbankException extends Exception
 {

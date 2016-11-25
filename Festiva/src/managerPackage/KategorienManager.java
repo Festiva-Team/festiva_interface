@@ -1,8 +1,9 @@
-package standardPackage;
+package managerPackage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import standardPackage.*;
 
 /**
  * Hilfsklasse zum Managen von Kategorien
