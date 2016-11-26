@@ -8,8 +8,8 @@ import java.util.List;
 import standardPackage.*;
 
 /**
- * Hilfsklasse zum Managen von Festivals
- * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Festivals aus der Datenbank
+ * Hilfsklasse zum Managen von Festivals,
+ * beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Festivals aus der Datenbank
  * 
  * @author Alina Fankhänel
  *

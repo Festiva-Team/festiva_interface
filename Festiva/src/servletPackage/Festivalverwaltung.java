@@ -21,8 +21,22 @@ import javax.servlet.http.Part;
 import standardPackage.*;
 import managerPackage.*;
 
-/**
-*
+/** 
+* Servlet zur Steuerung der Festivaldaten durch den Administrator
+* 1. aktion = anzeigen
+* 	 Selektierung aller Festivals zur Darstellung in der Festivalverwaltung
+* 2. aktion = anlegen
+* 	 Anlage eines Festivals mit den übermittelten Daten 
+* 3. aktion = aendern
+* 	 Selektierung der Daten zu einem bestimmten Festival um aus der Festivalverwaltung in den Modus "Festival bearbeiten" über zu gehen
+* 4. aktion = datenaendern
+* 	 Durchführung der Änderungen an einem Festival
+* 5. aktion = loeschen
+* 	 Löschen des Festivals
+* 6. aktion = b_loeschen
+* 	 Löschen des Bildes eines Festivals
+* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* 
 * @author Alina Fankhänel
 */
 @WebServlet("/Festivalverwaltung")

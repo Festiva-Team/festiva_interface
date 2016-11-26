@@ -13,8 +13,22 @@ import javax.servlet.http.HttpSession;
 import standardPackage.*;
 import managerPackage.*;
 
-/**
-*
+/** 
+* Servlet zur Steuerung der Kundendaten durch den Administrator
+* 1. aktion = anzeigen
+* 	 Selektierung aller Kunden zur Darstellung in der Kundenverwaltung
+* 2. aktion = anlegen
+* 	 Anlage eines Kunden mit den übermittelten Daten 
+* 3. aktion = aendern
+* 	 Selektierung der Daten zu einem bestimmten Kunden um aus der Kundenverwaltung in den Modus "Kunden bearbeiten" über zu gehen
+* 4. aktion = datenaendern
+* 	 Durchführung der Änderungen an einem Kunden
+* 5. aktion = loeschen
+* 	 Löschen des Kunden
+* 6. aktion = pw_aendern
+* 	 Durchführung der Änderungen an dem Passwort des Kunden
+* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* 
 * @author Alina Fankhänel
 */
 @WebServlet("/Kundenverwaltung")

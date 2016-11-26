@@ -6,8 +6,8 @@ import java.util.List;
 import standardPackage.*;
 
 /**
- * Hilfsklasse zum Managen von Kategorien
- * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Kategorien aus der Datenbank
+ * Hilfsklasse zum Managen von Kategorien,
+ * beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Kategorien aus der Datenbank
  * 
  * @author Alina Fankhänel
  *

@@ -19,8 +19,22 @@ import javax.servlet.http.Part;
 import standardPackage.*;
 import managerPackage.*;
 
-/**
-*
+/** 
+* Servlet zur Steuerung der Artikeldaten durch den Administrator
+* 1. aktion = anlegen
+* 	 Anlage von Artikeln (sowohl Tickets mit Festivalverknüpfung als auch festivalübergreifende Artikel mit Bild)
+* 2. aktion = anzeigen
+* 	 Selektierung aller festivalübergreifenden Artikel zur Darstellung in der Artikelverwaltung
+* 3. aktion = aendern
+* 	 Selektierung der Daten zu einem bestimmten Artikel um aus der Artikelverwaltung in den Modus "Artikel bearbeiten" über zu gehen
+* 4. aktion = datenaendern
+* 	 Durchführung der Änderungen an Artikeln (sowohl Tickets mit Festivalverknüpfung als auch festivalübergreifende Artikel mit Bild)
+* 5. aktion = loeschen
+* 	 Löschen von Tickets oder festivalübergreifenden Artikeln
+* 6. aktion = b_loeschen
+* 	 Löschen des Bildes eines festivalübergreifenden Artikels
+* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* 
 * @author Alina Fankhänel
 */
 @WebServlet("/Artikelverwaltung")

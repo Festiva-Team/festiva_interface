@@ -7,8 +7,8 @@ import java.util.List;
 import standardPackage.*;
 
 /**
- * Hilfsklasse zum Managen von Warenkörben
- * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Warenkörben mit den zugehörigen Warenkorbelementen aus der Datenbank
+ * Hilfsklasse zum Managen von Warenkörben,
+ * beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Warenkörben mit den zugehörigen Warenkorbelementen aus der Datenbank
  * 
  * @author Alina Fankhänel
  *

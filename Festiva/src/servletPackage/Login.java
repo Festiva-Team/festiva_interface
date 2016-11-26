@@ -1,6 +1,7 @@
 package servletPackage;
 
 import standardPackage.*;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -10,8 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import managerPackage.*;
+
 /**
- *
+ * Servlet zum Login-Vorgang,
+ * Erstellt eine neue Session und leitet den Kunden zur Startseite mit der Slideshow und den Administrator zur Admin-Startseite weiter
+ * 1. Prüfung ob eingegebene Login-Daten korrekt sind
+ * 2. Setzen der User-ID, Gruppen-ID und der maximalen Inaktivität vor Beenden der Session als Session-Attribute
  * @author Alina Fankhänel
  */
 @WebServlet("/Login")
@@ -26,14 +31,10 @@ public class Login extends HttpServlet {
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
 	 * methods.
 	 *
-	 * @param request
-	 *            servlet request
-	 * @param response
-	 *            servlet response
-	 * @throws ServletException
-	 *             if a servlet-specific error occurs
-	 * @throws IOException
-	 *             if an I/O error occurs
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
 	 */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -53,7 +54,7 @@ public class Login extends HttpServlet {
 					if(BenutzerManager.selektierePasswortZaehlerVonKunde(benutzer.id) >= 3) {
 						antwort = "Ihr Benutzerkonto wurde gesperrt, da Sie zu oft ein falsches Passwort eingegeben haben. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
 					} else {
-					antwort = "Ihr Benutzerkonto wurde gesperrt. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
+						antwort = "Ihr Benutzerkonto wurde gesperrt. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
 					}
 					request.getSession(false).setAttribute("antwort", antwort);
 					request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
@@ -102,7 +103,7 @@ public class Login extends HttpServlet {
 						} else {
 							
 							if(benutzer.gruppenID == 1) {
-								antwort = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
+								antwort = "Sie haben falsche Login-Daten eingegeben. Bitte versuchen Sie es nochmal!";
 							} else {
 								int zaehler = BenutzerManager.selektierePasswortZaehlerVonKunde(benutzer.id);
 								zaehler = zaehler + 1;
@@ -111,7 +112,7 @@ public class Login extends HttpServlet {
 								if(zaehler >= 3) {
 									antwort = "Ihr Benutzerkonto wurde gesperrt, da Sie 3 Mal ein falsches Passwort eingegeben haben. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
 								} else {
-									antwort = "Sie haben ein falsches Passwort eingegeben. Bitte versuchen Sie es nochmal!";
+									antwort = "Sie haben falsche Login-Daten eingegeben. Bitte versuchen Sie es nochmal!";
 								}
 							}
 							request.getSession(false).setAttribute("antwort", antwort);
@@ -120,7 +121,7 @@ public class Login extends HttpServlet {
 					}
 				}
 		} else {
-			antwort = "Zu der eingegebenen E-Mail-Adresse konnte kein Benutzer gefunden werden. Bitte registieren Sie sich zuerst oder geben eine korrekte E-Mail-Adresse an!";
+				antwort = "Zu der eingegebenen E-Mail-Adresse konnte kein Benutzer gefunden werden. Bitte registieren Sie sich zuerst oder geben eine korrekte E-Mail-Adresse an!";
 			request.getSession(false).setAttribute("antwort", antwort);
 			request.getRequestDispatcher("k_anmelden.jsp").include(request, response);
 
@@ -132,7 +133,6 @@ public class Login extends HttpServlet {
 
 	}
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -144,7 +144,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-     //   processRequest(request, response);
+        processRequest(request, response);
         
     }
 
@@ -161,15 +161,5 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

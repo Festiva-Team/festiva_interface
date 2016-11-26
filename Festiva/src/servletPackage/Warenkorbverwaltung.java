@@ -13,8 +13,28 @@ import javax.servlet.http.HttpSession;
 import standardPackage.*;
 import managerPackage.*;
 
-/**
-*
+/** 
+* Servlet zur Steuerung des Warenkorbs für Kunden
+* 1. aktion = anzeigen
+* 	 Selektierung des Warenkorbs mit allen Positionen zu dem derzeit angemeldeten Kunden und Weiterleitung zu der Ansicht "Mein Warenkorb"
+* 2. aktion = k_anzeigen
+* 	 Selektierung der persönlichen Daten sowie dem Warenkorb zu dem derzeit angemeldeten Kunden und Weiterleitung zu der Ansicht "Kasse"
+* 3. aktion = p_versand
+* 	 Hinzufügen des Post-Versand-Artikels (vorausgesetzt dieser ist in der Bestellung noch nicht enthalten)
+* 4. aktion = m_versand
+* 	 Entfernen des Post-Versand-Artikels (vorausgesetzt dieser ist in der Bestellung enthalten)
+* 5. aktion = hinzufuegen
+* 	 Hinzufügen des ausgewählten Artikels mit der übermittelten Menge als neue Position innerhalb des Warenkorbs
+* 6. aktion = aktualisieren
+* 	 Hinzufügen der übermittelten Menge zu dem ausgewählten Artikel indem die bestehende Position innerhalb des Warenkorbs angepasst wird
+* 7. aktion = aendern
+* 	 Durchführung der Änderungen an dem Inhalt des Warenkorbs (erhöhen und verringern der Menge einzelner Artikel) 
+* 8. aktion = loeschen
+* 	 Löschen einer Position im Warenkorb
+* 9. aktion = anmelden
+* 	 Übermittlung einer Aufforderung zum Anmelden/Registrieren bevor Artikel in den Warenkorb gelegt werden kann (inkl. Speicherung um welchen Artikel es sich handelt, sodass der Kunde anschließend wieder zu dem Artikel zurückgeleitet werden kann)
+* 10. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* 
 * @author Alina Fankhänel
 */
 @WebServlet("/Warenkorbverwaltung")

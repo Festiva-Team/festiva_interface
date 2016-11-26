@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import standardPackage.*;
 /**
- * Hilfsklasse zum Managen von Artikeln
- * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Artikeln aus der Datenbank
+ * Hilfsklasse zum Managen von Artikeln,
+ * beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Artikeln aus der Datenbank
  * 
  * @author Alina Fankhänel
  *

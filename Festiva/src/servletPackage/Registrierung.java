@@ -14,9 +14,12 @@ import standardPackage.*;
 import managerPackage.*;
 
 /**
-*
-* @author Alina Fankhänel
-*/
+ * Servlet zum Registrierungs-Vorgang,
+ * 1. Prüfung ob eingegebene Registrierungs-Daten zulässig sind
+ * 2. Wenn die Daten zulässig sind, wird der Kunde automatisch mittels des Login-Vorgangs automatisch eingeloggt
+ * 3. Verwandlung des eingegebenen Passworts in einen Salted-Hash zur Speicherung in der Datenbank
+ * @author Alina Fankhänel
+ */
 @WebServlet("/Registrierung")
 public class Registrierung extends HttpServlet {
 	private static final long serialVersionUID = 1L;

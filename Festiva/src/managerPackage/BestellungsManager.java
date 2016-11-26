@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.List;
 import standardPackage.*;
 /**
- * Hilfsklasse zum Managen von Bestellungen
- * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Bestellungen mit den zugehörigen Bestellpositionen aus der Datenbank
+ * Hilfsklasse zum Managen von Bestellungen,
+ * beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Bestellungen mit den zugehörigen Bestellpositionen aus der Datenbank
  * 
  * @author Alina Fankhänel
  *

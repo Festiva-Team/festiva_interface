@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import standardPackage.*;
 /**
- * Hilfsklasse zum Managen von Benutzern
- * Beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Benutzern (Kunden und/oder Administratoren) aus der Datenbank
+ * Hilfsklasse zum Managen von Benutzern,
+ * beinhaltet Methoden zur Selektierung, Aktualisierung und Erstellung von Benutzern (Kunden und/oder Administratoren) aus der Datenbank
  * 
  * @author Alina Fankhänel
  *

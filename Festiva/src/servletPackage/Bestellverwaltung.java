@@ -13,8 +13,14 @@ import javax.servlet.http.HttpSession;
 import standardPackage.*;
 import managerPackage.*;
 
-/**
-*
+/** 
+* Servlet zur Steuerung der Bestellungen durch den Kunden
+* 1. aktion = anlegen
+* 	 Anlage einer neuen Bestellung mit den übermittelten Daten und Weiterleitung zur "Meine Bestellungen"-Ansicht
+* 2. aktion = anzeigen
+* 	 Selektierung aller Bestellungs-Daten zu einem Kunden und Weiterleitung zur der "Meine Bestellungen"-Ansicht
+* 3. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* 
 * @author Alina Fankhänel
 */
 @WebServlet("/Bestellverwaltung")

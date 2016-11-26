@@ -17,8 +17,14 @@ import javax.servlet.http.HttpSession;
 import standardPackage.*;
 import managerPackage.*;
 
-/**
-*
+/** 
+* Servlet zur Steuerung der Ticketdaten für jeden Besucher, Kunden und Administrator
+* 1. aktion = t_anzeigen
+* 	 Selektierung aller Festivals, die den optional übermittelten Suchkriterien entsprechen um sie im Ticket-Shop anzuzeigen
+* 2. aktion = f_anzeigen
+* 	 Selektierung der Daten zu einem bestimmten Festival um aus dem Ticket-Shop in die Detail-Ansicht für ein Festival zu wechseln 
+* 3. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* 
 * @author Alina Fankhänel
 */
 @WebServlet("/Ticketverwaltung")
@@ -38,7 +44,6 @@ public class Ticketverwaltung extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		//response.setHeader("Cache-Control", "no-store, must-revalidate, max-age=600");
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("Cache-Control", "max-age=600");
 		response.setDateHeader("Expires", 600);
@@ -99,6 +104,7 @@ public class Ticketverwaltung extends HttpServlet {
 					int festivalid = Integer.parseInt(request.getParameter("festivalid"));
 					float maxpreis = Float.parseFloat(request.getParameter("maxpreis"));
 					
+					// Wenn der User der aktuellen Session ein Kunde ist, wird der aktuelle Warenkorbinhalt selektiert
 					if(session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
 						int userid = Integer.parseInt(session.getAttribute("userid").toString());
 						Warenkorb warenkorb = WarenkorbManager.selektiereWarenkorbVonKunden(userid, false);
