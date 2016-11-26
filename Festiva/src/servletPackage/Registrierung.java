@@ -14,10 +14,10 @@ import standardPackage.*;
 import managerPackage.*;
 
 /**
- * Servlet zum Registrierungs-Vorgang,
- * 1. Prüfung ob eingegebene Registrierungs-Daten zulässig sind
- * 2. Wenn die Daten zulässig sind, wird der Kunde automatisch mittels des Login-Vorgangs automatisch eingeloggt
- * 3. Verwandlung des eingegebenen Passworts in einen Salted-Hash zur Speicherung in der Datenbank
+ * Servlet zum Registrierungs-Vorgang<br>
+ * 1. Prüfung ob eingegebene Registrierungs-Daten zulässig sind<br>
+ * 2. Wenn die Daten zulässig sind, wird der Kunde automatisch mittels des Login-Vorgangs automatisch eingeloggt<br>
+ * 3. Verwandlung des eingegebenen Passworts in einen Salted-Hash zur Speicherung in der Datenbank<br>
  * @author Alina Fankhänel
  */
 @WebServlet("/Registrierung")

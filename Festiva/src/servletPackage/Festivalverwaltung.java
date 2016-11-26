@@ -22,20 +22,20 @@ import standardPackage.*;
 import managerPackage.*;
 
 /** 
-* Servlet zur Steuerung der Festivaldaten durch den Administrator
-* 1. aktion = anzeigen
-* 	 Selektierung aller Festivals zur Darstellung in der Festivalverwaltung
-* 2. aktion = anlegen
-* 	 Anlage eines Festivals mit den übermittelten Daten 
-* 3. aktion = aendern
-* 	 Selektierung der Daten zu einem bestimmten Festival um aus der Festivalverwaltung in den Modus "Festival bearbeiten" über zu gehen
-* 4. aktion = datenaendern
-* 	 Durchführung der Änderungen an einem Festival
-* 5. aktion = loeschen
-* 	 Löschen des Festivals
-* 6. aktion = b_loeschen
-* 	 Löschen des Bildes eines Festivals
-* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* Servlet zur Steuerung der Festivaldaten durch den Administrator<br>
+* 1. aktion = anzeigen<br>
+* 	 Selektierung aller Festivals zur Darstellung in der Festivalverwaltung<br>
+* 2. aktion = anlegen<br>
+* 	 Anlage eines Festivals mit den übermittelten Daten <br>
+* 3. aktion = aendern<br>
+* 	 Selektierung der Daten zu einem bestimmten Festival um aus der Festivalverwaltung in den Modus "Festival bearbeiten" über zu gehen<br>
+* 4. aktion = datenaendern<br>
+* 	 Durchführung der Änderungen an einem Festival<br>
+* 5. aktion = loeschen<br>
+* 	 Löschen des Festivals<br>
+* 6. aktion = b_loeschen<br>
+* 	 Löschen des Bildes eines Festivals<br>
+* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet<br>
 * 
 * @author Alina Fankhänel
 */

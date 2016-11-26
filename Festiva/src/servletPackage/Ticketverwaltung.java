@@ -18,12 +18,12 @@ import standardPackage.*;
 import managerPackage.*;
 
 /** 
-* Servlet zur Steuerung der Ticketdaten für jeden Besucher, Kunden und Administrator
-* 1. aktion = t_anzeigen
-* 	 Selektierung aller Festivals, die den optional übermittelten Suchkriterien entsprechen um sie im Ticket-Shop anzuzeigen
-* 2. aktion = f_anzeigen
-* 	 Selektierung der Daten zu einem bestimmten Festival um aus dem Ticket-Shop in die Detail-Ansicht für ein Festival zu wechseln 
-* 3. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* Servlet zur Steuerung der Ticketdaten für jeden Besucher, Kunden und Administrator<br>
+* 1. aktion = t_anzeigen<br>
+* 	 Selektierung aller Festivals, die den optional übermittelten Suchkriterien entsprechen um sie im Ticket-Shop anzuzeigen<br>
+* 2. aktion = f_anzeigen<br>
+* 	 Selektierung der Daten zu einem bestimmten Festival um aus dem Ticket-Shop in die Detail-Ansicht für ein Festival zu wechseln <br>
+* 3. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet<br>
 * 
 * @author Alina Fankhänel
 */

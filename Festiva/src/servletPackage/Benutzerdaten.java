@@ -13,16 +13,16 @@ import javax.servlet.http.HttpSession;
 import standardPackage.*;
 import managerPackage.*;
 /** 
-* Servlet zur Steuerung der Benutzerdaten durch den Benutzer (Kunden oder Administrator)
-* 1. aktion = anzeigen
-* 	 Selektierung der Benutzerdaten und entsprechende Weiterleitung zu der Admin-Konto-Übersicht bzw zu der Meine-Daten-Übersicht 
-* 2. aktion = aendern
-* 	 Durchführung der Änderungen an den eigenen Kundendaten durch den Kunden selbst
-* 3. aktion = p_aendern
-* 	 Durchführung der Änderungen an dem eigenen Passwort durch den Kunden oder den Administrator
-* 4. aktion = loeschen
-* 	 Löschen des Kundenkontos durch den Kunden selbst
-* 5. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* Servlet zur Steuerung der Benutzerdaten durch den Benutzer (Kunden oder Administrator)<br>
+* 1. aktion = anzeigen<br>
+* 	 Selektierung der Benutzerdaten und entsprechende Weiterleitung zu der Admin-Konto-Übersicht bzw zu der Meine-Daten-Übersicht<br> 
+* 2. aktion = aendern<br>
+* 	 Durchführung der Änderungen an den eigenen Kundendaten durch den Kunden selbst<br>
+* 3. aktion = p_aendern<br>
+* 	 Durchführung der Änderungen an dem eigenen Passwort durch den Kunden oder den Administrator<br>
+* 4. aktion = loeschen<br>
+* 	 Löschen des Kundenkontos durch den Kunden selbst<br>
+* 5. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet<br>
 * 
 * @author Alina Fankhänel
 */

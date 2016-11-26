@@ -13,10 +13,10 @@ import javax.servlet.http.HttpSession;
 import managerPackage.*;
 
 /**
- * Servlet zum Login-Vorgang,
- * Erstellt eine neue Session und leitet den Kunden zur Startseite mit der Slideshow und den Administrator zur Admin-Startseite weiter
- * 1. Prüfung ob eingegebene Login-Daten korrekt sind
- * 2. Setzen der User-ID, Gruppen-ID und der maximalen Inaktivität vor Beenden der Session als Session-Attribute
+ * Servlet zum Login-Vorgang<br>
+ * Erstellt eine neue Session und leitet den Kunden zur Startseite mit der Slideshow und den Administrator zur Admin-Startseite weiter<br>
+ * 1. Prüfung ob eingegebene Login-Daten korrekt sind<br>
+ * 2. Setzen der User-ID, Gruppen-ID und der maximalen Inaktivität vor Beenden der Session als Session-Attribute<br>
  * @author Alina Fankhänel
  */
 @WebServlet("/Login")

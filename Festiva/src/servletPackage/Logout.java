@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * Servlet zum Logout-Vorgang
- * Beendet die aktuelle Session und leitet den Benutzer zur Startseite zurück
+ * Servlet zum Logout-Vorgang<br>
+ * Beendet die aktuelle Session und leitet den Benutzer zur Startseite zurück<br>
  *
  * @author Alina Fankhänel
  */

@@ -20,20 +20,20 @@ import standardPackage.*;
 import managerPackage.*;
 
 /** 
-* Servlet zur Steuerung der Kategoriendaten durch den Administrator
-* 1. aktion = anzeigen
-* 	 Selektierung aller Kategorien zur Darstellung in der Kategorienverwaltung
-* 2. aktion = anlegen
-* 	 Anlage einer Kategorie mit den übermittelten Daten 
-* 3. aktion = aendern
-* 	 Selektierung der Daten zu einer bestimmten Kategorie um aus der Kategorienverwaltung in den Modus "Kategorie bearbeiten" über zu gehen
-* 4. aktion = datenaendern
-* 	 Durchführung der Änderungen an einer Kategorie
-* 5. aktion = loeschen
-* 	 Löschen der Kategorie
-* 6. aktion = b_loeschen
-* 	 Löschen des Bildes eines Festivals
-* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* Servlet zur Steuerung der Kategoriendaten durch den Administrator<br>
+* 1. aktion = anzeigen<br>
+* 	 Selektierung aller Kategorien zur Darstellung in der Kategorienverwaltung<br>
+* 2. aktion = anlegen<br>
+* 	 Anlage einer Kategorie mit den übermittelten Daten <br>
+* 3. aktion = aendern<br>
+* 	 Selektierung der Daten zu einer bestimmten Kategorie um aus der Kategorienverwaltung in den Modus "Kategorie bearbeiten" über zu gehen<br>
+* 4. aktion = datenaendern<br>
+* 	 Durchführung der Änderungen an einer Kategorie<br>
+* 5. aktion = loeschen<br>
+* 	 Löschen der Kategorie<br>
+* 6. aktion = b_loeschen<br>
+* 	 Löschen des Bildes eines Festivals<br>
+* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet<br>
 * 
 * @author Alina Fankhänel
 */

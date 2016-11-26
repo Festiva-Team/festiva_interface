@@ -20,20 +20,20 @@ import standardPackage.*;
 import managerPackage.*;
 
 /** 
-* Servlet zur Steuerung der Artikeldaten durch den Administrator
-* 1. aktion = anlegen
-* 	 Anlage von Artikeln (sowohl Tickets mit Festivalverknüpfung als auch festivalübergreifende Artikel mit Bild)
-* 2. aktion = anzeigen
-* 	 Selektierung aller festivalübergreifenden Artikel zur Darstellung in der Artikelverwaltung
-* 3. aktion = aendern
-* 	 Selektierung der Daten zu einem bestimmten Artikel um aus der Artikelverwaltung in den Modus "Artikel bearbeiten" über zu gehen
-* 4. aktion = datenaendern
-* 	 Durchführung der Änderungen an Artikeln (sowohl Tickets mit Festivalverknüpfung als auch festivalübergreifende Artikel mit Bild)
-* 5. aktion = loeschen
-* 	 Löschen von Tickets oder festivalübergreifenden Artikeln
-* 6. aktion = b_loeschen
-* 	 Löschen des Bildes eines festivalübergreifenden Artikels
-* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet
+* Servlet zur Steuerung der Artikeldaten durch den Administrator<br>
+* 1. aktion = anlegen<br>
+* 	 Anlage von Artikeln (sowohl Tickets mit Festivalverknüpfung als auch festivalübergreifende Artikel mit Bild)<br>
+* 2. aktion = anzeigen<br>
+* 	 Selektierung aller festivalübergreifenden Artikel zur Darstellung in der Artikelverwaltung<br>
+* 3. aktion = aendern<br>
+* 	 Selektierung der Daten zu einem bestimmten Artikel um aus der Artikelverwaltung in den Modus "Artikel bearbeiten" über zu gehen<br>
+* 4. aktion = datenaendern<br>
+* 	 Durchführung der Änderungen an Artikeln (sowohl Tickets mit Festivalverknüpfung als auch festivalübergreifende Artikel mit Bild)<br>
+* 5. aktion = loeschen<br>
+* 	 Löschen von Tickets oder festivalübergreifenden Artikeln<br>
+* 6. aktion = b_loeschen<br>
+* 	 Löschen des Bildes eines festivalübergreifenden Artikels<br>
+* 7. Sollte der User unberechtigter Weise dieses Servlet aufrufen, wird keine Aktion durchgeführt und der User zur Anmelden-Seite weitergeleitet<br>
 * 
 * @author Alina Fankhänel
 */
