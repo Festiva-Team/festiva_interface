@@ -116,10 +116,12 @@ public class Ticketverwaltung extends HttpServlet {
 					}
 					Festival festival = FestivalManager.selektiereFestival(festivalid);
 					
+					// Wenn kein Maximalpreis eingegeben wird, kann die einfache Detailsicht mit allen Artikeln angezeigt werden
 					if(maxpreis == 0.0) {
 						List<Artikel> listArtikel = ArtikelManager.selektiereArtikelVonFestival(festivalid);
 						session.setAttribute("listArtikel", listArtikel);
 					} else {
+					// Wenn ein Maximalpreis eingegeben wird, wird die doppelte Detailsicht angezeigt (Artikel, die zu der Begrenzung passen und weitere)
 						List<Artikel> listArtikelMitMaxPreis = ArtikelManager.selektiereArtikelVonFestivalMitMaxPreis(festivalid, maxpreis);
 						List<Artikel> listArtikelUeberMaxPreis = ArtikelManager.selektiereArtikelVonFestival‹berMaxPreis(festivalid, maxpreis);
 						session.setAttribute("listArtikelMitMaxPreis", listArtikelMitMaxPreis);

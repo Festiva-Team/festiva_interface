@@ -108,19 +108,8 @@ public class Festivalverwaltung extends HttpServlet {
 					Festival festival = new Festival(-1, name, ort, kurzbeschreibung, langbeschreibung, startdatum, enddatum, "", false, kategorie);
 					FestivalManager.erstelleFestival(festival);
 					
-					Part filePart = request.getPart("bild");
-					
-					if (getFileName(filePart) != null && !getFileName(filePart).equals("")) {
-						
-						festival.bildpfad = "Festival" + "_" + festival.id + "_" + new Date().getTime();
-					    File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg");
-					    
-					    try (InputStream input = filePart.getInputStream()) {
-					        Files.copy(input, file.toPath());
-					    }
-					    
-						FestivalManager.aktualisiereFestival(festival);
-					}
+					Part dateiPart = request.getPart("bild");
+					festival = verarbeiteBild(dateiPart, festival, false);
 					antwort = "Das Festival '" + festival.name + "' wurde erfolgreich mit der ID " + festival.id + " angelegt.";
 					
 					}
@@ -162,29 +151,8 @@ public class Festivalverwaltung extends HttpServlet {
 								session.setAttribute("antwort", antwort);
 							} else { 
 								
-							Part filePart = request.getPart("bild"); 
-							
-							if (getFileName(filePart) != null && !getFileName(filePart).equals("")) {
-						    File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg");
-						    
-						    if (file.exists()) file.delete();
-						    
-						    festival.bildpfad = "Festival" + "_" + festival.id + "_" + new Date().getTime();
-						    file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg");
-						    
-						    try (InputStream input = filePart.getInputStream()) {
-						        Files.copy(input, file.toPath());
-
-						        try {
-									Thread.sleep(3000);
-								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						    }
-						    
-						}
-						
+							Part dateiPart = request.getPart("bild"); 
+							festival = verarbeiteBild(dateiPart, festival, true);						
 						    festival.name = name;
 						    festival.ort = ort;
 						    festival.startDatum = startdatum;
@@ -209,9 +177,9 @@ public class Festivalverwaltung extends HttpServlet {
 								session.setAttribute("antwort", antwort);
 							} 	else {
 								if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("b_loeschen")) {
-									File file = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg");
+									File datei = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + festival.bildpfad + ".jpg");
 								    
-								    if (file.exists()) file.delete();
+								    if (datei.exists()) datei.delete();
 								    festival.bildpfad = "";
 								    FestivalManager.aktualisiereFestival(festival);
 								    antwort = "Das Bild wurde erfolgreich gelöscht.";
@@ -242,16 +210,59 @@ public class Festivalverwaltung extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private String getFileName(Part part) {
-		String partHeader = part.getHeader("content-disposition");
+	/**
+	 * Methode zur Ermittlung des Datei Namens
+	 * 
+	 * @param p_part Part der Datei
+	 * @return rueckmeldung ermittelter Datei-Name, wenn die Ermittlung nicht möglich war, wird null zurückgegeben
+	 */
+	private String gibDateiNamen(Part p_part) {
+		String rueckmeldung = null;
+		String partHeader = p_part.getHeader("content-disposition");
 		log("Part Header = " + partHeader);
-		for (String cd : part.getHeader("content-disposition").split(";")) {
+		for (String cd : p_part.getHeader("content-disposition").split(";")) {
 			if (cd.trim().startsWith("filename")) {
-				return cd.substring(cd.indexOf('=') + 1).trim()
-						.replace("\"", "");
+				rueckmeldung = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+				return rueckmeldung;
 			}
 		}
-		return null;
+		return rueckmeldung;
+	}
+	
+	/**
+	 * Methode zur Verarbeitung eines Bildes
+	 * 
+	 * @param p_part Part der Datei
+	 * @param p_festival Festival, an dem das Bild geändert werden soll
+	 * @param p_loeschen gibt an, ob das bestehende gespeicherte Bild vorher gelöscht werden soll
+	 * @return festival Festival mit aktuellem Bildpfad
+	 */
+	private Festival verarbeiteBild(Part p_dateiPart, Festival p_festival, boolean p_loeschen) {
+		
+		if (p_dateiPart != null && gibDateiNamen(p_dateiPart) != null && !gibDateiNamen(p_dateiPart).equals("")) {
+			
+			if(p_loeschen) {
+				File datei = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + p_festival.bildpfad + ".jpg");  
+			    if (datei.exists()) datei.delete();
+			}
+			
+			p_festival.bildpfad = "Festival" + "_" + p_festival.id + "_" + new Date().getTime();
+		    File datei = new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + p_festival.bildpfad + ".jpg");
+		    
+		    try (InputStream input = p_dateiPart.getInputStream()) {
+		        Files.copy(input, datei.toPath());
+		    } catch (IOException e) {
+				e.printStackTrace();
+			}
+		    
+		    if(p_loeschen == false) {
+		    try {
+		    	FestivalManager.aktualisiereFestival(p_festival);
+		    } catch (DatenbankException e) {
+		    	e.printStackTrace();
+		    }}
+		}
+		return p_festival;		
 	}
 
 }

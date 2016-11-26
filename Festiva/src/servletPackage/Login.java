@@ -50,7 +50,6 @@ public class Login extends HttpServlet {
 
 		if (benutzer != null) {
 				if (benutzer.istGesperrt == true) {
-					
 					if(BenutzerManager.selektierePasswortZaehlerVonKunde(benutzer.id) >= 3) {
 						antwort = "Ihr Benutzerkonto wurde gesperrt, da Sie zu oft ein falsches Passwort eingegeben haben. Bitte wenden Sie sich an den Administrator: admin@festiva.de";
 					} else {
@@ -73,18 +72,19 @@ public class Login extends HttpServlet {
 						    anforderer = request.getSession(false).getAttribute("anforderer").toString();
 						    request.getSession(false).removeAttribute("anforderer");
 							}
-						HttpSession session = request.getSession(true);
-						session.setAttribute("userid", benutzer.id);
-						session.setAttribute("gruppenid", benutzer.gruppenID);
-						session.setMaxInactiveInterval(3600);
-
-						
+								HttpSession session = request.getSession(true);
+								session.setAttribute("userid", benutzer.id);
+								session.setAttribute("gruppenid", benutzer.gruppenID);
+								session.setMaxInactiveInterval(3600);
+						// Weiterleitung je nach User wenn der Login erfolgreich war
+						// Wenn der User ein Administrator ist
 						if (benutzer.gruppenID == 1){
 							begrüßung = "Herzlich Willkommen bei Festiva!";
 							request.getSession(false).setAttribute("begrüßung", begrüßung);
 							request.getRequestDispatcher("a_startseiteAdmin.jsp").include(request, response);
 							
 						} else {
+							// Wenn der User ein Kunde ist
 							BenutzerManager.aktualisierePasswortZaehlerBeiKunde(benutzer.id, 0);
 							if((benutzer.vorname).equals("") && benutzer.nachname.equals("")) {
 							begrüßung = "Herzlich Willkommen bei Festiva!";	
@@ -101,10 +101,12 @@ public class Login extends HttpServlet {
 						}
 
 						} else {
-							
+							// Registrierung des falschen Logins in der Datenbank je nach User-Gruppe
+							// Wenn der User ein Administrator ist
 							if(benutzer.gruppenID == 1) {
 								antwort = "Sie haben falsche Login-Daten eingegeben. Bitte versuchen Sie es nochmal!";
 							} else {
+							// Wenn der User ein Kunde ist
 								int zaehler = BenutzerManager.selektierePasswortZaehlerVonKunde(benutzer.id);
 								zaehler = zaehler + 1;
 								BenutzerManager.aktualisierePasswortZaehlerBeiKunde(benutzer.id, zaehler);

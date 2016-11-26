@@ -58,9 +58,6 @@ public class Warenkorbverwaltung extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
-//		response.setHeader("Pragma", "no-cache");
-//		response.setHeader("Cache-Control", "max-age=600");
-//		response.setDateHeader("Expires", 600);
 		
 		try{
 		if(session != null && session.getAttribute("begrüßung") != null && Integer.parseInt(session.getAttribute("gruppenid").toString()) == 2) {
@@ -134,9 +131,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 								
 							} else {
 								if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("hinzufuegen")) {
-									response.setHeader("Pragma", "no-cache");
-									response.setHeader("Cache-Control", "max-age=600");
-									response.setDateHeader("Expires", 600);
+									response = passeCacheAn(response);
 									int userid = Integer.parseInt(session.getAttribute("userid").toString());
 									int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 									int menge = Integer.parseInt(request.getParameter("menge"));
@@ -154,9 +149,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 									}
 								} else { 
 									if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aktualisieren")) {
-										response.setHeader("Pragma", "no-cache");
-										response.setHeader("Cache-Control", "max-age=600");
-										response.setDateHeader("Expires", 600);
+										response = passeCacheAn(response);
 										int userid = Integer.parseInt(session.getAttribute("userid").toString());
 										int artikelid = Integer.parseInt(request.getParameter("artikelid"));
 										int menge = Integer.parseInt(request.getParameter("menge"));
@@ -186,7 +179,7 @@ public class Warenkorbverwaltung extends HttpServlet {
 									} else {
 									
 				int elementID = 0;
-						if(request.getParameter("elementid") != null) {
+				if(request.getParameter("elementid") != null) {
 						elementID = Integer.parseInt(request.getParameter("elementid"));}
 				if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("aendern")) {
 					int mengeNeu = Integer.parseInt(request.getParameter("menge"));
@@ -196,16 +189,11 @@ public class Warenkorbverwaltung extends HttpServlet {
 					
 				} else {
 					if ( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("loeschen")) {
-						WarenkorbManager.loescheWarenkorbelement(elementID);
-						
+						WarenkorbManager.loescheWarenkorbelement(elementID);	
 					} 
 				}
 				request.getRequestDispatcher("/Warenkorbverwaltung?aktion=anzeigen").include(request, response);
-			}}}
-						}
-					}	
-			}
-			
+			}}}}}}			
 		} else {
 			if( request.getParameter("aktion") != null && (request.getParameter("aktion")).equals("anmelden")) {
 				antwort = "Sie müssen sich erst anmelden, bevor Sie Artikel in Ihren Warenkorb legen können.";
@@ -232,14 +220,36 @@ public class Warenkorbverwaltung extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private boolean ueberpruefeKundendaten(Benutzer benutzer) {
-		if(benutzer.vorname.trim().length() == 0 || benutzer.nachname.trim().length() == 0 || benutzer.strasse.trim().length() == 0 ||
-		   benutzer.hausnummer.trim().length() == 0 || benutzer.ort.trim().length() == 0 || benutzer.iban.trim().length() == 0 ||
-		   benutzer.plz == 0 || benutzer.einzugsermächtigungErteilt == false) {
-			return false;
+	
+	/**
+	 * Methode zur Überprüfung der Kundendaten an der Kasse
+	 * 
+	 * @param p_benutzer Benutzer, dessen Daten überprüft werden sollen
+	 * @return rueckmeldung Rückmeldung, ob die Kundendaten vollständig sind
+	 */
+	private boolean ueberpruefeKundendaten(Benutzer p_benutzer) {
+		boolean rueckmeldung = true;
+		if(p_benutzer.vorname.trim().length() == 0 || p_benutzer.nachname.trim().length() == 0 || p_benutzer.strasse.trim().length() == 0 ||
+		   p_benutzer.hausnummer.trim().length() == 0 || p_benutzer.ort.trim().length() == 0 || p_benutzer.iban.trim().length() == 0 ||
+		   p_benutzer.plz == 0 || p_benutzer.einzugsermächtigungErteilt == false) {
+			rueckmeldung = false;
+			return rueckmeldung;
 		} else {
-		return true;
+		return rueckmeldung;
 		}
+	}
+	
+	/**
+	 * Methode zur Anpassung der Cache-Eigenschaften
+	 * 
+	 * @param p_response Response, an der die Anpassung vorgenommen werden soll
+	 * @return p_response Response, an der die Anpassungen vorgenommen wurden
+	 */
+	private HttpServletResponse passeCacheAn(HttpServletResponse p_response) {
+		p_response.setHeader("Pragma", "no-cache");
+		p_response.setHeader("Cache-Control", "max-age=600");
+		p_response.setDateHeader("Expires", 600);
+		return p_response;
 	}
 
 }

@@ -74,12 +74,13 @@ public class Registrierung extends HttpServlet {
 					WarenkorbManager.erstelleLeerenWarenkorb(benutzer.id);
 					antwort = "Die Registrierung wurde erfolgreich durchgeführt.";
 					}
-				
+				}
 			}
-		}
 		}
 		request.getSession(false).setAttribute("antwort", antwort);
 		
+		// Entscheidung über Weiterleitung je nach Nutzer und je nach Aktion, die durchgeführt wurde
+		// Wenn der User dieser Session ein Besucher ist
 		if(request.getSession(false).getAttribute("gruppenid") == null) {
 			if(zuRegistrieren) {
 				request.getRequestDispatcher("k_registrieren.jsp").include(request, response);
@@ -89,6 +90,7 @@ public class Registrierung extends HttpServlet {
 		
 		} else {
 			int gruppenid = Integer.parseInt(request.getSession(false).getAttribute("gruppenid").toString());
+			// Wenn der User dieser Session ein Administrator ist
 			if(gruppenid == 1) {
 				if(request.getParameter("aktion") != null && request.getParameter("aktion").equals("a_anlegen")) {
 					request.getRequestDispatcher("a_adminAnlegen.jsp").include(request, response);
