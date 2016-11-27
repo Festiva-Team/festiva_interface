@@ -1,4 +1,7 @@
 /**
+ * Funktionen für übergreifende Suchen und zur Übertragung von Java-Script zu einem Servlet mittels der Post-Methode
+ * 
+ * @author Alina Fankhänel
  * 
  */
 function post(pfad, parameter, methode) {

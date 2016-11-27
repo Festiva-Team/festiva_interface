@@ -41,6 +41,7 @@
 </head>
 <body>
 <script type="text/javascript" src="uebergreifendeFunktionen.js"></script>
+<script type="text/javascript" src="bestellenFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="k_header.jsp">
 	<jsp:param name="active" value="shop"/>
@@ -80,7 +81,7 @@
 			<td data-label="Details: " ><%=artikel.details%></td>
 			<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 			<td data-label="" class="anzahl"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
-			<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
+			<td><button type="submit" id="buttontabelle" onclick="festivaldetailsEinfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 			</tr></tbody>
 			<% } %>
 		 </table> 
@@ -96,7 +97,7 @@
 				<td data-label="Details: "><%=artikel.details%></td>
 				<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 				<td data-label="" class="anzahl"><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
-				<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
+				<td><button type="submit" id="buttontabelle" onclick="festivaldetailsEinfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 			</tr>
 			</tbody>
 			<% } %>
@@ -114,7 +115,7 @@
 				<td data-label="Details: "><%=artikel.details%></td>
 				<td data-label="Preis: " class="preis"><%=String.format("%.2f",artikel.preis)%> &#8364;</td>
 				<td data-label=""><select id="anzahl<%=artikel.id%>" name="anzahl"><%for (int i=1; i<=10; i++) {%><option><%=i%></option><%}%></select></td>
-				<td><button type="submit" id="buttontabelle" onclick="einfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
+				<td><button type="submit" id="buttontabelle" onclick="festivaldetailsEinfuegen(<%=artikel.id%>, <%if(listArtikelID != null){ %><%=listArtikelID%> <% }else { %> null<% } %>, <%=festival.id%>, <%=maxPreis%>)">In den Warenkorb</button></td>
 			</tr>
 			</tbody>
 			<% } %>
@@ -127,35 +128,5 @@
 </jsp:include>
 	</div>	
 </body>
-<script type="text/javascript">
-function einfuegen(id, elemente, festivalid, maxpreis){
-	
-	if(elemente == null) {
-		document.location.href='/Festiva/Warenkorbverwaltung?aktion=anmelden';
-	} else {
-   
-			var vorhanden = false;
-			for (var i = 0; i < elemente.length; i++) {
-				if (elemente[i] == id) {
-					vorhanden = true;
-				}
-			}
-			
-			var menge = document.getElementById('anzahl'+id).value;
-			
-			if(vorhanden == true) {
-			if(confirm("Dieser Artikel befindet sich bereits in Ihrem Warenkorb. Soll die ausgewählte Menge trotzdem hinzugefügt werden?") == true)
-		
-				post('/Festiva/Warenkorbverwaltung', {aktion: 'aktualisieren', artikelid: id, menge: menge, festivalid: festivalid, maxpreis: maxpreis});	
-				//document.location.href='/Festiva/Warenkorbverwaltung?aktion=aktualisieren&artikelid=' + id + '&menge=' + menge + "&festivalid=" + festivalid + "&maxpreis=" + maxpreis;
-			} else {
-			
-				post('/Festiva/Warenkorbverwaltung', {aktion: 'hinzufuegen', artikelid: id, menge: menge, festivalid: festivalid, maxpreis: maxpreis});
-				//document.location.href='/Festiva/Warenkorbverwaltung?aktion=hinzufuegen&artikelid=' + id + '&menge=' + menge + "&festivalid=" + festivalid + "&maxpreis=" + maxpreis;
-				
-			}	
-	}
-}
-</script>
 </html>
 <% request.getSession().removeAttribute("listArtikel"); request.getSession().removeAttribute("listArtikelMitMaxPreis"); request.getSession().removeAttribute("listArtikelMitUeberPreis");} %>

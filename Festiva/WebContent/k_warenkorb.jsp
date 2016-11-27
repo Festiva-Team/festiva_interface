@@ -34,6 +34,7 @@
 <title>Warenkorb</title>
 </head>
 <body>
+<script type="text/javascript" src="bestellenFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="k_header.jsp">
   	<jsp:param name="active" value="warenkorb"/>
@@ -58,7 +59,7 @@
 				<% } } } %>
 				
 				<td data-label="Preis: " class="preis"><%=String.format("%.2f",warenkorbelement.artikel.preis)%> &#8364;</td>
-				<td data-label=""> <select onchange="myFunction(this, <%=warenkorbelement.id%>);" id="menge<%=id%>" name="menge<%=id%>">
+				<td data-label=""> <select onchange="anzahlAendern(this, <%=warenkorbelement.id%>);" id="menge<%=id%>" name="menge<%=id%>">
 				<%for (int i=1; i<= 10; i++) { 
 				  if(i == warenkorbelement.menge) { %>
 				<option selected="selected" value="<%=i%>"><%=i%></option>
@@ -87,12 +88,5 @@
 </jsp:include>
 </div>
 </body>
-<script type="text/javascript">
-	function myFunction(objekt, id) {
-	    var x = document.getElementById(objekt.id).value;
-	    document.location.href='/Festiva/Warenkorbverwaltung?aktion=aendern&elementid=' + id + '&menge=' + x;
-	}
-
-</script>
 </html>
 <% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb");}%>

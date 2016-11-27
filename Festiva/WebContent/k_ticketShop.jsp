@@ -86,7 +86,6 @@ if (request.getSession(false) != null) {
 					<% }	%>
 				
 			<td><a href="/Festiva/Ticketverwaltung?aktion=f_anzeigen&festivalid=<%=festival.id%>&maxpreis=<%=suchKriterien.bisPreis%>"><%=festival.name%></a></td> 
-				<%-- <td><a href="javascript:zeigeDetails(<%=festival.id%>, <%=suchKriterien.bisPreis%>)"><%=festival.name%></a></td> --%>
 				<% if (festival.startDatum.compareTo(festival.endDatum) == 0)
 				{%>
 				<td><%=sd.format(festival.startDatum)%></td>
@@ -120,10 +119,5 @@ if (request.getSession(false) != null) {
 </jsp:include>
 </div>
 </body>
-<script type="text/javascript">
-/* function zeigeDetails(id, preis) {
-post('/Festiva/Ticketverwaltung', {aktion: 'f_anzeigen', festivalid: id, maxpreis: preis});	
-} */
-</script>
 </html>
 <% request.getSession().removeAttribute("listKategorien"); request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("suchKriterien");} %>

@@ -41,6 +41,7 @@
 </head>
 <body>
 <script type="text/javascript" src="uebergreifendeFunktionen.js"></script>
+<script type="text/javascript" src="bestellenFunktionen.js"></script>
 <div id="webseite">
 	<jsp:include page="k_header.jsp">
    		<jsp:param name="active" value="warenkorb"/>
@@ -126,24 +127,6 @@
 </body>
 <script type="text/javascript">
 var arrObjRadio = new Array();
-function versenden(objRadio){
-// Falls der Radiobutton gesetzt ist und ein neuer Radiobutton gewählt wurde
-if((objRadio.checked == true) && (objRadio != arrObjRadio[objRadio.name])){
-// Aktuelles Objekt merken
-arrObjRadio[objRadio.name] = objRadio;
-// Änderungen durchführen
-switch(objRadio.value){
-  case "post"  : 
-	            //document.location.href='/Festiva/Warenkorbverwaltung?aktion=p_versand';
-	            post('/Festiva/Warenkorbverwaltung', {aktion: 'p_versand'});
-                       break;
-  case "mail" : 
-	  			//document.location.href='/Festiva/Warenkorbverwaltung?aktion=m_versand';
-  				post('/Festiva/Warenkorbverwaltung', {aktion: 'm_versand'});	
-                       break;
-}
-}
-}
 </script>
 </html>
 <% request.getSession().removeAttribute("listFestivals"); request.getSession().removeAttribute("warenkorb"); request.getSession().removeAttribute("benutzer"); request.getSession().removeAttribute("perPost"); request.getSession().removeAttribute("kundendatenVollstaendig");}%>

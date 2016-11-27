@@ -33,6 +33,7 @@ else {
 <title>Festiva - Festivalverwaltung</title>
 </head>
 <body>
+<script type="text/javascript" src="durchfuehrenBestaetigenFunktionen.js"></script>
 <div id="webseite">
    <jsp:include page="a_headerAdmin.jsp">
    	<jsp:param name="active" value="festivalAendern"/>
@@ -115,7 +116,7 @@ else {
 				</div>		
 			</div>					
 		</form>	 
-			<button type="submit"  onclick="del(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>	
+			<button type="submit"  onclick="festivalLoeschen(<%=festival.id%>)" <% if (festival.istGelöscht == true) { %> disabled="disabled" <% } %>>Festival löschen</button>	
 	<div id="leer"></div>
 	</div>
 <jsp:include page="k_footer.jsp">
@@ -123,15 +124,5 @@ else {
 </jsp:include>
 </div>	
 </body>
-<script type="text/javascript">
-
-function del(id){
-	   if(confirm("Achtung! Wenn Sie das Festival löschen, werden automatisch alle dazugehörigen Artikel gelöscht. Möchten Sie fortfahren?") == true) {
-		   document.location.href='/Festiva/Festivalverwaltung?aktion=loeschen&festivalid=' + id;
-       } else {
-    	   document.location.href='/Festiva/Festivalverwaltung?aktion=aendern&festivalid=' + id;
-       }
-}
-</script>
 </html>
 <% request.getSession().removeAttribute("festival"); request.getSession().removeAttribute("listArtikel"); request.getSession().removeAttribute("listKategorien");}%>

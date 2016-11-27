@@ -19,6 +19,7 @@ if (request.getSession(false) != null) {
 	<title>Festiva</title>
 </head>
 <body>
+<script type="text/javascript" src="slideshowFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="k_header.jsp">
 	<jsp:param name="active" value="startseite"/>
@@ -41,8 +42,6 @@ if (request.getSession(false) != null) {
 		       		<%=kategorie.beschreibung%>
 				</figcaption>
 			</figure>
-			<%-- <a href="/Festiva/Ticketverwaltung?aktion=t_anzeigen&kategorie=<%=kategorie.id%>"><img title="test" onmouseover="zeigeBeschr(<%=kategorie.id%>)" onmouseout="entferneBeschr(<%=kategorie.id%>)" src="/Festiva/Bilder/<%=kategorie.bildpfad%>.jpg" id="img"></a>
-			<div id="beschreibung<%=kategorie.id%>" style="visibility: hidden" class="numbertext"><%=kategorie.beschreibung%></div> --%>
 		</div>
 		<% } }%>
 		<div id="left_holder">
@@ -63,47 +62,7 @@ if (request.getSession(false) != null) {
 <script>
 var timer = 0;
 var slideIndex = 0;
-carousel();
-
-
-function zeigeBeschr(x) {
-	document.getElementById('beschreibung'+x).style.visibility = "visible";
-}
-
-function entferneBeschr(x) {
-	document.getElementById('beschreibung'+x).style.visibility = "hidden";
-}
-
-function plusSlides(n) {
-    slideIndex = slideIndex + n;
-    clearTimeout(timer);
-    timer = 0;
-    slide(slideIndex);
-}
-
-function slide(n) {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    if (n > x.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = x.length} ;
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    x[slideIndex-1].style.display = "block";
-    timer = setTimeout("carousel()", 3000);
-}
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > x.length) {slideIndex = 1}
-    x[slideIndex-1].style.display = "block";
-    timer = setTimeout("carousel()", 3000); 
-}
+drehe();
 </script>
 </html> 
 <%  } request.getSession(false).removeAttribute("listKategorien"); %>

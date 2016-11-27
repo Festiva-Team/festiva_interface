@@ -22,6 +22,7 @@
 <title>Festiva - Meine Daten</title>
 </head>
 <body>
+<script type="text/javascript" src="durchfuehrenBestaetigenFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="k_header.jsp">
 	<jsp:param name="active" value="kundendaten"/>
@@ -91,7 +92,7 @@
 				<div class="spalterechts">
 					<p id="text"><b>Hinweis:</b> Ihr Passwort muss aus mindestens einem Klein- und Großbuchstaben sowie einer Zahl und einem Sonderzeichen bestehen. Die Mindestlänge des Passworts beträgt 8 Zeichen.</p>
 				</div>	
-				<button type="submit" class="loeschen" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Mein Benutzerkonto löschen</button>
+				<button type="submit" class="loeschen" onclick="kontoLoeschen(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Mein Benutzerkonto löschen</button>
 			</div>
 		</form>
 	<div id="leer"></div>
@@ -101,15 +102,5 @@
 </jsp:include>
 </div>	
 </body>
-<script type="text/javascript">
-
-function del(id){
-	   if(confirm("Achtung! Ihr Konto wird dauerhaft gelöscht. Möchten Sie wirklich fortfahren?") == true) {
-		   document.location.href='/Festiva/Benutzerdaten?aktion=loeschen';
-	      } else {
-	    	 document.location.href='/Festiva/Benutzerdaten?aktion=anzeigen';
-	      }
-}
-</script>
 </html>
 <% }  %>

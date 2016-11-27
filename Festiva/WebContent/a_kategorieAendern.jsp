@@ -24,6 +24,7 @@ else {
 <title>Festiva - Kategorienverwaltung</title>
 </head>
 <body>
+<script type="text/javascript" src="durchfuehrenBestaetigenFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="a_headerAdmin.jsp">
 	<jsp:param name="active" value="kategorieAendern"/>
@@ -66,7 +67,7 @@ else {
 	<% if(kategorie.id != 1 && kategorie.id != 2 && kategorie.id != 3 && kategorie.id != 4) { if(new File(System.getenv("myPath") + "Festiva\\festiva_interface\\Festiva\\WebContent\\Bilder\\" + kategorie.bildpfad + ".jpg").exists()) {%>
 		<button type="submit" onClick="window.location.href='/Festiva/Kategorienverwaltung?aktion=b_loeschen&kategorienid=<%=kategorie.id%>'">Aktuelles Bild löschen</button>
 	<% } %>
-	<button type="submit" onclick="del(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
+	<button type="submit" onclick="kategorieLoeschen(<%=kategorie.id%>)" <% if (kategorie.istGelöscht == true) { %> disabled="disabled" <% } %>>Kategorie löschen</button>
 	<% } %>
 	<div id="leer"></div>
 	</div>
@@ -75,17 +76,5 @@ else {
 </jsp:include>
 </div>	
 </body>
-<script>
-
-
-function del(id){
-	   if(confirm("Möchten Sie die Kategorie wirklich löschen?") == true) {
-		   document.location.href='/Festiva/Kategorienverwaltung?aktion=loeschen&kategorienid=' + id;
-	      } else {
-	    	 document.location.href='/Festiva/Kategorienverwaltung?aktion=aendern&kategorienid=' + id;
-	      }
-
-}
-</script>
 </html>
 <% request.getSession().removeAttribute("kategorie");}%>

@@ -24,6 +24,7 @@ else {
 <title>Festiva - Kundenverwaltung</title>
 </head>
 <body>
+<script type="text/javascript" src="durchfuehrenBestaetigenFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="a_headerAdmin.jsp">
 	<jsp:param name="active" value="kundenAendern"/>
@@ -86,7 +87,7 @@ else {
 	</form>
 	</div>	
 	<div class="zeile">
-		<button type="submit" onclick="del(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>		
+		<button type="submit" onclick="kundenLoeschen(<%=benutzer.id%>)" <% if (benutzer.istGelöscht == true) { %> disabled="disabled" <% } %>>Kunden löschen</button>		
 	</div>
 	<div id="leer"></div>
 <jsp:include page="k_footer.jsp">
@@ -94,15 +95,5 @@ else {
 </jsp:include>
 </div>	
 </body>
-<script type="text/javascript">
-
-function del(id){
-	   if(confirm("Möchten Sie den aktuellen Kunden wirklich löschen?") == true) {
-	   		document.location.href='/Festiva/Kundenverwaltung?aktion=loeschen&kundenid=' + id;
-	   } else {
-	    	document.location.href='/Festiva/Kundenverwaltung?aktion=aendern&kundenid=' + id;
-	   }
-}
-</script>
 </html>
 <% request.getSession().removeAttribute("benutzer");}%>

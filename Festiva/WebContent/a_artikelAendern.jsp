@@ -27,6 +27,7 @@ else {
 <title>Festiva - Festivalverwaltung</title>
 </head>
 <body>
+<script type="text/javascript" src="durchfuehrenBestaetigenFunktionen.js"></script>
 <div id="webseite">
 <jsp:include page="a_headerAdmin.jsp">
 	<jsp:param name="active" value="artikelAendern"/>
@@ -72,7 +73,7 @@ else {
 			<% } %> 
 	<div class="zeile">
 		<% if (artikel.id != 6) { %>
-			<button type="submit" onclick="del(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
+			<button type="submit" onclick="artikelLoeschen(<%=artikel.id%>)" <% if (artikel.istGelöscht == true) { %> disabled="disabled" <% } %>>Artikel löschen</button>
 		<% } %>
 	</div>
 	<div id="leer"></div>	
@@ -82,15 +83,5 @@ else {
 </jsp:include>
 </div>
 </body>
-<script type="text/javascript">
-
-function del(id){
-	   if(confirm("Möchten Sie den Artikel wirklich löschen?") == true) {
-			document.location.href='/Festiva/Artikelverwaltung?aktion=loeschen&artikelid=' + id;
-	   } else {
-	   		document.location.href='/Festiva/Artikelverwaltung?aktion=aendern&artikelid=' + id;
-	   }
-}
-</script>
 </html>
 <% request.getSession().removeAttribute("festival"); }%>
