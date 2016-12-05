@@ -191,7 +191,7 @@ public class Artikelverwaltung extends HttpServlet {
 	/**
 	 * Methode zur Verarbeitung eines Bildes
 	 * 
-	 * @param p_part Part der Datei
+	 * @param p_dateiPart Part der Datei
 	 * @param p_artikel Artikel, an dem das Bild geändert werden soll
 	 * @param p_loeschen gibt an, ob das bestehende gespeicherte Bild vorher gelöscht werden soll
 	 * @return artikel Artikel mit aktuellem Bildpfad

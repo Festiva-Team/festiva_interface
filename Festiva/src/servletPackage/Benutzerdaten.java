@@ -155,6 +155,7 @@ public class Benutzerdaten extends HttpServlet {
 	 * @param p_pwBestätigung eingegebenes Passwort zur Bestätigung des neuen Passworts
 	 * @param p_benutzer BenutzerObjekt, an dem die Passwortänderung durchgeführt werden soll
 	 * @return rueckmeldung Rückmeldung über die durchgeführten Aktivitäten, die an den Kunden weitergeleitet werden kann
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	private String aenderePasswort(String p_pwAlt, String p_pwNeu, String p_pwBestätigung, Benutzer p_benutzer)
 			throws DatenbankException {
@@ -192,6 +193,7 @@ public class Benutzerdaten extends HttpServlet {
 	 * @param p_Email eingegebene E-Mail-Adresse
 	 * @param p_benutzer BenutzerObjekt, an dem die Datenänderung durchgeführt werden soll
 	 * @return rueckmeldung Rückmeldung über die durchgeführten Aktivitäten, die an den Kunden weitergeleitet werden kann
+	 * @throws DatenbankException wird geworfen, wenn die Kommunikation mit der Datenbank nicht möglich ist
 	 */
 	private String aendereDaten(String p_vorname, String p_nachname, String p_strasse, String p_hausnummer, int p_plz,
 			String p_ort, String p_iban, String p_bic, boolean p_einzugsermächtigungErteilt, String p_Email,
