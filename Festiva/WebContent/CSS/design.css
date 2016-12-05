@@ -21,9 +21,6 @@ h5 {
 #footertext{
 	color: white;
 }
-#footer{
-	margin: 0.5em;
-}
 /************Seiteneinteilung****************************/
 #webseite{
 	width:80%;
@@ -146,7 +143,7 @@ ul li a:hover + .hidden, .hidden:hover {
     display: block;
 }
 
-/*******************Slideshow*****************+*/	
+/*******************Slideshow******************/	
 #container{ 
     float: left;
     height: 300px;
